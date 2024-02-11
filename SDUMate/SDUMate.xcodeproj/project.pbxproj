@@ -12,6 +12,8 @@
 		6882A4CF2B786AD400B2AE72 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6882A4CE2B786AD400B2AE72 /* ViewController.swift */; };
 		6882A4D42B786AD600B2AE72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6882A4D32B786AD600B2AE72 /* Assets.xcassets */; };
 		6882A4D72B786AD600B2AE72 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6882A4D52B786AD600B2AE72 /* LaunchScreen.storyboard */; };
+		6882A4E22B7871B200B2AE72 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6882A4E12B7871B200B2AE72 /* SnapKit */; };
+		6882A4E42B7871B200B2AE72 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 6882A4E32B7871B200B2AE72 /* SnapKit-Dynamic */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6882A4E22B7871B200B2AE72 /* SnapKit in Frameworks */,
+				6882A4E42B7871B200B2AE72 /* SnapKit-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,6 +100,10 @@
 			dependencies = (
 			);
 			name = SDUMate;
+			packageProductDependencies = (
+				6882A4E12B7871B200B2AE72 /* SnapKit */,
+				6882A4E32B7871B200B2AE72 /* SnapKit-Dynamic */,
+			);
 			productName = SDUMate;
 			productReference = 6882A4C72B786AD400B2AE72 /* SDUMate.app */;
 			productType = "com.apple.product-type.application";
@@ -124,6 +132,9 @@
 				Base,
 			);
 			mainGroup = 6882A4BE2B786AD400B2AE72;
+			packageReferences = (
+				6882A4E02B7871B200B2AE72 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 6882A4C82B786AD400B2AE72 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -298,7 +309,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3F7BDN63CA;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SDUMate/Info.plist;
+				INFOPLIST_FILE = SDUMate/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
@@ -326,7 +337,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3F7BDN63CA;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SDUMate/Info.plist;
+				INFOPLIST_FILE = SDUMate/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
@@ -367,6 +378,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6882A4E02B7871B200B2AE72 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = exactVersion;
+				version = 5.7.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6882A4E12B7871B200B2AE72 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6882A4E02B7871B200B2AE72 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		6882A4E32B7871B200B2AE72 /* SnapKit-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6882A4E02B7871B200B2AE72 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = "SnapKit-Dynamic";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6882A4BF2B786AD400B2AE72 /* Project object */;
 }

@@ -54,14 +54,30 @@
 		6882A4C92B786AD400B2AE72 /* SDUMate */ = {
 			isa = PBXGroup;
 			children = (
-				6882A4CA2B786AD400B2AE72 /* AppDelegate.swift */,
-				6882A4CC2B786AD400B2AE72 /* SceneDelegate.swift */,
+				6882A4DF2B78714000B2AE72 /* AppLifecycle */,
+				6882A4DE2B78712900B2AE72 /* Resources */,
 				6882A4CE2B786AD400B2AE72 /* ViewController.swift */,
-				6882A4D32B786AD600B2AE72 /* Assets.xcassets */,
-				6882A4D52B786AD600B2AE72 /* LaunchScreen.storyboard */,
-				6882A4D82B786AD600B2AE72 /* Info.plist */,
 			);
 			path = SDUMate;
+			sourceTree = "<group>";
+		};
+		6882A4DE2B78712900B2AE72 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6882A4D32B786AD600B2AE72 /* Assets.xcassets */,
+				6882A4D82B786AD600B2AE72 /* Info.plist */,
+				6882A4D52B786AD600B2AE72 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		6882A4DF2B78714000B2AE72 /* AppLifecycle */ = {
+			isa = PBXGroup;
+			children = (
+				6882A4CA2B786AD400B2AE72 /* AppDelegate.swift */,
+				6882A4CC2B786AD400B2AE72 /* SceneDelegate.swift */,
+			);
+			path = AppLifecycle;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

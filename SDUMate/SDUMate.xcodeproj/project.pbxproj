@@ -14,6 +14,10 @@
 		6882A4D72B786AD600B2AE72 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6882A4D52B786AD600B2AE72 /* LaunchScreen.storyboard */; };
 		6882A4E22B7871B200B2AE72 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6882A4E12B7871B200B2AE72 /* SnapKit */; };
 		6882A4E42B7871B200B2AE72 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 6882A4E32B7871B200B2AE72 /* SnapKit-Dynamic */; };
+		6882A4E72B78734700B2AE72 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 6882A4E62B78734700B2AE72 /* CombineMoya */; };
+		6882A4E92B78734700B2AE72 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 6882A4E82B78734700B2AE72 /* Moya */; };
+		6882A4EB2B78734700B2AE72 /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 6882A4EA2B78734700B2AE72 /* ReactiveMoya */; };
+		6882A4ED2B78734700B2AE72 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 6882A4EC2B78734700B2AE72 /* RxMoya */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,8 +35,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6882A4ED2B78734700B2AE72 /* RxMoya in Frameworks */,
 				6882A4E22B7871B200B2AE72 /* SnapKit in Frameworks */,
 				6882A4E42B7871B200B2AE72 /* SnapKit-Dynamic in Frameworks */,
+				6882A4E92B78734700B2AE72 /* Moya in Frameworks */,
+				6882A4EB2B78734700B2AE72 /* ReactiveMoya in Frameworks */,
+				6882A4E72B78734700B2AE72 /* CombineMoya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +111,10 @@
 			packageProductDependencies = (
 				6882A4E12B7871B200B2AE72 /* SnapKit */,
 				6882A4E32B7871B200B2AE72 /* SnapKit-Dynamic */,
+				6882A4E62B78734700B2AE72 /* CombineMoya */,
+				6882A4E82B78734700B2AE72 /* Moya */,
+				6882A4EA2B78734700B2AE72 /* ReactiveMoya */,
+				6882A4EC2B78734700B2AE72 /* RxMoya */,
 			);
 			productName = SDUMate;
 			productReference = 6882A4C72B786AD400B2AE72 /* SDUMate.app */;
@@ -134,6 +146,7 @@
 			mainGroup = 6882A4BE2B786AD400B2AE72;
 			packageReferences = (
 				6882A4E02B7871B200B2AE72 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				6882A4E52B78734700B2AE72 /* XCRemoteSwiftPackageReference "Moya" */,
 			);
 			productRefGroup = 6882A4C82B786AD400B2AE72 /* Products */;
 			projectDirPath = "";
@@ -388,6 +401,14 @@
 				version = 5.7.0;
 			};
 		};
+		6882A4E52B78734700B2AE72 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya.git";
+			requirement = {
+				kind = exactVersion;
+				version = 15.0.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -400,6 +421,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6882A4E02B7871B200B2AE72 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = "SnapKit-Dynamic";
+		};
+		6882A4E62B78734700B2AE72 /* CombineMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6882A4E52B78734700B2AE72 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = CombineMoya;
+		};
+		6882A4E82B78734700B2AE72 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6882A4E52B78734700B2AE72 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+		6882A4EA2B78734700B2AE72 /* ReactiveMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6882A4E52B78734700B2AE72 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = ReactiveMoya;
+		};
+		6882A4EC2B78734700B2AE72 /* RxMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6882A4E52B78734700B2AE72 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = RxMoya;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

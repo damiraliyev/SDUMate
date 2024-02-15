@@ -14,6 +14,7 @@ protocol IAuthCoordinator: AnyObject {
 final class AuthCoordinator: BaseCoordinator, IAuthCoordinator {
     private let container: DependencyContainer
     private let moduleFactory: AuthModuleFactory
+    private var entryView: IEntryView?
     var onFlowDidFinish: Completion?
     
     
@@ -21,5 +22,10 @@ final class AuthCoordinator: BaseCoordinator, IAuthCoordinator {
         self.container = container
         moduleFactory = AuthModuleFactory(container: container)
         super.init(router: router)
+    }
+    
+    override func start() {
+        entryView = moduleFactory.makeEntryView(coordinator: self)
+        router.push(entryView)
     }
 }

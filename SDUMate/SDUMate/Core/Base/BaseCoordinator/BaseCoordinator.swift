@@ -83,4 +83,8 @@ public class BaseCoordinator: Coordinator {
         }
         router.presentAlert(alert, animated: true)
     }
+    
+    deinit {
+        print("✅✅✅ \(self) was deinited")
+    }
 }

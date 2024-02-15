@@ -21,6 +21,7 @@ final class AppCoordinator: BaseCoordinator {
     
     override func start() {
         clearAll()
+        runAuthFlow()
     }
     
     @objc private func authDataDidChange() {
@@ -38,16 +39,13 @@ final class AppCoordinator: BaseCoordinator {
     }
     
     private func runAuthFlow() {
-//        let coordinator = coordinatorFactory.makeAuthCoordinator()
-//        coordinator.onFlowDidFinish = { [weak self, weak coordinator] in
-//            guard let self else { return }
-//            self.removeDependency(coordinator)
-//            guard let role = UserSettings().userData?.role else { return }
-//            self.userRole = role
-//            self.runMainFlow(for: role)
-//        }
-//        addDependency(coordinator)
-//        coordinator.start()
+        let coordinator = coordinatorFactory.makeAuthCoordinator()
+        coordinator.onFlowDidFinish = { [weak self, weak coordinator] in
+            guard let self else { return }
+            removeDependency(coordinator)
+        }
+        addDependency(coordinator)
+        coordinator.start()
     }
     
     private func runMainFlow() {

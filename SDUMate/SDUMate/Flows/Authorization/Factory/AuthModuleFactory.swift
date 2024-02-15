@@ -13,4 +13,21 @@ final class AuthModuleFactory {
     init(container: DependencyContainer) {
         self.container = container
     }
+    
+    func makeEntryCoordinator() -> IEntryCoordinator {
+        let navigationController = CoordinatorNavigationController()
+        let coordinator = EntryCoordinator(router: Router(navigationController: navigationController))
+        return coordinator
+    }
+    
+    func makeEntryView(coordinator: IAuthCoordinator) -> IEntryView & Presentable {
+        let view: IEntryView = EntryViewController()
+        let presenter: IEntryPresenter = EntryPresenter(coordinator: coordinator, view: view)
+        view.presenter = presenter
+        return view
+    }
+    
+//    func makeLoginView() -> IAuthView {
+//        
+//    }
 }

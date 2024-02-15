@@ -15,4 +15,12 @@ final class AppCordinatorFactory {
         self.router = router
         self.container = container
     }
+    
+    func makeAuthCoordinator() -> Coordinator & IAuthCoordinator {
+        let coordinator = AuthCoordinator(
+            router: router,
+            container: container
+        )
+        return coordinator
+    }
 }

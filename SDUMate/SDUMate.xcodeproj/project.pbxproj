@@ -774,8 +774,8 @@
 			isa = PBXGroup;
 			children = (
 				688442D22B7E0AF500695763 /* Entry */,
-				688442CA2B7E068B00695763 /* Registration */,
 				688442CB2B7E069400695763 /* Login */,
+				688442CA2B7E068B00695763 /* Registration */,
 			);
 			path = Modules;
 			sourceTree = "<group>";

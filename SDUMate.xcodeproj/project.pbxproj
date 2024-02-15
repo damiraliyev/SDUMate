@@ -802,7 +802,6 @@
 			children = (
 				688442DA2B7E101800695763 /* Coordinator */,
 				688442DD2B7E112D00695763 /* Factory */,
-				688442D52B7E0EC000695763 /* Model */,
 				688442D42B7E0EBC00695763 /* View */,
 				688442D32B7E0EB600695763 /* Presenter */,
 			);
@@ -823,13 +822,6 @@
 				688442D62B7E0EF600695763 /* EntryViewController.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		688442D52B7E0EC000695763 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		688442DA2B7E101800695763 /* Coordinator */ = {

@@ -1,0 +1,36 @@
+/* 
+  Localizable.strings
+  BePRO
+
+  Created by Yessenali Zhanaidar on 20.07.2023.
+  
+*/
+"Attention" = "Внимание";
+"Error" = "Ошибка";
+"Cancel" = "Отмена";
+"OK" = "OK";
+"Delete" = "Удалить";
+"Something went wrong, try again please" = "Что-то пошло не так, попробуйте еще раз";
+"recordError" = "При записи что-то пошло не так, попробуйте позже!";
+"Settings" = "Настройки";
+"PDF download failed" = "Не удалось загрузить PDF-файл";
+"Error occurred while processing" = "Произошла ошибка при обработке";
+"Apply" = "Применить";
+"Save" = "Сохранить";
+"Done" = "Готово";
+"Retry" = "Повторить";
+"User data not found" = "Данные пользователя не найдены";
+"Do you want to finish the day?" = "Вы хотите закончить день?";
+"Yes" = "Да";
+"You have successfully completed the day!" = "Вы успешно завершили день!";
+"Approve" = "Утвердить";
+"Reject" = "Отклонить";
+"%@ changeDeadline from %@ to %@" = "%@ запросил перенос дедлайна задачи с %@ на %@";
+"Please, wait" = "Пожалуйста, подождите";
+"No" = "Нет";
+"Are you sure, you want to stop downloading?" = "Вы уверены, что хотите остановить загрузку?";
+"no internet" = "Нет соединения \nс интернетом";
+"checkInternet" = "Проверьте соединение \nс интернетом и попробуйте еще раз";
+"Try again" = "Попробовать еще раз";
+"The reason for the refusal" = "Причина отказа";
+"Write the reason why you want to refuse" = "Напишите причину по которой хотите отказать";

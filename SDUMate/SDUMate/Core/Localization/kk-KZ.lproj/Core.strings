@@ -1,0 +1,36 @@
+/* 
+  Localizable.strings
+  BePRO
+
+  Created by Yessenali Zhanaidar on 20.07.2023.
+  
+*/
+"Attention" = "Назар аударыңыз";
+"Error" = "Қате";
+"Cancel" = "Бас тарту";
+"OK" = "OK";
+"Delete" = "Өшіру";
+"recordError" = "Жазу кезінде бірдеңе дұрыс болмады, кейінірек қайталап көріңіз!";
+"Something went wrong, try again please" = "Бірдеңе дұрыс болмады, қайта көріңізші";
+"Settings" = "Баптаулар";
+"PDF download failed" = "PDF файлын жүктеу мүмкін болмады";
+"Error occurred while processing" = "Өңдеу кезінде қате пайда болды";
+"Apply" = "Қолдану";
+"Save" = "Сақтау";
+"Done" = "Дайын";
+"Retry" = "Қайталау";
+"User data not found" = "Пайдаланушы деректері табылмады";
+"Do you want to finish the day?" = "Сіз күнді аяқтағыңыз келе ме?";
+"Yes" = "Иә";
+"You have successfully completed the day!" = "Сіз күнді сәтті аяқтадыңыз!";
+"Approve" = "Бекіту";
+"Reject" = "Бас тарту";
+"%@ changeDeadline from %@ to %@" = "%@ тапсырманың мерзімін %@ осы уақыттан %@ - осы уақытқа ауыстыруды сұрады";
+"Please, wait" = "Күте тұрыңыз";
+"No" = "Жоқ";
+"Are you sure, you want to stop downloading?" = "Жүктеуді тоқтатқыңыз келетініне сенімдісіз бе?";
+"no internet" = "Интернет өшірулі";
+"checkInternet" = "Интернет байланысын тексеріп, қайта көріңіз";
+"Try again" = "Қайта көру";
+"The reason for the refusal" = "Бас тарту себебі";
+"Write the reason why you want to refuse" = "Неліктен бас тартқыңыз келетінін жазыңыз";

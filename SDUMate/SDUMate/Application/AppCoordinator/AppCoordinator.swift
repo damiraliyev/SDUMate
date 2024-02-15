@@ -25,6 +25,7 @@ final class AppCoordinator: BaseCoordinator {
     
     @objc private func authDataDidChange() {
         start()
+        runAuthFlow()
     }
     
     private func runOnboardingFlow() {
@@ -33,6 +34,7 @@ final class AppCoordinator: BaseCoordinator {
     
     private func clearAll() {
         tabBarCoordinator = nil
+        clearChildCoordinators()
     }
     
     private func runAuthFlow() {

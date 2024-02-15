@@ -88,6 +88,8 @@
 		688442C02B7E02C200695763 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688442BF2B7E02C200695763 /* AppCoordinator.swift */; };
 		688442C42B7E03C800695763 /* DependencyContainerAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688442C32B7E03C800695763 /* DependencyContainerAssembly.swift */; };
 		688442C62B7E03FE00695763 /* AppCoordinatorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688442C52B7E03FE00695763 /* AppCoordinatorFactory.swift */; };
+		688442CF2B7E06C800695763 /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688442CE2B7E06C800695763 /* AuthCoordinator.swift */; };
+		688442D12B7E076000695763 /* AuthModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688442D02B7E076000695763 /* AuthModuleFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -165,6 +167,8 @@
 		688442BF2B7E02C200695763 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		688442C32B7E03C800695763 /* DependencyContainerAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainerAssembly.swift; sourceTree = "<group>"; };
 		688442C52B7E03FE00695763 /* AppCoordinatorFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorFactory.swift; sourceTree = "<group>"; };
+		688442CE2B7E06C800695763 /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
+		688442D02B7E076000695763 /* AuthModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModuleFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -687,6 +691,7 @@
 			children = (
 				6882A4DF2B78714000B2AE72 /* AppLifecycle */,
 				688442BE2B7E029B00695763 /* Application */,
+				688442C72B7E065600695763 /* Flows */,
 				6882A4DE2B78712900B2AE72 /* Resources */,
 				682D07452B7DF31800A5FCC1 /* Core */,
 				6882A4CE2B786AD400B2AE72 /* ViewController.swift */,
@@ -737,6 +742,63 @@
 				688442C32B7E03C800695763 /* DependencyContainerAssembly.swift */,
 			);
 			path = DI;
+			sourceTree = "<group>";
+		};
+		688442C72B7E065600695763 /* Flows */ = {
+			isa = PBXGroup;
+			children = (
+				688442C82B7E066E00695763 /* Authorization */,
+			);
+			path = Flows;
+			sourceTree = "<group>";
+		};
+		688442C82B7E066E00695763 /* Authorization */ = {
+			isa = PBXGroup;
+			children = (
+				688442CC2B7E06A600695763 /* Coordinator */,
+				688442CD2B7E06B300695763 /* Factory */,
+				688442C92B7E068500695763 /* Modules */,
+			);
+			path = Authorization;
+			sourceTree = "<group>";
+		};
+		688442C92B7E068500695763 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				688442CA2B7E068B00695763 /* Registration */,
+				688442CB2B7E069400695763 /* Login */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		688442CA2B7E068B00695763 /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
+		688442CB2B7E069400695763 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		688442CC2B7E06A600695763 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				688442CE2B7E06C800695763 /* AuthCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		688442CD2B7E06B300695763 /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				688442D02B7E076000695763 /* AuthModuleFactory.swift */,
+			);
+			path = Factory;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -871,6 +933,7 @@
 				682D080E2B7DF31900A5FCC1 /* Animations.swift in Sources */,
 				682D08562B7DF31900A5FCC1 /* Observable.swift in Sources */,
 				682D08262B7DF31900A5FCC1 /* UIViewController+Extension.swift in Sources */,
+				688442CF2B7E06C800695763 /* AuthCoordinator.swift in Sources */,
 				682D082F2B7DF31900A5FCC1 /* Date+Extension.swift in Sources */,
 				682D08322B7DF31900A5FCC1 /* NotificationCenter+Extension.swift in Sources */,
 				682D083B2B7DF31900A5FCC1 /* BPSegmentedControl.swift in Sources */,
@@ -897,6 +960,7 @@
 				682D081A2B7DF31900A5FCC1 /* Vibration.swift in Sources */,
 				682D08572B7DF31900A5FCC1 /* BaseNavigationViewController.swift in Sources */,
 				682D08772B7DFA2600A5FCC1 /* DatePickerViewController.swift in Sources */,
+				688442D12B7E076000695763 /* AuthModuleFactory.swift in Sources */,
 				682D08282B7DF31900A5FCC1 /* UITableView+Extension.swift in Sources */,
 				682D082A2B7DF31900A5FCC1 /* UIEdgeInsets+Extensions.swift in Sources */,
 				682D08582B7DF31900A5FCC1 /* BaseViewController.swift in Sources */,

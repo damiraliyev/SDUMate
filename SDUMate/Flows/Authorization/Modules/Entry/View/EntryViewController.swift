@@ -5,7 +5,7 @@
 //  Created by Damir Aliyev on 15.02.2024.
 //
 
-import Foundation
+import UIKit
 
 protocol IEntryView: Presentable {
     var presenter: IEntryPresenter? { get set }

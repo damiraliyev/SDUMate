@@ -94,6 +94,7 @@
 		688442D92B7E0F2C00695763 /* EntryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688442D82B7E0F2C00695763 /* EntryPresenter.swift */; };
 		688442DC2B7E102A00695763 /* EntryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688442DB2B7E102A00695763 /* EntryCoordinator.swift */; };
 		688442DF2B7E113A00695763 /* EntryModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688442DE2B7E113A00695763 /* EntryModuleFactory.swift */; };
+		68A5F1E02B7E6C5D003C38AF /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A5F1DF2B7E6C5D003C38AF /* Assets.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -177,6 +178,7 @@
 		688442D82B7E0F2C00695763 /* EntryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryPresenter.swift; sourceTree = "<group>"; };
 		688442DB2B7E102A00695763 /* EntryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryCoordinator.swift; sourceTree = "<group>"; };
 		688442DE2B7E113A00695763 /* EntryModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryModuleFactory.swift; sourceTree = "<group>"; };
+		68A5F1DF2B7E6C5D003C38AF /* Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -713,6 +715,7 @@
 				6882A4D32B786AD600B2AE72 /* Assets.xcassets */,
 				6882A4D82B786AD600B2AE72 /* Info.plist */,
 				6882A4D52B786AD600B2AE72 /* LaunchScreen.storyboard */,
+				68A5F1DF2B7E6C5D003C38AF /* Assets.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -774,24 +777,8 @@
 			isa = PBXGroup;
 			children = (
 				688442D22B7E0AF500695763 /* Entry */,
-				688442CB2B7E069400695763 /* Login */,
-				688442CA2B7E068B00695763 /* Registration */,
 			);
 			path = Modules;
-			sourceTree = "<group>";
-		};
-		688442CA2B7E068B00695763 /* Registration */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Registration;
-			sourceTree = "<group>";
-		};
-		688442CB2B7E069400695763 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Login;
 			sourceTree = "<group>";
 		};
 		688442CC2B7E06A600695763 /* Coordinator */ = {
@@ -985,6 +972,7 @@
 				6882A4CB2B786AD400B2AE72 /* AppDelegate.swift in Sources */,
 				682D086A2B7DF31900A5FCC1 /* Core.swift in Sources */,
 				682D08212B7DF31900A5FCC1 /* UIFont+Extension.swift in Sources */,
+				68A5F1E02B7E6C5D003C38AF /* Assets.swift in Sources */,
 				682D08112B7DF31900A5FCC1 /* Device.swift in Sources */,
 				688442D72B7E0EF600695763 /* EntryViewController.swift in Sources */,
 				682D082B2B7DF31900A5FCC1 /* UITextField+Extensions.swift in Sources */,

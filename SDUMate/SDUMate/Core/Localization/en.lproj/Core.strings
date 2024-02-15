@@ -1,0 +1,36 @@
+/* 
+  Localizable.strings
+  BePRO
+
+  Created by Yessenali Zhanaidar on 20.07.2023.
+  
+*/
+"Attention" = "Attention";
+"Error" = "Error";
+"Cancel" = "Cancel";
+"OK" = "OK";
+"Delete" = "Delete";
+"recordError" = "Something went wrong while recording, please try again later!";
+"Something went wrong, try again please" = "Something went wrong, try again please";
+"Settings" = "Settings";
+"PDF download failed" = "PDF download failed";
+"Error occurred while processing" = "Error occurred while processing";
+"Apply" = "Apply";
+"Save" = "Save";
+"Done" = "Done";
+"Retry" = "Retry";
+"User data not found" = "User data not found";
+"Do you want to finish the day?" = "Do you want to finish the day?";
+"Yes" = "Yes";
+"You have successfully completed the day!" = "You have successfully completed the day!";
+"Approve" = "Approve";
+"Reject" = "Reject";
+"%@ changeDeadline from %@ to %@" = "%@ requested to change of the task deadline from %@ to %@";
+"Please, wait" = "Please, wait";
+"No" = "No";
+"Are you sure, you want to stop downloading?" = "Are you sure, you want to stop downloading?";
+"no internet" = "No internet connection";
+"checkInternet" = "Check your internet connection and try again";
+"Try again" = "Try again";
+"The reason for the refusal" = "The reason for the refusal";
+"Write the reason why you want to refuse" = "Write the reason why you want to refuse";

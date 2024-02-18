@@ -23,7 +23,6 @@ class BaseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViews()
         setupSkeleton()
         didChangeLanguage()
     }
@@ -37,8 +36,6 @@ class BaseViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
         print("✅✅✅✅ \(self) is deinited")
     }
-    
-    func setupViews() { }
     
     func setupSkeleton() { }
     

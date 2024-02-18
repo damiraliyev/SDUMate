@@ -13,4 +13,6 @@ extension UIFont {
     
     static let medium12 = UIFont(name: "Poppins-Medium", size: 12)!
     static let medium16 = UIFont(name: "Poppins-Medium", size: 16)!
+    
+    static let bold48 = UIFont(name: "Poppins-Bold", size: 48)!
 }

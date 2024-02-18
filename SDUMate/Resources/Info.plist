@@ -19,5 +19,13 @@
 			</array>
 		</dict>
 	</dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Poppins-Bold.ttf</string>
+		<string>Poppins-Semibold.ttf</string>
+		<string>Poppins-Medium.ttf</string>
+		<string>Poppins-Regular.ttf</string>
+		<string>Poppins-Thin.ttf</string>
+	</array>
 </dict>
 </plist>

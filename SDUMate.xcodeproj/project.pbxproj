@@ -100,6 +100,7 @@
 		68D0E1D82B81B2D400F7C197 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68D0E1D72B81B2D400F7C197 /* Poppins-Regular.ttf */; };
 		68D0E1DA2B81B2DF00F7C197 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68D0E1D92B81B2DF00F7C197 /* Poppins-SemiBold.ttf */; };
 		68D0E1DC2B81B2EF00F7C197 /* Poppins-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68D0E1DB2B81B2EF00F7C197 /* Poppins-Thin.ttf */; };
+		68D0E1DE2B81EFB200F7C197 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68D0E1DD2B81EFB200F7C197 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -189,6 +190,7 @@
 		68D0E1D72B81B2D400F7C197 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		68D0E1D92B81B2DF00F7C197 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 		68D0E1DB2B81B2EF00F7C197 /* Poppins-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Thin.ttf"; sourceTree = "<group>"; };
+		68D0E1DD2B81EFB200F7C197 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "SDUMate/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -709,6 +711,7 @@
 		6882A4C92B786AD400B2AE72 /* SDUMate */ = {
 			isa = PBXGroup;
 			children = (
+				68D0E1DD2B81EFB200F7C197 /* GoogleService-Info.plist */,
 				6882A4DF2B78714000B2AE72 /* AppLifecycle */,
 				688442BE2B7E029B00695763 /* Application */,
 				688442C72B7E065600695763 /* Flows */,
@@ -946,6 +949,7 @@
 			files = (
 				6882A4D72B786AD600B2AE72 /* LaunchScreen.storyboard in Resources */,
 				68D0E1DA2B81B2DF00F7C197 /* Poppins-SemiBold.ttf in Resources */,
+				68D0E1DE2B81EFB200F7C197 /* GoogleService-Info.plist in Resources */,
 				682D08692B7DF31900A5FCC1 /* Core.strings in Resources */,
 				6882A4D42B786AD600B2AE72 /* Assets.xcassets in Resources */,
 				68D0E1D82B81B2D400F7C197 /* Poppins-Regular.ttf in Resources */,

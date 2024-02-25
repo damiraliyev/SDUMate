@@ -24,25 +24,37 @@ final class EntryViewController: BaseViewController, IEntryView {
     
     private lazy var signInButton = GradientButton(title: "Sign In", font: .medium16)
     
+    override func loadView() {
+        super.loadView()
+        self.view = AuthView()
+    }
+    
     override func viewDidLoad() {
         setupViews()
         setupConstraints()
     }
     
+    override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
+        setupTitleLabel()
+    }
+    
     private func setupViews() {
-        view.backgroundColor = Asset.background.color
         view.addSubviews([titleLabel, signInButton])
     }
     
     private func setupConstraints() {
-        titleLabel.snp.makeConstraints { make in
-            make.centerY.equalToSuperview().offset(-((view.frame.height - titleLabel.font.lineHeight) * 0.06))
-            make.centerX.equalToSuperview()
-        }
         signInButton.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(131)
             make.leading.trailing.equalToSuperview().inset(40)
             make.height.equalTo(52)
+        }
+    }
+    
+    private func setupTitleLabel() {
+        titleLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview().offset(-((view.frame.height - titleLabel.font.lineHeight) * 0.06))
+            make.centerX.equalToSuperview()
         }
     }
 }

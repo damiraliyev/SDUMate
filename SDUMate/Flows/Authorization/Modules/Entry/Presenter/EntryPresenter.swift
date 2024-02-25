@@ -8,7 +8,7 @@
 import Foundation
 
 protocol IEntryPresenter: AnyObject {
-    
+    func signInTapped()
 }
 
 final class EntryPresenter: IEntryPresenter {
@@ -18,5 +18,9 @@ final class EntryPresenter: IEntryPresenter {
     init(coordinator: IAuthCoordinator, view: IEntryView) {
         self.coordinator = coordinator
         self.view = view
+    }
+    
+    func signInTapped() {
+        coordinator.showSignInView()
     }
 }

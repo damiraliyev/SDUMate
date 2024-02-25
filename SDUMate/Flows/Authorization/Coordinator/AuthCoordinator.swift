@@ -9,6 +9,8 @@ import Foundation
 
 protocol IAuthCoordinator: AnyObject {
     var onFlowDidFinish: Completion? { get set }
+    
+    func showSignInView()
 }
 
 final class AuthCoordinator: BaseCoordinator, IAuthCoordinator {
@@ -27,5 +29,9 @@ final class AuthCoordinator: BaseCoordinator, IAuthCoordinator {
     override func start() {
         entryView = moduleFactory.makeEntryView(coordinator: self)
         router.push(entryView)
+    }
+    
+    func showSignInView() {
+        
     }
 }

@@ -22,7 +22,13 @@ final class EntryViewController: BaseViewController, IEntryView {
         return label
     }()
     
-    private lazy var signInButton = GradientButton(title: "Sign In", font: .medium16)
+    private lazy var signInButton: GradientButton = {
+        let button = GradientButton()
+        button.setTitle("Sign in", for: .normal)
+        button.titleLabel?.font = .medium16
+        button.addTarget(self, action: #selector(signInTapped), for: .touchUpInside)
+        return button
+    }()
     
     private lazy var createAccountLabel: UILabel = {
         let label = UILabel()
@@ -69,5 +75,9 @@ final class EntryViewController: BaseViewController, IEntryView {
             make.centerY.equalToSuperview().offset(-((view.frame.height - titleLabel.font.lineHeight) * 0.06))
             make.centerX.equalToSuperview()
         }
+    }
+    
+    @objc func signInTapped() {
+        presenter?.signInTapped()
     }
 }

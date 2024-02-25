@@ -32,6 +32,7 @@ final class AuthCoordinator: BaseCoordinator, IAuthCoordinator {
     }
     
     func showSignInView() {
-        
+        let loginView = moduleFactory.makeLoginView(coordinator: self)
+        router.push(loginView)
     }
 }

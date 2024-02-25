@@ -15,6 +15,11 @@ final class LoginViewController: UIViewController, ILoginView {
     
     var presenter: ILoginPresenter?
     
+    override func loadView() {
+        super.loadView()
+        self.view = AuthView()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -22,7 +27,6 @@ final class LoginViewController: UIViewController, ILoginView {
     }
     
     private func setupViews() {
-        
     }
     
     private func setupConstraints() {

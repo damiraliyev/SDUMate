@@ -27,6 +27,13 @@ final class AuthModuleFactory {
         return view
     }
     
+    func makeLoginView(coordinator: IAuthCoordinator) -> ILoginView & Presentable {
+        let view: ILoginView = LoginViewController()
+        let presenter: ILoginPresenter = LoginPresenter(coordinator: coordinator, view: view)
+        view.presenter = presenter
+        return view
+    }
+    
 //    func makeLoginView() -> IAuthView {
 //        
 //    }

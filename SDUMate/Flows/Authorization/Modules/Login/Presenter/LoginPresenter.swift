@@ -15,7 +15,7 @@ final class LoginPresenter: ILoginPresenter {
     
     weak var view: ILoginView?
     
-    init(view: ILoginView) {
+    init(coordinator: IAuthCoordinator, view: ILoginView) {
         self.view = view
     }
 }

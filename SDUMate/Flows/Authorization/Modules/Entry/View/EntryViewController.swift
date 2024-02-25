@@ -24,6 +24,14 @@ final class EntryViewController: BaseViewController, IEntryView {
     
     private lazy var signInButton = GradientButton(title: "Sign In", font: .medium16)
     
+    private lazy var createAccountLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = .medium16
+        label.text = "Create account"
+        return label
+    }()
+    
     override func loadView() {
         super.loadView()
         self.view = AuthView()
@@ -40,7 +48,7 @@ final class EntryViewController: BaseViewController, IEntryView {
     }
     
     private func setupViews() {
-        view.addSubviews([titleLabel, signInButton])
+        view.addSubviews([titleLabel, signInButton, createAccountLabel])
     }
     
     private func setupConstraints() {
@@ -48,6 +56,11 @@ final class EntryViewController: BaseViewController, IEntryView {
             make.top.equalTo(titleLabel.snp.bottom).offset(131)
             make.leading.trailing.equalToSuperview().inset(40)
             make.height.equalTo(52)
+        }
+        
+        createAccountLabel.snp.makeConstraints { make in
+            make.top.equalTo(signInButton.snp.bottom).offset(22)
+            make.centerX.equalToSuperview()
         }
     }
     

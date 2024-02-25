@@ -29,6 +29,7 @@ internal enum Asset {
   internal static let orange = ColorAsset(name: "orange")
   internal static let authBackground = ImageAsset(name: "auth_background")
   internal static let gradientButton = ImageAsset(name: "gradient_button")
+  internal static let person = ImageAsset(name: "person")
   internal static let sduLogo = ImageAsset(name: "sdu_logo")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name

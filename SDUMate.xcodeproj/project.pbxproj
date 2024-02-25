@@ -116,6 +116,7 @@
 		68D0E1DE2B81EFB200F7C197 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68D0E1DD2B81EFB200F7C197 /* GoogleService-Info.plist */; };
 		68D1902D2B8B2ECB0045DBE5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D1902C2B8B2ECB0045DBE5 /* LoginViewController.swift */; };
 		68D1902F2B8B2F330045DBE5 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D1902E2B8B2F330045DBE5 /* LoginPresenter.swift */; };
+		68D190322B8B41080045DBE5 /* SMTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D190312B8B41080045DBE5 /* SMTextFieldView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -210,6 +211,7 @@
 		68D0E1DD2B81EFB200F7C197 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "SDUMate/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		68D1902C2B8B2ECB0045DBE5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		68D1902E2B8B2F330045DBE5 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		68D190312B8B41080045DBE5 /* SMTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMTextFieldView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -573,6 +575,7 @@
 		682D079C2B7DF31900A5FCC1 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				68D190302B8B40EA0045DBE5 /* UIView */,
 				682D08782B7DFB2B00A5FCC1 /* SuccessAlertViewController */,
 				682D08752B7DFA0300A5FCC1 /* DatePickerView */,
 				682D079F2B7DF31900A5FCC1 /* UITableViewCell */,
@@ -924,6 +927,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		68D190302B8B40EA0045DBE5 /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				68D190312B8B41080045DBE5 /* SMTextFieldView.swift */,
+			);
+			path = UIView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1068,6 +1079,7 @@
 				682D086A2B7DF31900A5FCC1 /* Core.swift in Sources */,
 				682D08212B7DF31900A5FCC1 /* UIFont+Extension.swift in Sources */,
 				68A5F1E02B7E6C5D003C38AF /* Assets.swift in Sources */,
+				68D190322B8B41080045DBE5 /* SMTextFieldView.swift in Sources */,
 				682D08112B7DF31900A5FCC1 /* Device.swift in Sources */,
 				688442D72B7E0EF600695763 /* EntryViewController.swift in Sources */,
 				682D082B2B7DF31900A5FCC1 /* UITextField+Extensions.swift in Sources */,

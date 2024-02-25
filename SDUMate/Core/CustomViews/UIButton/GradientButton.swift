@@ -21,31 +21,24 @@ final class GradientButton: UIButton {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        layer.cornerRadius = 20
+        layer.cornerRadius = 10
         layer.borderColor = UIColor(red: 0.125, green: 0.125, blue: 0.302, alpha: 1).cgColor
         layer.borderWidth = 1
         setupGradientLayer()
     }
     
-    private func setupViews() {
-        backgroundColor = Asset.background.color
-        clipsToBounds = true
-    }
-    
-    private func setupGradientLayer() {
+    func setupGradientLayer() {
         let gradientLayer = CAGradientLayer()
         DispatchQueue.main.async {
             gradientLayer.colors = [
-                Asset.background.color,
-                UIColor(red: 0.125, green: 0.125, blue: 0.302, alpha: 1).cgColor,
-                UIColor(red: 0.114, green: 0.114, blue: 0.333, alpha: 1).cgColor
+                UIColor.hexStringToUIColor(hex: "#060741").cgColor,
+                UIColor.hexStringToUIColor(hex: "#2D4A8A").cgColor,
+                UIColor.hexStringToUIColor(hex: "#060741").cgColor
             ]
-            gradientLayer.locations = [0, 0.75, 1]
-            gradientLayer.type = .radial
-            gradientLayer.startPoint = CGPoint(x: 0, y:  0.5)
-            gradientLayer.endPoint = CGPoint(x: 1, y: 1)
-            gradientLayer.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height)
-            gradientLayer.cornerRadius = 20
+            gradientLayer.startPoint = CGPoint(x: 0.15, y:  0.5)
+            gradientLayer.endPoint = CGPoint(x: 0.85, y: 0.5)
+            gradientLayer.frame = self.bounds
+            gradientLayer.cornerRadius = 10
             self.layer.insertSublayer(gradientLayer, at: 0)
         }
     }

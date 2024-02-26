@@ -9,6 +9,26 @@ import UIKit
 
 public extension UIColor {
     
+    static var background: UIColor {
+        return UIColor(hex: 0x000040)
+    }
+    
+    static var orange: UIColor {
+        return UIColor(hex: 0xFF9E44)
+    }
+    
+    static var lavender: UIColor {
+        return UIColor(hex: 0xCFCBFF)
+    }
+    
+    static var textFieldBorderPurple: UIColor {
+        return UIColor(hex: 0x383467)
+    }
+    
+    static var textFieldInner: UIColor {
+        return UIColor(hex: 0x1D1D55)
+    }
+    
     static var beProBlack: UIColor {
         return UIColor(hex: 0x000000)
     }

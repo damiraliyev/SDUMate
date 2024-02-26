@@ -23,6 +23,14 @@ final class LoginViewController: UIViewController, ILoginView {
         return label
     }()
     
+    private let loginToAccountLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = Asset.lavender.color
+        label.font = .medium16
+        label.text = "Login to your account"
+        return label
+    }()
+    
     override func loadView() {
         super.loadView()
         self.view = AuthView()
@@ -40,7 +48,7 @@ final class LoginViewController: UIViewController, ILoginView {
     }
     
     private func setupViews() {
-        view.addSubviews([welcomeLabel])
+        view.addSubviews([welcomeLabel, loginToAccountLabel])
     }
     
     private func setupConstraints() {
@@ -50,6 +58,10 @@ final class LoginViewController: UIViewController, ILoginView {
     private func setupWelcomeLabelConstraints() {
         welcomeLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(view.frame.height * 0.305)
+            make.centerX.equalToSuperview()
+        }
+        loginToAccountLabel.snp.makeConstraints { make in
+            make.top.equalTo(welcomeLabel.snp.bottom).offset(8)
             make.centerX.equalToSuperview()
         }
     }

@@ -32,6 +32,7 @@ final class SMTextFieldView: UIView {
     
     private func setupViews() {
         backgroundColor = .textFieldInner
+        leftImageView.contentMode = .scaleAspectFit
         layer.borderWidth = 1
         layer.borderColor = UIColor.textFieldBorderPurple.cgColor
         layer.cornerRadius = 20
@@ -60,5 +61,9 @@ final class SMTextFieldView: UIView {
         let placeholderAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.medium16, .foregroundColor: UIColor.lavender]
         let attributedPlaceholder = NSAttributedString(string: text, attributes: placeholderAttributes)
         mainTextField.attributedPlaceholder = attributedPlaceholder
+    }
+    
+    func makeTextSecure() {
+        mainTextField.isSecureTextEntry = true
     }
 }

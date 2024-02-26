@@ -45,6 +45,13 @@ final class LoginViewController: UIViewController, ILoginView {
         return fieldView
     }()
     
+    private let passwordTextField: SMTextFieldView = {
+        let textField = SMTextFieldView()
+        textField.setLeftImage(image: Asset.lock.image)
+        textField.makeTextSecure()
+        return textField
+    }()
+    
     override func loadView() {
         super.loadView()
         self.view = AuthView()
@@ -63,7 +70,7 @@ final class LoginViewController: UIViewController, ILoginView {
     
     private func setupViews() {
         view.addSubviews([welcomeLabel, loginToAccountLabel, fieldsStackView])
-        fieldsStackView.addArrangedSubviews([emailFieldView])
+        fieldsStackView.addArrangedSubviews([emailFieldView, passwordTextField])
     }
     
     private func setupConstraints() {
@@ -84,6 +91,9 @@ final class LoginViewController: UIViewController, ILoginView {
             make.leading.trailing.equalToSuperview().inset(24)
         }
         emailFieldView.snp.makeConstraints { make in
+            make.height.equalTo(52)
+        }
+        passwordTextField.snp.makeConstraints { make in
             make.height.equalTo(52)
         }
     }

@@ -28,6 +28,7 @@ internal enum Asset {
   internal static let b = ColorAsset(name: "b")
   internal static let authBackground = ImageAsset(name: "auth_background")
   internal static let gradientButton = ImageAsset(name: "gradient_button")
+  internal static let lock = ImageAsset(name: "lock")
   internal static let person = ImageAsset(name: "person")
   internal static let sduLogo = ImageAsset(name: "sdu_logo")
 }

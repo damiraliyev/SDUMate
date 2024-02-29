@@ -9,7 +9,11 @@ import UIKit
 
 final class SMTextFieldView: UIView {
     
-    private let leftImageView = UIImageView()
+    private let leftImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
     
     private let mainTextField: UITextField = {
         let textField = UITextField()
@@ -18,6 +22,13 @@ final class SMTextFieldView: UIView {
         textField.autocapitalizationType = .none
         textField.autocorrectionType = .no
         return textField
+    }()
+    
+    private let rightImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.safeHide()
+        return imageView
     }()
     
     override init(frame: CGRect) {
@@ -32,11 +43,10 @@ final class SMTextFieldView: UIView {
     
     private func setupViews() {
         backgroundColor = .textFieldInner
-        leftImageView.contentMode = .scaleAspectFit
         layer.borderWidth = 1
         layer.borderColor = UIColor.textFieldBorderPurple.cgColor
         layer.cornerRadius = 20
-        addSubviews([leftImageView, mainTextField])
+        addSubviews([leftImageView, mainTextField, rightImageView])
     }
     
     private func setupConstraints() {
@@ -50,6 +60,11 @@ final class SMTextFieldView: UIView {
             make.leading.equalTo(leftImageView.snp.trailing).offset(10)
             make.trailing.equalToSuperview().offset(-10)
             make.height.equalTo(24)
+        }
+        rightImageView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.trailing.equalToSuperview().offset(-20)
+            make.size.equalTo(18)
         }
     }
     
@@ -65,5 +80,10 @@ final class SMTextFieldView: UIView {
     
     func makeTextSecure() {
         mainTextField.isSecureTextEntry = true
+    }
+    
+    func addRightImageView(image: UIImage) {
+        rightImageView.image = image
+        rightImageView.safeShow()
     }
 }

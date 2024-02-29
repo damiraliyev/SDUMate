@@ -49,7 +49,25 @@ final class LoginViewController: UIViewController, ILoginView {
         let textField = SMTextFieldView()
         textField.setLeftImage(image: Asset.lock.image)
         textField.makeTextSecure()
+        textField.addRightImageView(image: Asset.eyeOpen.image)
+        textField.setPlaceholderText(text: "Password")
         return textField
+    }()
+    
+    private lazy var forgotPasswordLabel: UILabel = {
+        let label = UILabel()
+        label.font = .regular14
+        label.textColor = .lavender
+        label.text = "Forgot password"
+        return label
+    }()
+    
+    private lazy var loginButton: GradientButton = {
+        let button = GradientButton()
+        button.setTitle("Log in", for: .normal)
+        button.titleLabel?.font = .medium16
+//        button.addTarget(self, action: #selector(loginTapped), for: .touchUpInside)
+        return button
     }()
     
     override func loadView() {
@@ -69,19 +87,11 @@ final class LoginViewController: UIViewController, ILoginView {
     }
     
     private func setupViews() {
-        view.addSubviews([welcomeLabel, loginToAccountLabel, fieldsStackView])
+        view.addSubviews([welcomeLabel, loginToAccountLabel, fieldsStackView, forgotPasswordLabel, loginButton])
         fieldsStackView.addArrangedSubviews([emailFieldView, passwordTextField])
     }
     
     private func setupConstraints() {
-        
-    }
-    
-    private func setupWelcomeLabelConstraints() {
-        welcomeLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(view.frame.height * 0.305)
-            make.centerX.equalToSuperview()
-        }
         loginToAccountLabel.snp.makeConstraints { make in
             make.top.equalTo(welcomeLabel.snp.bottom).offset(8)
             make.centerX.equalToSuperview()
@@ -95,6 +105,22 @@ final class LoginViewController: UIViewController, ILoginView {
         }
         passwordTextField.snp.makeConstraints { make in
             make.height.equalTo(52)
+        }
+        forgotPasswordLabel.snp.makeConstraints { make in
+            make.top.equalTo(fieldsStackView.snp.bottom).offset(10)
+            make.trailing.equalTo(fieldsStackView)
+        }
+        loginButton.snp.makeConstraints { make in
+            make.top.equalTo(forgotPasswordLabel.snp.bottom).offset(40)
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.height.equalTo(52)
+        }
+    }
+    
+    private func setupWelcomeLabelConstraints() {
+        welcomeLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(view.frame.height * 0.305)
+            make.centerX.equalToSuperview()
         }
     }
 }

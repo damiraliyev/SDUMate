@@ -21,6 +21,7 @@ extension UIFont {
     
     static let medium12 = UIFont(name: Constants.medium, size: 12)!
     static let medium16 = UIFont(name: Constants.medium, size: 16)!
+    static let medium18 = UIFont(name: Constants.medium, size: 18)!
     static let medium36 = UIFont(name: Constants.medium, size: 36)
     
     static let bold14 = UIFont(name: Constants.bold, size: 14)!

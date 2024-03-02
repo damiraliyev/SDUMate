@@ -15,6 +15,8 @@ final class LoginViewController: UIViewController, ILoginView {
     
     var presenter: ILoginPresenter?
     
+    private lazy var navigationBar = SMNavigationBar(title: "", tapCallback: nil)
+    
     private let welcomeLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
@@ -95,7 +97,7 @@ final class LoginViewController: UIViewController, ILoginView {
     }
     
     private func setupViews() {
-        view.addSubviews([welcomeLabel, loginToAccountLabel, fieldsStackView, forgotPasswordLabel,
+        view.addSubviews([navigationBar, welcomeLabel, loginToAccountLabel, fieldsStackView, forgotPasswordLabel,
                           loginButton, signUpLabel])
         fieldsStackView.addArrangedSubviews([emailFieldView, passwordTextField])
         setupSignUpAttributedText()

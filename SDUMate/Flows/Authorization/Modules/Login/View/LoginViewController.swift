@@ -68,7 +68,7 @@ final class LoginViewController: UIViewController, ILoginView {
         let button = GradientButton()
         button.setTitle("Log in", for: .normal)
         button.titleLabel?.font = .medium16
-//        button.addTarget(self, action: #selector(loginTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(loginTapped), for: .touchUpInside)
         return button
     }()
     
@@ -147,5 +147,9 @@ final class LoginViewController: UIViewController, ILoginView {
         let signUpString = NSAttributedString(string: "Sign Up", attributes: signUpAttributes)
         rootString.append(signUpString)
         signUpLabel.attributedText = rootString
+    }
+    
+    @objc func loginTapped() {
+        presenter?.loginTapped()
     }
 }

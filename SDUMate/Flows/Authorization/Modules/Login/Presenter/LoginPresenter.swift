@@ -8,14 +8,21 @@
 import Foundation
 
 protocol ILoginPresenter: AnyObject {
-    
+    func loginTapped()
 }
 
 final class LoginPresenter: ILoginPresenter {
     
     weak var view: ILoginView?
+    private let coordinator: IAuthCoordinator
     
     init(coordinator: IAuthCoordinator, view: ILoginView) {
         self.view = view
+        self.coordinator = coordinator
+    }
+    
+    func loginTapped() {
+        let isFullyAuthorizedBefore = false
+        isFullyAuthorizedBefore ? coordinator.showHome() : coordinator.showUserInfoSetup()
     }
 }

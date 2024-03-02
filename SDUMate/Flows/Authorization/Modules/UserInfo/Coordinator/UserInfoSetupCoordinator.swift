@@ -11,13 +11,13 @@ protocol IUserInfoSetupCoordinator: IBaseCoordinator {
     var onFlowDidFinish: Completion? { get set }
 }
 
-final class UserInfoSetupCoordinator: BaseCoordinator {
+final class UserInfoSetupCoordinator: BaseCoordinator, IUserInfoSetupCoordinator {
     var onFlowDidFinish: Completion?
     
     private let moduleFactory =  UserInfoSetupModuleFactory()
     
     override func start() {
-        let aboutView = moduleFactory.makeAboutView()
+        let aboutView = moduleFactory.makeAboutSetupView(coordinator: self)
         router.push(aboutView)
     }
 }

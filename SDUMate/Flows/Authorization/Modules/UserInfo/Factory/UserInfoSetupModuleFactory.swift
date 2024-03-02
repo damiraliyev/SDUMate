@@ -9,7 +9,10 @@ import Foundation
 
 final class UserInfoSetupModuleFactory {
     
-    func makeAboutView() {
-        
+    func makeAboutSetupView(coordinator: IUserInfoSetupCoordinator) -> IAboutSetupView {
+        let view: IAboutSetupView = AboutSetupViewController()
+        let presenter: IAboutSetupPresenter = AboutSetupPresenter(view: view, coordinator: coordinator)
+        view.presenter = presenter
+        return view
     }
 }

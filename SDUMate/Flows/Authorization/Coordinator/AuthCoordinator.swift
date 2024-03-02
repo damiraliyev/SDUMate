@@ -11,6 +11,8 @@ protocol IAuthCoordinator: AnyObject {
     var onFlowDidFinish: Completion? { get set }
     
     func showSignInView()
+    func showHome()
+    func showUserInfoSetup()
 }
 
 final class AuthCoordinator: BaseCoordinator, IAuthCoordinator {
@@ -34,5 +36,20 @@ final class AuthCoordinator: BaseCoordinator, IAuthCoordinator {
     func showSignInView() {
         let loginView = moduleFactory.makeLoginView(coordinator: self)
         router.push(loginView, animated: true)
+    }
+    
+    func showHome() {
+        
+    }
+    
+    func showUserInfoSetup() {
+        guard let navigationController = router.navigationController else { return }
+        let userInfoSetupCoordinator = moduleFactory.makeUserInfoSetupFlow(navController: navigationController)
+        addDependency(userInfoSetupCoordinator)
+        userInfoSetupCoordinator.onFlowDidFinish = { [weak self, weak userInfoSetupCoordinator] in
+            guard let self else { return }
+            removeDependency(userInfoSetupCoordinator)
+        }
+        userInfoSetupCoordinator.start()
     }
 }

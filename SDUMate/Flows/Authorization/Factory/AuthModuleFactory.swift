@@ -34,6 +34,11 @@ final class AuthModuleFactory {
         return view
     }
     
+    func makeUserInfoSetupFlow(navController: CoordinatorNavigationController) -> (Coordinator & IUserInfoSetupCoordinator) {
+        let coordinator = UserInfoSetupCoordinator(router: Router(navigationController: navController))
+        return coordinator
+    }
+    
 //    func makeLoginView() -> IAuthView {
 //        
 //    }

@@ -728,6 +728,45 @@
 			path = SuccessAlertViewController;
 			sourceTree = "<group>";
 		};
+		6838F72D2B9344C000265406 /* UserInfo */ = {
+			isa = PBXGroup;
+			children = (
+				6838F72E2B9344D600265406 /* Coordinator */,
+				6838F72F2B9344DE00265406 /* Factory */,
+				6838F7302B9344E300265406 /* View */,
+				6838F7312B9344E600265406 /* Presenter */,
+			);
+			path = UserInfo;
+			sourceTree = "<group>";
+		};
+		6838F72E2B9344D600265406 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		6838F72F2B9344DE00265406 /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Factory;
+			sourceTree = "<group>";
+		};
+		6838F7302B9344E300265406 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6838F7312B9344E600265406 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		6882A4BE2B786AD400B2AE72 = {
 			isa = PBXGroup;
 			children = (
@@ -826,6 +865,7 @@
 		688442C92B7E068500695763 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				6838F72D2B9344C000265406 /* UserInfo */,
 				688442D22B7E0AF500695763 /* Entry */,
 				68D190282B8B2E8C0045DBE5 /* Login */,
 			);

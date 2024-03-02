@@ -78,6 +78,7 @@ final class EntryViewController: BaseViewController, IEntryView {
     }
     
     @objc func signInTapped() {
+        signInButton.animatePress()
         presenter?.signInTapped()
     }
 }

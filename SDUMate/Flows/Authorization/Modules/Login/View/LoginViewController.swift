@@ -70,6 +70,14 @@ final class LoginViewController: UIViewController, ILoginView {
         return button
     }()
     
+    private lazy var signUpLabel: UILabel = {
+        let label = UILabel()
+        label.font = .regular14
+        label.textColor = .lavender
+        label.text = "Do not have an account? Sign up"
+        return label
+    }()
+    
     override func loadView() {
         super.loadView()
         self.view = AuthView()
@@ -87,8 +95,10 @@ final class LoginViewController: UIViewController, ILoginView {
     }
     
     private func setupViews() {
-        view.addSubviews([welcomeLabel, loginToAccountLabel, fieldsStackView, forgotPasswordLabel, loginButton])
+        view.addSubviews([welcomeLabel, loginToAccountLabel, fieldsStackView, forgotPasswordLabel,
+                          loginButton, signUpLabel])
         fieldsStackView.addArrangedSubviews([emailFieldView, passwordTextField])
+        setupSignUpAttributedText()
     }
     
     private func setupConstraints() {
@@ -115,6 +125,10 @@ final class LoginViewController: UIViewController, ILoginView {
             make.leading.trailing.equalToSuperview().inset(20)
             make.height.equalTo(52)
         }
+        signUpLabel.snp.makeConstraints { make in
+            make.top.equalTo(loginButton.snp.bottom).offset(27)
+            make.centerX.equalToSuperview()
+        }
     }
     
     private func setupWelcomeLabelConstraints() {
@@ -122,5 +136,14 @@ final class LoginViewController: UIViewController, ILoginView {
             make.top.equalToSuperview().offset(view.frame.height * 0.305)
             make.centerX.equalToSuperview()
         }
+    }
+    
+    private func setupSignUpAttributedText() {
+        let defaultTextAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.regular14, .foregroundColor: UIColor.lavender]
+        let signUpAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.bold14, .foregroundColor: UIColor.lavender, .underlineStyle: NSUnderlineStyle.single.rawValue, .underlineColor: UIColor.lavender]
+        let rootString = NSMutableAttributedString(string: "Do not have an account? ", attributes: defaultTextAttributes)
+        let signUpString = NSAttributedString(string: "Sign Up", attributes: signUpAttributes)
+        rootString.append(signUpString)
+        signUpLabel.attributedText = rootString
     }
 }

@@ -33,3 +33,12 @@ final class GradientButton: UIButton {
         }
     }
 }
+
+extension UIButton {
+    func animatePress() {
+        alpha = 0.3
+        UIView.animate(withDuration: 0.3) {
+            self.alpha = 1
+        }
+    }
+}

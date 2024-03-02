@@ -731,10 +731,9 @@
 		6838F72D2B9344C000265406 /* UserInfo */ = {
 			isa = PBXGroup;
 			children = (
+				6838F7322B93453900265406 /* Modules */,
 				6838F72E2B9344D600265406 /* Coordinator */,
 				6838F72F2B9344DE00265406 /* Factory */,
-				6838F7302B9344E300265406 /* View */,
-				6838F7312B9344E600265406 /* Presenter */,
 			);
 			path = UserInfo;
 			sourceTree = "<group>";
@@ -753,18 +752,35 @@
 			path = Factory;
 			sourceTree = "<group>";
 		};
-		6838F7302B9344E300265406 /* View */ = {
+		6838F7322B93453900265406 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				6838F7332B93454700265406 /* About */,
+				6838F7342B93455100265406 /* Study */,
+				6838F7352B93455500265406 /* Photo */,
 			);
-			path = View;
+			path = Modules;
 			sourceTree = "<group>";
 		};
-		6838F7312B9344E600265406 /* Presenter */ = {
+		6838F7332B93454700265406 /* About */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Presenter;
+			path = About;
+			sourceTree = "<group>";
+		};
+		6838F7342B93455100265406 /* Study */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Study;
+			sourceTree = "<group>";
+		};
+		6838F7352B93455500265406 /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Photo;
 			sourceTree = "<group>";
 		};
 		6882A4BE2B786AD400B2AE72 = {

@@ -9,6 +9,8 @@ import UIKit
 
 protocol IUserInfoSetupCoordinator: IBaseCoordinator {
     var onFlowDidFinish: Completion? { get set }
+    
+    func onBackTapped(completion: Completion?)
 }
 
 final class UserInfoSetupCoordinator: BaseCoordinator, IUserInfoSetupCoordinator {
@@ -19,5 +21,10 @@ final class UserInfoSetupCoordinator: BaseCoordinator, IUserInfoSetupCoordinator
     override func start() {
         let aboutView = moduleFactory.makeAboutSetupView(coordinator: self)
         router.push(aboutView)
+    }
+    
+    func onBackTapped(completion: Completion?) {
+        router.popModule()
+        completion?()
     }
 }

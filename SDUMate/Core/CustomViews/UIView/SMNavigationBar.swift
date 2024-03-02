@@ -11,7 +11,7 @@ import SnapKit
 public final class SMNavigationBar: UIView {
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .dark
+        label.textColor = .white
         label.textAlignment = .center
         label.numberOfLines = 1
         label.font = .medium18
@@ -104,8 +104,7 @@ public final class SMNavigationBar: UIView {
         }
         addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.leading.equalTo(returnButton.snp.trailing).offset(4)
+            make.center.equalToSuperview()
             trailingConstraint = make.trailing.equalToSuperview().inset(38).constraint
         }
         

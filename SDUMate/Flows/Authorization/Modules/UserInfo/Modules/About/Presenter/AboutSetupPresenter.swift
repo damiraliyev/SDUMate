@@ -8,7 +8,7 @@
 import Foundation
 
 protocol IAboutSetupPresenter: AnyObject {
-    
+    func backTapped()
 }
 
 final class AboutSetupPresenter: IAboutSetupPresenter {
@@ -19,5 +19,11 @@ final class AboutSetupPresenter: IAboutSetupPresenter {
     init(view: IAboutSetupView, coordinator: IUserInfoSetupCoordinator) {
         self.view = view
         self.coordinator = coordinator
+    }
+    
+    func backTapped() {
+        coordinator?.onBackTapped() {
+            self.coordinator?.onFlowDidFinish?()
+        }
     }
 }

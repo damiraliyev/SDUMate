@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 final class SMTextFieldView: UIView {
     
@@ -23,6 +24,7 @@ final class SMTextFieldView: UIView {
         textField.autocorrectionType = .no
         return textField
     }()
+    private var textFieldLeadingConstraints: Constraint?
     
     private let rightImageView: UIImageView = {
         let imageView = UIImageView()
@@ -41,6 +43,11 @@ final class SMTextFieldView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        configureTextFieldsLeading()
+    }
+    
     private func setupViews() {
         backgroundColor = .textFieldInner
         layer.borderWidth = 1
@@ -57,7 +64,7 @@ final class SMTextFieldView: UIView {
         }
         mainTextField.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.leading.equalTo(leftImageView.snp.trailing).offset(10)
+            textFieldLeadingConstraints = make.leading.equalTo(leftImageView.snp.trailing).offset(10).constraint
             make.trailing.equalToSuperview().offset(-10)
             make.height.equalTo(24)
         }
@@ -85,5 +92,11 @@ final class SMTextFieldView: UIView {
     func addRightImageView(image: UIImage) {
         rightImageView.image = image
         rightImageView.safeShow()
+    }
+    
+    private func configureTextFieldsLeading() {
+        if leftImageView.image == nil {
+            textFieldLeadingConstraints?.update(offset: -15)
+        }
     }
 }

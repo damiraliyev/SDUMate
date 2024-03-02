@@ -26,7 +26,7 @@ public extension UIColor {
     }
     
     static var textFieldInner: UIColor {
-        return UIColor(hex: 0x1D1D55)
+        return UIColor(hex: 0x20204D)
     }
     
     static var beProBlack: UIColor {

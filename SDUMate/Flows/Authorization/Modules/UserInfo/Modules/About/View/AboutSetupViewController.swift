@@ -58,6 +58,7 @@ final class AboutSetupViewController: BaseViewController, IAboutSetupView {
         let button = GradientButton()
         button.setTitle("Continue", for: .normal)
         button.titleLabel?.font = .medium16
+        button.addTarget(self, action: #selector(continueTapped), for: .touchUpInside)
         return button
     }()
     
@@ -87,5 +88,9 @@ final class AboutSetupViewController: BaseViewController, IAboutSetupView {
             make.bottom.equalToSuperview().offset(-48)
             make.height.equalTo(52)
         }
+    }
+    
+    @objc func continueTapped() {
+        presenter?.continueTapped()
     }
 }

@@ -90,6 +90,8 @@
 		6838F73C2B934B4A00265406 /* AboutSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6838F73B2B934B4A00265406 /* AboutSetupViewController.swift */; };
 		6838F73F2B934B9200265406 /* AboutSetupPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6838F73E2B934B9200265406 /* AboutSetupPresenter.swift */; };
 		6838F7412B936D4200265406 /* FormTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6838F7402B936D4200265406 /* FormTextFieldView.swift */; };
+		6838F7452B93988E00265406 /* StudySetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6838F7442B93988E00265406 /* StudySetupViewController.swift */; };
+		6838F7472B9398B900265406 /* StudySetupPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6838F7462B9398B900265406 /* StudySetupPresenter.swift */; };
 		684BA7BA2B896ECA0055BEE3 /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684BA7B92B896EC90055BEE3 /* GradientButton.swift */; };
 		6882A4CB2B786AD400B2AE72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6882A4CA2B786AD400B2AE72 /* AppDelegate.swift */; };
 		6882A4CD2B786AD400B2AE72 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6882A4CC2B786AD400B2AE72 /* SceneDelegate.swift */; };
@@ -197,6 +199,8 @@
 		6838F73B2B934B4A00265406 /* AboutSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutSetupViewController.swift; sourceTree = "<group>"; };
 		6838F73E2B934B9200265406 /* AboutSetupPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutSetupPresenter.swift; sourceTree = "<group>"; };
 		6838F7402B936D4200265406 /* FormTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextFieldView.swift; sourceTree = "<group>"; };
+		6838F7442B93988E00265406 /* StudySetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudySetupViewController.swift; sourceTree = "<group>"; };
+		6838F7462B9398B900265406 /* StudySetupPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudySetupPresenter.swift; sourceTree = "<group>"; };
 		684BA7B92B896EC90055BEE3 /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 		6882A4C72B786AD400B2AE72 /* SDUMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDUMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6882A4CA2B786AD400B2AE72 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -786,6 +790,8 @@
 		6838F7342B93455100265406 /* Study */ = {
 			isa = PBXGroup;
 			children = (
+				6838F7432B93988100265406 /* View */,
+				6838F7422B93987C00265406 /* Presenter */,
 			);
 			path = Study;
 			sourceTree = "<group>";
@@ -811,6 +817,22 @@
 				6838F73E2B934B9200265406 /* AboutSetupPresenter.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		6838F7422B93987C00265406 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				6838F7462B9398B900265406 /* StudySetupPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		6838F7432B93988100265406 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6838F7442B93988E00265406 /* StudySetupViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		6882A4BE2B786AD400B2AE72 = {
@@ -1189,6 +1211,7 @@
 				688442CF2B7E06C800695763 /* AuthCoordinator.swift in Sources */,
 				682D082F2B7DF31900A5FCC1 /* Date+Extension.swift in Sources */,
 				682D08322B7DF31900A5FCC1 /* NotificationCenter+Extension.swift in Sources */,
+				6838F7452B93988E00265406 /* StudySetupViewController.swift in Sources */,
 				6812F80A2B8AF6DE007E27D5 /* AuthView.swift in Sources */,
 				682D083B2B7DF31900A5FCC1 /* BPSegmentedControl.swift in Sources */,
 				682D081B2B7DF31900A5FCC1 /* UILabel+Extensions.swift in Sources */,
@@ -1199,6 +1222,7 @@
 				682D08312B7DF31900A5FCC1 /* Int+Extension.swift in Sources */,
 				682D080D2B7DF31900A5FCC1 /* UserDefault.swift in Sources */,
 				682D083A2B7DF31900A5FCC1 /* IndicatorButton.swift in Sources */,
+				6838F7472B9398B900265406 /* StudySetupPresenter.swift in Sources */,
 				688442C62B7E03FE00695763 /* AppCoordinatorFactory.swift in Sources */,
 				682D08182B7DF31900A5FCC1 /* UIImage+Extensions.swift in Sources */,
 				682D08232B7DF31900A5FCC1 /* UIDevice+Extension.swift in Sources */,

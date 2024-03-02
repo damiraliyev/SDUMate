@@ -19,18 +19,16 @@ final class GradientButton: UIButton {
     
     func setupGradientLayer() {
         let gradientLayer = CAGradientLayer()
-        DispatchQueue.main.async {
-            gradientLayer.colors = [
-                UIColor.hexStringToUIColor(hex: "#060741").cgColor,
-                UIColor.hexStringToUIColor(hex: "#2D4A8A").cgColor,
-                UIColor.hexStringToUIColor(hex: "#060741").cgColor
-            ]
-            gradientLayer.startPoint = CGPoint(x: 0.15, y:  0.5)
-            gradientLayer.endPoint = CGPoint(x: 0.85, y: 0.5)
-            gradientLayer.frame = self.bounds
-            gradientLayer.cornerRadius = 10
-            self.layer.insertSublayer(gradientLayer, at: 0)
-        }
+        gradientLayer.colors = [
+            UIColor.hexStringToUIColor(hex: "#060741").cgColor,
+            UIColor.hexStringToUIColor(hex: "#2D4A8A").cgColor,
+            UIColor.hexStringToUIColor(hex: "#060741").cgColor
+        ]
+        gradientLayer.startPoint = CGPoint(x: 0.15, y:  0.5)
+        gradientLayer.endPoint = CGPoint(x: 0.85, y: 0.5)
+        gradientLayer.frame = self.bounds
+        gradientLayer.cornerRadius = 10
+        self.layer.insertSublayer(gradientLayer, at: 0)
     }
 }
 

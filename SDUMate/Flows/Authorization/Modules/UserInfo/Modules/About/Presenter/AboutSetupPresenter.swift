@@ -9,6 +9,7 @@ import Foundation
 
 protocol IAboutSetupPresenter: AnyObject {
     func backTapped()
+    func continueTapped()
 }
 
 final class AboutSetupPresenter: IAboutSetupPresenter {
@@ -25,5 +26,9 @@ final class AboutSetupPresenter: IAboutSetupPresenter {
         coordinator?.onBackTapped() {
             self.coordinator?.onFlowDidFinish?()
         }
+    }
+    
+    func continueTapped() {
+        coordinator?.showStudySetupView()
     }
 }

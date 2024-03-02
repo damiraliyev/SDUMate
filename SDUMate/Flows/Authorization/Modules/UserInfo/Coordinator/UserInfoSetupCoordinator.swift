@@ -11,6 +11,7 @@ protocol IUserInfoSetupCoordinator: IBaseCoordinator {
     var onFlowDidFinish: Completion? { get set }
     
     func onBackTapped(completion: Completion?)
+    func showStudySetupView()
 }
 
 final class UserInfoSetupCoordinator: BaseCoordinator, IUserInfoSetupCoordinator {
@@ -26,5 +27,10 @@ final class UserInfoSetupCoordinator: BaseCoordinator, IUserInfoSetupCoordinator
     func onBackTapped(completion: Completion?) {
         router.popModule()
         completion?()
+    }
+    
+    func showStudySetupView() {
+        let studySetupView = moduleFactory.makeStudySetupViews(coordinator: self)
+        router.push(studySetupView)
     }
 }

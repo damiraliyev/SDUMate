@@ -85,6 +85,10 @@
 		682D08772B7DFA2600A5FCC1 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682D08762B7DFA2600A5FCC1 /* DatePickerViewController.swift */; };
 		682D087A2B7DFB3A00A5FCC1 /* SuccessAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682D08792B7DFB3A00A5FCC1 /* SuccessAlertViewController.swift */; };
 		6838F72C2B93415800265406 /* SMNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6838F72B2B93415800265406 /* SMNavigationBar.swift */; };
+		6838F7372B934A0600265406 /* UserInfoSetupCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6838F7362B934A0600265406 /* UserInfoSetupCoordinator.swift */; };
+		6838F7392B934A7700265406 /* UserInfoSetupModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6838F7382B934A7700265406 /* UserInfoSetupModuleFactory.swift */; };
+		6838F73C2B934B4A00265406 /* AboutSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6838F73B2B934B4A00265406 /* AboutSetupViewController.swift */; };
+		6838F73F2B934B9200265406 /* AboutSetupPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6838F73E2B934B9200265406 /* AboutSetupPresenter.swift */; };
 		684BA7BA2B896ECA0055BEE3 /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684BA7B92B896EC90055BEE3 /* GradientButton.swift */; };
 		6882A4CB2B786AD400B2AE72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6882A4CA2B786AD400B2AE72 /* AppDelegate.swift */; };
 		6882A4CD2B786AD400B2AE72 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6882A4CC2B786AD400B2AE72 /* SceneDelegate.swift */; };
@@ -187,6 +191,10 @@
 		682D08762B7DFA2600A5FCC1 /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		682D08792B7DFB3A00A5FCC1 /* SuccessAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessAlertViewController.swift; sourceTree = "<group>"; };
 		6838F72B2B93415800265406 /* SMNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMNavigationBar.swift; sourceTree = "<group>"; };
+		6838F7362B934A0600265406 /* UserInfoSetupCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoSetupCoordinator.swift; sourceTree = "<group>"; };
+		6838F7382B934A7700265406 /* UserInfoSetupModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoSetupModuleFactory.swift; sourceTree = "<group>"; };
+		6838F73B2B934B4A00265406 /* AboutSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutSetupViewController.swift; sourceTree = "<group>"; };
+		6838F73E2B934B9200265406 /* AboutSetupPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutSetupPresenter.swift; sourceTree = "<group>"; };
 		684BA7B92B896EC90055BEE3 /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 		6882A4C72B786AD400B2AE72 /* SDUMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDUMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6882A4CA2B786AD400B2AE72 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -731,9 +739,9 @@
 		6838F72D2B9344C000265406 /* UserInfo */ = {
 			isa = PBXGroup;
 			children = (
-				6838F7322B93453900265406 /* Modules */,
 				6838F72E2B9344D600265406 /* Coordinator */,
 				6838F72F2B9344DE00265406 /* Factory */,
+				6838F7322B93453900265406 /* Modules */,
 			);
 			path = UserInfo;
 			sourceTree = "<group>";
@@ -741,6 +749,7 @@
 		6838F72E2B9344D600265406 /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
+				6838F7362B934A0600265406 /* UserInfoSetupCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -748,6 +757,7 @@
 		6838F72F2B9344DE00265406 /* Factory */ = {
 			isa = PBXGroup;
 			children = (
+				6838F7382B934A7700265406 /* UserInfoSetupModuleFactory.swift */,
 			);
 			path = Factory;
 			sourceTree = "<group>";
@@ -765,6 +775,8 @@
 		6838F7332B93454700265406 /* About */ = {
 			isa = PBXGroup;
 			children = (
+				6838F73A2B934B3A00265406 /* View */,
+				6838F73D2B934B5D00265406 /* Presenter */,
 			);
 			path = About;
 			sourceTree = "<group>";
@@ -781,6 +793,22 @@
 			children = (
 			);
 			path = Photo;
+			sourceTree = "<group>";
+		};
+		6838F73A2B934B3A00265406 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6838F73B2B934B4A00265406 /* AboutSetupViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6838F73D2B934B5D00265406 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				6838F73E2B934B9200265406 /* AboutSetupPresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		6882A4BE2B786AD400B2AE72 = {
@@ -1107,7 +1135,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				682D08242B7DF31900A5FCC1 /* UICollectionView+Extension.swift in Sources */,
+				6838F73C2B934B4A00265406 /* AboutSetupViewController.swift in Sources */,
 				682D081F2B7DF31900A5FCC1 /* UIView+SkeletonExtensions.swift in Sources */,
+				6838F7372B934A0600265406 /* UserInfoSetupCoordinator.swift in Sources */,
 				688442C02B7E02C200695763 /* AppCoordinator.swift in Sources */,
 				682D082E2B7DF31900A5FCC1 /* ReuseableView+Extension.swift in Sources */,
 				682D08272B7DF31900A5FCC1 /* UIViewController+Preview.swift in Sources */,
@@ -1136,6 +1166,7 @@
 				682D080C2B7DF31900A5FCC1 /* RequestDecoder.swift in Sources */,
 				6882A4CB2B786AD400B2AE72 /* AppDelegate.swift in Sources */,
 				682D086A2B7DF31900A5FCC1 /* Core.swift in Sources */,
+				6838F73F2B934B9200265406 /* AboutSetupPresenter.swift in Sources */,
 				682D08212B7DF31900A5FCC1 /* UIFont+Extension.swift in Sources */,
 				68A5F1E02B7E6C5D003C38AF /* Assets.swift in Sources */,
 				68D190322B8B41080045DBE5 /* SMTextFieldView.swift in Sources */,
@@ -1173,6 +1204,7 @@
 				682D08172B7DF31900A5FCC1 /* Moya+Extensions.swift in Sources */,
 				682D08352B7DF31900A5FCC1 /* StringFormatter.swift in Sources */,
 				682D081E2B7DF31900A5FCC1 /* UIView+Extensions.swift in Sources */,
+				6838F7392B934A7700265406 /* UserInfoSetupModuleFactory.swift in Sources */,
 				688442C42B7E03C800695763 /* DependencyContainerAssembly.swift in Sources */,
 				682D08162B7DF31900A5FCC1 /* DictionaryFoundation.swift in Sources */,
 				6838F72C2B93415800265406 /* SMNavigationBar.swift in Sources */,

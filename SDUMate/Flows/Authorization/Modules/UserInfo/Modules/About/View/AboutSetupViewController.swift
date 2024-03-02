@@ -26,32 +26,39 @@ final class AboutSetupViewController: BaseViewController, IAboutSetupView {
         return stackView
     }()
     
-    let nameFormFieldView: FormTextFieldView = {
+    private let nameFormFieldView: FormTextFieldView = {
         let view = FormTextFieldView()
         view.set(title: "Name")
         view.set(placeholderText: "Your name")
         return view
     }()
     
-    let surnameFormFieldView: FormTextFieldView = {
+    private let surnameFormFieldView: FormTextFieldView = {
         let view = FormTextFieldView()
         view.set(title: "Surname")
         view.set(placeholderText: "Your surname")
         return view
     }()
     
-    let nicknameFormFieldView: FormTextFieldView = {
+    private let nicknameFormFieldView: FormTextFieldView = {
         let view = FormTextFieldView()
         view.set(title: "Nickname")
         view.set(placeholderText: "Your nickname")
         return view
     }()
     
-    let telegramFormFieldView: FormTextFieldView = {
+    private let telegramFormFieldView: FormTextFieldView = {
         let view = FormTextFieldView()
         view.set(title: "Telegram")
         view.set(placeholderText: "Telegram tag (Optional)")
         return view
+    }()
+    
+    private lazy var continueButton: GradientButton = {
+        let button = GradientButton()
+        button.setTitle("Continue", for: .normal)
+        button.titleLabel?.font = .medium16
+        return button
     }()
     
     override func loadView() {
@@ -66,7 +73,7 @@ final class AboutSetupViewController: BaseViewController, IAboutSetupView {
     }
     
     private func setupViews() {
-        view.addSubviews([navigationBar, fieldsStackView])
+        view.addSubviews([navigationBar, fieldsStackView, continueButton])
         fieldsStackView.addArrangedSubviews([nameFormFieldView, surnameFormFieldView, nicknameFormFieldView, telegramFormFieldView])
     }
     
@@ -74,6 +81,11 @@ final class AboutSetupViewController: BaseViewController, IAboutSetupView {
         fieldsStackView.snp.makeConstraints { make in
             make.top.equalTo(navigationBar.snp.bottom).offset(40)
             make.leading.trailing.equalToSuperview().inset(20)
+        }
+        continueButton.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview().offset(-48)
+            make.height.equalTo(52)
         }
     }
 }

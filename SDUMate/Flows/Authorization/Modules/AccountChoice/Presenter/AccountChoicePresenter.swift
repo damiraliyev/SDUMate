@@ -17,13 +17,13 @@ final class AccountChoicePresenter: IAccountChoicePresenter {
     weak var view: IAccountChoiceView?
     private weak var coordinator: IAuthCoordinator?
     
-    init(view: IAccountChoiceView? = nil, coordinator: IAuthCoordinator? = nil) {
+    init(view: IAccountChoiceView, coordinator: IAuthCoordinator) {
         self.view = view
         self.coordinator = coordinator
     }
     
     func studentTapped() {
-        
+        coordinator?.showStudentSignUpView()
     }
     
     func alumniTapped() {

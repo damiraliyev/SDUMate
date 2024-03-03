@@ -23,6 +23,7 @@ final class StudentSignUpViewController: BaseViewController, IStudentSignUpView 
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.spacing = 8
+        stackView.alignment = .center
         return stackView
     }()
     
@@ -54,11 +55,14 @@ final class StudentSignUpViewController: BaseViewController, IStudentSignUpView 
     }
     
     private func setupViews() {
-        view.addSubviews([labelsStackView])
+        view.addSubviews([navigationBar, labelsStackView])
         labelsStackView.addArrangedSubviews([registerLabel, createAccountLabel])
     }
     
     private func setupConstraints() {
-        
+        labelsStackView.snp.makeConstraints { make in
+            make.top.equalTo(navigationBar.snp.bottom).offset(40)
+            make.leading.trailing.equalToSuperview().inset(40)
+        }
     }
 }

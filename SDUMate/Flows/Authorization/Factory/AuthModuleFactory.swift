@@ -39,7 +39,17 @@ final class AuthModuleFactory {
         return coordinator
     }
     
-//    func makeLoginView() -> IAuthView {
-//        
-//    }
+    func makeAccountChoiceView(coordinator: IAuthCoordinator) -> IAccountChoiceView {
+        let view: IAccountChoiceView = AccountChoiceViewController()
+        let presenter: IAccountChoicePresenter = AccountChoicePresenter(view: view, coordinator: coordinator)
+        view.presenter = presenter
+        return view
+    }
+    
+    func makeStudentSignUpView(coordinator: IAuthCoordinator) -> IStudentSignUpView {
+        let view: IStudentSignUpView = StudentSignUpViewController()
+        let presenter: IStudentSignUpPresenter = StudentSignUpPresenter(view: view, coordinator: coordinator)
+        view.presenter = presenter
+        return view
+    }
 }

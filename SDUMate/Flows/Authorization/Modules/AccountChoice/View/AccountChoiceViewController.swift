@@ -12,7 +12,7 @@ protocol IAccountChoiceView: Presentable {
     var presenter: IAccountChoicePresenter? { get set }
 }
 
-final class AccountChoiceViewController: BaseViewController {
+final class AccountChoiceViewController: BaseViewController, IAccountChoiceView {
     
     var presenter: IAccountChoicePresenter?
     

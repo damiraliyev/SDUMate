@@ -15,6 +15,8 @@ protocol IAuthCoordinator: AnyObject {
     func showHome()
     func showUserInfoSetup()
     func showAccountChoiceView()
+    func showStudentSignUpView()
+    func showAlumniSignUpView()
 }
 
 final class AuthCoordinator: BaseCoordinator, IAuthCoordinator {
@@ -61,7 +63,17 @@ final class AuthCoordinator: BaseCoordinator, IAuthCoordinator {
     }
     
     func showAccountChoiceView() {
-        let view = AccountChoiceViewController()
-        router.present(view, animated: true, presentType: .panModal)
+        let accountChoiceView = moduleFactory.makeAccountChoiceView(coordinator: self)
+        router.present(accountChoiceView, animated: true, presentType: .panModal)
+    }
+    
+    func showStudentSignUpView() {
+        let studentSignUpView = moduleFactory.makeStudentSignUpView(coordinator: self)
+        router.dismissPresentedView()
+        router.push(studentSignUpView)
+    }
+    
+    func showAlumniSignUpView() {
+        
     }
 }

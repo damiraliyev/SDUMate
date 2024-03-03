@@ -78,6 +78,16 @@ final class StudentSignUpViewController: BaseViewController, IStudentSignUpView 
         return view
     }()
     
+    private lazy var verifyButton: GradientButton = {
+        let button = GradientButton()
+        button.setTitle("Verify email", for: .normal)
+        button.titleLabel?.font = .medium16
+        button.addTarget(self, action: #selector(verifyTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var loginLabel = UILabel()
+    
     override func loadView() {
         super.loadView()
         self.view = AuthView()
@@ -90,9 +100,10 @@ final class StudentSignUpViewController: BaseViewController, IStudentSignUpView 
     }
     
     private func setupViews() {
-        view.addSubviews([navigationBar, labelsStackView, fieldsStackView])
+        view.addSubviews([navigationBar, labelsStackView, fieldsStackView, verifyButton, loginLabel])
         labelsStackView.addArrangedSubviews([registerLabel, createAccountLabel])
         fieldsStackView.addArrangedSubviews([emailFormFieldView, passwordFormFieldView, confirmPasswordFormFieldView])
+        setupLoginAttributedText()
     }
     
     private func setupConstraints() {
@@ -104,5 +115,27 @@ final class StudentSignUpViewController: BaseViewController, IStudentSignUpView 
             make.top.equalTo(labelsStackView.snp.bottom).offset(40)
             make.leading.trailing.equalToSuperview().inset(20)
         }
+        verifyButton.snp.makeConstraints { make in
+            make.top.equalTo(fieldsStackView.snp.bottom).offset(40)
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.height.equalTo(52)
+        }
+        loginLabel.snp.makeConstraints { make in
+            make.top.equalTo(verifyButton.snp.bottom).offset(21)
+            make.centerX.equalToSuperview()
+        }
+    }
+    
+    private func setupLoginAttributedText() {
+        let defaultTextAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.regular14, .foregroundColor: UIColor.lavender]
+        let signUpAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.bold14, .foregroundColor: UIColor.orange]
+        let rootString = NSMutableAttributedString(string: "Already have an account? ", attributes: defaultTextAttributes)
+        let signUpString = NSAttributedString(string: "Log in", attributes: signUpAttributes)
+        rootString.append(signUpString)
+        loginLabel.attributedText = rootString
+    }
+    
+    @objc func verifyTapped() {
+        
     }
 }

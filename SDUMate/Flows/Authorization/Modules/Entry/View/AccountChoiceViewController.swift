@@ -41,7 +41,7 @@ final class AccountChoiceViewController: BaseViewController {
         button.setTitle("Alumni", for: .normal)
         button.titleLabel?.font = .semibold15
         button.setTitleColor(.textFieldInner, for: .normal)
-        button.layer.borderWidth = 1
+        button.layer.borderWidth = 1.5
         button.layer.borderColor = UIColor.background.cgColor
         return button
     }()

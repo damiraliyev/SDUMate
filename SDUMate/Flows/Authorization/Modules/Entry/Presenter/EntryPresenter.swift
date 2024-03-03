@@ -9,6 +9,7 @@ import Foundation
 
 protocol IEntryPresenter: AnyObject {
     func signInTapped()
+    func createAccountTapped()
 }
 
 final class EntryPresenter: IEntryPresenter {
@@ -22,5 +23,9 @@ final class EntryPresenter: IEntryPresenter {
     
     func signInTapped() {
         coordinator.showSignInView()
+    }
+    
+    func createAccountTapped() {
+        coordinator.showAccountChoiceView()
     }
 }

@@ -35,6 +35,9 @@ final class EntryViewController: BaseViewController, IEntryView {
         label.textColor = .white
         label.font = .medium16
         label.text = "Create account"
+        label.isUserInteractionEnabled = true
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(createAccountTapped))
+        label.addGestureRecognizer(tapRecognizer)
         return label
     }()
     
@@ -80,5 +83,9 @@ final class EntryViewController: BaseViewController, IEntryView {
     @objc func signInTapped() {
         signInButton.animatePress()
         presenter?.signInTapped()
+    }
+    
+    @objc func createAccountTapped() {
+        presenter?.createAccountTapped()
     }
 }

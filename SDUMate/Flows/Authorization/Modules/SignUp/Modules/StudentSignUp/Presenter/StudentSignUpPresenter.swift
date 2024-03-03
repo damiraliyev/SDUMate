@@ -8,7 +8,7 @@
 import Foundation
 
 protocol IStudentSignUpPresenter: AnyObject {
-    
+    func backTapped()
 }
 
 final class StudentSignUpPresenter: IStudentSignUpPresenter {
@@ -19,5 +19,9 @@ final class StudentSignUpPresenter: IStudentSignUpPresenter {
     init(view: IStudentSignUpView, coordinator: IAuthCoordinator) {
         self.view = view
         self.coordinator = coordinator
+    }
+    
+    func backTapped() {
+        coordinator?.onBackTapped(completion: nil)
     }
 }

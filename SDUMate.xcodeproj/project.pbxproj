@@ -121,6 +121,7 @@
 		68C5C4782B948CE2006C9540 /* AccountChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C5C4772B948CE2006C9540 /* AccountChoiceViewController.swift */; };
 		68C5C47F2B9494D2006C9540 /* StudentSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C5C47E2B9494D2006C9540 /* StudentSignUpViewController.swift */; };
 		68C5C4812B949CE1006C9540 /* StudentSignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C5C4802B949CE1006C9540 /* StudentSignUpPresenter.swift */; };
+		68C5C4862B949E81006C9540 /* AccountChoicePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C5C4852B949E81006C9540 /* AccountChoicePresenter.swift */; };
 		68D0E1D42B81B28700F7C197 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68D0E1D32B81B28700F7C197 /* Poppins-Bold.ttf */; };
 		68D0E1D62B81B2C900F7C197 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68D0E1D52B81B2C900F7C197 /* Poppins-Medium.ttf */; };
 		68D0E1D82B81B2D400F7C197 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68D0E1D72B81B2D400F7C197 /* Poppins-Regular.ttf */; };
@@ -229,6 +230,7 @@
 		68C5C4772B948CE2006C9540 /* AccountChoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountChoiceViewController.swift; sourceTree = "<group>"; };
 		68C5C47E2B9494D2006C9540 /* StudentSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSignUpViewController.swift; sourceTree = "<group>"; };
 		68C5C4802B949CE1006C9540 /* StudentSignUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSignUpPresenter.swift; sourceTree = "<group>"; };
+		68C5C4852B949E81006C9540 /* AccountChoicePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountChoicePresenter.swift; sourceTree = "<group>"; };
 		68D0E1D32B81B28700F7C197 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		68D0E1D52B81B2C900F7C197 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		68D0E1D72B81B2D400F7C197 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
@@ -945,6 +947,7 @@
 		688442C92B7E068500695763 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				68C5C4822B949E58006C9540 /* AccountChoice */,
 				6838F72D2B9344C000265406 /* UserInfo */,
 				688442D22B7E0AF500695763 /* Entry */,
 				68C5C4762B948C41006C9540 /* SignUp */,
@@ -993,7 +996,6 @@
 			children = (
 				688442D62B7E0EF600695763 /* EntryViewController.swift */,
 				6812F8092B8AF6DE007E27D5 /* AuthView.swift */,
-				68C5C4772B948CE2006C9540 /* AccountChoiceViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1075,6 +1077,31 @@
 			isa = PBXGroup;
 			children = (
 				68C5C47E2B9494D2006C9540 /* StudentSignUpViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		68C5C4822B949E58006C9540 /* AccountChoice */ = {
+			isa = PBXGroup;
+			children = (
+				68C5C4842B949E6A006C9540 /* View */,
+				68C5C4832B949E64006C9540 /* Presenter */,
+			);
+			path = AccountChoice;
+			sourceTree = "<group>";
+		};
+		68C5C4832B949E64006C9540 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				68C5C4852B949E81006C9540 /* AccountChoicePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		68C5C4842B949E6A006C9540 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				68C5C4772B948CE2006C9540 /* AccountChoiceViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1305,6 +1332,7 @@
 				68C5C47F2B9494D2006C9540 /* StudentSignUpViewController.swift in Sources */,
 				682D08312B7DF31900A5FCC1 /* Int+Extension.swift in Sources */,
 				682D080D2B7DF31900A5FCC1 /* UserDefault.swift in Sources */,
+				68C5C4862B949E81006C9540 /* AccountChoicePresenter.swift in Sources */,
 				682D083A2B7DF31900A5FCC1 /* IndicatorButton.swift in Sources */,
 				6838F7472B9398B900265406 /* StudySetupPresenter.swift in Sources */,
 				688442C62B7E03FE00695763 /* AppCoordinatorFactory.swift in Sources */,

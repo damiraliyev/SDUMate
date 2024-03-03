@@ -15,8 +15,8 @@ final class StudentSignUpViewController: BaseViewController, IStudentSignUpView 
     
     var presenter: IStudentSignUpPresenter?
     
-    private let navigationBar = SMNavigationBar(title: "") {
-        
+    private lazy var navigationBar = SMNavigationBar(title: "") { [weak presenter] in
+        presenter?.backTapped()
     }
     
     private let labelsStackView: UIStackView = {

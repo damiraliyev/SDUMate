@@ -8,7 +8,13 @@
 import UIKit
 import PanModal
 
+protocol IAccountChoiceView: Presentable {
+    var presenter: IAccountChoicePresenter? { get set }
+}
+
 final class AccountChoiceViewController: BaseViewController {
+    
+    var presenter: IAccountChoicePresenter?
     
     private let typeOfAccountLabel: UILabel = {
         let label = UILabel()
@@ -27,15 +33,16 @@ final class AccountChoiceViewController: BaseViewController {
         return stackView
     }()
     
-    private let studentButton: UIButton = {
+    private lazy var studentButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .background
         button.setTitle("Student", for: .normal)
         button.titleLabel?.font = .semibold15
+        button.addTarget(self, action: #selector(studentTapped), for: .touchUpInside)
         return button
     }()
     
-    private let alumniButton: UIButton = {
+    private lazy var alumniButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .white
         button.setTitle("Alumni", for: .normal)
@@ -43,6 +50,7 @@ final class AccountChoiceViewController: BaseViewController {
         button.setTitleColor(.textFieldInner, for: .normal)
         button.layer.borderWidth = 1.5
         button.layer.borderColor = UIColor.background.cgColor
+        button.addTarget(self, action: #selector(alumniTapped), for: .touchUpInside)
         return button
     }()
     
@@ -79,6 +87,14 @@ final class AccountChoiceViewController: BaseViewController {
         alumniButton.snp.makeConstraints { make in
             make.height.equalTo(52)
         }
+    }
+    
+    @objc func studentTapped() {
+        presenter?.studentTapped()
+    }
+    
+    @objc func alumniTapped() {
+        presenter?.alumniTapped()
     }
 }
 

@@ -91,6 +91,9 @@ final class SMTextFieldView: UIView {
     
     func makeTextSecure() {
         mainTextField.isSecureTextEntry = true
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(securityActionTapped))
+        rightImageView.addGestureRecognizer(tapRecognizer)
+        rightImageView.isUserInteractionEnabled = true
     }
     
     func addRightImageView(image: UIImage) {
@@ -101,6 +104,16 @@ final class SMTextFieldView: UIView {
     private func configureTextFieldsLeading() {
         if leftImageView.image == nil {
             textFieldLeadingConstraints?.update(offset: -15)
+        }
+    }
+    
+    @objc func securityActionTapped() {
+        if mainTextField.isSecureTextEntry {
+            mainTextField.isSecureTextEntry = false
+            rightImageView.image = Asset.icEyeClosed.image
+        } else {
+            mainTextField.isSecureTextEntry = true
+            rightImageView.image = Asset.eyeOpen.image
         }
     }
 }

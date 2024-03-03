@@ -176,7 +176,6 @@ final class AlumniSignUpViewController: BaseViewController, IAlumniSignUpView {
         fieldsStackView.snp.makeConstraints { make in
             make.top.equalTo(labelsStackView.snp.bottom).offset(40)
             make.leading.trailing.equalToSuperview().inset(20)
-//            make.bottom.equalTo(verifyButton.snp.top).offset(-19)
         }
         verifyButton.snp.makeConstraints { make in
             make.top.equalTo(fieldsStackView.snp.bottom).offset(40)

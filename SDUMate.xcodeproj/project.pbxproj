@@ -119,6 +119,8 @@
 		68C5C4732B944DB5006C9540 /* PhotoSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C5C4722B944DB5006C9540 /* PhotoSetupViewController.swift */; };
 		68C5C4752B944E04006C9540 /* PhotoSetupPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C5C4742B944E04006C9540 /* PhotoSetupPresenter.swift */; };
 		68C5C4782B948CE2006C9540 /* AccountChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C5C4772B948CE2006C9540 /* AccountChoiceViewController.swift */; };
+		68C5C47F2B9494D2006C9540 /* StudentSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C5C47E2B9494D2006C9540 /* StudentSignUpViewController.swift */; };
+		68C5C4812B949CE1006C9540 /* StudentSignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C5C4802B949CE1006C9540 /* StudentSignUpPresenter.swift */; };
 		68D0E1D42B81B28700F7C197 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68D0E1D32B81B28700F7C197 /* Poppins-Bold.ttf */; };
 		68D0E1D62B81B2C900F7C197 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68D0E1D52B81B2C900F7C197 /* Poppins-Medium.ttf */; };
 		68D0E1D82B81B2D400F7C197 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68D0E1D72B81B2D400F7C197 /* Poppins-Regular.ttf */; };
@@ -225,6 +227,8 @@
 		68C5C4722B944DB5006C9540 /* PhotoSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSetupViewController.swift; sourceTree = "<group>"; };
 		68C5C4742B944E04006C9540 /* PhotoSetupPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSetupPresenter.swift; sourceTree = "<group>"; };
 		68C5C4772B948CE2006C9540 /* AccountChoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountChoiceViewController.swift; sourceTree = "<group>"; };
+		68C5C47E2B9494D2006C9540 /* StudentSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSignUpViewController.swift; sourceTree = "<group>"; };
+		68C5C4802B949CE1006C9540 /* StudentSignUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSignUpPresenter.swift; sourceTree = "<group>"; };
 		68D0E1D32B81B28700F7C197 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		68D0E1D52B81B2C900F7C197 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		68D0E1D72B81B2D400F7C197 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
@@ -1029,8 +1033,50 @@
 		68C5C4762B948C41006C9540 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
+				68C5C4792B949478006C9540 /* Modules */,
 			);
 			path = SignUp;
+			sourceTree = "<group>";
+		};
+		68C5C4792B949478006C9540 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				68C5C47B2B949491006C9540 /* AlumniSignUp */,
+				68C5C47A2B949483006C9540 /* StudentSignUp */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		68C5C47A2B949483006C9540 /* StudentSignUp */ = {
+			isa = PBXGroup;
+			children = (
+				68C5C47D2B9494A3006C9540 /* View */,
+				68C5C47C2B94949E006C9540 /* Presenter */,
+			);
+			path = StudentSignUp;
+			sourceTree = "<group>";
+		};
+		68C5C47B2B949491006C9540 /* AlumniSignUp */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AlumniSignUp;
+			sourceTree = "<group>";
+		};
+		68C5C47C2B94949E006C9540 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				68C5C4802B949CE1006C9540 /* StudentSignUpPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		68C5C47D2B9494A3006C9540 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				68C5C47E2B9494D2006C9540 /* StudentSignUpViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		68D0E1D22B81B24800F7C197 /* Fonts */ = {
@@ -1232,6 +1278,7 @@
 				68D190322B8B41080045DBE5 /* SMTextFieldView.swift in Sources */,
 				682D08112B7DF31900A5FCC1 /* Device.swift in Sources */,
 				688442D72B7E0EF600695763 /* EntryViewController.swift in Sources */,
+				68C5C4812B949CE1006C9540 /* StudentSignUpPresenter.swift in Sources */,
 				682D082B2B7DF31900A5FCC1 /* UITextField+Extensions.swift in Sources */,
 				688442DF2B7E113A00695763 /* EntryModuleFactory.swift in Sources */,
 				682D086B2B7DF31900A5FCC1 /* Router.swift in Sources */,
@@ -1255,6 +1302,7 @@
 				682D08332B7DF31900A5FCC1 /* CACornerMask+Extension.swift in Sources */,
 				68C5C4732B944DB5006C9540 /* PhotoSetupViewController.swift in Sources */,
 				682D08382B7DF31900A5FCC1 /* DumpableButton.swift in Sources */,
+				68C5C47F2B9494D2006C9540 /* StudentSignUpViewController.swift in Sources */,
 				682D08312B7DF31900A5FCC1 /* Int+Extension.swift in Sources */,
 				682D080D2B7DF31900A5FCC1 /* UserDefault.swift in Sources */,
 				682D083A2B7DF31900A5FCC1 /* IndicatorButton.swift in Sources */,

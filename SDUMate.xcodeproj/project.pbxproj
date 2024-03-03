@@ -124,6 +124,7 @@
 		68C5C4862B949E81006C9540 /* AccountChoicePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C5C4852B949E81006C9540 /* AccountChoicePresenter.swift */; };
 		68C5C48A2B94BBD1006C9540 /* AlumniSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C5C4892B94BBD1006C9540 /* AlumniSignUpViewController.swift */; };
 		68C5C48C2B94C53A006C9540 /* AlumniSignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C5C48B2B94C539006C9540 /* AlumniSignUpPresenter.swift */; };
+		68C5C48F2B94D382006C9540 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 68C5C48E2B94D382006C9540 /* IQKeyboardManagerSwift */; };
 		68D0E1D42B81B28700F7C197 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68D0E1D32B81B28700F7C197 /* Poppins-Bold.ttf */; };
 		68D0E1D62B81B2C900F7C197 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68D0E1D52B81B2C900F7C197 /* Poppins-Medium.ttf */; };
 		68D0E1D82B81B2D400F7C197 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68D0E1D72B81B2D400F7C197 /* Poppins-Regular.ttf */; };
@@ -266,6 +267,7 @@
 				682D08712B7DF6F300A5FCC1 /* Kingfisher in Frameworks */,
 				6882A4E42B7871B200B2AE72 /* SnapKit-Dynamic in Frameworks */,
 				6882A4E92B78734700B2AE72 /* Moya in Frameworks */,
+				68C5C48F2B94D382006C9540 /* IQKeyboardManagerSwift in Frameworks */,
 				681D86642B81F23D0017BF61 /* FirebaseDatabase in Frameworks */,
 				6882A4EB2B78734700B2AE72 /* ReactiveMoya in Frameworks */,
 				681D865E2B81F23D0017BF61 /* FirebaseAuth in Frameworks */,
@@ -1214,6 +1216,7 @@
 				681D866D2B81F23D0017BF61 /* FirebaseFirestoreSwift */,
 				681D867B2B81F23D0017BF61 /* FirebaseMessaging */,
 				681D86832B81F23D0017BF61 /* FirebaseStorage */,
+				68C5C48E2B94D382006C9540 /* IQKeyboardManagerSwift */,
 			);
 			productName = SDUMate;
 			productReference = 6882A4C72B786AD400B2AE72 /* SDUMate.app */;
@@ -1253,6 +1256,7 @@
 				682D086F2B7DF6F300A5FCC1 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				682D08722B7DF77100A5FCC1 /* XCRemoteSwiftPackageReference "PanModal" */,
 				681D86502B81F23D0017BF61 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				68C5C48D2B94D382006C9540 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = 6882A4C82B786AD400B2AE72 /* Products */;
 			projectDirPath = "";
@@ -1666,6 +1670,14 @@
 				version = 2.8.4;
 			};
 		};
+		68C5C48D2B94D382006C9540 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager";
+			requirement = {
+				kind = exactVersion;
+				version = 7.0.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1778,6 +1790,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6882A4EE2B7885DF00B2AE72 /* XCRemoteSwiftPackageReference "Swinject" */;
 			productName = "Swinject-Dynamic";
+		};
+		68C5C48E2B94D382006C9540 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 68C5C48D2B94D382006C9540 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

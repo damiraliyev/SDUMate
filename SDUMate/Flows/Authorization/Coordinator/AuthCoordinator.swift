@@ -10,6 +10,7 @@ import Foundation
 protocol IAuthCoordinator: AnyObject {
     var onFlowDidFinish: Completion? { get set }
     
+    func onBackTapped(completion: Completion?)
     func showSignInView()
     func showHome()
     func showUserInfoSetup()
@@ -31,6 +32,11 @@ final class AuthCoordinator: BaseCoordinator, IAuthCoordinator {
     override func start() {
         entryView = moduleFactory.makeEntryView(coordinator: self)
         router.push(entryView)
+    }
+    
+    func onBackTapped(completion: Completion?) {
+        router.popModule()
+        completion?()
     }
     
     func showSignInView() {

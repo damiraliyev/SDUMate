@@ -9,6 +9,7 @@ import Foundation
 
 protocol ILoginPresenter: AnyObject {
     func loginTapped()
+    func backTapped()
 }
 
 final class LoginPresenter: ILoginPresenter {
@@ -24,5 +25,9 @@ final class LoginPresenter: ILoginPresenter {
     func loginTapped() {
         let isFullyAuthorizedBefore = false
         isFullyAuthorizedBefore ? coordinator.showHome() : coordinator.showUserInfoSetup()
+    }
+    
+    func backTapped() {
+        coordinator.onBackTapped(completion: nil)
     }
 }

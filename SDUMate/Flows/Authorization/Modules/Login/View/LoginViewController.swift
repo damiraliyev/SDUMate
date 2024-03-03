@@ -15,7 +15,9 @@ final class LoginViewController: UIViewController, ILoginView {
     
     var presenter: ILoginPresenter?
     
-    private lazy var navigationBar = SMNavigationBar(title: "", tapCallback: nil)
+    private lazy var navigationBar = SMNavigationBar(title: "") { [weak presenter] in
+        presenter?.backTapped()
+    }
     
     private let welcomeLabel: UILabel = {
         let label = UILabel()

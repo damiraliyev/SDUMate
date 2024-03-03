@@ -36,6 +36,7 @@ final class UserInfoSetupCoordinator: BaseCoordinator, IUserInfoSetupCoordinator
     }
     
     func showPhotoSetupView() {
-//        let photoSetupView
+        let photoSetupView = moduleFactory.makePhotoSetupView(coordinator: self)
+        router.push(photoSetupView)
     }
 }

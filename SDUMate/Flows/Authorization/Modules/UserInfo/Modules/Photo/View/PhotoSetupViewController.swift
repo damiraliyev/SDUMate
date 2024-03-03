@@ -22,7 +22,7 @@ final class PhotoSetupViewController: BaseViewController, IPhotoSetupView {
     }
     
     private func setupViews() {
-        
+        view.backgroundColor = .lavender
     }
     
     private func setupConstraints() {

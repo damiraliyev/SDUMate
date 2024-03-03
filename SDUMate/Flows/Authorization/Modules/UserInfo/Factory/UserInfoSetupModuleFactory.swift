@@ -22,4 +22,11 @@ final class UserInfoSetupModuleFactory {
         view.presenter = presenter
         return view
     }
+    
+    func makePhotoSetupView(coordinator: IUserInfoSetupCoordinator) -> IPhotoSetupView {
+        let view: IPhotoSetupView = PhotoSetupViewController()
+        let presenter: IPhotoSetupPresenter = PhotoSetupPresenter(view: view, coordinator: coordinator)
+        view.presenter = presenter
+        return view
+    }
 }

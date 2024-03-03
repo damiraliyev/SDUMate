@@ -9,6 +9,7 @@ import Foundation
 
 protocol IStudySetupPresenter: AnyObject {
     func backTapped()
+    func continueTapped()
 }
 
 final class StudySetupPresenter: IStudySetupPresenter {
@@ -23,5 +24,9 @@ final class StudySetupPresenter: IStudySetupPresenter {
     
     func backTapped() {
         coordinator?.onBackTapped(completion: nil)
+    }
+    
+    func continueTapped() {
+        coordinator?.showPhotoSetupView()
     }
 }

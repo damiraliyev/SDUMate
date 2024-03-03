@@ -53,6 +53,14 @@ final class StudySetupViewController: BaseViewController, IStudySetupView {
         return view
     }()
     
+    private lazy var continueButton: GradientButton = {
+        let button = GradientButton()
+        button.setTitle("Continue", for: .normal)
+        button.titleLabel?.font = .medium16
+        button.addTarget(self, action: #selector(continueTapped), for: .touchUpInside)
+        return button
+    }()
+    
     override func loadView() {
         super.loadView()
         self.view = AuthView()
@@ -65,7 +73,7 @@ final class StudySetupViewController: BaseViewController, IStudySetupView {
     }
     
     private func setupViews() {
-        view.addSubviews([navigationBar, fieldsStackView])
+        view.addSubviews([navigationBar, fieldsStackView, continueButton])
         fieldsStackView.addArrangedSubviews([facultyFormView, studyProgramFormView, yearFormView])
     }
     
@@ -74,5 +82,14 @@ final class StudySetupViewController: BaseViewController, IStudySetupView {
             make.top.equalTo(navigationBar.snp.bottom).offset(40)
             make.leading.trailing.equalToSuperview().inset(20)
         }
+        continueButton.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview().offset(-48)
+            make.height.equalTo(52)
+        }
+    }
+    
+    @objc func continueTapped() {
+        presenter?.continueTapped()
     }
 }

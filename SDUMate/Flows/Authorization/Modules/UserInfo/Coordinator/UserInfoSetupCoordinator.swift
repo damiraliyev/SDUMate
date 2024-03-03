@@ -12,6 +12,7 @@ protocol IUserInfoSetupCoordinator: IBaseCoordinator {
     
     func onBackTapped(completion: Completion?)
     func showStudySetupView()
+    func showPhotoSetupView()
 }
 
 final class UserInfoSetupCoordinator: BaseCoordinator, IUserInfoSetupCoordinator {
@@ -32,5 +33,9 @@ final class UserInfoSetupCoordinator: BaseCoordinator, IUserInfoSetupCoordinator
     func showStudySetupView() {
         let studySetupView = moduleFactory.makeStudySetupViews(coordinator: self)
         router.push(studySetupView)
+    }
+    
+    func showPhotoSetupView() {
+//        let photoSetupView
     }
 }

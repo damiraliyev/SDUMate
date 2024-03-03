@@ -62,4 +62,8 @@ final class FormTextFieldView: UIView {
     func set(rightImage: UIImage) {
         fieldView.addRightImageView(image: rightImage)
     }
+    
+    func makeTextSecure() {
+        fieldView.makeTextSecure()
+    }
 }

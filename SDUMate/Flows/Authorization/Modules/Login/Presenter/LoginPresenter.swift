@@ -10,6 +10,7 @@ import Foundation
 protocol ILoginPresenter: AnyObject {
     func loginTapped()
     func backTapped()
+    func signUpTapped()
 }
 
 final class LoginPresenter: ILoginPresenter {
@@ -29,5 +30,9 @@ final class LoginPresenter: ILoginPresenter {
     
     func backTapped() {
         coordinator.onBackTapped(completion: nil)
+    }
+    
+    func signUpTapped() {
+        coordinator.showAccountChoiceView()
     }
 }

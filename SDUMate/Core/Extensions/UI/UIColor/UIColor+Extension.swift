@@ -29,6 +29,10 @@ public extension UIColor {
         return UIColor(hex: 0x20204D)
     }
     
+    static var textColor: UIColor {
+        return UIColor(hex: 0x1F1F1F)
+    }
+    
     static var beProBlack: UIColor {
         return UIColor(hex: 0x000000)
     }

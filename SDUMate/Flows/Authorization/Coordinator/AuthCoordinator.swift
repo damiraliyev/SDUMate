@@ -14,6 +14,7 @@ protocol IAuthCoordinator: AnyObject {
     func showSignInView()
     func showHome()
     func showUserInfoSetup()
+    func showAccountChoiceView()
 }
 
 final class AuthCoordinator: BaseCoordinator, IAuthCoordinator {
@@ -57,5 +58,10 @@ final class AuthCoordinator: BaseCoordinator, IAuthCoordinator {
             removeDependency(userInfoSetupCoordinator)
         }
         userInfoSetupCoordinator.start()
+    }
+    
+    func showAccountChoiceView() {
+        let view = AccountChoiceViewController()
+        router.present(view, animated: true, presentType: .panModal)
     }
 }

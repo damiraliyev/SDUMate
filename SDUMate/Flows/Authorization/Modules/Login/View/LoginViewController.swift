@@ -79,6 +79,9 @@ final class LoginViewController: UIViewController, ILoginView {
         label.font = .regular14
         label.textColor = .lavender
         label.text = "Do not have an account? Sign up"
+        label.isUserInteractionEnabled = true
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(signUpTapped))
+        label.addGestureRecognizer(tapRecognizer)
         return label
     }()
     
@@ -153,5 +156,9 @@ final class LoginViewController: UIViewController, ILoginView {
     
     @objc func loginTapped() {
         presenter?.loginTapped()
+    }
+    
+    @objc func signUpTapped() {
+        presenter?.signUpTapped()
     }
 }

@@ -1,5 +1,5 @@
 //
-//  StudentSignUpPresenter.swift
+//  AlumniSignUpPresenter.swift
 //  SDUMate
 //
 //  Created by Damir Aliyev on 03.03.2024.
@@ -7,23 +7,28 @@
 
 import Foundation
 
-protocol IStudentSignUpPresenter: AnyObject {
+protocol IAlumniSignUpPresenter: AnyObject {
     func backTapped()
+    func verifyTapped()
     func loginTapped()
 }
 
-final class StudentSignUpPresenter: IStudentSignUpPresenter {
+final class AlumniSignUpPresenter: IAlumniSignUpPresenter {
     
-    weak var view: IStudentSignUpView?
+    weak var view: IAlumniSignUpView?
     private weak var coordinator: IAuthCoordinator?
     
-    init(view: IStudentSignUpView, coordinator: IAuthCoordinator) {
+    init(view: IAlumniSignUpView, coordinator: IAuthCoordinator) {
         self.view = view
         self.coordinator = coordinator
     }
     
     func backTapped() {
         coordinator?.onBackTapped(completion: nil)
+    }
+    
+    func verifyTapped() {
+        
     }
     
     func loginTapped() {

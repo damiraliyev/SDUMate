@@ -52,4 +52,11 @@ final class AuthModuleFactory {
         view.presenter = presenter
         return view
     }
+    
+    func makeAlumniSignUpView(coordinator: IAuthCoordinator) -> IAlumniSignUpView {
+        let view: IAlumniSignUpView = AlumniSignUpViewController()
+        let presenter: IAlumniSignUpPresenter = AlumniSignUpPresenter(view: view, coordinator: coordinator)
+        view.presenter = presenter
+        return view
+    }
 }

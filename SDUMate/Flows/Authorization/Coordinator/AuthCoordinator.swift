@@ -74,6 +74,8 @@ final class AuthCoordinator: BaseCoordinator, IAuthCoordinator {
     }
     
     func showAlumniSignUpView() {
-        
+        let alumniSignUpView = moduleFactory.makeAlumniSignUpView(coordinator: self)
+        router.dismissPresentedView()
+        router.push(alumniSignUpView)
     }
 }

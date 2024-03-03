@@ -1,5 +1,5 @@
 //
-//  StudentSignUpViewController.swift
+//  AlumniSignUpViewController.swift
 //  SDUMate
 //
 //  Created by Damir Aliyev on 03.03.2024.
@@ -7,17 +7,26 @@
 
 import UIKit
 
-protocol IStudentSignUpView: Presentable {
-    var presenter: IStudentSignUpPresenter? { get set }
+protocol IAlumniSignUpView: Presentable {
+    var presenter: IAlumniSignUpPresenter? { get set }
 }
 
-final class StudentSignUpViewController: BaseViewController, IStudentSignUpView {
+final class AlumniSignUpViewController: BaseViewController, IAlumniSignUpView {
     
-    var presenter: IStudentSignUpPresenter?
+    var presenter: IAlumniSignUpPresenter?
     
     private lazy var navigationBar = SMNavigationBar(title: "") { [weak presenter] in
         presenter?.backTapped()
     }
+    
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.alwaysBounceVertical = true
+        return scrollView
+    }()
+    
+    private let containerView = UIView()
     
     private let labelsStackView: UIStackView = {
         let stackView = UIStackView()
@@ -27,11 +36,13 @@ final class StudentSignUpViewController: BaseViewController, IStudentSignUpView 
         return stackView
     }()
     
-    private let registerLabel: UILabel = {
+    private let welcomeLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.font = .medium36
-        label.text = "Register"
+        label.text = "Welcome back, Alumni!"
+        label.numberOfLines = 0
+        label.textAlignment = .center
         return label
     }()
     
@@ -48,6 +59,22 @@ final class StudentSignUpViewController: BaseViewController, IStudentSignUpView 
         stackView.axis = .vertical
         stackView.spacing = 15
         return stackView
+    }()
+    
+    private let nameFormFieldView: FormTextFieldView = {
+        let view = FormTextFieldView()
+        view.set(title: "Name")
+        view.set(placeholderText: "Enter your name")
+        view.set(leftImage: Asset.person.image)
+        return view
+    }()
+    
+    private let lastNameFormFieldView: FormTextFieldView = {
+        let view = FormTextFieldView()
+        view.set(title: "Last name")
+        view.set(placeholderText: "Enter your last name")
+        view.set(leftImage: Asset.person.image)
+        return view
     }()
     
     private let emailFormFieldView: FormTextFieldView = {
@@ -73,6 +100,26 @@ final class StudentSignUpViewController: BaseViewController, IStudentSignUpView 
         view.set(title: "Confirm password")
         view.set(placeholderText: "Re-enter password")
         view.set(leftImage: Asset.lock.image)
+        view.makeTextSecure()
+        view.set(rightImage: Asset.eyeOpen.image)
+        return view
+    }()
+    
+    private let graduationYearFormFieldView: FormTextFieldView = {
+        let view = FormTextFieldView()
+        view.set(title: "Year of graduation")
+        view.set(placeholderText: "Choose year")
+        view.set(leftImage: Asset.icCalendar.image)
+        view.makeTextSecure()
+        view.set(rightImage: Asset.eyeOpen.image)
+        return view
+    }()
+    
+    private let studyProgramFieldView: FormTextFieldView = {
+        let view = FormTextFieldView()
+        view.set(title: "Program of study")
+        view.set(placeholderText: "Choose program")
+        view.set(leftImage: Asset.icHat.image)
         view.makeTextSecure()
         view.set(rightImage: Asset.eyeOpen.image)
         return view
@@ -106,20 +153,30 @@ final class StudentSignUpViewController: BaseViewController, IStudentSignUpView 
     }
     
     private func setupViews() {
-        view.addSubviews([navigationBar, labelsStackView, fieldsStackView, verifyButton, loginLabel])
-        labelsStackView.addArrangedSubviews([registerLabel, createAccountLabel])
-        fieldsStackView.addArrangedSubviews([emailFormFieldView, passwordFormFieldView, confirmPasswordFormFieldView])
+        view.addSubviews([navigationBar, scrollView])
+        scrollView.addSubview(containerView)
+        containerView.addSubviews([labelsStackView, fieldsStackView, verifyButton, loginLabel])
+        labelsStackView.addArrangedSubviews([welcomeLabel, createAccountLabel])
+        fieldsStackView.addArrangedSubviews([nameFormFieldView, lastNameFormFieldView, emailFormFieldView, passwordFormFieldView, confirmPasswordFormFieldView])
         setupLoginAttributedText()
     }
     
     private func setupConstraints() {
+        scrollView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        containerView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+            make.width.equalToSuperview()
+        }
         labelsStackView.snp.makeConstraints { make in
-            make.top.equalTo(navigationBar.snp.bottom).offset(40)
+            make.top.equalToSuperview().offset(32)
             make.leading.trailing.equalToSuperview().inset(40)
         }
         fieldsStackView.snp.makeConstraints { make in
             make.top.equalTo(labelsStackView.snp.bottom).offset(40)
             make.leading.trailing.equalToSuperview().inset(20)
+//            make.bottom.equalTo(verifyButton.snp.top).offset(-19)
         }
         verifyButton.snp.makeConstraints { make in
             make.top.equalTo(fieldsStackView.snp.bottom).offset(40)
@@ -129,6 +186,7 @@ final class StudentSignUpViewController: BaseViewController, IStudentSignUpView 
         loginLabel.snp.makeConstraints { make in
             make.top.equalTo(verifyButton.snp.bottom).offset(21)
             make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-32)
         }
     }
     

@@ -27,6 +27,6 @@ final class AccountChoicePresenter: IAccountChoicePresenter {
     }
     
     func alumniTapped() {
-        
+        coordinator?.showAlumniSignUpView()
     }
 }

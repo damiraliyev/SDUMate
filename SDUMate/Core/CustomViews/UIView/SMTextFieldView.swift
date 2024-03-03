@@ -65,13 +65,13 @@ final class SMTextFieldView: UIView {
         mainTextField.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             textFieldLeadingConstraints = make.leading.equalTo(leftImageView.snp.trailing).offset(10).constraint
-            make.trailing.equalToSuperview().offset(-10)
+            make.trailing.equalToSuperview().offset(-38)
             make.height.equalTo(24)
         }
         rightImageView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.trailing.equalToSuperview().offset(-20)
-            make.size.equalTo(18)
+            make.size.equalTo(15)
         }
     }
     
@@ -79,8 +79,12 @@ final class SMTextFieldView: UIView {
         leftImageView.image = image
     }
     
-    func setPlaceholderText(text: String) {
-        let placeholderAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.medium16, .foregroundColor: UIColor.lavender]
+    func setRightImage(image: UIImage) {
+        rightImageView.image = image
+    }
+    
+    func setPlaceholderText(text: String, textColor: UIColor = .lavender.withAlphaComponent(0.4)) {
+        let placeholderAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.medium16, .foregroundColor: textColor]
         let attributedPlaceholder = NSAttributedString(string: text, attributes: placeholderAttributes)
         mainTextField.attributedPlaceholder = attributedPlaceholder
     }

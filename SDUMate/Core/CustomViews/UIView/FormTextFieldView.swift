@@ -51,7 +51,15 @@ final class FormTextFieldView: UIView {
         titleLabel.text = title
     }
     
-    func set(placeholderText: String) {
-        fieldView.setPlaceholderText(text: placeholderText)
+    func set(placeholderText: String, textColor: UIColor = .lavender.withAlphaComponent(0.4)) {
+        fieldView.setPlaceholderText(text: placeholderText, textColor: textColor)
+    }
+    
+    func set(leftImage: UIImage) {
+        fieldView.setLeftImage(image: leftImage)
+    }
+    
+    func set(rightImage: UIImage) {
+        fieldView.addRightImageView(image: rightImage)
     }
 }

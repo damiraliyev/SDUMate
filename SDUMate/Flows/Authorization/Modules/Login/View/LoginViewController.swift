@@ -43,7 +43,7 @@ final class LoginViewController: UIViewController, ILoginView {
     private let emailFieldView: SMTextFieldView = {
         let fieldView = SMTextFieldView()
         fieldView.setLeftImage(image: Asset.person.image)
-        fieldView.setPlaceholderText(text: "id or email")
+        fieldView.setPlaceholderText(text: "id or email", textColor: .lavender)
         return fieldView
     }()
     
@@ -52,7 +52,7 @@ final class LoginViewController: UIViewController, ILoginView {
         textField.setLeftImage(image: Asset.lock.image)
         textField.makeTextSecure()
         textField.addRightImageView(image: Asset.eyeOpen.image)
-        textField.setPlaceholderText(text: "Password")
+        textField.setPlaceholderText(text: "Password", textColor: .lavender)
         return textField
     }()
     

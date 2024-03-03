@@ -8,7 +8,7 @@
 import Foundation
 
 protocol IPhotoSetupPresenter: AnyObject {
-    
+    func backTapped()
 }
 
 final class PhotoSetupPresenter: IPhotoSetupPresenter {
@@ -19,5 +19,9 @@ final class PhotoSetupPresenter: IPhotoSetupPresenter {
     init(view: IPhotoSetupView, coordinator: IUserInfoSetupCoordinator) {
         self.view = view
         self.coordinator = coordinator
+    }
+    
+    func backTapped() {
+        coordinator?.onBackTapped(completion: nil)
     }
 }

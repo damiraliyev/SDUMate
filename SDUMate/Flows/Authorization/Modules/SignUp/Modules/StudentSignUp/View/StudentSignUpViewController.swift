@@ -9,9 +9,18 @@ import UIKit
 
 protocol IStudentSignUpView: Presentable {
     var presenter: IStudentSignUpPresenter? { get set }
+    
+    func enableButton()
+    func disableButton()
 }
 
-final class StudentSignUpViewController: BaseViewController, IStudentSignUpView {
+enum SMTextFieldTag: Int {
+    case emailTag = 1
+    case passwordTag = 2
+    case confirmPassowrdTag = 3
+}
+
+final class StudentSignUpViewController: BaseViewController {
     
     var presenter: IStudentSignUpPresenter?
     
@@ -39,7 +48,7 @@ final class StudentSignUpViewController: BaseViewController, IStudentSignUpView 
         let label = UILabel()
         label.textColor = .lavender
         label.font = .medium16
-        label.text = "Create you account"
+        label.text = "Create your account"
         return label
     }()
     
@@ -55,6 +64,7 @@ final class StudentSignUpViewController: BaseViewController, IStudentSignUpView 
         view.set(title: "Student id")
         view.set(placeholderText: "Enter your id")
         view.set(leftImage: Asset.icEnvelope.image)
+        view.tag = SMTextFieldTag.emailTag.rawValue
         return view
     }()
     
@@ -65,6 +75,7 @@ final class StudentSignUpViewController: BaseViewController, IStudentSignUpView 
         view.set(leftImage: Asset.lock.image)
         view.makeTextSecure()
         view.set(rightImage: Asset.eyeOpen.image)
+        view.tag = SMTextFieldTag.passwordTag.rawValue
         return view
     }()
     
@@ -75,6 +86,7 @@ final class StudentSignUpViewController: BaseViewController, IStudentSignUpView 
         view.set(leftImage: Asset.lock.image)
         view.makeTextSecure()
         view.set(rightImage: Asset.eyeOpen.image)
+        view.tag = SMTextFieldTag.confirmPassowrdTag.rawValue
         return view
     }()
     
@@ -83,6 +95,8 @@ final class StudentSignUpViewController: BaseViewController, IStudentSignUpView 
         button.setTitle("Verify email", for: .normal)
         button.titleLabel?.font = .medium16
         button.addTarget(self, action: #selector(verifyTapped), for: .touchUpInside)
+        button.isEnabled = false
+        button.alpha = 0.5
         return button
     }()
     
@@ -110,6 +124,7 @@ final class StudentSignUpViewController: BaseViewController, IStudentSignUpView 
         labelsStackView.addArrangedSubviews([registerLabel, createAccountLabel])
         fieldsStackView.addArrangedSubviews([emailFormFieldView, passwordFormFieldView, confirmPasswordFormFieldView])
         setupLoginAttributedText()
+        setupTextFieldsDelegate()
     }
     
     private func setupConstraints() {
@@ -141,11 +156,32 @@ final class StudentSignUpViewController: BaseViewController, IStudentSignUpView 
         loginLabel.attributedText = rootString
     }
     
+    private func setupTextFieldsDelegate() {
+        guard let presenter = presenter as? SMTextFieldViewDelegate else { return }
+        emailFormFieldView.addTextFieldDelegate(handler: presenter)
+        passwordFormFieldView.addTextFieldDelegate(handler: presenter)
+        confirmPasswordFormFieldView.addTextFieldDelegate(handler: presenter)
+    }
+    
     @objc func verifyTapped() {
         
     }
     
     @objc func loginTapped() {
+        let email = emailFormFieldView.getText()
+        let password = passwordFormFieldView
         presenter?.loginTapped()
+    }
+}
+
+extension StudentSignUpViewController: IStudentSignUpView {
+    func enableButton() {
+        verifyButton.isEnabled = true
+        verifyButton.alpha = 1
+    }
+    
+    func disableButton() {
+        verifyButton.isEnabled = false
+        verifyButton.alpha = 0.5
     }
 }

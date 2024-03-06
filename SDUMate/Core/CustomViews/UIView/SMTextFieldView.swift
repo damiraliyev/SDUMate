@@ -8,7 +8,13 @@
 import UIKit
 import SnapKit
 
+protocol SMTextFieldViewDelegate: AnyObject {
+    func textFieldDidChange(text: String, tag: Int)
+}
+
 final class SMTextFieldView: UIView {
+    
+    weak var delegate: SMTextFieldViewDelegate?
     
     private let leftImageView: UIImageView = {
         let imageView = UIImageView()
@@ -16,12 +22,13 @@ final class SMTextFieldView: UIView {
         return imageView
     }()
     
-    private let mainTextField: UITextField = {
+    private lazy var mainTextField: UITextField = {
         let textField = UITextField()
         textField.textColor = .white
         textField.font = .medium16
         textField.autocapitalizationType = .none
         textField.autocorrectionType = .no
+        textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         return textField
     }()
     private var textFieldLeadingConstraints: Constraint?
@@ -101,6 +108,10 @@ final class SMTextFieldView: UIView {
         rightImageView.safeShow()
     }
     
+    func getText() -> String {
+        mainTextField.text ?? ""
+    }
+    
     private func configureTextFieldsLeading() {
         if leftImageView.image == nil {
             textFieldLeadingConstraints?.update(offset: -15)
@@ -115,5 +126,9 @@ final class SMTextFieldView: UIView {
             mainTextField.isSecureTextEntry = true
             rightImageView.image = Asset.eyeOpen.image
         }
+    }
+    
+    @objc func textFieldDidChange(_ sender: UITextField) {
+        delegate?.textFieldDidChange(text: sender.text ?? "", tag: tag)
     }
 }

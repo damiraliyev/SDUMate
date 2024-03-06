@@ -22,6 +22,12 @@ final class FormTextFieldView: UIView {
         return fieldView
     }()
     
+    override var tag: Int {
+        didSet {
+            fieldView.tag = tag
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -65,5 +71,13 @@ final class FormTextFieldView: UIView {
     
     func makeTextSecure() {
         fieldView.makeTextSecure()
+    }
+    
+    func getText() -> String {
+        fieldView.getText()
+    }
+    
+    func addTextFieldDelegate(handler: SMTextFieldViewDelegate) {
+        fieldView.delegate = handler
     }
 }

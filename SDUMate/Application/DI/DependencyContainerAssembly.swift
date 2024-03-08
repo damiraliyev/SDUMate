@@ -13,6 +13,8 @@ public typealias DependencyContainer = Resolver
 
 final class DependencyContainerAssembly: Assembly {
     func assemble(container: Container) {
-
+        container.register(AuthManager.self) { _ in
+            AuthManager.shared
+        }
     }
 }

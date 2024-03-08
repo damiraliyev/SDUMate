@@ -9,9 +9,11 @@ import Foundation
 
 final class AuthModuleFactory {
     private let container: DependencyContainer
+    private let authManager: AuthManager
     
     init(container: DependencyContainer) {
         self.container = container
+        self.authManager = container.resolve(AuthManager.self)!
     }
     
     func makeEntryCoordinator() -> IEntryCoordinator {
@@ -48,7 +50,7 @@ final class AuthModuleFactory {
     
     func makeStudentSignUpView(coordinator: IAuthCoordinator) -> IStudentSignUpView {
         let view: IStudentSignUpView = StudentSignUpViewController()
-        let presenter: IStudentSignUpPresenter = StudentSignUpPresenter(view: view, coordinator: coordinator)
+        let presenter: IStudentSignUpPresenter = StudentSignUpPresenter(view: view, coordinator: coordinator, authManager: authManager)
         view.presenter = presenter
         return view
     }

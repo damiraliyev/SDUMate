@@ -29,6 +29,7 @@ final class SMTextFieldView: UIView {
         textField.autocapitalizationType = .none
         textField.autocorrectionType = .no
         textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        textField.textContentType = .oneTimeCode
         return textField
     }()
     private var textFieldLeadingConstraints: Constraint?

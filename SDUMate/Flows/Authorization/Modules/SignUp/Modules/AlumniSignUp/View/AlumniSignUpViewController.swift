@@ -165,6 +165,7 @@ final class AlumniSignUpViewController: BaseViewController, IAlumniSignUpView {
         scrollView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        view.bringSubviewToFront(navigationBar)
         containerView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
             make.width.equalToSuperview()

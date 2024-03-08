@@ -77,7 +77,7 @@ final class FormTextFieldView: UIView {
         fieldView.getText()
     }
     
-    func addTextFieldDelegate(handler: SMTextFieldViewDelegate) {
+    func addTextFieldDelegate(handler: SMTextFieldViewDelegate?) {
         fieldView.delegate = handler
     }
 }

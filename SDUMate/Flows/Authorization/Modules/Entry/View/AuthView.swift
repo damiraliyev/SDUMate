@@ -37,14 +37,15 @@ final class AuthView: UIView {
     }
     
     private func setupViews() {
+        backgroundColor = .background
 //        backgroundColor = Asset.background.color
-        addSubviews([backgroundImageView, logoImageView])
+        addSubviews([logoImageView])
     }
     
     private func setupConstraints() {
-        backgroundImageView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
+//        backgroundImageView.snp.makeConstraints { make in
+//            make.edges.equalToSuperview()
+//        }
         logoImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(124)
             make.leading.trailing.equalToSuperview()

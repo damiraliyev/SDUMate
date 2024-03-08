@@ -94,6 +94,7 @@
 		6838F7452B93988E00265406 /* StudySetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6838F7442B93988E00265406 /* StudySetupViewController.swift */; };
 		6838F7472B9398B900265406 /* StudySetupPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6838F7462B9398B900265406 /* StudySetupPresenter.swift */; };
 		684BA7BA2B896ECA0055BEE3 /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684BA7B92B896EC90055BEE3 /* GradientButton.swift */; };
+		685571C52B9ABA7300865191 /* VerificationSentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685571C42B9ABA7300865191 /* VerificationSentViewController.swift */; };
 		6882A4CB2B786AD400B2AE72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6882A4CA2B786AD400B2AE72 /* AppDelegate.swift */; };
 		6882A4CD2B786AD400B2AE72 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6882A4CC2B786AD400B2AE72 /* SceneDelegate.swift */; };
 		6882A4CF2B786AD400B2AE72 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6882A4CE2B786AD400B2AE72 /* ViewController.swift */; };
@@ -213,6 +214,7 @@
 		6838F7442B93988E00265406 /* StudySetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudySetupViewController.swift; sourceTree = "<group>"; };
 		6838F7462B9398B900265406 /* StudySetupPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudySetupPresenter.swift; sourceTree = "<group>"; };
 		684BA7B92B896EC90055BEE3 /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
+		685571C42B9ABA7300865191 /* VerificationSentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationSentViewController.swift; sourceTree = "<group>"; };
 		6882A4C72B786AD400B2AE72 /* SDUMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDUMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6882A4CA2B786AD400B2AE72 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6882A4CC2B786AD400B2AE72 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -865,6 +867,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		685571C32B9ABA5300865191 /* VerificationSent */ = {
+			isa = PBXGroup;
+			children = (
+				685571C42B9ABA7300865191 /* VerificationSentViewController.swift */,
+			);
+			path = VerificationSent;
+			sourceTree = "<group>";
+		};
 		6882A4BE2B786AD400B2AE72 = {
 			isa = PBXGroup;
 			children = (
@@ -1060,6 +1070,7 @@
 		68C5C4792B949478006C9540 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				685571C32B9ABA5300865191 /* VerificationSent */,
 				68C5C47B2B949491006C9540 /* AlumniSignUp */,
 				68C5C47A2B949483006C9540 /* StudentSignUp */,
 			);
@@ -1390,6 +1401,7 @@
 				6838F72C2B93415800265406 /* SMNavigationBar.swift in Sources */,
 				6882A4CD2B786AD400B2AE72 /* SceneDelegate.swift in Sources */,
 				682D085C2B7DF31900A5FCC1 /* CoordinatorNavigationController.swift in Sources */,
+				685571C52B9ABA7300865191 /* VerificationSentViewController.swift in Sources */,
 				682D081A2B7DF31900A5FCC1 /* Vibration.swift in Sources */,
 				682D08572B7DF31900A5FCC1 /* BaseNavigationViewController.swift in Sources */,
 				682D08772B7DFA2600A5FCC1 /* DatePickerViewController.swift in Sources */,

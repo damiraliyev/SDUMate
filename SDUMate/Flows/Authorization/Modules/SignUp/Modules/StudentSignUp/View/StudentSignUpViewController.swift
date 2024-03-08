@@ -164,12 +164,11 @@ final class StudentSignUpViewController: BaseViewController {
     }
     
     @objc func verifyTapped() {
-        
+        verifyButton.animatePress()
+        presenter?.verifyTapped()
     }
     
     @objc func loginTapped() {
-        let email = emailFormFieldView.getText()
-        let password = passwordFormFieldView
         presenter?.loginTapped()
     }
 }

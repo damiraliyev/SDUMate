@@ -17,6 +17,9 @@ protocol IAuthCoordinator: AnyObject {
     func showAccountChoiceView()
     func showStudentSignUpView()
     func showAlumniSignUpView()
+    func showErrorAlert(errorMessage: String)
+    func showSuccessAlert(action: (() -> Void)?)
+    func showVerificationSentView()
 }
 
 final class AuthCoordinator: BaseCoordinator, IAuthCoordinator {
@@ -77,5 +80,33 @@ final class AuthCoordinator: BaseCoordinator, IAuthCoordinator {
         let alumniSignUpView = moduleFactory.makeAlumniSignUpView(coordinator: self)
         router.dismissPresentedView()
         router.push(alumniSignUpView)
+    }
+    
+    func showErrorAlert(errorMessage: String) {
+        router.showErrorAlert(error: errorMessage)
+    }
+    
+    func showSuccessAlert(action: (() -> Void)?) {
+        let input = AlertInput(title: "Success", message: "Verification message was sent to your email. Please, verify it.", actionTitle: "Ok", actionCallBack: action)
+        router.showAlertWithoutCancel(input: input, style: .default)
+    }
+    
+    func showVerificationSentView() {
+        let view = VerificationSentViewController()
+        view.delegate = self
+        router.push(view)
+    }
+}
+
+extension AuthCoordinator: VerificationSentViewDelegate {
+    func continueTapped() {
+        router.popToRootModule()
+        guard let navigationController = router.navigationController else { return }
+        for view in navigationController.viewControllers {
+            guard (view as? EntryViewController) == nil else { return }
+            navigationController.viewControllers.removeAll { view in
+                view as? EntryViewController == nil
+            }
+        }
     }
 }

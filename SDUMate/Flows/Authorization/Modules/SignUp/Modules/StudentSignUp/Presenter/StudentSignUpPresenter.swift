@@ -10,32 +10,49 @@ import Foundation
 protocol IStudentSignUpPresenter: AnyObject {
     func backTapped()
     func loginTapped()
+    func verifyTapped()
 }
 
 final class StudentSignUpPresenter: IStudentSignUpPresenter {
     
     weak var view: IStudentSignUpView?
     private weak var coordinator: IAuthCoordinator?
+    private let authManager: AuthManager
     
-    private var email: String = ""
+    private var id: String = ""
     private var password: String = ""
     private var confirmedPassword: String = ""
     
-    init(view: IStudentSignUpView, coordinator: IAuthCoordinator) {
+    init(view: IStudentSignUpView, coordinator: IAuthCoordinator, authManager: AuthManager) {
         self.view = view
         self.coordinator = coordinator
+        self.authManager = authManager
     }
     
     func backTapped() {
         coordinator?.onBackTapped(completion: nil)
     }
     
+    func verifyTapped() {
+        let email = id + "@stu.sdu.edu.kz"
+        authManager.createUser(email: email, password: password) { [weak self] result in
+            guard let self else { return }
+            guard result != nil else {
+                coordinator?.showErrorAlert(errorMessage: "Something went wrong. Please, check credentials and try again.")
+                return
+            }
+            self.coordinator?.showVerificationSentView()
+        }
+    }
+    
     func loginTapped() {
-        coordinator?.showSignInView()
+        coordinator?.onBackTapped(completion: {
+            self.coordinator?.showSignInView()
+        })
     }
     
     private func verifyInfo() {
-        guard isOnlyDigits(text: email), password.count > 5, password == confirmedPassword else {
+        guard isOnlyDigits(text: id), password.count > 5, password == confirmedPassword else {
             view?.disableButton()
             return
         }
@@ -54,7 +71,7 @@ extension StudentSignUpPresenter: SMTextFieldViewDelegate {
         let type = SMTextFieldTag(rawValue: tag)
         switch type {
         case .emailTag:
-            email = text
+            id = text
         case .passwordTag:
             password = text
         case .confirmPassowrdTag:

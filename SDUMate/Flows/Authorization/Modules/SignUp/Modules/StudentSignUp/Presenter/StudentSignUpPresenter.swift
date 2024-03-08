@@ -41,7 +41,13 @@ final class StudentSignUpPresenter: IStudentSignUpPresenter {
                 coordinator?.showErrorAlert(errorMessage: "Something went wrong. Please, check credentials and try again.")
                 return
             }
-            self.coordinator?.showVerificationSentView()
+            authManager.sendVerificationMail { error in
+                guard error == nil else {
+                    self.coordinator?.showErrorAlert(errorMessage: "Something went wrong. Please, check credentials and try again.")
+                    return
+                }
+                self.coordinator?.showVerificationSentView()
+            }
         }
     }
     

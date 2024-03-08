@@ -35,4 +35,8 @@ final class AuthManager {
             completion(authModel)
         }
     }
+    
+    func sendVerificationMail(completion: @escaping ((Error?) -> Void)) {
+        Auth.auth().currentUser?.sendEmailVerification(completion: completion)
+    }
 }

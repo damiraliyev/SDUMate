@@ -35,8 +35,6 @@ final class LoginPresenter: ILoginPresenter {
             switch result {
             case .success(_):
                 fetchUser(authUser: authManager.getAuthUser())
-                let isFullyAuthorizedBefore = false
-                isFullyAuthorizedBefore ? coordinator.showHome() : coordinator.showUserInfoSetup()
             case .failure(let error):
                 handle(error: error)
             }
@@ -57,7 +55,8 @@ final class LoginPresenter: ILoginPresenter {
             guard let self else { return }
             switch result {
             case .success(let dbUser):
-                print(dbUser)
+                let isFullyAuthorizedBefore = false
+                isFullyAuthorizedBefore ? coordinator.showHome() : coordinator.showUserInfoSetup()
             case .failure(let error):
                 if let error = error as? SMError {
                     coordinator.showErrorAlert(errorMessage: error.localizedDescription)

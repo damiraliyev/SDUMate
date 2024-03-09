@@ -81,7 +81,7 @@ final class StudentSignUpPresenter: IStudentSignUpPresenter {
     
     private func createUserInFirestore(authModel: AuthDataResultModel) {
         let user = DBUser(authModel: authModel)
-        userManager.createNewUser(user: user) { [weak self] error in
+        authManager.createNewUser(user: user) { [weak self] error in
             guard let self else { return }
             guard error == nil else {
                 coordinator?.showErrorAlert(errorMessage: error?.localizedDescription ?? "Something went wrong, try again please.")

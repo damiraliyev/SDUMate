@@ -42,6 +42,19 @@ final class AuthManager {
     static let shared = AuthManager()
     private init() {}
     
+    private let usersCollection = Firestore.firestore().collection("users")
+    
+    private func userDocument(userId: String) -> DocumentReference {
+        usersCollection.document(userId)
+    }
+    
+    private let encoder: Firestore.Encoder = {
+        let encoder = Firestore.Encoder()
+        encoder.keyEncodingStrategy = .convertToSnakeCase
+        return encoder
+    }()
+    
+    
     func createUser(email: String, password: String, completion: @escaping (Result<AuthDataResultModel, Error>) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) { result, error in
             guard let result = result, error == nil else {
@@ -50,6 +63,15 @@ final class AuthManager {
             }
             let authModel = AuthDataResultModel(user: result.user)
             completion(.success(authModel))
+        }
+    }
+    
+    func createNewUser(user: DBUser, completion: @escaping ((Error?) -> Void)) {
+        do {
+            try userDocument(userId: user.userId).setData(from: user, merge: false, encoder: encoder)
+            completion(nil)
+        } catch {
+            completion(SMError.decodingError)
         }
     }
     

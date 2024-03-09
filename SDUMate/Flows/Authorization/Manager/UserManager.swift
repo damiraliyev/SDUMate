@@ -23,15 +23,6 @@ final class UserManager {
         return encoder
     }()
     
-    func createNewUser(user: DBUser, completion: @escaping ((Error?) -> Void)) {
-        do {
-            try userDocument(userId: user.userId).setData(from: user, merge: false, encoder: encoder)
-            completion(nil)
-        } catch {
-            completion(SMError.decodingError)
-        }
-    }
-    
 //    func createNewUser(authModel: AuthDataResultModel, completion: @escaping ((Error?) -> Void)) {
 //        guard let user = Auth.auth().currentUser, let email = authModel.email else { return }
 //        var userData: [String: Any] = [

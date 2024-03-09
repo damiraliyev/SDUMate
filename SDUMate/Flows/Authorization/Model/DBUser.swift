@@ -14,6 +14,7 @@ struct DBUser: Codable {
     let isVerified: Bool
     let photoUrl: String?
     let dateCreated: Date
+    let isFullyAuthorized: Bool
 }
 
 extension DBUser {
@@ -24,6 +25,7 @@ extension DBUser {
         self.isVerified = false
         self.photoUrl = authModel.photoUrl
         self.dateCreated = Date()
+        self.isFullyAuthorized = false
     }
     
     init?(dictionary: [String: Any]) {
@@ -38,5 +40,6 @@ extension DBUser {
         self.isVerified = isVerified
         self.photoUrl = dictionary["photo_url"] as? String
         self.dateCreated = dateCreated.dateValue()
+        self.isFullyAuthorized = dictionary["is_fully_authorized"] as? Bool ?? false
     }
 }

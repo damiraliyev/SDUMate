@@ -7,6 +7,7 @@
 
 import Foundation
 import FirebaseAuth
+import FirebaseFirestore
 
 enum FirebaseError: Error {
     case unknownError
@@ -62,9 +63,16 @@ final class AuthManager {
             }
             if !result.user.isEmailVerified {
                 completion(.failure(SMError.needEmailToBeVerified))
+                return
+            } else {
+                Firestore.firestore().collection("users").document(result.user.uid).updateData(["is_verified": true])
             }
             let authModel = AuthDataResultModel(user: result.user)
             completion(.success(authModel))
         }
+    }
+    
+    func getAuthenticatedUser() {
+        guard let id = Auth.auth().currentUser?.uid else { return }
     }
 }

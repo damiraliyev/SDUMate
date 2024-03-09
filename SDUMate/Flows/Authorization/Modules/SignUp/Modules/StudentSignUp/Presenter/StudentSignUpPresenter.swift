@@ -18,15 +18,17 @@ final class StudentSignUpPresenter: IStudentSignUpPresenter {
     weak var view: IStudentSignUpView?
     private weak var coordinator: IAuthCoordinator?
     private let authManager: AuthManager
+    private let userManager: UserManager
     
     private var id: String = ""
     private var password: String = ""
     private var confirmedPassword: String = ""
     
-    init(view: IStudentSignUpView, coordinator: IAuthCoordinator, authManager: AuthManager) {
+    init(view: IStudentSignUpView, coordinator: IAuthCoordinator, container: DependencyContainer) {
         self.view = view
         self.coordinator = coordinator
-        self.authManager = authManager
+        self.authManager = container.resolve(AuthManager.self)!
+        self.userManager = container.resolve(UserManager.self)!
     }
     
     func backTapped() {
@@ -38,13 +40,14 @@ final class StudentSignUpPresenter: IStudentSignUpPresenter {
         authManager.createUser(email: email, password: password) { [weak self] result in
             guard let self else { return }
             switch result {
-            case .success(let success):
+            case .success(let authModel):
                 authManager.sendVerificationMail { error in
                     guard error == nil else {
                         self.coordinator?.showErrorAlert(errorMessage: error?.localizedDescription ?? "Something went wrong, try again please.")
                         return
                     }
                     self.coordinator?.showVerificationSentView()
+                    self.createUserInFirestore(authModel: authModel)
                 }
             case .failure(let error):
                 coordinator?.showErrorAlert(errorMessage: error.localizedDescription)
@@ -70,6 +73,16 @@ final class StudentSignUpPresenter: IStudentSignUpPresenter {
         let regex = "^\\d+$"
         let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
         return predicate.evaluate(with: text)
+    }
+    
+    private func createUserInFirestore(authModel: AuthDataResultModel) {
+        userManager.createNewUser(authModel: authModel) { [weak self] error in
+            guard let self else { return }
+            guard error == nil else {
+                coordinator?.showErrorAlert(errorMessage: error?.localizedDescription ?? "Something went wrong, try again please.")
+                return
+            }
+        }
     }
 }
 

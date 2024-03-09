@@ -50,7 +50,7 @@ final class AuthModuleFactory {
     
     func makeStudentSignUpView(coordinator: IAuthCoordinator) -> IStudentSignUpView {
         let view: IStudentSignUpView = StudentSignUpViewController()
-        let presenter: IStudentSignUpPresenter = StudentSignUpPresenter(view: view, coordinator: coordinator, authManager: authManager)
+        let presenter: IStudentSignUpPresenter = StudentSignUpPresenter(view: view, coordinator: coordinator, container: container)
         view.presenter = presenter
         return view
     }

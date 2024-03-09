@@ -16,5 +16,8 @@ final class DependencyContainerAssembly: Assembly {
         container.register(AuthManager.self) { _ in
             AuthManager.shared
         }
+        container.register(UserManager.self) { _ in
+            UserManager.shared
+        }
     }
 }

@@ -43,7 +43,7 @@ extension UIViewController: Presentable {
     }
     
     func showErrorAlert(error: String) {
-        let alertController = UIAlertController(style: .alert, title: CoreL10n.error, message: error)
+        let alertController = UIAlertController(style: .alert, title: "Error", message: error)
         let okAction = UIAlertAction(title: CoreL10n.ok, style: .default, handler: nil)
         okAction.setValue(UIColor.dark, forKey: GlobalConstants.titleTextColor)
         alertController.addAction(okAction)

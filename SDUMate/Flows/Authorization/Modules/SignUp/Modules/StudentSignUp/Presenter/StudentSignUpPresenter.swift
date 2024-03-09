@@ -37,16 +37,17 @@ final class StudentSignUpPresenter: IStudentSignUpPresenter {
         let email = id + "@stu.sdu.edu.kz"
         authManager.createUser(email: email, password: password) { [weak self] result in
             guard let self else { return }
-            guard result != nil else {
-                coordinator?.showErrorAlert(errorMessage: "Something went wrong. Please, check credentials and try again.")
-                return
-            }
-            authManager.sendVerificationMail { error in
-                guard error == nil else {
-                    self.coordinator?.showErrorAlert(errorMessage: "Something went wrong. Please, check credentials and try again.")
-                    return
+            switch result {
+            case .success(let success):
+                authManager.sendVerificationMail { error in
+                    guard error == nil else {
+                        self.coordinator?.showErrorAlert(errorMessage: error?.localizedDescription ?? "Something went wrong, try again please.")
+                        return
+                    }
+                    self.coordinator?.showVerificationSentView()
                 }
-                self.coordinator?.showVerificationSentView()
+            case .failure(let error):
+                coordinator?.showErrorAlert(errorMessage: error.localizedDescription)
             }
         }
     }

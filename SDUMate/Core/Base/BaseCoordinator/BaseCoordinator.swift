@@ -20,6 +20,7 @@ protocol IBaseCoordinator: AnyObject {
     func showAlert(title: String?, message: String?)
     func showAlert(with input: AlertInput)
     func showErrorAlert(error: String)
+    func showAlertWithoutCancel(input: AlertInput, style: UIAlertAction.Style)
 }
 
 extension IBaseCoordinator {
@@ -29,6 +30,9 @@ extension IBaseCoordinator {
     func showAlert(with input: AlertInput) { }
     func showErrorAlert(error: String) {
         router.showErrorAlert(error: error)
+    }
+    func showAlertWithoutCancel(input: AlertInput, style: UIAlertAction.Style) {
+        router.showAlertWithoutCancel(input: input, style: style)
     }
     func dismissTopModule(animated: Bool, completion: (() -> Void)?) {}
 }
@@ -82,6 +86,10 @@ public class BaseCoordinator: Coordinator {
             alert.addAction(action)
         }
         router.presentAlert(alert, animated: true)
+    }
+    
+    func showAlertWithoutCancel(input: AlertInput, style: UIAlertAction.Style) {
+        router.showAlertWithoutCancel(input: input, style: style)
     }
     
     deinit {

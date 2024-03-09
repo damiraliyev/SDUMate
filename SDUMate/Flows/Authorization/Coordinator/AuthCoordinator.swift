@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol IAuthCoordinator: AnyObject {
+protocol IAuthCoordinator: IBaseCoordinator {
     var onFlowDidFinish: Completion? { get set }
     
     func onBackTapped(completion: Completion?)
@@ -18,6 +18,7 @@ protocol IAuthCoordinator: AnyObject {
     func showStudentSignUpView()
     func showAlumniSignUpView()
     func showErrorAlert(errorMessage: String)
+    func showAlert(input: AlertInput)
     func showSuccessAlert(action: (() -> Void)?)
     func showVerificationSentView()
 }
@@ -84,6 +85,10 @@ final class AuthCoordinator: BaseCoordinator, IAuthCoordinator {
     
     func showErrorAlert(errorMessage: String) {
         router.showErrorAlert(error: errorMessage)
+    }
+    
+    override func showAlert(input: AlertInput) {
+        router.showAlert(input: input)
     }
     
     func showSuccessAlert(action: (() -> Void)?) {

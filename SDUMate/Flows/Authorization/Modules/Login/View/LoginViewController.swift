@@ -46,15 +46,17 @@ final class LoginViewController: UIViewController, ILoginView {
         let fieldView = SMTextFieldView()
         fieldView.setLeftImage(image: Asset.person.image)
         fieldView.setPlaceholderText(text: "id or email", textColor: .lavender)
+        fieldView.tag = SMTextFieldTag.emailTag.rawValue
         return fieldView
     }()
     
-    private let passwordTextField: SMTextFieldView = {
+    private let passwordFieldView: SMTextFieldView = {
         let textField = SMTextFieldView()
         textField.setLeftImage(image: Asset.lock.image)
         textField.makeTextSecure()
         textField.addRightImageView(image: Asset.eyeOpen.image)
         textField.setPlaceholderText(text: "Password", textColor: .lavender)
+        textField.tag = SMTextFieldTag.passwordTag.rawValue
         return textField
     }()
     
@@ -67,8 +69,9 @@ final class LoginViewController: UIViewController, ILoginView {
     }()
     
     private lazy var loginButton: GradientButton = {
-        let button = GradientButton()
+        let button = GradientButton(type: .system)
         button.setTitle("Log in", for: .normal)
+        button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = .medium16
         button.addTarget(self, action: #selector(loginTapped), for: .touchUpInside)
         return button
@@ -94,6 +97,7 @@ final class LoginViewController: UIViewController, ILoginView {
         super.viewDidLoad()
         setupViews()
         setupConstraints()
+        setupFieldsDelegate()
     }
     
     override func viewIsAppearing(_ animated: Bool) {
@@ -104,7 +108,7 @@ final class LoginViewController: UIViewController, ILoginView {
     private func setupViews() {
         view.addSubviews([navigationBar, welcomeLabel, loginToAccountLabel, fieldsStackView, forgotPasswordLabel,
                           loginButton, signUpLabel])
-        fieldsStackView.addArrangedSubviews([emailFieldView, passwordTextField])
+        fieldsStackView.addArrangedSubviews([emailFieldView, passwordFieldView])
         setupSignUpAttributedText()
     }
     
@@ -120,7 +124,7 @@ final class LoginViewController: UIViewController, ILoginView {
         emailFieldView.snp.makeConstraints { make in
             make.height.equalTo(52)
         }
-        passwordTextField.snp.makeConstraints { make in
+        passwordFieldView.snp.makeConstraints { make in
             make.height.equalTo(52)
         }
         forgotPasswordLabel.snp.makeConstraints { make in
@@ -136,6 +140,12 @@ final class LoginViewController: UIViewController, ILoginView {
             make.top.equalTo(loginButton.snp.bottom).offset(27)
             make.centerX.equalToSuperview()
         }
+    }
+    
+    private func setupFieldsDelegate() {
+        guard let presenter = presenter as? SMTextFieldViewDelegate else { return }
+        emailFieldView.delegate = presenter
+        passwordFieldView.delegate = presenter
     }
     
     private func setupWelcomeLabelConstraints() {

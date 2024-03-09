@@ -41,14 +41,7 @@ final class StudentSignUpPresenter: IStudentSignUpPresenter {
             guard let self else { return }
             switch result {
             case .success(let authModel):
-                authManager.sendVerificationMail { error in
-                    guard error == nil else {
-                        self.coordinator?.showErrorAlert(errorMessage: error?.localizedDescription ?? "Something went wrong, try again please.")
-                        return
-                    }
-                    self.coordinator?.showVerificationSentView()
-                    self.createUserInFirestore(authModel: authModel)
-                }
+                sendVerificationMail(authModel: authModel)
             case .failure(let error):
                 coordinator?.showErrorAlert(errorMessage: error.localizedDescription)
             }
@@ -73,6 +66,17 @@ final class StudentSignUpPresenter: IStudentSignUpPresenter {
         let regex = "^\\d+$"
         let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
         return predicate.evaluate(with: text)
+    }
+    
+    private func sendVerificationMail(authModel: AuthDataResultModel) {
+        authManager.sendVerificationMail { error in
+            guard error == nil else {
+                self.coordinator?.showErrorAlert(errorMessage: error?.localizedDescription ?? "Something went wrong, try again please.")
+                return
+            }
+            self.coordinator?.showVerificationSentView()
+            self.createUserInFirestore(authModel: authModel)
+        }
     }
     
     private func createUserInFirestore(authModel: AuthDataResultModel) {

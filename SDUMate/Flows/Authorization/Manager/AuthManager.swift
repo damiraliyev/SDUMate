@@ -71,8 +71,8 @@ final class AuthManager {
             completion(.success(authModel))
         }
     }
-    
-    func getAuthenticatedUser() {
-        guard let id = Auth.auth().currentUser?.uid else { return }
+
+    func getAuthUser() -> User? {
+        return Auth.auth().currentUser
     }
 }

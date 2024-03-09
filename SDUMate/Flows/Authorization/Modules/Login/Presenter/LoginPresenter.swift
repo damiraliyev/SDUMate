@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 protocol ILoginPresenter: AnyObject {
     func loginTapped()
@@ -33,6 +34,7 @@ final class LoginPresenter: ILoginPresenter {
             guard let self else { return }
             switch result {
             case .success(_):
+                fetchUser(authUser: authManager.getAuthUser())
                 let isFullyAuthorizedBefore = false
                 isFullyAuthorizedBefore ? coordinator.showHome() : coordinator.showUserInfoSetup()
             case .failure(let error):
@@ -47,6 +49,19 @@ final class LoginPresenter: ILoginPresenter {
     
     func signUpTapped() {
         coordinator.showAccountChoiceView()
+    }
+    
+    private func fetchUser(authUser: User?) {
+        guard let user = authUser else { return }
+        UserManager.shared.getUser(userId: user.uid) { [weak self] result in
+            guard let self else { return }
+            switch result {
+            case .success(let dbUser):
+                print(dbUser)
+            case .failure(let error):
+                coordinator.showErrorAlert(errorMessage: error.localizedDescription)
+            }
+        }
     }
     
     private func handle(error: Error) {

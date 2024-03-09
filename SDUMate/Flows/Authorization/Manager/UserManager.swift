@@ -28,4 +28,18 @@ final class UserManager {
         }
         Firestore.firestore().collection("users").document(authModel.uid).setData(userData, merge: false, completion: completion)
     }
+    
+    func getUser(userId: String, completion: @escaping (Result<DBUser, Error>) -> Void) {
+        Firestore.firestore().collection("users").document(userId).getDocument { snapshot, error in
+            guard let data = snapshot?.data(), error == nil else {
+                completion(.failure(error ?? URLError(.badServerResponse)))
+                return
+            }
+            let email = data["email"] as? String ?? ""
+            let photoUrl = data["photo_url"] as? String ?? ""
+            let isVerified = data["is_verified"] as? Bool ?? false
+            let dateCreated = data["date_created"] as? Date
+            completion(.success( DBUser(userId: userId, email: email, isVerified: isVerified, photoUrl: photoUrl, dateCreated: dateCreated ?? Date())))
+        }
+    }
 }

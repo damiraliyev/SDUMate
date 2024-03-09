@@ -15,10 +15,12 @@ enum FirebaseError: Error {
 
 enum SMError: Error {
     case needEmailToBeVerified
+    case decodingError
     
     var localizedDescription: String {
         switch self {
         case .needEmailToBeVerified: return "You need to verify your email before signing in."
+        case .decodingError:         return "Could not decode arrived dictionary data."
         }
     }
 }

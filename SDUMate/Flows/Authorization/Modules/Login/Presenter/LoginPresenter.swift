@@ -59,7 +59,11 @@ final class LoginPresenter: ILoginPresenter {
             case .success(let dbUser):
                 print(dbUser)
             case .failure(let error):
-                coordinator.showErrorAlert(errorMessage: error.localizedDescription)
+                if let error = error as? SMError {
+                    coordinator.showErrorAlert(errorMessage: error.localizedDescription)
+                } else {
+                    coordinator.showErrorAlert(errorMessage: error.localizedDescription)
+                }
             }
         }
     }
@@ -72,6 +76,8 @@ final class LoginPresenter: ILoginPresenter {
                     self?.sendVerificationMail()
                 }
                 self.coordinator.showAlert(input: input)
+            default:
+                coordinator.showErrorAlert(errorMessage: error.localizedDescription)
             }
         } else {
             coordinator.showErrorAlert(errorMessage: error.localizedDescription)

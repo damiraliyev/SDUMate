@@ -16,9 +16,9 @@ final class UserInfoSetupModuleFactory {
         return view
     }
     
-    func makeStudySetupViews(coordinator: IUserInfoSetupCoordinator) -> IStudySetupView {
+    func makeStudySetupViews(coordinator: IUserInfoSetupCoordinator, userInfo: UserInfo) -> IStudySetupView {
         let view: IStudySetupView = StudySetupViewController()
-        let presenter: IStudySetupPresenter = StudySetupPresenter(view: view, coordinator: coordinator)
+        let presenter: IStudySetupPresenter = StudySetupPresenter(view: view, coordinator: coordinator, userInfo: userInfo)
         view.presenter = presenter
         return view
     }

@@ -18,6 +18,10 @@ enum SMTextFieldTag: Int {
     case emailTag = 1
     case passwordTag = 2
     case confirmPassowrdTag = 3
+    case name = 4
+    case surname = 5
+    case nickname = 6
+    case telegramTag = 7
 }
 
 final class StudentSignUpViewController: BaseViewController {

@@ -101,7 +101,7 @@ extension StudentSignUpPresenter: SMTextFieldViewDelegate {
             password = text
         case .confirmPassowrdTag:
             confirmedPassword = text
-        case .none:
+        default:
             break
         }
         verifyInfo()

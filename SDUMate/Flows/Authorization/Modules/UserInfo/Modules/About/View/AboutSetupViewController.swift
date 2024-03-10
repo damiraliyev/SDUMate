@@ -9,6 +9,9 @@ import UIKit
 
 protocol IAboutSetupView: Presentable {
     var presenter: IAboutSetupPresenter? { get set }
+    
+    func enableButton()
+    func disableButton()
 }
 
 final class AboutSetupViewController: BaseViewController, IAboutSetupView {
@@ -30,6 +33,7 @@ final class AboutSetupViewController: BaseViewController, IAboutSetupView {
         let view = FormTextFieldView()
         view.set(title: "Name")
         view.set(placeholderText: "Your name")
+        view.tag = SMTextFieldTag.name.rawValue
         return view
     }()
     
@@ -37,6 +41,7 @@ final class AboutSetupViewController: BaseViewController, IAboutSetupView {
         let view = FormTextFieldView()
         view.set(title: "Surname")
         view.set(placeholderText: "Your surname")
+        view.tag = SMTextFieldTag.surname.rawValue
         return view
     }()
     
@@ -44,6 +49,7 @@ final class AboutSetupViewController: BaseViewController, IAboutSetupView {
         let view = FormTextFieldView()
         view.set(title: "Nickname")
         view.set(placeholderText: "Your nickname")
+        view.tag = SMTextFieldTag.nickname.rawValue
         return view
     }()
     
@@ -51,6 +57,7 @@ final class AboutSetupViewController: BaseViewController, IAboutSetupView {
         let view = FormTextFieldView()
         view.set(title: "Telegram")
         view.set(placeholderText: "Telegram tag (Optional)")
+        view.tag = SMTextFieldTag.telegramTag.rawValue
         return view
     }()
     
@@ -59,6 +66,8 @@ final class AboutSetupViewController: BaseViewController, IAboutSetupView {
         button.setTitle("Continue", for: .normal)
         button.titleLabel?.font = .medium16
         button.addTarget(self, action: #selector(continueTapped), for: .touchUpInside)
+        button.isEnabled = false
+        button.alpha = 0.5
         return button
     }()
     
@@ -71,6 +80,7 @@ final class AboutSetupViewController: BaseViewController, IAboutSetupView {
         super.viewDidLoad()
         setupViews()
         setupConstraints()
+        setupTextFieldsDelegate()
     }
     
     private func setupViews() {
@@ -90,7 +100,24 @@ final class AboutSetupViewController: BaseViewController, IAboutSetupView {
         }
     }
     
+    private func setupTextFieldsDelegate() {
+        guard let presenter = presenter as? SMTextFieldViewDelegate else { return }
+        [nameFormFieldView, surnameFormFieldView, nicknameFormFieldView, telegramFormFieldView].forEach {
+            $0.addTextFieldDelegate(handler: presenter)
+        }
+    }
+    
     @objc func continueTapped() {
         presenter?.continueTapped()
+    }
+    
+    func enableButton() {
+        continueButton.isEnabled = true
+        continueButton.alpha = 1
+    }
+    
+    func disableButton() {
+        continueButton.isEnabled = false
+        continueButton.alpha = 0.5
     }
 }

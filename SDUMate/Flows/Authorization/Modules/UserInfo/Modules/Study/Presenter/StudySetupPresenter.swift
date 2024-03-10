@@ -16,10 +16,12 @@ final class StudySetupPresenter: IStudySetupPresenter {
     
     weak var view: IStudySetupView?
     private weak var coordinator: IUserInfoSetupCoordinator?
+    private let userInfo: UserInfo
     
-    init(view: IStudySetupView, coordinator: IUserInfoSetupCoordinator) {
+    init(view: IStudySetupView, coordinator: IUserInfoSetupCoordinator, userInfo: UserInfo) {
         self.view = view
         self.coordinator = coordinator
+        self.userInfo = userInfo
     }
     
     func backTapped() {

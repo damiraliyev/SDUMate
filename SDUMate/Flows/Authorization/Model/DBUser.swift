@@ -39,6 +39,7 @@ struct DBUser: Codable {
     let telegramTag: String?
     let faculty: Faculty?
     let studyProgram: StudyProgram?
+    let yearOfEntering: Int?
     
     enum CodingKeys: String, CodingKey {
         case userId = "user_id"
@@ -52,6 +53,7 @@ struct DBUser: Codable {
         case telegramTag = "telegram_tag"
         case faculty
         case studyProgram = "study_program"
+        case yearOfEntering = "year_of_entering"
     }
     
     init(from decoder: Decoder) throws {
@@ -72,6 +74,7 @@ struct DBUser: Codable {
         self.faculty = Faculty(rawValue: rawFaculty ?? "") ?? Faculty.none
         let rawStudyProgram = try container.decodeIfPresent(String.self, forKey: .studyProgram)
         self.studyProgram = StudyProgram(rawValue: rawStudyProgram ?? "") ?? StudyProgram.none
+        self.yearOfEntering  = try container.decodeIfPresent(Int.self, forKey: .yearOfEntering)
     }
     
     func encode(to encoder: Encoder) throws {
@@ -89,6 +92,7 @@ struct DBUser: Codable {
         try container.encodeIfPresent(self.telegramTag, forKey: .telegramTag)
         try container.encodeIfPresent(self.faculty?.rawValue, forKey: .faculty)
         try container.encodeIfPresent(self.studyProgram?.rawValue, forKey: .studyProgram)
+        try container.encodeIfPresent(self.yearOfEntering, forKey: .yearOfEntering)
     }
 }
 
@@ -108,6 +112,7 @@ extension DBUser {
         self.telegramTag = nil
         self.faculty = nil
         self.studyProgram = nil
+        self.yearOfEntering = nil
     }
     
     init?(dictionary: [String: Any]) {
@@ -130,5 +135,6 @@ extension DBUser {
         self.telegramTag = nil
         self.faculty = nil
         self.studyProgram = nil
+        self.yearOfEntering = nil
     }
 }

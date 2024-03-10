@@ -96,6 +96,7 @@
 		6838F7452B93988E00265406 /* StudySetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6838F7442B93988E00265406 /* StudySetupViewController.swift */; };
 		6838F7472B9398B900265406 /* StudySetupPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6838F7462B9398B900265406 /* StudySetupPresenter.swift */; };
 		684BA7BA2B896ECA0055BEE3 /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684BA7B92B896EC90055BEE3 /* GradientButton.swift */; };
+		68530AB32B9DACAC00E59383 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68530AB22B9DACAC00E59383 /* UserInfo.swift */; };
 		685571C52B9ABA7300865191 /* VerificationSentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685571C42B9ABA7300865191 /* VerificationSentViewController.swift */; };
 		6882A4CB2B786AD400B2AE72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6882A4CA2B786AD400B2AE72 /* AppDelegate.swift */; };
 		6882A4CD2B786AD400B2AE72 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6882A4CC2B786AD400B2AE72 /* SceneDelegate.swift */; };
@@ -218,6 +219,7 @@
 		6838F7442B93988E00265406 /* StudySetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudySetupViewController.swift; sourceTree = "<group>"; };
 		6838F7462B9398B900265406 /* StudySetupPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudySetupPresenter.swift; sourceTree = "<group>"; };
 		684BA7B92B896EC90055BEE3 /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
+		68530AB22B9DACAC00E59383 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		685571C42B9ABA7300865191 /* VerificationSentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationSentViewController.swift; sourceTree = "<group>"; };
 		6882A4C72B786AD400B2AE72 /* SDUMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDUMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6882A4CA2B786AD400B2AE72 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -814,6 +816,7 @@
 		6838F7322B93453900265406 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				68530AB12B9DAC8400E59383 /* Model */,
 				6838F7332B93454700265406 /* About */,
 				6838F7342B93455100265406 /* Study */,
 				6838F7352B93455500265406 /* Photo */,
@@ -878,6 +881,14 @@
 				6838F7442B93988E00265406 /* StudySetupViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		68530AB12B9DAC8400E59383 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				68530AB22B9DACAC00E59383 /* UserInfo.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		685571C32B9ABA5300865191 /* VerificationSent */ = {
@@ -1355,6 +1366,7 @@
 				680A97922B98B0EE005EFB17 /* AuthManager.swift in Sources */,
 				6838F7412B936D4200265406 /* FormTextFieldView.swift in Sources */,
 				682D085A2B7DF31900A5FCC1 /* FeedNavigationController.swift in Sources */,
+				68530AB32B9DACAC00E59383 /* UserInfo.swift in Sources */,
 				6882A4CF2B786AD400B2AE72 /* ViewController.swift in Sources */,
 				682D08372B7DF31900A5FCC1 /* TableCell.swift in Sources */,
 				682D08192B7DF31900A5FCC1 /* UIScrollView+Extension.swift in Sources */,

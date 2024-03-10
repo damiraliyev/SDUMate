@@ -80,4 +80,8 @@ final class FormTextFieldView: UIView {
     func addTextFieldDelegate(handler: SMTextFieldViewDelegate?) {
         fieldView.delegate = handler
     }
+    
+    func disableTextField() {
+        fieldView.isUserInteractionEnabled = false
+    }
 }

@@ -74,7 +74,9 @@ final class StudySetupViewController: BaseViewController, IStudySetupView {
     
     private func setupViews() {
         view.addSubviews([navigationBar, fieldsStackView, continueButton])
-        fieldsStackView.addArrangedSubviews([facultyFormView, studyProgramFormView, yearFormView])
+        let formViews = [facultyFormView, studyProgramFormView, yearFormView]
+        fieldsStackView.addArrangedSubviews(formViews)
+        formViews.forEach { $0.disableTextField() }
     }
     
     private func setupConstraints() {

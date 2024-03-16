@@ -52,12 +52,14 @@ final class StudySetupViewController: BaseViewController, IStudySetupView {
         return view
     }()
     
-    private let yearFormView: FormTextFieldView = {
+    private lazy var yearFormView: FormTextFieldView = {
         let view = FormTextFieldView()
         view.set(title: "Year of entering")
         view.set(placeholderText: "Choose year", textColor: .white)
         view.set(leftImage: Asset.icCalendar.image)
         view.set(rightImage: Asset.icRangeChoice.image)
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(yearTapped))
+        view.addGestureRecognizer(tapRecognizer)
         return view
     }()
     
@@ -75,21 +77,6 @@ final class StudySetupViewController: BaseViewController, IStudySetupView {
         return tableView
     }()
     
-//    private lazy var tableView: UITableView = {
-//        let tableView = UITableView()
-//        tableView.delegate = self
-//        tableView.dataSource = self
-//        tableView.alpha = 0
-//        tableView.layer.cornerRadius = 10
-//        tableView.showsVerticalScrollIndicator = false
-//        tableView.register(DefaultCell.self)
-//        tableView.estimatedRowHeight = UITableView.automaticDimension
-//        tableView.backgroundColor = .textFieldInner
-//        tableView.separatorColor = .moduleDescription
-//        tableView.tableFooterView = UIView()
-//        return tableView
-//    }()
-//    
     private lazy var continueButton: GradientButton = {
         let button = GradientButton()
         button.setTitle("Continue", for: .normal)
@@ -149,16 +136,6 @@ final class StudySetupViewController: BaseViewController, IStudySetupView {
         }
     }
     
-    @objc func facultyTapped() {
-        presenter?.facultyFieldTapped()
-        toggleDropDown(relativeTo: facultyFormView)
-    }
-    
-    @objc func studyProgramTapped() {
-        presenter?.studyProgramFieldTapped()
-        toggleDropDown(relativeTo: studyProgramFormView)
-    }
-    
     private func toggleDropDown(relativeTo view: UIView) {
         if view == facultyFormView {
             studyProgramTableView.alpha = 0
@@ -182,6 +159,38 @@ final class StudySetupViewController: BaseViewController, IStudySetupView {
         tableView.layoutIfNeeded()
         UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.4, options: .transitionCrossDissolve) {
             tableView.alpha = tableView.alpha == 1 ? 0 : 1
+        }
+    }
+    
+    // MARK: - Actions
+    
+    @objc func facultyTapped() {
+        presenter?.facultyFieldTapped()
+        toggleDropDown(relativeTo: facultyFormView)
+    }
+    
+    @objc func studyProgramTapped() {
+        presenter?.studyProgramFieldTapped()
+        toggleDropDown(relativeTo: studyProgramFormView)
+    }
+    
+    @objc func yearTapped() {
+        showDateAndTimePicker()
+    }
+    
+    func showDateAndTimePicker() {
+        let alert = UIAlertController(style: .alert)
+        alert.addDatePicker(mode: .date, style: .inline, height: 280, minimumDate: nil, maximumDate: Date()) { date in
+            
+        }
+        alert.addAction(title: CoreL10n.cancel, style: .default) { _ in
+//            handler?.onDismissTapped()
+        }
+        alert.addAction(title: CoreL10n.done, style: .default) { _ in
+//            handler?.onDoneTapped()
+        }
+        DispatchQueue.main.async {
+            self.present(alert, animated: true)
         }
     }
     

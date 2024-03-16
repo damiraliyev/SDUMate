@@ -14,6 +14,9 @@ protocol IStudySetupPresenter: AnyObject {
     func studyProgramFieldTapped()
     func getOptionsCount() -> Int
     func getOption(by indexPath: IndexPath) -> String
+    func dateSelected(date: Date)
+    func dateSelectionCanceled()
+    func dateSelectionConfirmed()
 }
 
 private enum SelectableField {
@@ -30,6 +33,11 @@ final class StudySetupPresenter: IStudySetupPresenter {
     private var selectedField: SelectableField = .faculty
     private let faculties: [Faculty] = Faculty.allCases
     private let studyPrograms: [StudyProgram] = StudyProgram.allCases
+    
+    private var faculty: Faculty?
+    private var studyProgram: StudyProgram?
+    private var date: Date?
+    private var currentlyTappedDate: Date?
     
     init(view: IStudySetupView, coordinator: IUserInfoSetupCoordinator, userInfo: UserInfo) {
         self.view = view
@@ -69,5 +77,19 @@ final class StudySetupPresenter: IStudySetupPresenter {
         case .studyProgram:
             return studyPrograms[indexPath.row + 1].rawValue
         }
+    }
+    
+    func dateSelected(date: Date) {
+        self.currentlyTappedDate = date
+        print("CURRENTLY SELECTED", currentlyTappedDate)
+    }
+    
+    func dateSelectionCanceled() {
+        currentlyTappedDate = nil
+    }
+    
+    func dateSelectionConfirmed() {
+        date = currentlyTappedDate
+        print("CONFIRMED DATE", date)
     }
 }

@@ -181,13 +181,13 @@ final class StudySetupViewController: BaseViewController, IStudySetupView {
     func showDateAndTimePicker() {
         let alert = UIAlertController(style: .alert)
         alert.addDatePicker(mode: .date, style: .inline, height: 280, minimumDate: nil, maximumDate: Date()) { date in
-            
+            self.presenter?.dateSelected(date: date)
         }
         alert.addAction(title: CoreL10n.cancel, style: .default) { _ in
-//            handler?.onDismissTapped()
+            self.presenter?.dateSelectionCanceled()
         }
         alert.addAction(title: CoreL10n.done, style: .default) { _ in
-//            handler?.onDoneTapped()
+            self.presenter?.dateSelectionConfirmed()
         }
         DispatchQueue.main.async {
             self.present(alert, animated: true)

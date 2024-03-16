@@ -52,7 +52,14 @@ final class StudySetupPresenter: IStudySetupPresenter {
     }
     
     func continueTapped() {
-        coordinator?.showPhotoSetupView()
+        assembleUserInfo()
+        coordinator?.showPhotoSetupView(userInfo: userInfo)
+    }
+    
+    private func assembleUserInfo() {
+        userInfo.faculty = faculty
+        userInfo.studyProgram = studyProgram
+        userInfo.yearOfEntering = getSelectedYear()
     }
     
     func facultyFieldTapped() {
@@ -83,7 +90,6 @@ final class StudySetupPresenter: IStudySetupPresenter {
     
     func dateSelected(date: Date) {
         self.currentlyTappedDate = date
-        print("CURRENTLY SELECTED", currentlyTappedDate)
     }
     
     func dateSelectionCanceled() {
@@ -92,7 +98,7 @@ final class StudySetupPresenter: IStudySetupPresenter {
     
     func dateSelectionConfirmed() {
         date = currentlyTappedDate
-        print("CONFIRMED DATE", date)
+        verifyInfo()
     }
     
     func optionSelected(on indexPath: IndexPath) {
@@ -102,12 +108,19 @@ final class StudySetupPresenter: IStudySetupPresenter {
         case .studyProgram:
             studyProgram = StudyProgram.allCases[safe: indexPath.row + 1]
         }
-        print("FACULTY", faculty)
-        print("STUDY PROGRAM", studyProgram)
+        verifyInfo()
     }
     
     func getSelectedYear() -> String {
         guard let date else { return ""}
         return date.currentYearString()
+    }
+    
+    private func verifyInfo() {
+        guard faculty != nil, studyProgram != nil, date != nil else {
+            view?.disableButton()
+            return
+        }
+        view?.enableButton()
     }
 }

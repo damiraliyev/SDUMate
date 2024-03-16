@@ -9,13 +9,16 @@ import UIKit
 
 protocol IStudySetupView: Presentable {
     var presenter: IStudySetupPresenter? { get set }
+    
+    func enableButton()
+    func disableButton()
 }
 
 private enum Constants {
     static let contentSize = "contentSize"
 }
 
-final class StudySetupViewController: BaseViewController, IStudySetupView {
+final class StudySetupViewController: BaseViewController {
     
     var presenter: IStudySetupPresenter?
     
@@ -82,6 +85,8 @@ final class StudySetupViewController: BaseViewController, IStudySetupView {
         button.setTitle("Continue", for: .normal)
         button.titleLabel?.font = .medium16
         button.addTarget(self, action: #selector(continueTapped), for: .touchUpInside)
+        button.alpha = 0.3
+        button.isEnabled = false
         return button
     }()
     
@@ -161,23 +166,7 @@ final class StudySetupViewController: BaseViewController, IStudySetupView {
         }
     }
     
-    // MARK: - Actions
-    
-    @objc func facultyTapped() {
-        presenter?.facultyFieldTapped()
-        showDropDown(relativeTo: facultyFormView)
-    }
-    
-    @objc func studyProgramTapped() {
-        presenter?.studyProgramFieldTapped()
-        showDropDown(relativeTo: studyProgramFormView)
-    }
-    
-    @objc func yearTapped() {
-        showDateAndTimePicker()
-    }
-    
-    func showDateAndTimePicker() {
+    private func showDateAndTimePicker() {
         let alert = UIAlertController(style: .alert)
         alert.addDatePicker(mode: .date, style: .wheels, height: 280, minimumDate: nil, maximumDate: Date()) { date in
             self.presenter?.dateSelected(date: date)
@@ -194,8 +183,38 @@ final class StudySetupViewController: BaseViewController, IStudySetupView {
         }
     }
     
+    // MARK: - Actions
+    
+    @objc func facultyTapped() {
+        presenter?.facultyFieldTapped()
+        showDropDown(relativeTo: facultyFormView)
+    }
+    
+    @objc func studyProgramTapped() {
+        presenter?.studyProgramFieldTapped()
+        showDropDown(relativeTo: studyProgramFormView)
+    }
+    
+    @objc func yearTapped() {
+        showDateAndTimePicker()
+    }
+    
     @objc func continueTapped() {
         presenter?.continueTapped()
+    }
+}
+
+// MARK: - IStudySetupView
+
+extension StudySetupViewController: IStudySetupView {
+    func enableButton() {
+        continueButton.alpha = 1
+        continueButton.isEnabled = true
+    }
+    
+    func disableButton() {
+        continueButton.alpha = 0.3
+        continueButton.isEnabled = false
     }
 }
 

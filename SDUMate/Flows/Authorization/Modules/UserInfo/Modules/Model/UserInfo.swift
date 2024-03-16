@@ -14,4 +14,5 @@ final class UserInfo {
     var telegramTag: String?
     var faculty: Faculty?
     var studyProgram: StudyProgram?
+    var yearOfEntering: String?
 }

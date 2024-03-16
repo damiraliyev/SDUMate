@@ -83,6 +83,10 @@ final class SMTextFieldView: UIView {
         }
     }
     
+    func set(text: String) {
+        mainTextField.text = text
+    }
+    
     func setLeftImage(image: UIImage) {
         leftImageView.image = image
     }

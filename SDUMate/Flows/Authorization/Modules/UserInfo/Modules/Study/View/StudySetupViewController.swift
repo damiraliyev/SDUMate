@@ -136,7 +136,7 @@ final class StudySetupViewController: BaseViewController, IStudySetupView {
         }
     }
     
-    private func toggleDropDown(relativeTo view: UIView) {
+    private func showDropDown(relativeTo view: UIView) {
         if view == facultyFormView {
             studyProgramTableView.alpha = 0
             expandDropDown(of: view, tableView: facultyTableView)
@@ -144,7 +144,6 @@ final class StudySetupViewController: BaseViewController, IStudySetupView {
             facultyTableView.alpha = 0
             expandDropDown(of: view, tableView: studyProgramTableView)
         }
-        
     }
     
     private func expandDropDown(of view: UIView, tableView: UITableView) {
@@ -166,12 +165,12 @@ final class StudySetupViewController: BaseViewController, IStudySetupView {
     
     @objc func facultyTapped() {
         presenter?.facultyFieldTapped()
-        toggleDropDown(relativeTo: facultyFormView)
+        showDropDown(relativeTo: facultyFormView)
     }
     
     @objc func studyProgramTapped() {
         presenter?.studyProgramFieldTapped()
-        toggleDropDown(relativeTo: studyProgramFormView)
+        showDropDown(relativeTo: studyProgramFormView)
     }
     
     @objc func yearTapped() {
@@ -180,7 +179,7 @@ final class StudySetupViewController: BaseViewController, IStudySetupView {
     
     func showDateAndTimePicker() {
         let alert = UIAlertController(style: .alert)
-        alert.addDatePicker(mode: .date, style: .inline, height: 280, minimumDate: nil, maximumDate: Date()) { date in
+        alert.addDatePicker(mode: .date, style: .wheels, height: 280, minimumDate: nil, maximumDate: Date()) { date in
             self.presenter?.dateSelected(date: date)
         }
         alert.addAction(title: CoreL10n.cancel, style: .default) { _ in
@@ -188,6 +187,7 @@ final class StudySetupViewController: BaseViewController, IStudySetupView {
         }
         alert.addAction(title: CoreL10n.done, style: .default) { _ in
             self.presenter?.dateSelectionConfirmed()
+            self.yearFormView.set(text: self.presenter?.getSelectedYear() ?? "")
         }
         DispatchQueue.main.async {
             self.present(alert, animated: true)
@@ -200,7 +200,16 @@ final class StudySetupViewController: BaseViewController, IStudySetupView {
 }
 
 extension StudySetupViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter?.optionSelected(on: indexPath)
+        if tableView == facultyTableView {
+            facultyFormView.set(text: presenter?.getOption(by: indexPath) ?? "")
+            facultyTableView.alpha = 0
+        } else {
+            studyProgramFormView.set(text: presenter?.getOption(by: indexPath) ?? "")
+            studyProgramTableView.alpha = 0
+        }
+    }
 }
 
 extension StudySetupViewController: UITableViewDataSource {

@@ -57,6 +57,10 @@ final class FormTextFieldView: UIView {
         titleLabel.text = title
     }
     
+    func set(text: String) {
+        fieldView.set(text: text)
+    }
+    
     func set(placeholderText: String, textColor: UIColor = .lavender.withAlphaComponent(0.4)) {
         fieldView.setPlaceholderText(text: placeholderText, textColor: textColor)
     }

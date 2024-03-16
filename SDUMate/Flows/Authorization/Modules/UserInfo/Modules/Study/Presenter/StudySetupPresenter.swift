@@ -17,6 +17,8 @@ protocol IStudySetupPresenter: AnyObject {
     func dateSelected(date: Date)
     func dateSelectionCanceled()
     func dateSelectionConfirmed()
+    func optionSelected(on indexPath: IndexPath)
+    func getSelectedYear() -> String
 }
 
 private enum SelectableField {
@@ -91,5 +93,21 @@ final class StudySetupPresenter: IStudySetupPresenter {
     func dateSelectionConfirmed() {
         date = currentlyTappedDate
         print("CONFIRMED DATE", date)
+    }
+    
+    func optionSelected(on indexPath: IndexPath) {
+        switch selectedField {
+        case .faculty:
+            faculty = Faculty.allCases[safe: indexPath.row + 1]
+        case .studyProgram:
+            studyProgram = StudyProgram.allCases[safe: indexPath.row + 1]
+        }
+        print("FACULTY", faculty)
+        print("STUDY PROGRAM", studyProgram)
+    }
+    
+    func getSelectedYear() -> String {
+        guard let date else { return ""}
+        return date.currentYearString()
     }
 }

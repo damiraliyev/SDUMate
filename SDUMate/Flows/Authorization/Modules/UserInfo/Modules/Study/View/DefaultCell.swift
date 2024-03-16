@@ -43,6 +43,7 @@ final class DefaultCell: UITableViewCell {
         preservesSuperviewLayoutMargins = false
         separatorInset = UIEdgeInsets.zero
         layoutMargins = UIEdgeInsets.zero
+        selectionStyle = .none
     }
     
     // MARK: - SetupConstraints

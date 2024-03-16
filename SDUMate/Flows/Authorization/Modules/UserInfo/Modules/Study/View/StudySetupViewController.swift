@@ -11,6 +11,10 @@ protocol IStudySetupView: Presentable {
     var presenter: IStudySetupPresenter? { get set }
 }
 
+private enum Constants {
+    static let contentSize = "contentSize"
+}
+
 final class StudySetupViewController: BaseViewController, IStudySetupView {
     
     var presenter: IStudySetupPresenter?
@@ -26,21 +30,25 @@ final class StudySetupViewController: BaseViewController, IStudySetupView {
         return stackView
     }()
     
-    private let facultyFormView: FormTextFieldView = {
+    private lazy var facultyFormView: FormTextFieldView = {
         let view = FormTextFieldView()
         view.set(title: "Faculty")
         view.set(placeholderText: "Choose faculty", textColor: .white)
         view.set(leftImage: Asset.icCalendar.image)
         view.set(rightImage: Asset.icRangeChoice.image)
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(facultyTapped))
+        view.addGestureRecognizer(tapRecognizer)
         return view
     }()
     
-    private let studyProgramFormView: FormTextFieldView = {
+    private lazy var studyProgramFormView: FormTextFieldView = {
         let view = FormTextFieldView()
         view.set(title: "Program of study")
         view.set(placeholderText: "Choose program", textColor: .white)
         view.set(leftImage: Asset.icHat.image)
         view.set(rightImage: Asset.icRangeChoice.image)
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(studyProgramTapped))
+        view.addGestureRecognizer(tapRecognizer)
         return view
     }()
     
@@ -53,6 +61,35 @@ final class StudySetupViewController: BaseViewController, IStudySetupView {
         return view
     }()
     
+    private lazy var facultyTableView: UITableView = {
+        let tableView = StudySetupViewsFactory.createOptionsTableView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        return tableView
+    }()
+    
+    private lazy var studyProgramTableView: UITableView = {
+        let tableView = StudySetupViewsFactory.createOptionsTableView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        return tableView
+    }()
+    
+//    private lazy var tableView: UITableView = {
+//        let tableView = UITableView()
+//        tableView.delegate = self
+//        tableView.dataSource = self
+//        tableView.alpha = 0
+//        tableView.layer.cornerRadius = 10
+//        tableView.showsVerticalScrollIndicator = false
+//        tableView.register(DefaultCell.self)
+//        tableView.estimatedRowHeight = UITableView.automaticDimension
+//        tableView.backgroundColor = .textFieldInner
+//        tableView.separatorColor = .moduleDescription
+//        tableView.tableFooterView = UIView()
+//        return tableView
+//    }()
+//    
     private lazy var continueButton: GradientButton = {
         let button = GradientButton()
         button.setTitle("Continue", for: .normal)
@@ -72,8 +109,29 @@ final class StudySetupViewController: BaseViewController, IStudySetupView {
         setupConstraints()
     }
     
+    override  func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.facultyTableView.addObserver(self, forKeyPath: Constants.contentSize, options: .new, context: nil)
+        self.studyProgramTableView.addObserver(self, forKeyPath: Constants.contentSize, options: .new, context: nil)
+
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        self.facultyTableView.removeObserver(self, forKeyPath: Constants.contentSize)
+        self.studyProgramTableView.removeObserver(self, forKeyPath: Constants.contentSize)
+        super.viewWillDisappear(true)
+    }
+
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?){
+        if keyPath == Constants.contentSize {
+            if let value = change?[.newKey], let tableView = object as? UITableView {
+                let size  = value as! CGSize
+                tableView.frame.size.height = size.height
+            }
+        }
+    }
+    
     private func setupViews() {
-        view.addSubviews([navigationBar, fieldsStackView, continueButton])
+        view.addSubviews([navigationBar, fieldsStackView, facultyTableView, studyProgramTableView, continueButton])
         let formViews = [facultyFormView, studyProgramFormView, yearFormView]
         fieldsStackView.addArrangedSubviews(formViews)
         formViews.forEach { $0.disableTextField() }
@@ -91,7 +149,60 @@ final class StudySetupViewController: BaseViewController, IStudySetupView {
         }
     }
     
+    @objc func facultyTapped() {
+        presenter?.facultyFieldTapped()
+        toggleDropDown(relativeTo: facultyFormView)
+    }
+    
+    @objc func studyProgramTapped() {
+        presenter?.studyProgramFieldTapped()
+        toggleDropDown(relativeTo: studyProgramFormView)
+    }
+    
+    private func toggleDropDown(relativeTo view: UIView) {
+        if view == facultyFormView {
+            studyProgramTableView.alpha = 0
+            expandDropDown(of: view, tableView: facultyTableView)
+        } else {
+            facultyTableView.alpha = 0
+            expandDropDown(of: view, tableView: studyProgramTableView)
+        }
+        
+    }
+    
+    private func expandDropDown(of view: UIView, tableView: UITableView) {
+        let neededFrame = view.convert(view.bounds, to: self.view)
+        tableView.frame = CGRect(
+            x: neededFrame.origin.x,
+            y: neededFrame.maxY + 10,
+            width: facultyFormView.frame.width,
+            height: 100
+        )
+        tableView.reloadData()
+        tableView.layoutIfNeeded()
+        UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.4, options: .transitionCrossDissolve) {
+            tableView.alpha = tableView.alpha == 1 ? 0 : 1
+        }
+    }
+    
     @objc func continueTapped() {
         presenter?.continueTapped()
+    }
+}
+
+extension StudySetupViewController: UITableViewDelegate {
+    
+}
+
+extension StudySetupViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return presenter?.getOptionsCount() ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: DefaultCell = tableView.dequeueReusableCell(for: indexPath)
+        cell.configure(with: presenter?.getOption(by: indexPath) ?? "")
+        return cell
     }
 }

@@ -14,15 +14,16 @@ enum UserType: String {
     case none
 }
 
-enum Faculty: String {
+enum Faculty: String, CaseIterable {
     case none
-    case engineeringAndNatScience
+    case engineeringAndNatScience = "Faculty of Engineering and natural sciences Computer Science and Information systems"
+    case businessSchool = "Business school"
 }
 
-enum StudyProgram: String {
+enum StudyProgram: String, CaseIterable {
     case none
-    case computerScience
-    case informationSystems
+    case computerScience = "Computer Science"
+    case informationSystems = "Information Systems"
 }
 
 struct DBUser: Codable {

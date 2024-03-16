@@ -97,6 +97,7 @@
 		6838F7472B9398B900265406 /* StudySetupPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6838F7462B9398B900265406 /* StudySetupPresenter.swift */; };
 		684BA7BA2B896ECA0055BEE3 /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684BA7B92B896EC90055BEE3 /* GradientButton.swift */; };
 		68530AB32B9DACAC00E59383 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68530AB22B9DACAC00E59383 /* UserInfo.swift */; };
+		68530AB52B9DD3A400E59383 /* DefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68530AB42B9DD3A400E59383 /* DefaultCell.swift */; };
 		685571C52B9ABA7300865191 /* VerificationSentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685571C42B9ABA7300865191 /* VerificationSentViewController.swift */; };
 		6882A4CB2B786AD400B2AE72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6882A4CA2B786AD400B2AE72 /* AppDelegate.swift */; };
 		6882A4CD2B786AD400B2AE72 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6882A4CC2B786AD400B2AE72 /* SceneDelegate.swift */; };
@@ -120,6 +121,7 @@
 		688442D92B7E0F2C00695763 /* EntryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688442D82B7E0F2C00695763 /* EntryPresenter.swift */; };
 		688442DC2B7E102A00695763 /* EntryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688442DB2B7E102A00695763 /* EntryCoordinator.swift */; };
 		688442DF2B7E113A00695763 /* EntryModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688442DE2B7E113A00695763 /* EntryModuleFactory.swift */; };
+		68929C052BA579E1000A38E9 /* StudySetupViewsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68929C042BA579E1000A38E9 /* StudySetupViewsFactory.swift */; };
 		68A5F1E02B7E6C5D003C38AF /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A5F1DF2B7E6C5D003C38AF /* Assets.swift */; };
 		68C5C4732B944DB5006C9540 /* PhotoSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C5C4722B944DB5006C9540 /* PhotoSetupViewController.swift */; };
 		68C5C4752B944E04006C9540 /* PhotoSetupPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C5C4742B944E04006C9540 /* PhotoSetupPresenter.swift */; };
@@ -220,6 +222,7 @@
 		6838F7462B9398B900265406 /* StudySetupPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudySetupPresenter.swift; sourceTree = "<group>"; };
 		684BA7B92B896EC90055BEE3 /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 		68530AB22B9DACAC00E59383 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		68530AB42B9DD3A400E59383 /* DefaultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCell.swift; sourceTree = "<group>"; };
 		685571C42B9ABA7300865191 /* VerificationSentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationSentViewController.swift; sourceTree = "<group>"; };
 		6882A4C72B786AD400B2AE72 /* SDUMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDUMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6882A4CA2B786AD400B2AE72 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -237,6 +240,7 @@
 		688442D82B7E0F2C00695763 /* EntryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryPresenter.swift; sourceTree = "<group>"; };
 		688442DB2B7E102A00695763 /* EntryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryCoordinator.swift; sourceTree = "<group>"; };
 		688442DE2B7E113A00695763 /* EntryModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryModuleFactory.swift; sourceTree = "<group>"; };
+		68929C042BA579E1000A38E9 /* StudySetupViewsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudySetupViewsFactory.swift; sourceTree = "<group>"; };
 		68A5F1DF2B7E6C5D003C38AF /* Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		68C5C4722B944DB5006C9540 /* PhotoSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSetupViewController.swift; sourceTree = "<group>"; };
 		68C5C4742B944E04006C9540 /* PhotoSetupPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSetupPresenter.swift; sourceTree = "<group>"; };
@@ -838,6 +842,7 @@
 			children = (
 				6838F7432B93988100265406 /* View */,
 				6838F7422B93987C00265406 /* Presenter */,
+				68929C042BA579E1000A38E9 /* StudySetupViewsFactory.swift */,
 			);
 			path = Study;
 			sourceTree = "<group>";
@@ -879,6 +884,7 @@
 			isa = PBXGroup;
 			children = (
 				6838F7442B93988E00265406 /* StudySetupViewController.swift */,
+				68530AB42B9DD3A400E59383 /* DefaultCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1388,6 +1394,8 @@
 				682D086B2B7DF31900A5FCC1 /* Router.swift in Sources */,
 				682D08342B7DF31900A5FCC1 /* String+Extension.swift in Sources */,
 				682D080A2B7DF31900A5FCC1 /* UserSettings.swift in Sources */,
+				68530AB52B9DD3A400E59383 /* DefaultCell.swift in Sources */,
+				68929C052BA579E1000A38E9 /* StudySetupViewsFactory.swift in Sources */,
 				682D080E2B7DF31900A5FCC1 /* Animations.swift in Sources */,
 				682D08562B7DF31900A5FCC1 /* Observable.swift in Sources */,
 				684BA7BA2B896ECA0055BEE3 /* GradientButton.swift in Sources */,

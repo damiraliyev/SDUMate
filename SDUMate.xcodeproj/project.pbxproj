@@ -122,6 +122,8 @@
 		688442DC2B7E102A00695763 /* EntryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688442DB2B7E102A00695763 /* EntryCoordinator.swift */; };
 		688442DF2B7E113A00695763 /* EntryModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688442DE2B7E113A00695763 /* EntryModuleFactory.swift */; };
 		68929C052BA579E1000A38E9 /* StudySetupViewsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68929C042BA579E1000A38E9 /* StudySetupViewsFactory.swift */; };
+		68929C082BA595BE000A38E9 /* AttachmentOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68929C072BA595BE000A38E9 /* AttachmentOption.swift */; };
+		68929C0A2BA596A1000A38E9 /* PermissionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68929C092BA596A1000A38E9 /* PermissionHelper.swift */; };
 		68A5F1E02B7E6C5D003C38AF /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A5F1DF2B7E6C5D003C38AF /* Assets.swift */; };
 		68C5C4732B944DB5006C9540 /* PhotoSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C5C4722B944DB5006C9540 /* PhotoSetupViewController.swift */; };
 		68C5C4752B944E04006C9540 /* PhotoSetupPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C5C4742B944E04006C9540 /* PhotoSetupPresenter.swift */; };
@@ -241,6 +243,8 @@
 		688442DB2B7E102A00695763 /* EntryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryCoordinator.swift; sourceTree = "<group>"; };
 		688442DE2B7E113A00695763 /* EntryModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryModuleFactory.swift; sourceTree = "<group>"; };
 		68929C042BA579E1000A38E9 /* StudySetupViewsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudySetupViewsFactory.swift; sourceTree = "<group>"; };
+		68929C072BA595BE000A38E9 /* AttachmentOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentOption.swift; sourceTree = "<group>"; };
+		68929C092BA596A1000A38E9 /* PermissionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionHelper.swift; sourceTree = "<group>"; };
 		68A5F1DF2B7E6C5D003C38AF /* Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		68C5C4722B944DB5006C9540 /* PhotoSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSetupViewController.swift; sourceTree = "<group>"; };
 		68C5C4742B944E04006C9540 /* PhotoSetupPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSetupPresenter.swift; sourceTree = "<group>"; };
@@ -361,6 +365,7 @@
 				682D07562B7DF31800A5FCC1 /* Animations.swift */,
 				682D07572B7DF31800A5FCC1 /* GlobalConstants.swift */,
 				682D07592B7DF31800A5FCC1 /* Device.swift */,
+				68929C092BA596A1000A38E9 /* PermissionHelper.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -794,6 +799,7 @@
 		6838F72D2B9344C000265406 /* UserInfo */ = {
 			isa = PBXGroup;
 			children = (
+				68929C062BA595B1000A38E9 /* Enum */,
 				6838F72E2B9344D600265406 /* Coordinator */,
 				6838F72F2B9344DE00265406 /* Factory */,
 				6838F7322B93453900265406 /* Modules */,
@@ -1074,6 +1080,14 @@
 			path = Factory;
 			sourceTree = "<group>";
 		};
+		68929C062BA595B1000A38E9 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				68929C072BA595BE000A38E9 /* AttachmentOption.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
 		68C5C4702B944DA3006C9540 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -1350,6 +1364,7 @@
 				6838F7372B934A0600265406 /* UserInfoSetupCoordinator.swift in Sources */,
 				688442C02B7E02C200695763 /* AppCoordinator.swift in Sources */,
 				682D082E2B7DF31900A5FCC1 /* ReuseableView+Extension.swift in Sources */,
+				68929C082BA595BE000A38E9 /* AttachmentOption.swift in Sources */,
 				682D08272B7DF31900A5FCC1 /* UIViewController+Preview.swift in Sources */,
 				682D085E2B7DF31900A5FCC1 /* BaseRepository.swift in Sources */,
 				682D085D2B7DF31900A5FCC1 /* AppLanguage.swift in Sources */,
@@ -1441,6 +1456,7 @@
 				682D081A2B7DF31900A5FCC1 /* Vibration.swift in Sources */,
 				682D08572B7DF31900A5FCC1 /* BaseNavigationViewController.swift in Sources */,
 				682D08772B7DFA2600A5FCC1 /* DatePickerViewController.swift in Sources */,
+				68929C0A2BA596A1000A38E9 /* PermissionHelper.swift in Sources */,
 				688442D12B7E076000695763 /* AuthModuleFactory.swift in Sources */,
 				682D08282B7DF31900A5FCC1 /* UITableView+Extension.swift in Sources */,
 				682D082A2B7DF31900A5FCC1 /* UIEdgeInsets+Extensions.swift in Sources */,

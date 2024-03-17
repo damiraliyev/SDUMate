@@ -9,6 +9,8 @@ import UIKit
 
 protocol IPhotoSetupView: Presentable {
     var presenter: IPhotoSetupPresenter? { get set }
+    
+    func set(image: UIImage)
 }
 
 final class PhotoSetupViewController: BaseViewController, IPhotoSetupView {
@@ -114,8 +116,12 @@ final class PhotoSetupViewController: BaseViewController, IPhotoSetupView {
         }
     }
     
+    func set(image: UIImage) {
+        imageView.image = image
+    }
+    
     @objc func addPhotoTapped() {
-        
+        presenter?.addPhotoTapped()
     }
     
     @objc func skipTapped() {

@@ -5,7 +5,8 @@
 //  Created by Damir Aliyev on 02.03.2024.
 //
 
-import Foundation
+import UIKit
+import PhotosUI
 
 final class UserInfoSetupModuleFactory {
     
@@ -28,5 +29,23 @@ final class UserInfoSetupModuleFactory {
         let presenter: IPhotoSetupPresenter = PhotoSetupPresenter(view: view, coordinator: coordinator, userInfo: userInfo)
         view.presenter = presenter
         return view
+    }
+    
+    func makeCameraPicker(handler: UIImagePickerControllerDelegate & UINavigationControllerDelegate) -> UIImagePickerController {
+        let view = UIImagePickerController()
+        view.delegate = handler
+        view.sourceType = .camera
+        view.videoQuality = .typeHigh
+        view.mediaTypes = [UTType.movie.description, UTType.image.description]
+        return view
+    }
+    
+    func makePhotoLibrary(handler: PHPickerViewControllerDelegate) -> UIViewController {
+        var configuration = PHPickerConfiguration()
+        configuration.selectionLimit = 1
+        configuration.filter = .any(of: [.images])
+        let picker = PHPickerViewController(configuration: configuration)
+        picker.delegate = handler
+        return picker
     }
 }

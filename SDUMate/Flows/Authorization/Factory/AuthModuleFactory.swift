@@ -37,7 +37,7 @@ final class AuthModuleFactory {
     }
     
     func makeUserInfoSetupFlow(navController: CoordinatorNavigationController) -> (Coordinator & IUserInfoSetupCoordinator) {
-        let coordinator = UserInfoSetupCoordinator(router: Router(navigationController: navController))
+        let coordinator = UserInfoSetupCoordinator(router: Router(navigationController: navController), container: container)
         return coordinator
     }
     

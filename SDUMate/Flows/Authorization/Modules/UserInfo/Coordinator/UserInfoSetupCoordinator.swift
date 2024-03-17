@@ -20,10 +20,11 @@ protocol IUserInfoSetupCoordinator: IBaseCoordinator {
 final class UserInfoSetupCoordinator: BaseCoordinator, IUserInfoSetupCoordinator {
     var onFlowDidFinish: Completion?
     
-    private let moduleFactory =  UserInfoSetupModuleFactory()
+    private let moduleFactory: UserInfoSetupModuleFactory
     private let permissionHelper: PermissionsHelper
     
     init(router: Router, container: DependencyContainer) {
+        self.moduleFactory = UserInfoSetupModuleFactory(container: container)
         self.permissionHelper = container.resolve(PermissionsHelper.self)!
         super.init(router: router)
     }

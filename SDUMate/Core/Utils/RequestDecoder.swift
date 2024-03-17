@@ -102,6 +102,7 @@ public enum NetworkError: Error {
     case jsonParsingError(json: String, url: String? )
     case error
     case unsupportedError
+    case badServerResponse
     
     public var description: String {
         switch self {
@@ -132,6 +133,8 @@ public enum NetworkError: Error {
             return "error_standard"
         case .invalidRequest(let descr):
             return descr
+        case .badServerResponse:
+            return "Bad server response"
         }
     }
     

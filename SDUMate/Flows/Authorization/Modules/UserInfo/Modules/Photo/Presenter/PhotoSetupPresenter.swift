@@ -19,11 +19,15 @@ final class PhotoSetupPresenter: NSObject, IPhotoSetupPresenter {
     weak var view: IPhotoSetupView?
     private weak var coordinator: IUserInfoSetupCoordinator?
     private let userInfo: UserInfo
+    private let authManager: AuthManager
+    private let storageManager: StorageManager
     
-    init(view: IPhotoSetupView, coordinator: IUserInfoSetupCoordinator, userInfo: UserInfo) {
+    init(view: IPhotoSetupView, coordinator: IUserInfoSetupCoordinator, userInfo: UserInfo, container: DependencyContainer) {
         self.view = view
         self.coordinator = coordinator
         self.userInfo = userInfo
+        self.authManager = container.resolve(AuthManager.self)!
+        self.storageManager = container.resolve(StorageManager.self)!
     }
     
     func backTapped() {
@@ -32,11 +36,23 @@ final class PhotoSetupPresenter: NSObject, IPhotoSetupPresenter {
     
     func addPhotoTapped() {
         let options: [AttachmentOption] = [.camera, .photoLibrary]
-        coordinator?.showPhotoSelectAlert(with: [.camera, .photoLibrary], handler: self)
+        coordinator?.showPhotoSelectAlert(with: options, handler: self)
     }
     
     func skipForNowTapped() {
         
+    }
+    
+    func saveProfileImage(data: Data) {
+        guard let userId = authManager.getAuthUser()?.uid else { return }
+        storageManager.saveImage(userId: userId, data: data) { result in
+            switch result {
+            case .success(let metaResult):
+                print("Meta result SUCCESS", metaResult.imagePath)
+            case .failure(let error):
+                self.coordinator?.showErrorAlert(error: error.description)
+            }
+        }
     }
 }
 
@@ -75,6 +91,9 @@ extension PhotoSetupPresenter: PHPickerViewControllerDelegate {
             guard let image = object as? UIImage else { return }
             DispatchQueue.main.async {
                 self.view?.set(image: image)
+                if let data = image.compressIfNeeded() {
+                    self.saveProfileImage(data: data)
+                }
             }
         }
     }

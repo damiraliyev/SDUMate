@@ -10,6 +10,14 @@ import PhotosUI
 
 final class UserInfoSetupModuleFactory {
     
+    private let container: DependencyContainer
+    private let storageManager: StorageManager
+    
+    init(container: DependencyContainer) {
+        self.container = container
+        self.storageManager = container.resolve(StorageManager.self)!
+    }
+    
     func makeAboutSetupView(coordinator: IUserInfoSetupCoordinator) -> IAboutSetupView {
         let view: IAboutSetupView = AboutSetupViewController()
         let presenter: IAboutSetupPresenter = AboutSetupPresenter(view: view, coordinator: coordinator)
@@ -26,7 +34,12 @@ final class UserInfoSetupModuleFactory {
     
     func makePhotoSetupView(coordinator: IUserInfoSetupCoordinator, userInfo: UserInfo) -> IPhotoSetupView {
         let view: IPhotoSetupView = PhotoSetupViewController()
-        let presenter: IPhotoSetupPresenter = PhotoSetupPresenter(view: view, coordinator: coordinator, userInfo: userInfo)
+        let presenter: IPhotoSetupPresenter = PhotoSetupPresenter(
+            view: view,
+            coordinator: coordinator,
+            userInfo: userInfo,
+            container: container
+        )
         view.presenter = presenter
         return view
     }

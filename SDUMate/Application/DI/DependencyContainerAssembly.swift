@@ -22,5 +22,8 @@ final class DependencyContainerAssembly: Assembly {
         container.register(PermissionsHelper.self) { _ in
             PermissionsHelper()
         }
+        container.register(StorageManager.self) { _ in
+            StorageManager.shared
+        }
     }
 }

@@ -53,4 +53,25 @@ final class StorageManager {
         }
         return saveImage(userId: userId, data: data, completion: completion)
     }
+    
+    func getImageData(userId: String, path: String, completion: @escaping (Result<Data, Error>) -> Void) {
+        storage.child(path).getData(maxSize: 3 * 1024 * 1024) { result in
+            completion(result)
+         }
+//        userReference(userId: userId).child(path).getData(maxSize: 3 * 1024 * 1024) { result in
+//           completion(result)
+//        }
+    }
+    
+    func getUrlForImage(path: String, completion: @escaping (Result<URL, Error>) -> Void) {
+        Storage.storage().reference(withPath: path).downloadURL { result in
+            completion(result)
+        }
+    }
+    
+    func deleteImage(path: String, completion: @escaping ((Error?) -> Void)) {
+        Storage.storage().reference(withPath: path).delete { error in
+            completion(error)
+        }
+    }
 }

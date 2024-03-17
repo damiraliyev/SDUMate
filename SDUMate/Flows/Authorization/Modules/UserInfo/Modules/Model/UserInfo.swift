@@ -15,4 +15,6 @@ final class UserInfo {
     var faculty: Faculty?
     var studyProgram: StudyProgram?
     var yearOfEntering: String?
+    var profileImagePath: String?
+    var profileImageUrl: String?
 }

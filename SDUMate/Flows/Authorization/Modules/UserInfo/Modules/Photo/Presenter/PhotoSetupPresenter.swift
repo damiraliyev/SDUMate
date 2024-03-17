@@ -48,9 +48,21 @@ final class PhotoSetupPresenter: NSObject, IPhotoSetupPresenter {
         storageManager.saveImage(userId: userId, data: data) { result in
             switch result {
             case .success(let metaResult):
-                print("Meta result SUCCESS", metaResult.imagePath)
+                self.userInfo.profileImagePath = metaResult.imagePath
+                self.fetchImageUrl(path: metaResult.imagePath)
             case .failure(let error):
                 self.coordinator?.showErrorAlert(error: error.description)
+            }
+        }
+    }
+    
+    private func fetchImageUrl(path: String) {
+        storageManager.getUrlForImage(path: path) { result in
+            switch result {
+            case .success(let url):
+                self.userInfo.profileImageUrl = url.absoluteString
+            case .failure:
+                self.coordinator?.showErrorAlert(error: "Couldn't get image url.")
             }
         }
     }

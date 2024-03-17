@@ -11,6 +11,7 @@ protocol IPhotoSetupView: Presentable {
     var presenter: IPhotoSetupPresenter? { get set }
     
     func set(image: UIImage)
+    func changeAddPhotoTitle()
 }
 
 final class PhotoSetupViewController: BaseViewController, IPhotoSetupView {
@@ -118,6 +119,11 @@ final class PhotoSetupViewController: BaseViewController, IPhotoSetupView {
     
     func set(image: UIImage) {
         imageView.image = image
+    }
+    
+    func changeAddPhotoTitle() {
+        addPhotoButton.setTitle("Change photo", for: .normal)
+        skipButton.setTitle("Start", for: .normal)
     }
     
     @objc func addPhotoTapped() {

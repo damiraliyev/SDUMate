@@ -45,6 +45,18 @@ final class PhotoSetupPresenter: NSObject, IPhotoSetupPresenter {
     
     func saveProfileImage(data: Data) {
         guard let userId = authManager.getAuthUser()?.uid else { return }
+        if let imagePath = userInfo.profileImagePath {
+            userInfo.profileImageUrl = nil
+            userInfo.profileImagePath = nil
+            deleteImage(for: imagePath) {
+                self.uploadImageToStorage(userId: userId, data: data)
+            }
+        } else {
+            uploadImageToStorage(userId: userId, data: data)
+        }
+    }
+    
+    private func uploadImageToStorage(userId: String, data: Data) {
         storageManager.saveImage(userId: userId, data: data) { result in
             switch result {
             case .success(let metaResult):
@@ -56,11 +68,23 @@ final class PhotoSetupPresenter: NSObject, IPhotoSetupPresenter {
         }
     }
     
+    private func deleteImage(for path: String, completion: @escaping (() -> Void)) {
+        storageManager.deleteImage(path: path) { error in
+            guard error == nil else {
+                self.coordinator?.showErrorAlert(error: "Couldn't delete image.")
+                return
+            }
+            completion()
+        }
+    }
+    
+    
     private func fetchImageUrl(path: String) {
         storageManager.getUrlForImage(path: path) { result in
             switch result {
             case .success(let url):
                 self.userInfo.profileImageUrl = url.absoluteString
+                self.view?.changeAddPhotoTitle()
             case .failure:
                 self.coordinator?.showErrorAlert(error: "Couldn't get image url.")
             }
@@ -70,12 +94,11 @@ final class PhotoSetupPresenter: NSObject, IPhotoSetupPresenter {
 
 extension PhotoSetupPresenter: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        print("Did finish picking media with info")
         guard let mediaType = info[.mediaType] as? String else { return }
         switch mediaType {
         case UTType.image.description:
             if let image = info[.originalImage] as? UIImage, let imageData = image.compressIfNeeded() {
-                print("IMAGE WAS SELECTED!!!")
+             
             }
         default:
             break

@@ -54,17 +54,19 @@ final class PhotoSetupViewController: BaseViewController, IPhotoSetupView {
     }()
     
     private lazy var addPhotoButton: GradientButton = {
-        let button = GradientButton()
+        let button = GradientButton(type: .system)
         button.setTitle("Add photo", for: .normal)
         button.titleLabel?.font = .medium16
+        button.tintColor = .white
         button.addTarget(self, action: #selector(addPhotoTapped), for: .touchUpInside)
         return button
     }()
     
     private lazy var skipButton: GradientButton = {
-        let button = GradientButton()
+        let button = GradientButton(type: .system)
         button.setTitle("Skip for now", for: .normal)
         button.titleLabel?.font = .medium16
+        button.tintColor = .white
         button.addTarget(self, action: #selector(skipTapped), for: .touchUpInside)
         return button
     }()

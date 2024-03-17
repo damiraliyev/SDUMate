@@ -125,6 +125,8 @@
 		68929C082BA595BE000A38E9 /* AttachmentOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68929C072BA595BE000A38E9 /* AttachmentOption.swift */; };
 		68929C0A2BA596A1000A38E9 /* PermissionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68929C092BA596A1000A38E9 /* PermissionHelper.swift */; };
 		68929C0D2BA6D7A5000A38E9 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68929C0C2BA6D7A5000A38E9 /* StorageManager.swift */; };
+		68929C132BA6F826000A38E9 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68929C122BA6F826000A38E9 /* HomeCoordinator.swift */; };
+		68929C152BA6F889000A38E9 /* HomeModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68929C142BA6F889000A38E9 /* HomeModuleFactory.swift */; };
 		68A5F1E02B7E6C5D003C38AF /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A5F1DF2B7E6C5D003C38AF /* Assets.swift */; };
 		68C5C4732B944DB5006C9540 /* PhotoSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C5C4722B944DB5006C9540 /* PhotoSetupViewController.swift */; };
 		68C5C4752B944E04006C9540 /* PhotoSetupPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C5C4742B944E04006C9540 /* PhotoSetupPresenter.swift */; };
@@ -247,6 +249,8 @@
 		68929C072BA595BE000A38E9 /* AttachmentOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentOption.swift; sourceTree = "<group>"; };
 		68929C092BA596A1000A38E9 /* PermissionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionHelper.swift; sourceTree = "<group>"; };
 		68929C0C2BA6D7A5000A38E9 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		68929C122BA6F826000A38E9 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		68929C142BA6F889000A38E9 /* HomeModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModuleFactory.swift; sourceTree = "<group>"; };
 		68A5F1DF2B7E6C5D003C38AF /* Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		68C5C4722B944DB5006C9540 /* PhotoSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSetupViewController.swift; sourceTree = "<group>"; };
 		68C5C4742B944E04006C9540 /* PhotoSetupPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSetupPresenter.swift; sourceTree = "<group>"; };
@@ -994,6 +998,7 @@
 			isa = PBXGroup;
 			children = (
 				688442C82B7E066E00695763 /* Authorization */,
+				68929C0E2BA6F7AE000A38E9 /* Home */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -1097,6 +1102,39 @@
 				68929C0C2BA6D7A5000A38E9 /* StorageManager.swift */,
 			);
 			path = Storage;
+			sourceTree = "<group>";
+		};
+		68929C0E2BA6F7AE000A38E9 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				68929C112BA6F7F3000A38E9 /* Modules */,
+				68929C102BA6F7EF000A38E9 /* Factory */,
+				68929C0F2BA6F7E3000A38E9 /* Coordinator */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		68929C0F2BA6F7E3000A38E9 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				68929C122BA6F826000A38E9 /* HomeCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		68929C102BA6F7EF000A38E9 /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				68929C142BA6F889000A38E9 /* HomeModuleFactory.swift */,
+			);
+			path = Factory;
+			sourceTree = "<group>";
+		};
+		68929C112BA6F7F3000A38E9 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Modules;
 			sourceTree = "<group>";
 		};
 		68C5C4702B944DA3006C9540 /* Presenter */ = {
@@ -1448,6 +1486,7 @@
 				6838F7472B9398B900265406 /* StudySetupPresenter.swift in Sources */,
 				68170C5E2B9C9A7500289980 /* UserManager.swift in Sources */,
 				688442C62B7E03FE00695763 /* AppCoordinatorFactory.swift in Sources */,
+				68929C132BA6F826000A38E9 /* HomeCoordinator.swift in Sources */,
 				682D08182B7DF31900A5FCC1 /* UIImage+Extensions.swift in Sources */,
 				682D08232B7DF31900A5FCC1 /* UIDevice+Extension.swift in Sources */,
 				68D1902F2B8B2F330045DBE5 /* LoginPresenter.swift in Sources */,
@@ -1474,6 +1513,7 @@
 				682D082A2B7DF31900A5FCC1 /* UIEdgeInsets+Extensions.swift in Sources */,
 				682D08582B7DF31900A5FCC1 /* BaseViewController.swift in Sources */,
 				688442DC2B7E102A00695763 /* EntryCoordinator.swift in Sources */,
+				68929C152BA6F889000A38E9 /* HomeModuleFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

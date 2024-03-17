@@ -29,5 +29,7 @@
 	</array>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Please, allow access to your photo library so you can choose your profile image from there.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Please, allow access to your camera so you can take a photo for your profile image.</string>
 </dict>
 </plist>

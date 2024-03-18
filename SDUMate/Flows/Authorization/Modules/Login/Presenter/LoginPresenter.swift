@@ -12,6 +12,7 @@ protocol ILoginPresenter: AnyObject {
     func loginTapped()
     func backTapped()
     func signUpTapped()
+    func forgotPasswordTapped()
 }
 
 final class LoginPresenter: ILoginPresenter {
@@ -47,6 +48,10 @@ final class LoginPresenter: ILoginPresenter {
     
     func signUpTapped() {
         coordinator.showAccountChoiceView()
+    }
+    
+    func forgotPasswordTapped() {
+        coordinator.showForgotPasswordView()
     }
     
     private func fetchUser(authUser: User?) {

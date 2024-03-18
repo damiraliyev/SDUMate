@@ -24,6 +24,11 @@ final class HomeCoordinator: BaseCoordinator, IHomeCoordinator {
         super.init(router: router)
     }
     
+    override func start() {
+        let homeView = moduleFactory.makeHomeView(coordinator: self)
+        router.setRootModule(homeView)
+    }
+    
     func onBackTapped(completion: Completion?) {
         
     }

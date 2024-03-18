@@ -61,4 +61,15 @@ final class AuthModuleFactory {
         view.presenter = presenter
         return view
     }
+    
+    func makeHomeCoordinator() -> IHomeCoordinator & Coordinator {
+        let navigationController = CoordinatorNavigationController()
+        let router = Router(navigationController: navigationController)
+        let coordinator = HomeCoordinator(router: router, container: container)
+        return coordinator
+    }
+    
+    func makeForgotPasswordView() {
+        
+    }
 }

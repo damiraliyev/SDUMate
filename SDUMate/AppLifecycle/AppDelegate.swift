@@ -14,8 +14,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
-        IQKeyboardManager.shared.enable = true
+        setupKeyboardManager()
         return true
+    }
+    
+    private func setupKeyboardManager() {
+        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.resignOnTouchOutside = true
+        let placeholderConfiguration = IQKeyboardManager.shared.toolbarConfiguration.placeholderConfiguration
+        placeholderConfiguration.showPlaceholder = false
     }
 
     // MARK: UISceneSession Lifecycle

@@ -133,6 +133,6 @@ final class PhotoSetupViewController: BaseViewController, IPhotoSetupView {
     }
     
     @objc func skipTapped() {
-        
+        presenter?.skipForNowTapped()
     }
 }

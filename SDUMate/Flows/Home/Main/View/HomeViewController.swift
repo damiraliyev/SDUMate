@@ -11,10 +11,24 @@ protocol IHomeView: Presentable {
     var presenter: IHomePresenter? { get set }
 }
 
-final class HomewViewController: BaseViewController {
+final class HomeViewController: BaseViewController {
     var presenter: IHomePresenter?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupViews()
+        setupConstraints()
+    }
+    
+    private func setupViews() {
+        view.backgroundColor = .cyan
+    }
+    
+    private func setupConstraints() {
+        
+    }
 }
 
-extension HomewViewController: IHomeView {
+extension HomeViewController: IHomeView {
     
 }

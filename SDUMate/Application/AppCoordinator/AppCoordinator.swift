@@ -43,15 +43,20 @@ final class AppCoordinator: BaseCoordinator {
         coordinator.onFlowDidFinish = { [weak self, weak coordinator] in
             guard let self else { return }
             removeDependency(coordinator)
+            runMainFlow()
         }
         addDependency(coordinator)
         coordinator.start()
     }
     
     private func runMainFlow() {
-//        let coordinator: Coordinator = coordinatorFactory.makeMainOwnerTabBarCoordinator()
+        let coordinator = coordinatorFactory.makeHomeCoordinator()
+        coordinator.onFlowDidFinish = { [weak self, weak coordinator] in
+            guard let self else { return }
+            removeDependency(coordinator)
+        }
 //        tabBarCoordinator = coordinator
-//        addDependency(coordinator)
-//        coordinator.start()
+        addDependency(coordinator)
+        coordinator.start()
     }
 }

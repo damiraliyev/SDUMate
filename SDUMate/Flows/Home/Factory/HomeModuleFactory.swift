@@ -13,4 +13,11 @@ final class HomeModuleFactory {
     init(container: DependencyContainer) {
         self.container = container
     }
+    
+    func makeHomeView(coordinator: IHomeCoordinator) -> IHomeView & Presentable {
+        let view: IHomeView = HomeViewController()
+        let presenter: IHomePresenter = HomePresenter(view: view, coordinator: coordinator)
+        view.presenter = presenter
+        return view
+    }
 }

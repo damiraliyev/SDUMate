@@ -11,7 +11,7 @@ protocol ILoginView: Presentable {
     var presenter: ILoginPresenter? { get set }
 }
 
-final class LoginViewController: UIViewController, ILoginView {
+final class LoginViewController: BaseViewController, ILoginView {
     
     var presenter: ILoginPresenter?
     
@@ -65,6 +65,8 @@ final class LoginViewController: UIViewController, ILoginView {
         label.font = .regular14
         label.textColor = .lavender
         label.text = "Forgot password"
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(forgotPasswordTapped))
+        label.addGestureRecognizer(tapGesture)
         return label
     }()
     
@@ -170,5 +172,9 @@ final class LoginViewController: UIViewController, ILoginView {
     
     @objc func signUpTapped() {
         presenter?.signUpTapped()
+    }
+    
+    @objc func forgotPasswordTapped() {
+        presenter?.forgotPasswordTapped()
     }
 }

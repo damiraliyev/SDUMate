@@ -23,4 +23,9 @@ final class AppCordinatorFactory {
         )
         return coordinator
     }
+    
+    func makeHomeCoordinator() -> IHomeCoordinator & Coordinator {
+        let coordinator = HomeCoordinator(router: router, container: container)
+        return coordinator
+    }
 }

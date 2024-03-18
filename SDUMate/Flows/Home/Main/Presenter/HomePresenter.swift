@@ -13,7 +13,7 @@ protocol IHomePresenter {
 
 final class HomePresenter: IHomePresenter {
     weak var view: IHomeView?
-    private weak var coordinator: IHomeCoordinator?
+    private let coordinator: IHomeCoordinator?
     
     init(view: IHomeView, coordinator: IHomeCoordinator) {
         self.view = view

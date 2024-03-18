@@ -21,12 +21,12 @@ protocol IAuthCoordinator: IBaseCoordinator {
     func showAlert(input: AlertInput)
     func showSuccessAlert(action: (() -> Void)?)
     func showVerificationSentView()
+    func showForgotPasswordView()
 }
 
 final class AuthCoordinator: BaseCoordinator, IAuthCoordinator {
     private let container: DependencyContainer
     private let moduleFactory: AuthModuleFactory
-    private var entryView: IEntryView?
     var onFlowDidFinish: Completion?
     
     
@@ -37,8 +37,8 @@ final class AuthCoordinator: BaseCoordinator, IAuthCoordinator {
     }
     
     override func start() {
-        entryView = moduleFactory.makeEntryView(coordinator: self)
-        router.push(entryView)
+        let view = moduleFactory.makeEntryView(coordinator: self)
+        router.push(view)
     }
     
     func onBackTapped(completion: Completion?) {
@@ -51,6 +51,11 @@ final class AuthCoordinator: BaseCoordinator, IAuthCoordinator {
         router.push(loginView, animated: true)
     }
     
+    func showForgotPasswordView() {
+//        let forgotPasswordView = moduleFactory.makeForgotPasswordView(coordinator: self)
+//        router.push(forgotPasswordView)
+    }
+    
     func showHome() {
         
     }
@@ -58,6 +63,7 @@ final class AuthCoordinator: BaseCoordinator, IAuthCoordinator {
     func showUserInfoSetup() {
         guard let navigationController = router.navigationController else { return }
         let userInfoSetupCoordinator = moduleFactory.makeUserInfoSetupFlow(navController: navigationController)
+        userInfoSetupCoordinator.delegate = self
         addDependency(userInfoSetupCoordinator)
         userInfoSetupCoordinator.onFlowDidFinish = { [weak self, weak userInfoSetupCoordinator] in
             guard let self else { return }
@@ -113,5 +119,11 @@ extension AuthCoordinator: VerificationSentViewDelegate {
                 view as? EntryViewController == nil
             }
         }
+    }
+}
+
+extension AuthCoordinator: UserInfoSetupDelegate {
+    func showHomeFlow() {
+        onFlowDidFinish?()
     }
 }

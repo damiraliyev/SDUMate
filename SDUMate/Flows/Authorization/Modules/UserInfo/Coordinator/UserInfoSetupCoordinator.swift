@@ -8,17 +8,24 @@
 import UIKit
 import PhotosUI
 
+protocol UserInfoSetupDelegate: AnyObject {
+    func showHomeFlow()
+}
+
 protocol IUserInfoSetupCoordinator: IBaseCoordinator {
     var onFlowDidFinish: Completion? { get set }
+    var delegate: UserInfoSetupDelegate? { get set }
     
     func onBackTapped(completion: Completion?)
     func showStudySetupView(userInfo: UserInfo)
     func showPhotoSetupView(userInfo: UserInfo)
     func showPhotoSelectAlert(with options: [AttachmentOption], handler: PHPickerViewControllerDelegate & UIImagePickerControllerDelegate & UINavigationControllerDelegate)
+    func showHomeFlow()
 }
 
 final class UserInfoSetupCoordinator: BaseCoordinator, IUserInfoSetupCoordinator {
     var onFlowDidFinish: Completion?
+    weak var delegate: UserInfoSetupDelegate?
     
     private let moduleFactory: UserInfoSetupModuleFactory
     private let permissionHelper: PermissionsHelper
@@ -107,5 +114,10 @@ final class UserInfoSetupCoordinator: BaseCoordinator, IUserInfoSetupCoordinator
     private func showPhotoLibrary(handler: PHPickerViewControllerDelegate) {
         let photoLibrary = moduleFactory.makePhotoLibrary(handler: handler)
         router.present(photoLibrary)
+    }
+    
+    func showHomeFlow() {
+        onFlowDidFinish?()
+        delegate?.showHomeFlow()
     }
 }

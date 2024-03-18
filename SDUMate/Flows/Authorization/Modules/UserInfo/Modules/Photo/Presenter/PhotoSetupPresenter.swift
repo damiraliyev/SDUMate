@@ -40,7 +40,8 @@ final class PhotoSetupPresenter: NSObject, IPhotoSetupPresenter {
     }
     
     func skipForNowTapped() {
-        
+        // save all data
+        coordinator?.showHomeFlow()
     }
     
     func saveProfileImage(data: Data) {

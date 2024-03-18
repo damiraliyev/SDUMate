@@ -61,4 +61,11 @@ final class UserInfoSetupModuleFactory {
         picker.delegate = handler
         return picker
     }
+    
+    func makeHomeCoordinator() -> IHomeCoordinator & Coordinator {
+        let navigationController = CoordinatorNavigationController()
+        let router = Router(navigationController: navigationController)
+        let coordinator = HomeCoordinator(router: router, container: container)
+        return coordinator
+    }
 }

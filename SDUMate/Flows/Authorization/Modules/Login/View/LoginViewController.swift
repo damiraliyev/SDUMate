@@ -65,6 +65,7 @@ final class LoginViewController: BaseViewController, ILoginView {
         label.font = .regular14
         label.textColor = .lavender
         label.text = "Forgot password"
+        label.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(forgotPasswordTapped))
         label.addGestureRecognizer(tapGesture)
         return label

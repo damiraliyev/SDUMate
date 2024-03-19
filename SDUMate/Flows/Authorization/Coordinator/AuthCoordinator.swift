@@ -52,8 +52,8 @@ final class AuthCoordinator: BaseCoordinator, IAuthCoordinator {
     }
     
     func showForgotPasswordView() {
-//        let forgotPasswordView = moduleFactory.makeForgotPasswordView(coordinator: self)
-//        router.push(forgotPasswordView)
+        let forgotPasswordView = moduleFactory.makeForgotPasswordView(coordinator: self)
+        router.push(forgotPasswordView)
     }
     
     func showHome() {

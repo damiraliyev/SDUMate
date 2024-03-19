@@ -69,7 +69,14 @@ final class AuthModuleFactory {
         return coordinator
     }
     
-    func makeForgotPasswordView() {
-        
+    func makeForgotPasswordView(coordinator: IAuthCoordinator) -> IForgotPasswordView {
+        let view: IForgotPasswordView = ForgotPasswordViewController()
+        let presenter: IForgotPasswordPresenter = ForgotPasswordPresenter(
+            view: view,
+            coordinator: coordinator,
+            authManager: authManager
+        )
+        view.presenter = presenter
+        return view
     }
 }

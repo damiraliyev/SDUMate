@@ -12,16 +12,22 @@ final class AppCoordinator: BaseCoordinator {
     private let container: DependencyContainer
     private var tabBarCoordinator: Coordinator?
     private let coordinatorFactory: AppCordinatorFactory
+    private let authManager: AuthManager
     
     init(router: Router, container: DependencyContainer) {
         self.container = container
+        self.authManager = container.resolve(AuthManager.self)!
         coordinatorFactory = AppCordinatorFactory(router: router, container: container)
         super.init(router: router)
     }
     
     override func start() {
         clearAll()
-        runAuthFlow()
+        if authManager.getAuthUser() == nil {
+            runAuthFlow()
+        } else {
+            runMainFlow()
+        }
     }
     
     @objc private func authDataDidChange() {

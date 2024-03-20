@@ -38,6 +38,7 @@ internal enum Asset {
   internal static let icHat = ImageAsset(name: "ic_hat")
   internal static let icImagePlaceholder = ImageAsset(name: "ic_image_placeholder")
   internal static let icRangeChoice = ImageAsset(name: "ic_range_choice")
+  internal static let icSduLogo = ImageAsset(name: "ic_sdu_logo")
   internal static let lock = ImageAsset(name: "lock")
   internal static let person = ImageAsset(name: "person")
   internal static let sduLogo = ImageAsset(name: "sdu_logo")

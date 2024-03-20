@@ -8,6 +8,10 @@
 import Moya
 import UIKit
 
+protocol TabCoordinatorDelegate: AnyObject {
+    
+}
+
 final class AppCoordinator: BaseCoordinator {
     private let container: DependencyContainer
     private var tabBarCoordinator: Coordinator?
@@ -23,11 +27,12 @@ final class AppCoordinator: BaseCoordinator {
     
     override func start() {
         clearAll()
-        if authManager.getAuthUser() == nil {
-            runAuthFlow()
-        } else {
-            runMainFlow()
-        }
+        runAuthFlow()
+//        if authManager.getAuthUser() == nil {
+//            runAuthFlow()
+//        } else {
+//            runMainFlow()
+//        }
     }
     
     @objc private func authDataDidChange() {

@@ -17,7 +17,7 @@ final class AuthView: UIView {
     
     private let logoImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = Asset.sduLogo.image
+        imageView.image = Asset.icSduLogo.image
         return imageView
     }()
 

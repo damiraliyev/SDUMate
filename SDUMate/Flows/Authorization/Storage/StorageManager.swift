@@ -70,6 +70,7 @@ final class StorageManager {
     }
     
     func deleteImage(path: String, completion: @escaping ((Error?) -> Void)) {
+        print("PATH", path)
         Storage.storage().reference(withPath: path).delete { error in
             completion(error)
         }

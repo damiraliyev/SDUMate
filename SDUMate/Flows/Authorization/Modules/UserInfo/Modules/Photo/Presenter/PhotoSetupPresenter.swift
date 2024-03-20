@@ -21,6 +21,7 @@ final class PhotoSetupPresenter: NSObject, IPhotoSetupPresenter {
     private let userInfo: UserInfo
     private let authManager: AuthManager
     private let storageManager: StorageManager
+    private let userManager: UserManager
     
     init(view: IPhotoSetupView, coordinator: IUserInfoSetupCoordinator, userInfo: UserInfo, container: DependencyContainer) {
         self.view = view
@@ -28,6 +29,7 @@ final class PhotoSetupPresenter: NSObject, IPhotoSetupPresenter {
         self.userInfo = userInfo
         self.authManager = container.resolve(AuthManager.self)!
         self.storageManager = container.resolve(StorageManager.self)!
+        self.userManager = container.resolve(UserManager.self)!
     }
     
     func backTapped() {
@@ -40,8 +42,17 @@ final class PhotoSetupPresenter: NSObject, IPhotoSetupPresenter {
     }
     
     func skipForNowTapped() {
-        // save all data
+        userInfo.isFullyAuthorized = true
+        saveUserInfo()
         coordinator?.showHomeFlow()
+    }
+    
+    private func saveUserInfo() {
+        guard let userId = authManager.getAuthUser()?.uid else { return }
+        userManager.addAdditionalUserInfo(userId: userId, userInfo: userInfo) { error in
+            guard error == nil else { return }
+            print("🎾🎾🎾 User info was saved")
+        }
     }
     
     func saveProfileImage(data: Data) {

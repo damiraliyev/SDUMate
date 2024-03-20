@@ -60,8 +60,7 @@ final class LoginPresenter: ILoginPresenter {
             guard let self else { return }
             switch result {
             case .success(let dbUser):
-                let isFullyAuthorizedBefore = false
-                isFullyAuthorizedBefore ? coordinator.showHome() : coordinator.showUserInfoSetup()
+                dbUser.isFullyAuthorized ? coordinator.showHome() : coordinator.showUserInfoSetup()
             case .failure(let error):
                 if let error = error as? SMError {
                     coordinator.showErrorAlert(errorMessage: error.localizedDescription)

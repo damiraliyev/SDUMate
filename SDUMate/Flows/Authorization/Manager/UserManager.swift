@@ -68,4 +68,11 @@ final class UserManager {
     private func userDocument(userId: String) -> DocumentReference {
         usersCollection.document(userId)
     }
+    
+    func addAdditionalUserInfo(userId: String, userInfo: UserInfo, completion: @escaping ((Error?) -> Void)) {
+        let dict = userInfo.makeDictionary()
+        userDocument(userId: userId).updateData(dict) { error in
+            completion(error)
+        }
+    }
 }

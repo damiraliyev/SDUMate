@@ -176,7 +176,7 @@ final class StudySetupViewController: BaseViewController {
         }
         alert.addAction(title: CoreL10n.done, style: .default) { _ in
             self.presenter?.dateSelectionConfirmed()
-            self.yearFormView.set(text: self.presenter?.getSelectedYear() ?? "")
+            self.yearFormView.set(text: String(self.presenter?.getSelectedYear() ?? 0))
         }
         DispatchQueue.main.async {
             self.present(alert, animated: true)

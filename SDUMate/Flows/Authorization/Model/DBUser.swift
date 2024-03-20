@@ -30,7 +30,6 @@ struct DBUser: Codable {
     let userId: String
     let email: String
     let isVerified: Bool
-    let photoUrl: String?
     let dateCreated: Date
     let isFullyAuthorized: Bool
     let userType: UserType
@@ -41,12 +40,13 @@ struct DBUser: Codable {
     let faculty: Faculty?
     let studyProgram: StudyProgram?
     let yearOfEntering: Int?
+    var profileImagePath: String?
+    var profileImageUrl: String?
     
     enum CodingKeys: String, CodingKey {
         case userId = "user_id"
         case email
         case isVerified = "is_verified"
-        case photoUrl = "photo_url"
         case dateCreated = "date_created"
         case isFullyAuthorized = "is_fully_authorized"
         case userType = "user_type"
@@ -55,6 +55,8 @@ struct DBUser: Codable {
         case faculty
         case studyProgram = "study_program"
         case yearOfEntering = "year_of_entering"
+        case profileImagePath = "profile_image_path"
+        case profileImageUrl = "profile_image_url"
     }
     
     init(from decoder: Decoder) throws {
@@ -63,7 +65,6 @@ struct DBUser: Codable {
         self.email = try container.decode(String.self, forKey: .email)
         self.isVerified = try container.decode(Bool.self, forKey: .isVerified)
         self.dateCreated = try container.decode(Date.self, forKey: .dateCreated)
-        self.photoUrl = try container.decodeIfPresent(String.self, forKey: .photoUrl)
         self.isFullyAuthorized = try container.decode(Bool.self, forKey: .isFullyAuthorized)
         let rawType = try container.decode(String.self, forKey: .userType)
         self.userType = UserType(rawValue: rawType) ?? .student
@@ -76,6 +77,8 @@ struct DBUser: Codable {
         let rawStudyProgram = try container.decodeIfPresent(String.self, forKey: .studyProgram)
         self.studyProgram = StudyProgram(rawValue: rawStudyProgram ?? "") ?? StudyProgram.none
         self.yearOfEntering  = try container.decodeIfPresent(Int.self, forKey: .yearOfEntering)
+        self.profileImagePath = try container.decodeIfPresent(String.self, forKey: .profileImagePath)
+        self.profileImageUrl = try container.decodeIfPresent(String.self, forKey: .profileImageUrl)
     }
     
     func encode(to encoder: Encoder) throws {
@@ -84,7 +87,6 @@ struct DBUser: Codable {
         try container.encode(self.email, forKey: .email)
         try container.encode(self.isVerified, forKey: .isVerified)
         try container.encode(self.dateCreated, forKey: .dateCreated)
-        try container.encodeIfPresent(self.photoUrl, forKey: .photoUrl)
         try container.encode(self.isFullyAuthorized, forKey: .isFullyAuthorized)
         try container.encode(self.userType.rawValue, forKey: .userType)
         try container.encodeIfPresent(self.name, forKey: .name)
@@ -94,6 +96,8 @@ struct DBUser: Codable {
         try container.encodeIfPresent(self.faculty?.rawValue, forKey: .faculty)
         try container.encodeIfPresent(self.studyProgram?.rawValue, forKey: .studyProgram)
         try container.encodeIfPresent(self.yearOfEntering, forKey: .yearOfEntering)
+        try container.encodeIfPresent(self.profileImagePath, forKey: .profileImagePath)
+        try container.encodeIfPresent(self.profileImageUrl, forKey: .profileImageUrl)
     }
 }
 
@@ -103,7 +107,6 @@ extension DBUser {
         self.userId = authModel.uid
         self.email = authModel.email ?? ""
         self.isVerified = false
-        self.photoUrl = authModel.photoUrl
         self.dateCreated = Date()
         self.isFullyAuthorized = false
         self.userType = userType
@@ -126,16 +129,17 @@ extension DBUser {
         self.userId = id
         self.email = email
         self.isVerified = isVerified
-        self.photoUrl = dictionary["photo_url"] as? String
         self.dateCreated = dateCreated.dateValue()
         self.isFullyAuthorized = dictionary["is_fully_authorized"] as? Bool ?? false
         self.userType = .none
-        self.name = nil
-        self.surname = nil
-        self.nickname = nil
-        self.telegramTag = nil
-        self.faculty = nil
-        self.studyProgram = nil
-        self.yearOfEntering = nil
+        self.name = dictionary["name"] as? String
+        self.surname = dictionary["surname"] as? String
+        self.nickname = dictionary["nickname"] as? String
+        self.telegramTag = dictionary["telegram_tag"] as? String
+        let facultyRaw = dictionary["faculty"] as? String
+        self.faculty = Faculty(rawValue: facultyRaw ?? "")
+        let rawStudyProgram = dictionary["study_program"] as? String
+        self.studyProgram = StudyProgram(rawValue: rawStudyProgram ?? "")
+        self.yearOfEntering = dictionary["year_of_entering"] as? Int
     }
 }

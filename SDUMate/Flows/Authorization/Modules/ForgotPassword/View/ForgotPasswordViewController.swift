@@ -58,8 +58,6 @@ final class ForgotPasswordViewController: BaseViewController, IForgotPasswordVie
         button.titleLabel?.font = .medium16
         button.tintColor = .white
         button.addTarget(self, action: #selector(continueTapped), for: .touchUpInside)
-//        button.isEnabled = false
-//        button.alpha = 0.5
         return button
     }()
     

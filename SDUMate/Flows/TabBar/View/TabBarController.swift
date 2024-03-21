@@ -28,6 +28,11 @@ extension TabBarController: TabBarPresentable {
     func setViewControllers(_ viewControllers: [UIViewController]) {
         self.viewControllers = viewControllers
         configureBackgroundView()
+        tabBar.items?[0].selectedImage = Asset.icTabHome.image.withTintColor(.white)
+        tabBar.items?[1].selectedImage = Asset.icTabSessions.image.withTintColor(.white)
+        tabBar.items?[2].selectedImage = Asset.icTabNew.image.withTintColor(.white)
+        tabBar.items?[3].selectedImage = Asset.icTabRating.image.withTintColor(.white)
+        tabBar.items?[4].selectedImage = Asset.icTabProfile.image.withTintColor(.white)
     }
     
     func changeSelectedTabBarItem(_ tabBarItem: OwnerTabBarItem, completion: Completion?) {

@@ -27,12 +27,11 @@ final class AppCoordinator: BaseCoordinator {
     
     override func start() {
         clearAll()
-        runAuthFlow()
-//        if authManager.getAuthUser() == nil {
-//            runAuthFlow()
-//        } else {
-//            runMainFlow()
-//        }
+        if authManager.getAuthUser() == nil {
+            runAuthFlow()
+        } else {
+            runMainFlow()
+        }
     }
     
     @objc private func authDataDidChange() {
@@ -61,12 +60,8 @@ final class AppCoordinator: BaseCoordinator {
     }
     
     private func runMainFlow() {
-        let coordinator = coordinatorFactory.makeHomeCoordinator()
-        coordinator.onFlowDidFinish = { [weak self, weak coordinator] in
-            guard let self else { return }
-            removeDependency(coordinator)
-        }
-//        tabBarCoordinator = coordinator
+        let coordinator: Coordinator = coordinatorFactory.makeTabBarCoordinator()
+        tabBarCoordinator = coordinator
         addDependency(coordinator)
         coordinator.start()
     }

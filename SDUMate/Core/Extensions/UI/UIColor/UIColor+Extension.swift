@@ -224,6 +224,10 @@ public extension UIColor {
     static var audioIndicatorRed: UIColor {
         return UIColor(hex: 0xEF5533)
     }
+    
+    static var tabItem: UIColor {
+        return UIColor(hex: 0x9491AE)
+    }
 
     convenience init(hex: UInt) {
         self.init(

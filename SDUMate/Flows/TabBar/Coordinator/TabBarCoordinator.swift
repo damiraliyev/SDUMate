@@ -38,6 +38,10 @@ final class TabBarCoordinator: BaseCoordinator {
     
     private func setupAllFlows() {
         setupHomeFlow()
+        setupSessionsFlow()
+        setupNewRequestFlow()
+        setupRatingFlow()
+        setupSettingsFlow()
     }
     
     private func setupHomeFlow() {
@@ -100,7 +104,7 @@ final class TabBarCoordinator: BaseCoordinator {
         )
     }
     
-    private func setupSettingsModule() {
+    private func setupSettingsFlow() {
         let (settingsCoordinator, rootController) = coordinatorFactory.makeSettingsModule()
         settingsCoordinator.start()
         settingsCoordinator.tabCoordinatorDelegate = self

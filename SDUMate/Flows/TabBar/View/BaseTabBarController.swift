@@ -26,10 +26,10 @@ class BaseTabBarController: UITabBarController {
     }
     
     private func setupViews() {
-        UITabBar.appearance().backgroundColor = .beProWhite
+        UITabBar.appearance().backgroundColor = .background
         let appearance = tabBar.standardAppearance
-        appearance.stackedLayoutAppearance.normal.iconColor = .beProBlack
-        appearance.stackedLayoutAppearance.selected.iconColor = .beProBlack
+        appearance.stackedLayoutAppearance.normal.iconColor = .white
+        appearance.stackedLayoutAppearance.selected.iconColor = .white
         tabBar.standardAppearance = appearance
         tabBar.layer.shadowColor = UIColor.moduleDescription.withAlphaComponent(0.3).cgColor
         tabBar.layer.shadowOffset = CGSize(width: 0.0, height: -1.0)
@@ -44,7 +44,7 @@ class BaseTabBarController: UITabBarController {
         let yPosition = tabBar.bounds.minY + 8
         let roundedViewHeight = size
         roundedView = UIView(frame: CGRect(x: 0, y: yPosition, width: size, height: roundedViewHeight))
-        roundedView?.backgroundColor = .bpSecondaryWhite
+        roundedView?.backgroundColor = .textFieldBorderPurple
         roundedView?.layer.cornerRadius = 20
         
         if let selectedIdx = tabBar.items?.firstIndex(of: tabBar.selectedItem!) {

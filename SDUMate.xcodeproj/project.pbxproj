@@ -166,6 +166,7 @@
 		68CFF5422BABC4FD006C9AF8 /* SearchFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CFF5412BABC4FD006C9AF8 /* SearchFieldView.swift */; };
 		68CFF5442BABCA37006C9AF8 /* AppliedFiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CFF5432BABCA37006C9AF8 /* AppliedFiltersView.swift */; };
 		68CFF5472BABCFAD006C9AF8 /* AppliedFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CFF5462BABCFAD006C9AF8 /* AppliedFilterCell.swift */; };
+		68CFF5492BABD86B006C9AF8 /* AnnouncementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CFF5482BABD86A006C9AF8 /* AnnouncementCell.swift */; };
 		68D0E1D42B81B28700F7C197 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68D0E1D32B81B28700F7C197 /* Poppins-Bold.ttf */; };
 		68D0E1D62B81B2C900F7C197 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68D0E1D52B81B2C900F7C197 /* Poppins-Medium.ttf */; };
 		68D0E1D82B81B2D400F7C197 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68D0E1D72B81B2D400F7C197 /* Poppins-Regular.ttf */; };
@@ -318,6 +319,7 @@
 		68CFF5412BABC4FD006C9AF8 /* SearchFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFieldView.swift; sourceTree = "<group>"; };
 		68CFF5432BABCA37006C9AF8 /* AppliedFiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliedFiltersView.swift; sourceTree = "<group>"; };
 		68CFF5462BABCFAD006C9AF8 /* AppliedFilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliedFilterCell.swift; sourceTree = "<group>"; };
+		68CFF5482BABD86A006C9AF8 /* AnnouncementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementCell.swift; sourceTree = "<group>"; };
 		68D0E1D32B81B28700F7C197 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		68D0E1D52B81B2C900F7C197 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		68D0E1D72B81B2D400F7C197 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
@@ -1617,6 +1619,7 @@
 			isa = PBXGroup;
 			children = (
 				68CFF5462BABCFAD006C9AF8 /* AppliedFilterCell.swift */,
+				68CFF5482BABD86A006C9AF8 /* AnnouncementCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1861,6 +1864,7 @@
 				682D081B2B7DF31900A5FCC1 /* UILabel+Extensions.swift in Sources */,
 				68CFF52D2BABB117006C9AF8 /* NewRequestCoordinator.swift in Sources */,
 				682D085B2B7DF31900A5FCC1 /* BaseCoordinator.swift in Sources */,
+				68CFF5492BABD86B006C9AF8 /* AnnouncementCell.swift in Sources */,
 				68CFF52B2BABB0D1006C9AF8 /* NewRequestModuleFactory.swift in Sources */,
 				682D081D2B7DF31900A5FCC1 /* UIAlertController+Extensions.swift in Sources */,
 				682D08332B7DF31900A5FCC1 /* CACornerMask+Extension.swift in Sources */,

@@ -167,6 +167,8 @@
 		68CFF5442BABCA37006C9AF8 /* AppliedFiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CFF5432BABCA37006C9AF8 /* AppliedFiltersView.swift */; };
 		68CFF5472BABCFAD006C9AF8 /* AppliedFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CFF5462BABCFAD006C9AF8 /* AppliedFilterCell.swift */; };
 		68CFF5492BABD86B006C9AF8 /* AnnouncementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CFF5482BABD86A006C9AF8 /* AnnouncementCell.swift */; };
+		68CFF54B2BABED30006C9AF8 /* PriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CFF54A2BABED30006C9AF8 /* PriceView.swift */; };
+		68CFF54E2BABEFCD006C9AF8 /* Announcement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CFF54D2BABEFCD006C9AF8 /* Announcement.swift */; };
 		68D0E1D42B81B28700F7C197 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68D0E1D32B81B28700F7C197 /* Poppins-Bold.ttf */; };
 		68D0E1D62B81B2C900F7C197 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68D0E1D52B81B2C900F7C197 /* Poppins-Medium.ttf */; };
 		68D0E1D82B81B2D400F7C197 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68D0E1D72B81B2D400F7C197 /* Poppins-Regular.ttf */; };
@@ -320,6 +322,8 @@
 		68CFF5432BABCA37006C9AF8 /* AppliedFiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliedFiltersView.swift; sourceTree = "<group>"; };
 		68CFF5462BABCFAD006C9AF8 /* AppliedFilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliedFilterCell.swift; sourceTree = "<group>"; };
 		68CFF5482BABD86A006C9AF8 /* AnnouncementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementCell.swift; sourceTree = "<group>"; };
+		68CFF54A2BABED30006C9AF8 /* PriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceView.swift; sourceTree = "<group>"; };
+		68CFF54D2BABEFCD006C9AF8 /* Announcement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Announcement.swift; sourceTree = "<group>"; };
 		68D0E1D32B81B28700F7C197 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		68D0E1D52B81B2C900F7C197 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		68D0E1D72B81B2D400F7C197 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
@@ -1207,6 +1211,7 @@
 		68929C162BA6F927000A38E9 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				68CFF54C2BABEFC5006C9AF8 /* Model */,
 				68929C172BA6F964000A38E9 /* View */,
 				68929C182BA6F969000A38E9 /* Presenter */,
 			);
@@ -1611,6 +1616,7 @@
 				68CFF53F2BABBF44006C9AF8 /* HomeHeaderView.swift */,
 				68CFF5412BABC4FD006C9AF8 /* SearchFieldView.swift */,
 				68CFF5432BABCA37006C9AF8 /* AppliedFiltersView.swift */,
+				68CFF54A2BABED30006C9AF8 /* PriceView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -1622,6 +1628,14 @@
 				68CFF5482BABD86A006C9AF8 /* AnnouncementCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		68CFF54C2BABEFC5006C9AF8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				68CFF54D2BABEFCD006C9AF8 /* Announcement.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		68D0E1D22B81B24800F7C197 /* Fonts */ = {
@@ -1847,6 +1861,7 @@
 				68530AB52B9DD3A400E59383 /* DefaultCell.swift in Sources */,
 				68CFF5392BABB29A006C9AF8 /* SettingsPresenter.swift in Sources */,
 				68929C052BA579E1000A38E9 /* StudySetupViewsFactory.swift in Sources */,
+				68CFF54B2BABED30006C9AF8 /* PriceView.swift in Sources */,
 				682D080E2B7DF31900A5FCC1 /* Animations.swift in Sources */,
 				682D08562B7DF31900A5FCC1 /* Observable.swift in Sources */,
 				684BA7BA2B896ECA0055BEE3 /* GradientButton.swift in Sources */,
@@ -1919,6 +1934,7 @@
 				68BDA2432BAA71D200FDF1A4 /* TabBarItem.swift in Sources */,
 				682D08282B7DF31900A5FCC1 /* UITableView+Extension.swift in Sources */,
 				682D082A2B7DF31900A5FCC1 /* UIEdgeInsets+Extensions.swift in Sources */,
+				68CFF54E2BABEFCD006C9AF8 /* Announcement.swift in Sources */,
 				682D08582B7DF31900A5FCC1 /* BaseViewController.swift in Sources */,
 				688442DC2B7E102A00695763 /* EntryCoordinator.swift in Sources */,
 				68929C152BA6F889000A38E9 /* HomeModuleFactory.swift in Sources */,

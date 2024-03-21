@@ -17,6 +17,7 @@ extension UIFont {
     }
     
     static let regular8 = UIFont(name: Constants.regular, size: 8)!
+    static let regular12 = UIFont(name: Constants.regular, size: 12)!
     static let regular13 = UIFont(name: Constants.regular, size: 13)!
     static let regular14 = UIFont(name: Constants.regular, size: 14)!
     static let regular16 = UIFont(name: Constants.regular, size: 16)!

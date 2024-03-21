@@ -23,6 +23,7 @@ class BaseTabBarController: UITabBarController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         configureTabBarImageInsets()
+        configureBorderLine()
     }
     
     private func setupViews() {
@@ -33,8 +34,6 @@ class BaseTabBarController: UITabBarController {
         tabBar.standardAppearance = appearance
         tabBar.layer.shadowColor = UIColor.moduleDescription.withAlphaComponent(0.3).cgColor
         tabBar.layer.shadowOffset = CGSize(width: 0.0, height: -1.0)
-        tabBar.layer.shadowOpacity = 0.8
-        tabBar.layer.shadowRadius = 1.0
     }
     
     func configureBackgroundView() {
@@ -64,6 +63,12 @@ class BaseTabBarController: UITabBarController {
         let bottomInset = Device.hasHomeIndicator ? (verticalSpace / 2) + 8 : 4
         let insets = UIEdgeInsets(top: topInset, left: 0, bottom: -bottomInset, right: 0)
         tabBar.items?.forEach { $0.imageInsets = insets }
+    }
+    
+    private func configureBorderLine() {
+        let lineView = UIView(frame: CGRect(x: 0, y: 0, width: tabBar.frame.size.width, height: 0.5))
+        lineView.backgroundColor = UIColor.bpLightGray
+        tabBar.addSubview(lineView)
     }
     
     func animateTabBarBackgroundView(tabBar: UITabBar, item: UITabBarItem?, index: Int?) {

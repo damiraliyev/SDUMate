@@ -228,6 +228,14 @@ public extension UIColor {
     static var tabItem: UIColor {
         return UIColor(hex: 0x9491AE)
     }
+    
+    static var _cdcdcd: UIColor {
+        return UIColor(hex: 0xCDCDCD)
+    }
+    
+    static var _282645: UIColor {
+        return UIColor(hex: 0x282645)
+    }
 
     convenience init(hex: UInt) {
         self.init(

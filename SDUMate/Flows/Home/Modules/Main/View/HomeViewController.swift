@@ -14,6 +14,10 @@ protocol IHomeView: Presentable {
 final class HomeViewController: BaseViewController {
     var presenter: IHomePresenter?
     
+    private let headerView = HomeHeaderView()
+    
+    private let searchFieldView = SearchFieldView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -21,11 +25,21 @@ final class HomeViewController: BaseViewController {
     }
     
     private func setupViews() {
-        view.backgroundColor = .cyan
+        view.backgroundColor = .background
+        view.addSubviews([headerView, searchFieldView])
     }
     
     private func setupConstraints() {
-        
+        headerView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(64)
+        }
+        searchFieldView.snp.makeConstraints { make in
+            make.top.equalTo(headerView.snp.bottom).offset(24)
+            make.leading.trailing.equalToSuperview().inset(24)
+            make.height.equalTo(40)
+        }
     }
 }
 

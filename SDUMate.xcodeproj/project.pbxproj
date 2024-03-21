@@ -162,6 +162,8 @@
 		68CFF5392BABB29A006C9AF8 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CFF5382BABB29A006C9AF8 /* SettingsPresenter.swift */; };
 		68CFF53B2BABB336006C9AF8 /* SettingsModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CFF53A2BABB336006C9AF8 /* SettingsModuleFactory.swift */; };
 		68CFF53D2BABB368006C9AF8 /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CFF53C2BABB368006C9AF8 /* SettingsCoordinator.swift */; };
+		68CFF5402BABBF44006C9AF8 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CFF53F2BABBF44006C9AF8 /* HomeHeaderView.swift */; };
+		68CFF5422BABC4FD006C9AF8 /* SearchFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CFF5412BABC4FD006C9AF8 /* SearchFieldView.swift */; };
 		68D0E1D42B81B28700F7C197 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68D0E1D32B81B28700F7C197 /* Poppins-Bold.ttf */; };
 		68D0E1D62B81B2C900F7C197 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68D0E1D52B81B2C900F7C197 /* Poppins-Medium.ttf */; };
 		68D0E1D82B81B2D400F7C197 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68D0E1D72B81B2D400F7C197 /* Poppins-Regular.ttf */; };
@@ -310,6 +312,8 @@
 		68CFF5382BABB29A006C9AF8 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		68CFF53A2BABB336006C9AF8 /* SettingsModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModuleFactory.swift; sourceTree = "<group>"; };
 		68CFF53C2BABB368006C9AF8 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
+		68CFF53F2BABBF44006C9AF8 /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
+		68CFF5412BABC4FD006C9AF8 /* SearchFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFieldView.swift; sourceTree = "<group>"; };
 		68D0E1D32B81B28700F7C197 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		68D0E1D52B81B2C900F7C197 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		68D0E1D72B81B2D400F7C197 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
@@ -1206,6 +1210,7 @@
 		68929C172BA6F964000A38E9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				68CFF53E2BABBF38006C9AF8 /* CustomViews */,
 				68929C192BA6F977000A38E9 /* HomeViewController.swift */,
 			);
 			path = View;
@@ -1593,6 +1598,15 @@
 			name = Coordinator;
 			sourceTree = "<group>";
 		};
+		68CFF53E2BABBF38006C9AF8 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				68CFF53F2BABBF44006C9AF8 /* HomeHeaderView.swift */,
+				68CFF5412BABC4FD006C9AF8 /* SearchFieldView.swift */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
 		68D0E1D22B81B24800F7C197 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -1853,10 +1867,12 @@
 				688442C62B7E03FE00695763 /* AppCoordinatorFactory.swift in Sources */,
 				68929C132BA6F826000A38E9 /* HomeCoordinator.swift in Sources */,
 				682D08182B7DF31900A5FCC1 /* UIImage+Extensions.swift in Sources */,
+				68CFF5422BABC4FD006C9AF8 /* SearchFieldView.swift in Sources */,
 				682D08232B7DF31900A5FCC1 /* UIDevice+Extension.swift in Sources */,
 				68D1902F2B8B2F330045DBE5 /* LoginPresenter.swift in Sources */,
 				682D082D2B7DF31900A5FCC1 /* Collection+Extension.swift in Sources */,
 				682D08392B7DF31900A5FCC1 /* BPPaddingButton.swift in Sources */,
+				68CFF5402BABBF44006C9AF8 /* HomeHeaderView.swift in Sources */,
 				68BDA23F2BAA6F4400FDF1A4 /* TabBarController.swift in Sources */,
 				682D08172B7DF31900A5FCC1 /* Moya+Extensions.swift in Sources */,
 				682D08352B7DF31900A5FCC1 /* StringFormatter.swift in Sources */,

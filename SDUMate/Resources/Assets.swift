@@ -26,6 +26,11 @@ internal typealias AssetImageTypeAlias = ImageAsset.Image
 internal enum Asset {
   internal static let accentColor = ColorAsset(name: "AccentColor")
   internal static let b = ColorAsset(name: "b")
+  internal static let icTabHome = ImageAsset(name: "ic_tab_home")
+  internal static let icTabNew = ImageAsset(name: "ic_tab_new")
+  internal static let icTabProfile = ImageAsset(name: "ic_tab_profile")
+  internal static let icTabRating = ImageAsset(name: "ic_tab_rating")
+  internal static let icTabSessions = ImageAsset(name: "ic_tab_sessions")
   internal static let authBackground = ImageAsset(name: "auth_background")
   internal static let eyeOpen = ImageAsset(name: "eye_open")
   internal static let gradientButton = ImageAsset(name: "gradient_button")

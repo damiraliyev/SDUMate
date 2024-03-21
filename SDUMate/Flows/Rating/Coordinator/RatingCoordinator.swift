@@ -13,7 +13,10 @@ protocol IRatingCoordinator: IBaseCoordinator {
     func onBackTapped(completion: Completion?)
 }
 
-final class RatingCoordinator: BaseCoordinator, IRatingCoordinator {
+final class RatingCoordinator: BaseCoordinator, TababbleCoordinator {
+    var onOwnerTabBarNeedsToBeChanged: ((OwnerTabBarItem) -> Void)?
+    var tabCoordinatorDelegate: TabCoordinatorDelegate?
+    
     private let container: DependencyContainer
     private let moduleFactory: RatingModuleFactory
     var onFlowDidFinish: Completion?
@@ -28,7 +31,9 @@ final class RatingCoordinator: BaseCoordinator, IRatingCoordinator {
         let ratingView = moduleFactory.makeRatingView(coordinator: self)
         router.setRootModule(ratingView)
     }
-    
+}
+
+extension RatingCoordinator: IRatingCoordinator {
     func onBackTapped(completion: Completion?) {
         
     }

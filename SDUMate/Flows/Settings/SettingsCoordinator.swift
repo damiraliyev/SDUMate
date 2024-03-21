@@ -13,7 +13,10 @@ protocol ISettingsCoordinator: IBaseCoordinator {
     func onBackTapped(completion: Completion?)
 }
 
-final class SettingsCoordinator: BaseCoordinator, ISettingsCoordinator {
+final class SettingsCoordinator: BaseCoordinator, TababbleCoordinator {
+    var onOwnerTabBarNeedsToBeChanged: ((OwnerTabBarItem) -> Void)?
+    var tabCoordinatorDelegate: TabCoordinatorDelegate?
+    
     private let container: DependencyContainer
     private let moduleFactory: SettingsModuleFactory
     var onFlowDidFinish: Completion?
@@ -32,4 +35,8 @@ final class SettingsCoordinator: BaseCoordinator, ISettingsCoordinator {
     func onBackTapped(completion: Completion?) {
         
     }
+}
+
+extension SettingsCoordinator: ISettingsCoordinator {
+    
 }

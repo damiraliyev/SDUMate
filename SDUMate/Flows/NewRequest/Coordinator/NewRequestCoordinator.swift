@@ -13,7 +13,10 @@ protocol INewRequestCoordinator: IBaseCoordinator {
     func onBackTapped(completion: Completion?)
 }
 
-final class NewRequestCoordinator: BaseCoordinator, INewRequestCoordinator {
+final class NewRequestCoordinator: BaseCoordinator, TababbleCoordinator {
+    var onOwnerTabBarNeedsToBeChanged: ((OwnerTabBarItem) -> Void)?
+    var tabCoordinatorDelegate: TabCoordinatorDelegate?
+    
     private let container: DependencyContainer
     private let moduleFactory: NewRequestModuleFactory
     var onFlowDidFinish: Completion?
@@ -28,7 +31,9 @@ final class NewRequestCoordinator: BaseCoordinator, INewRequestCoordinator {
         let newRequestView = moduleFactory.makeNewRequestView(coordinator: self)
         router.setRootModule(newRequestView)
     }
-    
+}
+
+extension NewRequestCoordinator: INewRequestCoordinator {
     func onBackTapped(completion: Completion?) {
         
     }

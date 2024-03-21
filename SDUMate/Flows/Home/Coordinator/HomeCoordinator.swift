@@ -13,7 +13,10 @@ protocol IHomeCoordinator: IBaseCoordinator {
     func onBackTapped(completion: Completion?)
 }
 
-final class HomeCoordinator: BaseCoordinator, IHomeCoordinator {
+final class HomeCoordinator: BaseCoordinator, TababbleCoordinator {
+    var onOwnerTabBarNeedsToBeChanged: ((OwnerTabBarItem) -> Void)?
+    var tabCoordinatorDelegate: TabCoordinatorDelegate?
+    
     private let container: DependencyContainer
     private let moduleFactory: HomeModuleFactory
     var onFlowDidFinish: Completion?
@@ -28,7 +31,9 @@ final class HomeCoordinator: BaseCoordinator, IHomeCoordinator {
         let homeView = moduleFactory.makeHomeView(coordinator: self)
         router.setRootModule(homeView)
     }
-    
+}
+
+extension HomeCoordinator: IHomeCoordinator {
     func onBackTapped(completion: Completion?) {
         
     }

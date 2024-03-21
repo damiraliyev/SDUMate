@@ -15,7 +15,10 @@ protocol ISessionsCoordinator: IBaseCoordinator {
     func onBackTapped(completion: Completion?)
 }
 
-final class SessionsCoordinator: BaseCoordinator, ISessionsCoordinator {
+final class SessionsCoordinator: BaseCoordinator, TababbleCoordinator {
+    var onOwnerTabBarNeedsToBeChanged: ((OwnerTabBarItem) -> Void)?
+    var tabCoordinatorDelegate: TabCoordinatorDelegate?
+    
     private let container: DependencyContainer
     private let moduleFactory: SessionsModuleFactory
     var onFlowDidFinish: Completion?
@@ -30,9 +33,10 @@ final class SessionsCoordinator: BaseCoordinator, ISessionsCoordinator {
         let sessionView = moduleFactory.makeSessionsView(coordinator: self)
         router.setRootModule(sessionView)
     }
-    
+}
+
+extension SessionsCoordinator: ISessionsCoordinator {
     func onBackTapped(completion: Completion?) {
         
     }
 }
-

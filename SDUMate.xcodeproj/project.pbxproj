@@ -164,6 +164,8 @@
 		68CFF53D2BABB368006C9AF8 /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CFF53C2BABB368006C9AF8 /* SettingsCoordinator.swift */; };
 		68CFF5402BABBF44006C9AF8 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CFF53F2BABBF44006C9AF8 /* HomeHeaderView.swift */; };
 		68CFF5422BABC4FD006C9AF8 /* SearchFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CFF5412BABC4FD006C9AF8 /* SearchFieldView.swift */; };
+		68CFF5442BABCA37006C9AF8 /* AppliedFiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CFF5432BABCA37006C9AF8 /* AppliedFiltersView.swift */; };
+		68CFF5472BABCFAD006C9AF8 /* AppliedFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CFF5462BABCFAD006C9AF8 /* AppliedFilterCell.swift */; };
 		68D0E1D42B81B28700F7C197 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68D0E1D32B81B28700F7C197 /* Poppins-Bold.ttf */; };
 		68D0E1D62B81B2C900F7C197 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68D0E1D52B81B2C900F7C197 /* Poppins-Medium.ttf */; };
 		68D0E1D82B81B2D400F7C197 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68D0E1D72B81B2D400F7C197 /* Poppins-Regular.ttf */; };
@@ -314,6 +316,8 @@
 		68CFF53C2BABB368006C9AF8 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		68CFF53F2BABBF44006C9AF8 /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		68CFF5412BABC4FD006C9AF8 /* SearchFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFieldView.swift; sourceTree = "<group>"; };
+		68CFF5432BABCA37006C9AF8 /* AppliedFiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliedFiltersView.swift; sourceTree = "<group>"; };
+		68CFF5462BABCFAD006C9AF8 /* AppliedFilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliedFilterCell.swift; sourceTree = "<group>"; };
 		68D0E1D32B81B28700F7C197 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		68D0E1D52B81B2C900F7C197 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		68D0E1D72B81B2D400F7C197 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
@@ -1601,10 +1605,20 @@
 		68CFF53E2BABBF38006C9AF8 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				68CFF5452BABCF9A006C9AF8 /* Cells */,
 				68CFF53F2BABBF44006C9AF8 /* HomeHeaderView.swift */,
 				68CFF5412BABC4FD006C9AF8 /* SearchFieldView.swift */,
+				68CFF5432BABCA37006C9AF8 /* AppliedFiltersView.swift */,
 			);
 			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		68CFF5452BABCF9A006C9AF8 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				68CFF5462BABCFAD006C9AF8 /* AppliedFilterCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		68D0E1D22B81B24800F7C197 /* Fonts */ = {
@@ -1783,6 +1797,7 @@
 				682D085D2B7DF31900A5FCC1 /* AppLanguage.swift in Sources */,
 				682D08592B7DF31900A5FCC1 /* Presentable.swift in Sources */,
 				68C5C48A2B94BBD1006C9540 /* AlumniSignUpViewController.swift in Sources */,
+				68CFF5472BABCFAD006C9AF8 /* AppliedFilterCell.swift in Sources */,
 				68CFF5312BABB17E006C9AF8 /* RatingPresenter.swift in Sources */,
 				682D08252B7DF31900A5FCC1 /* UIImageView+Extentions.swift in Sources */,
 				682D08492B7DF31900A5FCC1 /* CollectionCell.swift in Sources */,
@@ -1833,6 +1848,7 @@
 				682D08562B7DF31900A5FCC1 /* Observable.swift in Sources */,
 				684BA7BA2B896ECA0055BEE3 /* GradientButton.swift in Sources */,
 				688442D92B7E0F2C00695763 /* EntryPresenter.swift in Sources */,
+				68CFF5442BABCA37006C9AF8 /* AppliedFiltersView.swift in Sources */,
 				68C5C4782B948CE2006C9540 /* AccountChoiceViewController.swift in Sources */,
 				68CFF5272BABB014006C9AF8 /* NewRequestViewController.swift in Sources */,
 				682D08262B7DF31900A5FCC1 /* UIViewController+Extension.swift in Sources */,

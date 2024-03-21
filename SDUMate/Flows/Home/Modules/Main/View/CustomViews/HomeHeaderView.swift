@@ -70,7 +70,7 @@ final class HomeHeaderView: UIView {
     private func setupConstraints() {
         avatarImageView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.leading.equalToSuperview().offset(24)
+            make.leading.equalToSuperview().offset(16)
             make.size.equalTo(45)
         }
         labelsStackView.snp.makeConstraints { make in

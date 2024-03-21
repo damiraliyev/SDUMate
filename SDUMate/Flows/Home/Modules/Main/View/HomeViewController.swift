@@ -18,6 +18,8 @@ final class HomeViewController: BaseViewController {
     
     private let searchFieldView = SearchFieldView()
     
+    private let appliedFiltersView = AppliedFiltersView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -26,7 +28,7 @@ final class HomeViewController: BaseViewController {
     
     private func setupViews() {
         view.backgroundColor = .background
-        view.addSubviews([headerView, searchFieldView])
+        view.addSubviews([headerView, searchFieldView, appliedFiltersView])
     }
     
     private func setupConstraints() {
@@ -37,7 +39,13 @@ final class HomeViewController: BaseViewController {
         }
         searchFieldView.snp.makeConstraints { make in
             make.top.equalTo(headerView.snp.bottom).offset(24)
-            make.leading.trailing.equalToSuperview().inset(24)
+            make.leading.trailing.equalToSuperview().inset(16)
+            make.height.equalTo(40)
+        }
+        appliedFiltersView.snp.makeConstraints { make in
+            make.top.equalTo(searchFieldView.snp.bottom).offset(11)
+            make.leading.equalTo(searchFieldView)
+            make.trailing.equalToSuperview()
             make.height.equalTo(40)
         }
     }

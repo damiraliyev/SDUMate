@@ -91,6 +91,8 @@
 		68330A5E2BAD10CB00FB14DB /* FilterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68330A5D2BAD10CB00FB14DB /* FilterPresenter.swift */; };
 		68330A602BAD132300FB14DB /* InsetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68330A5F2BAD132300FB14DB /* InsetButton.swift */; };
 		68330A632BAD1F4B00FB14DB /* SessionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68330A622BAD1F4B00FB14DB /* SessionCell.swift */; };
+		68330A682BAD4B4700FB14DB /* InvitationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68330A672BAD4B4700FB14DB /* InvitationsViewController.swift */; };
+		68330A6A2BAD4B5100FB14DB /* InvitationsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68330A692BAD4B5100FB14DB /* InvitationsPresenter.swift */; };
 		6838F72C2B93415800265406 /* SMNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6838F72B2B93415800265406 /* SMNavigationBar.swift */; };
 		6838F7372B934A0600265406 /* UserInfoSetupCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6838F7362B934A0600265406 /* UserInfoSetupCoordinator.swift */; };
 		6838F7392B934A7700265406 /* UserInfoSetupModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6838F7382B934A7700265406 /* UserInfoSetupModuleFactory.swift */; };
@@ -266,6 +268,8 @@
 		68330A5D2BAD10CB00FB14DB /* FilterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPresenter.swift; sourceTree = "<group>"; };
 		68330A5F2BAD132300FB14DB /* InsetButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetButton.swift; sourceTree = "<group>"; };
 		68330A622BAD1F4B00FB14DB /* SessionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCell.swift; sourceTree = "<group>"; };
+		68330A672BAD4B4700FB14DB /* InvitationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationsViewController.swift; sourceTree = "<group>"; };
+		68330A692BAD4B5100FB14DB /* InvitationsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationsPresenter.swift; sourceTree = "<group>"; };
 		6838F72B2B93415800265406 /* SMNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMNavigationBar.swift; sourceTree = "<group>"; };
 		6838F7362B934A0600265406 /* UserInfoSetupCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoSetupCoordinator.swift; sourceTree = "<group>"; };
 		6838F7382B934A7700265406 /* UserInfoSetupModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoSetupModuleFactory.swift; sourceTree = "<group>"; };
@@ -909,6 +913,31 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		68330A642BAD4B1800FB14DB /* Invitations */ = {
+			isa = PBXGroup;
+			children = (
+				68330A662BAD4B3100FB14DB /* View */,
+				68330A652BAD4B2D00FB14DB /* Presenter */,
+			);
+			path = Invitations;
+			sourceTree = "<group>";
+		};
+		68330A652BAD4B2D00FB14DB /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				68330A692BAD4B5100FB14DB /* InvitationsPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		68330A662BAD4B3100FB14DB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				68330A672BAD4B4700FB14DB /* InvitationsViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		6838F72D2B9344C000265406 /* UserInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -1246,6 +1275,7 @@
 		68929C112BA6F7F3000A38E9 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				68330A642BAD4B1800FB14DB /* Invitations */,
 				68CFF5602BAC176C006C9AF8 /* AnnouncementDetails */,
 				68CFF54F2BABF4BB006C9AF8 /* Filter */,
 				68929C162BA6F927000A38E9 /* Main */,
@@ -2023,6 +2053,7 @@
 				682D08182B7DF31900A5FCC1 /* UIImage+Extensions.swift in Sources */,
 				68CFF5422BABC4FD006C9AF8 /* SearchFieldView.swift in Sources */,
 				68330A632BAD1F4B00FB14DB /* SessionCell.swift in Sources */,
+				68330A682BAD4B4700FB14DB /* InvitationsViewController.swift in Sources */,
 				682D08232B7DF31900A5FCC1 /* UIDevice+Extension.swift in Sources */,
 				68D1902F2B8B2F330045DBE5 /* LoginPresenter.swift in Sources */,
 				682D082D2B7DF31900A5FCC1 /* Collection+Extension.swift in Sources */,
@@ -2054,6 +2085,7 @@
 				68CFF55E2BAC128C006C9AF8 /* AnnounceDesciptionView.swift in Sources */,
 				682D08772B7DFA2600A5FCC1 /* DatePickerViewController.swift in Sources */,
 				68929C0A2BA596A1000A38E9 /* PermissionHelper.swift in Sources */,
+				68330A6A2BAD4B5100FB14DB /* InvitationsPresenter.swift in Sources */,
 				688442D12B7E076000695763 /* AuthModuleFactory.swift in Sources */,
 				68BDA2432BAA71D200FDF1A4 /* TabBarItem.swift in Sources */,
 				682D08282B7DF31900A5FCC1 /* UITableView+Extension.swift in Sources */,

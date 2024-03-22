@@ -14,6 +14,7 @@ protocol IHomeCoordinator: IBaseCoordinator {
     func dismissPresenterModule(completion: Completion?)
     func showFilterView()
     func showAnnouncementDetailsView(with announcement: Announcement)
+    func showInvitationsView()
 }
 
 final class HomeCoordinator: BaseCoordinator, TababbleCoordinator {
@@ -56,5 +57,10 @@ extension HomeCoordinator: IHomeCoordinator {
     func showAnnouncementDetailsView(with announcement: Announcement) {
         let announcementDescriptionView = moduleFactory.makeAnnouncementDetailsView(announcement: announcement, coordinator: self)
         router.push(announcementDescriptionView)
+    }
+    
+    func showInvitationsView() {
+        let invitationsView = moduleFactory.makeInvitationsView(coordinator: self)
+        router.push(invitationsView)
     }
 }

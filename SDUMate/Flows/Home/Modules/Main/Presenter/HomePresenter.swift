@@ -38,3 +38,9 @@ final class HomePresenter: IHomePresenter {
         coordinator?.showAnnouncementDetailsView(with: announcement)
     }
 }
+
+extension HomePresenter: HomeHeaderViewDelegate {
+    func notificationsTapped() {
+        coordinator?.showInvitationsView()
+    }
+}

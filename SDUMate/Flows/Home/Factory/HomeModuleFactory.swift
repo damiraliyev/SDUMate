@@ -37,4 +37,11 @@ final class HomeModuleFactory {
         view.presenter = presenter
         return view
     }
+    
+    func makeInvitationsView(coordinator: IHomeCoordinator) -> IInvitationsView {
+        let view: IInvitationsView = InvitationsViewController()
+        let presenter: IInvitationsPresenter = InvitationsPresenter(view: view, coordinator: coordinator)
+        view.presenter = presenter
+        return view
+    }
 }

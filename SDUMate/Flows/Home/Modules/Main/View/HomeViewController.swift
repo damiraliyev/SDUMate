@@ -14,7 +14,11 @@ protocol IHomeView: Presentable {
 final class HomeViewController: BaseViewController {
     var presenter: IHomePresenter?
     
-    private let headerView = HomeHeaderView()
+    private lazy var headerView: HomeHeaderView = {
+        let view = HomeHeaderView()
+        view.delegate = presenter as? HomeHeaderViewDelegate
+        return view
+    }()
     
     private let searchFieldView = SearchFieldView()
     

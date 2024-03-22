@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol HomeHeaderViewDelegate: AnyObject {
+    func notificationsTapped()
+}
+
 final class HomeHeaderView: UIView {
+    
+    weak var delegate: HomeHeaderViewDelegate?
     
     private let avatarImageView: UIImageView = {
         let imageView = UIImageView()
@@ -40,10 +46,13 @@ final class HomeHeaderView: UIView {
         return label
     }()
     
-    private let bellImageView: UIImageView = {
+    private lazy var bellImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.image = Asset.icHeaderBell.image
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(notificationsTapped))
+        imageView.addGestureRecognizer(tapRecognizer)
+        imageView.isUserInteractionEnabled = true
         return imageView
     }()
     
@@ -83,5 +92,9 @@ final class HomeHeaderView: UIView {
             make.width.equalTo(22)
             make.height.equalTo(25)
         }
+    }
+    
+    @objc func notificationsTapped() {
+        delegate?.notificationsTapped()
     }
 }

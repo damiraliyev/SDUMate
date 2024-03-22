@@ -30,7 +30,7 @@ final class AnnouncementCell: UICollectionViewCell {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = .semibold16
+        label.font = .semibold15
         label.text = "Object oriented programming"
         label.numberOfLines = 2
         return label

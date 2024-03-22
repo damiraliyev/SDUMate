@@ -22,7 +22,7 @@ final class SettingsViewController: BaseViewController, ISettingsView {
     }
     
     private func setupViews() {
-        
+        view.backgroundColor = ._110F2F
     }
     
     private func setupConstraints() {

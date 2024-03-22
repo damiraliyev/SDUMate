@@ -7,14 +7,21 @@
 
 import UIKit
 
+protocol AppliedFiltersDelegate: AnyObject {
+    func filterTapped()
+}
+
 final class AppliedFiltersView: UIView {
     
-    private let filterButton: UIButton = {
+    weak var delegate: AppliedFiltersDelegate?
+    
+    private lazy var filterButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(Asset.icFilter.image, for: .normal)
         button.layer.cornerRadius = 7
         button.backgroundColor = ._282645
         button.tintColor = .white
+        button.addTarget(self, action: #selector(filterTapped), for: .touchUpInside)
         return button
     }()
     
@@ -61,6 +68,10 @@ final class AppliedFiltersView: UIView {
         layout.sectionInset.left = 4
         layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         return layout
+    }
+    
+    @objc func filterTapped() {
+        delegate?.filterTapped()
     }
 }
 

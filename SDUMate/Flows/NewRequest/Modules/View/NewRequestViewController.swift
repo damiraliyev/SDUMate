@@ -22,7 +22,7 @@ final class NewRequestViewController: BaseViewController, INewRequestView {
     }
     
     private func setupViews() {
-        view.backgroundColor = .accentGreen
+        view.backgroundColor = ._110F2F
     }
     
     private func setupConstraints() {

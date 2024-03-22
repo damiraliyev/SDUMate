@@ -240,6 +240,22 @@ public extension UIColor {
     static var _323266: UIColor {
         return UIColor(hex: 0x323266)
     }
+    
+    static var _221F53: UIColor {
+        return UIColor(hex: 0x221F53)
+    }
+    
+    static var _110F2F: UIColor {
+        return UIColor(hex: 0x110F2F)
+    }
+    
+    static var _d9d9d9: UIColor {
+        return UIColor(hex: 0xD9D9D9)
+    }
+    
+    static var _767680: UIColor {
+        return UIColor(hex: 0x767680)
+    }
 
     convenience init(hex: UInt) {
         self.init(

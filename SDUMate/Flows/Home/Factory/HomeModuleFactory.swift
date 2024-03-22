@@ -20,4 +20,11 @@ final class HomeModuleFactory {
         view.presenter = presenter
         return view
     }
+    
+    func makeAnnouncementDetailsView(coordinator: IHomeCoordinator) -> IAnnouncementDetailsView {
+        let view: IAnnouncementDetailsView = AnnouncementDetailsViewController()
+        let presenter: IAnnouncementDetailsPresenter = AnnouncementDetailsPresenter(view: view, coordinator: coordinator)
+        view.presenter = presenter
+        return view
+    }
 }

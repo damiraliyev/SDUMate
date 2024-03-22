@@ -22,7 +22,7 @@ final class RatingViewController: BaseViewController, IRatingView {
     }
     
     private func setupViews() {
-        view.backgroundColor = .accentGrey
+        view.backgroundColor = ._110F2F
     }
     
     private func setupConstraints() {

@@ -22,7 +22,7 @@ final class SessionsViewController: BaseViewController, ISessionsView {
     }
     
     private func setupViews() {
-        view.backgroundColor = .accentOrange
+        view.backgroundColor = ._110F2F
     }
     
     private func setupConstraints() {

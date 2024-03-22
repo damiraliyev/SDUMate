@@ -25,7 +25,11 @@ final class HomeViewController: BaseViewController {
     
     private let searchFieldView = SearchFieldView()
     
-    private let appliedFiltersView = AppliedFiltersView()
+    private lazy var appliedFiltersView: AppliedFiltersView = {
+        let view = AppliedFiltersView()
+        view.delegate = self
+        return view
+    }()
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -49,7 +53,7 @@ final class HomeViewController: BaseViewController {
     }
     
     private func setupViews() {
-        view.backgroundColor = .background
+        view.backgroundColor = ._110F2F
         view.addSubviews([headerView, searchFieldView, appliedFiltersView, collectionView])
     }
     
@@ -92,6 +96,10 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 16
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        presenter?.didSelectItem(at: indexPath)
+    }
 }
 
 extension HomeViewController: UICollectionViewDataSource {
@@ -103,5 +111,11 @@ extension HomeViewController: UICollectionViewDataSource {
         let cell: AnnouncementCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
         cell.configure(with: announcements[indexPath.item])
         return cell
+    }
+}
+
+extension HomeViewController: AppliedFiltersDelegate {
+    func filterTapped() {
+        presenter?.filterTapped()
     }
 }

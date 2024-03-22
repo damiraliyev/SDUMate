@@ -12,7 +12,7 @@ extension UIFont {
     private enum Constants {
         static let regular = "Poppins-Regular"
         static let medium = "Poppins-Medium"
-        static let semibold = "Poppins-SemiBold"
+        static let semibold = "Poppins-Semibold"
         static let bold = "Poppins-Bold"
     }
     
@@ -26,13 +26,16 @@ extension UIFont {
     static let medium12 = UIFont(name: Constants.medium, size: 12)!
     static let medium16 = UIFont(name: Constants.medium, size: 16)!
     static let medium18 = UIFont(name: Constants.medium, size: 18)!
+    static let medium20 = UIFont(name: Constants.medium, size: 20)!
     static let medium24 = UIFont(name: Constants.medium, size: 24)!
-    static let medium36 = UIFont(name: Constants.medium, size: 36)
+    static let medium36 = UIFont(name: Constants.medium, size: 36)!
     
-    static let semibold15 = UIFont(name: Constants.semibold, size: 15)
-    static let semibold16 = UIFont(name: Constants.semibold, size: 16)
+    static let semibold15 = UIFont(name: Constants.semibold, size: 15)!
+    static let semibold16 = UIFont(name: Constants.semibold, size: 16)!
+    static let semibold24 = UIFont(name: Constants.semibold, size: 24)!
     
     static let bold14 = UIFont(name: Constants.bold, size: 14)!
     static let bold22 = UIFont(name: Constants.bold, size: 22)
+    static let bold24 = UIFont(name: Constants.bold, size: 24)
     static let bold48 = UIFont(name: Constants.bold, size: 48)!
 }

@@ -8,7 +8,8 @@
 import Foundation
 
 protocol IHomePresenter {
-    
+    func filterTapped()
+    func didSelectItem(at indexPath: IndexPath)
 }
 
 final class HomePresenter: IHomePresenter {
@@ -18,5 +19,13 @@ final class HomePresenter: IHomePresenter {
     init(view: IHomeView, coordinator: IHomeCoordinator) {
         self.view = view
         self.coordinator = coordinator
+    }
+    
+    func filterTapped() {
+        coordinator?.showFilterView()
+    }
+    
+    func didSelectItem(at indexPath: IndexPath) {
+        coordinator?.showAnnouncementDetailsView()
     }
 }

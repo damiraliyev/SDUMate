@@ -11,6 +11,8 @@ protocol IHomeCoordinator: IBaseCoordinator {
     var onFlowDidFinish: Completion? { get set }
     
     func onBackTapped(completion: Completion?)
+    func showFilterView()
+    func showAnnouncementDetailsView()
 }
 
 final class HomeCoordinator: BaseCoordinator, TababbleCoordinator {
@@ -35,6 +37,17 @@ final class HomeCoordinator: BaseCoordinator, TababbleCoordinator {
 
 extension HomeCoordinator: IHomeCoordinator {
     func onBackTapped(completion: Completion?) {
-        
+        router.popModule()
+        completion?()
+    }
+    
+    func showFilterView() {
+        let filterViewController = FilterViewController()
+        router.present(filterViewController, animated: true, presentType: .panModal)
+    }
+    
+    func showAnnouncementDetailsView() {
+        let announcementDescriptionView = moduleFactory.makeAnnouncementDetailsView(coordinator: self)
+        router.push(announcementDescriptionView)
     }
 }

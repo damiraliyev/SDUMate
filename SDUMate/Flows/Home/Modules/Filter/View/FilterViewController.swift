@@ -13,7 +13,13 @@ struct CategoryFilter {
     var isChosen: Bool
 }
 
-final class FilterViewController: BaseViewController {
+protocol IFilterView: Presentable {
+    var presenter: IFilterPresenter? { get set }
+}
+
+final class FilterViewController: BaseViewController, IFilterView {
+    
+    var presenter: IFilterPresenter?
     
     private var categories: [CategoryFilter] = [
         CategoryFilter(name: "Software Engineering", isChosen: false),
@@ -22,10 +28,11 @@ final class FilterViewController: BaseViewController {
         CategoryFilter(name: "Linear Algebra", isChosen: false)
     ]
     
-    private let closeButton: UIButton = {
+    private lazy var closeButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(Asset.icXCloseBold.image, for: .normal)
         button.tintColor = .white
+        button.addTarget(self, action: #selector(closeTapped), for: .touchUpInside)
         return button
     }()
     
@@ -155,6 +162,10 @@ final class FilterViewController: BaseViewController {
             make.bottom.equalToSuperview().offset(-32)
             make.height.equalTo(54)
         }
+    }
+    
+    @objc func closeTapped() {
+        presenter?.closeTapped()
     }
 }
 

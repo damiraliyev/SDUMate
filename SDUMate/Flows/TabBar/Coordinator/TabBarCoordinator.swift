@@ -49,6 +49,9 @@ final class TabBarCoordinator: BaseCoordinator {
         homeCoordinator.start()
         homeCoordinator.tabCoordinatorDelegate = self
         addDependency(homeCoordinator)
+        homeCoordinator.onFlowDidFinish = { [weak self, weak homeCoordinator] in
+            self?.removeDependency(homeCoordinator)
+        }
         guard let controller = rootController.toPresent() else { return }
         self.homeCoordinator = homeCoordinator
         tabRootContainers.append(

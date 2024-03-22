@@ -88,6 +88,9 @@
 		682D08742B7DF77100A5FCC1 /* PanModal in Frameworks */ = {isa = PBXBuildFile; productRef = 682D08732B7DF77100A5FCC1 /* PanModal */; };
 		682D08772B7DFA2600A5FCC1 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682D08762B7DFA2600A5FCC1 /* DatePickerViewController.swift */; };
 		682D087A2B7DFB3A00A5FCC1 /* SuccessAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682D08792B7DFB3A00A5FCC1 /* SuccessAlertViewController.swift */; };
+		68330A5E2BAD10CB00FB14DB /* FilterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68330A5D2BAD10CB00FB14DB /* FilterPresenter.swift */; };
+		68330A602BAD132300FB14DB /* InsetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68330A5F2BAD132300FB14DB /* InsetButton.swift */; };
+		68330A632BAD1F4B00FB14DB /* SessionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68330A622BAD1F4B00FB14DB /* SessionCell.swift */; };
 		6838F72C2B93415800265406 /* SMNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6838F72B2B93415800265406 /* SMNavigationBar.swift */; };
 		6838F7372B934A0600265406 /* UserInfoSetupCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6838F7362B934A0600265406 /* UserInfoSetupCoordinator.swift */; };
 		6838F7392B934A7700265406 /* UserInfoSetupModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6838F7382B934A7700265406 /* UserInfoSetupModuleFactory.swift */; };
@@ -260,6 +263,9 @@
 		682D08042B7DF31900A5FCC1 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		682D08762B7DFA2600A5FCC1 /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		682D08792B7DFB3A00A5FCC1 /* SuccessAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessAlertViewController.swift; sourceTree = "<group>"; };
+		68330A5D2BAD10CB00FB14DB /* FilterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPresenter.swift; sourceTree = "<group>"; };
+		68330A5F2BAD132300FB14DB /* InsetButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetButton.swift; sourceTree = "<group>"; };
+		68330A622BAD1F4B00FB14DB /* SessionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCell.swift; sourceTree = "<group>"; };
 		6838F72B2B93415800265406 /* SMNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMNavigationBar.swift; sourceTree = "<group>"; };
 		6838F7362B934A0600265406 /* UserInfoSetupCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoSetupCoordinator.swift; sourceTree = "<group>"; };
 		6838F7382B934A7700265406 /* UserInfoSetupModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoSetupModuleFactory.swift; sourceTree = "<group>"; };
@@ -762,6 +768,7 @@
 				682D07A32B7DF31900A5FCC1 /* BPPaddingButton.swift */,
 				682D07A42B7DF31900A5FCC1 /* IndicatorButton.swift */,
 				684BA7B92B896EC90055BEE3 /* GradientButton.swift */,
+				68330A5F2BAD132300FB14DB /* InsetButton.swift */,
 			);
 			path = UIButton;
 			sourceTree = "<group>";
@@ -884,6 +891,22 @@
 				682D08792B7DFB3A00A5FCC1 /* SuccessAlertViewController.swift */,
 			);
 			path = SuccessAlertViewController;
+			sourceTree = "<group>";
+		};
+		68330A5C2BAD10BF00FB14DB /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				68330A5D2BAD10CB00FB14DB /* FilterPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		68330A612BAD1F3D00FB14DB /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				68330A622BAD1F4B00FB14DB /* SessionCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		6838F72D2B9344C000265406 /* UserInfo */ = {
@@ -1470,6 +1493,7 @@
 		68CFF50A2BABAA50006C9AF8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				68330A612BAD1F3D00FB14DB /* Cells */,
 				68CFF51E2BABAB17006C9AF8 /* SessionsViewController.swift */,
 			);
 			path = View;
@@ -1663,6 +1687,7 @@
 		68CFF54F2BABF4BB006C9AF8 /* Filter */ = {
 			isa = PBXGroup;
 			children = (
+				68330A5C2BAD10BF00FB14DB /* Presenter */,
 				68CFF5562BAC037C006C9AF8 /* View */,
 			);
 			path = Filter;
@@ -1997,9 +2022,11 @@
 				68929C132BA6F826000A38E9 /* HomeCoordinator.swift in Sources */,
 				682D08182B7DF31900A5FCC1 /* UIImage+Extensions.swift in Sources */,
 				68CFF5422BABC4FD006C9AF8 /* SearchFieldView.swift in Sources */,
+				68330A632BAD1F4B00FB14DB /* SessionCell.swift in Sources */,
 				682D08232B7DF31900A5FCC1 /* UIDevice+Extension.swift in Sources */,
 				68D1902F2B8B2F330045DBE5 /* LoginPresenter.swift in Sources */,
 				682D082D2B7DF31900A5FCC1 /* Collection+Extension.swift in Sources */,
+				68330A602BAD132300FB14DB /* InsetButton.swift in Sources */,
 				682D08392B7DF31900A5FCC1 /* BPPaddingButton.swift in Sources */,
 				68CFF5402BABBF44006C9AF8 /* HomeHeaderView.swift in Sources */,
 				68BDA23F2BAA6F4400FDF1A4 /* TabBarController.swift in Sources */,
@@ -2023,6 +2050,7 @@
 				682D081A2B7DF31900A5FCC1 /* Vibration.swift in Sources */,
 				682D08572B7DF31900A5FCC1 /* BaseNavigationViewController.swift in Sources */,
 				68CFF5372BABB292006C9AF8 /* SettingsViewController.swift in Sources */,
+				68330A5E2BAD10CB00FB14DB /* FilterPresenter.swift in Sources */,
 				68CFF55E2BAC128C006C9AF8 /* AnnounceDesciptionView.swift in Sources */,
 				682D08772B7DFA2600A5FCC1 /* DatePickerViewController.swift in Sources */,
 				68929C0A2BA596A1000A38E9 /* PermissionHelper.swift in Sources */,

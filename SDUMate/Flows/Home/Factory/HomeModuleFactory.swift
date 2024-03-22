@@ -21,9 +21,19 @@ final class HomeModuleFactory {
         return view
     }
     
-    func makeAnnouncementDetailsView(coordinator: IHomeCoordinator) -> IAnnouncementDetailsView {
-        let view: IAnnouncementDetailsView = AnnouncementDetailsViewController()
+    func makeFilterView(coordinator: IHomeCoordinator) -> IFilterView {
+        let view: IFilterView = FilterViewController()
+        let presenter: IFilterPresenter = FilterPresenter(view: view, coordinator: coordinator)
+        view.presenter = presenter
+        return view
+    }
+    
+    func makeAnnouncementDetailsView(announcement: Announcement, coordinator: IHomeCoordinator) -> IAnnouncementDetailsView {
+        let view: IAnnouncementDetailsView = AnnouncementDetailsViewController(announcement: announcement)
         let presenter: IAnnouncementDetailsPresenter = AnnouncementDetailsPresenter(view: view, coordinator: coordinator)
+        presenter.onBackTapped = { [weak coordinator] in
+            coordinator?.onBackTapped(completion: nil)
+        }
         view.presenter = presenter
         return view
     }

@@ -14,13 +14,6 @@ protocol IHomeView: Presentable {
 final class HomeViewController: BaseViewController {
     var presenter: IHomePresenter?
     
-    private let announcements = [
-        Announcement(category: "Software Engineering", title: "Object oriented programming", description: "Object-oriented programming (OOP) is a computer programming model that organizes software design around data, or objects, rather than functions and logic. An object can be defined as a data field that has unique attributes and behavior.", announcer: "mntn7", rating: "5/5", reviewsCount: 55, price: "FREE"),
-        Announcement(category: "Software Engineering", title: "Unit testing iOS", description: "Unit testing is the process where you test the smallest functional unit of code. Software testing helps ensure code quality, and it's an integral part of software development.", announcer: "bekzhan", rating: "5/5", reviewsCount: 50, price: "5000 ₸"),
-        Announcement(category: "Software Engineering", title: "Swift UI", description: "SwiftUI is an innovative, exceptionally simple way to build user interfaces across all Apple platforms with the power of Swift.", announcer: "mntn7", rating: "5/5", reviewsCount: 55, price: "10 000 ₸"),
-        Announcement(category: "Software Engineering", title: "Swift concurrency", description: "The concurrency model in Swift is built on top of threads, but you don't interact with them directly.", announcer: "mntn7", rating: "5/5", reviewsCount: 55, price: "FREE"),
-    ]
-    
     private let headerView = HomeHeaderView()
     
     private let searchFieldView = SearchFieldView()
@@ -104,12 +97,12 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return announcements.count
+        return presenter?.announcements.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: AnnouncementCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-        cell.configure(with: announcements[indexPath.item])
+        cell.configure(with: presenter?.announcements[indexPath.item] ?? Announcement())
         return cell
     }
 }

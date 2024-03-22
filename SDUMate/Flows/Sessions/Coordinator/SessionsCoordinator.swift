@@ -13,6 +13,7 @@ protocol ISessionsCoordinator: IBaseCoordinator {
     var onFlowDidFinish: Completion? { get set }
     
     func onBackTapped(completion: Completion?)
+    func showAnnouncementDetailsView(with announcement: Announcement)
 }
 
 final class SessionsCoordinator: BaseCoordinator, TababbleCoordinator {
@@ -38,5 +39,15 @@ final class SessionsCoordinator: BaseCoordinator, TababbleCoordinator {
 extension SessionsCoordinator: ISessionsCoordinator {
     func onBackTapped(completion: Completion?) {
         
+    }
+    
+    func showAnnouncementDetailsView(with announcement: Announcement) {
+        let homeCoordinator = moduleFactory.makeHomeCoordinator(router: router)
+        addDependency(homeCoordinator)
+        homeCoordinator.onFlowDidFinish = { [weak self, weak homeCoordinator] in
+            self?.removeDependency(homeCoordinator)
+        }
+        let announcementDescriptionView = moduleFactory.makeAnnouncementDetailsView(announcement: announcement, coordinator: homeCoordinator)
+        router.push(announcementDescriptionView)
     }
 }

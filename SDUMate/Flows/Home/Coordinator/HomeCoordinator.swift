@@ -11,8 +11,9 @@ protocol IHomeCoordinator: IBaseCoordinator {
     var onFlowDidFinish: Completion? { get set }
     
     func onBackTapped(completion: Completion?)
+    func dismissPresenterModule(completion: Completion?)
     func showFilterView()
-    func showAnnouncementDetailsView()
+    func showAnnouncementDetailsView(with announcement: Announcement)
 }
 
 final class HomeCoordinator: BaseCoordinator, TababbleCoordinator {
@@ -41,13 +42,19 @@ extension HomeCoordinator: IHomeCoordinator {
         completion?()
     }
     
+    func dismissPresenterModule(completion: Completion?) {
+        router.dismissModule {
+            completion?()
+        }
+    }
+    
     func showFilterView() {
-        let filterViewController = FilterViewController()
+        let filterViewController = moduleFactory.makeFilterView(coordinator: self)
         router.present(filterViewController, animated: true, presentType: .panModal)
     }
     
-    func showAnnouncementDetailsView() {
-        let announcementDescriptionView = moduleFactory.makeAnnouncementDetailsView(coordinator: self)
+    func showAnnouncementDetailsView(with announcement: Announcement) {
+        let announcementDescriptionView = moduleFactory.makeAnnouncementDetailsView(announcement: announcement, coordinator: self)
         router.push(announcementDescriptionView)
     }
 }

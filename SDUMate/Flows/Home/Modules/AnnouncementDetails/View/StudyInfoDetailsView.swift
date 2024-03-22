@@ -40,7 +40,7 @@ final class StudyInfoDetailsView: UIView {
     private func setupConstraints() {
         stackView.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview().inset(16)
-            make.leading.equalToSuperview().offset(16)
+            make.leading.trailing.equalToSuperview().inset(16)
         }
         [facultyInfoView, studyProgramView].forEach {
             $0.snp.makeConstraints { make in

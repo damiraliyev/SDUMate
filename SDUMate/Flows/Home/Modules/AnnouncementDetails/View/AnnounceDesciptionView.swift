@@ -53,4 +53,8 @@ final class AnnounceDesciptionView: UIView {
             make.bottom.equalToSuperview().offset(-15)
         }
     }
+    
+    func set(text: String) {
+        descriptionTextLabel.text = text
+    }
 }

@@ -14,14 +14,15 @@ protocol IAnnouncementDetailsView: Presentable {
 final class AnnouncementDetailsViewController: BaseViewController, IAnnouncementDetailsView {
     
     var presenter: IAnnouncementDetailsPresenter?
+    private let announcement: Announcement
     
     private lazy var navigationBar = SMNavigationBar(title: "") { [weak presenter] in
-        presenter?.backTapped()
+        presenter?.onBackTapped?()
     }
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-//        scrollView.showsVerticalScrollIndicator = false
+        scrollView.showsVerticalScrollIndicator = false
         scrollView.alwaysBounceVertical = true
         return scrollView
     }()
@@ -64,6 +65,33 @@ final class AnnouncementDetailsViewController: BaseViewController, IAnnouncement
     
     private let userContactDetailsView = UserContactDetailsView()
     
+    private let sendButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor = .white
+        button.setTitle("Send offer", for: .normal)
+        button.titleLabel?.font = .medium18
+        button.setTitleColor(.dark, for: .normal)
+        button.layer.cornerRadius = 10
+        return button
+    }()
+    
+    private let priceLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = .bold22
+        label.text = "990 ₸"
+        return label
+    }()
+    
+    init(announcement: Announcement) {
+        self.announcement = announcement
+        super.init()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -74,8 +102,9 @@ final class AnnouncementDetailsViewController: BaseViewController, IAnnouncement
         view.backgroundColor = ._110F2F
         view.addSubviews([scrollView, navigationBar])
         scrollView.addSubview(containerView)
-        containerView.addSubviews([imageView, labelsStackView, descriptionView, studyInfoDetailsView, userContactDetailsView])
+        containerView.addSubviews([imageView, labelsStackView, descriptionView, studyInfoDetailsView, userContactDetailsView, priceLabel, sendButton])
         labelsStackView.addArrangedSubviews([titleLabel, announcerLabel])
+        configure()
     }
     
     private func setupConstraints() {
@@ -106,7 +135,23 @@ final class AnnouncementDetailsViewController: BaseViewController, IAnnouncement
         userContactDetailsView.snp.makeConstraints { make in
             make.top.equalTo(studyInfoDetailsView.snp.bottom).offset(16)
             make.leading.trailing.equalToSuperview().inset(16)
-            make.bottom.equalToSuperview().offset(-16)
         }
+        priceLabel.snp.makeConstraints { make in
+            make.top.equalTo(userContactDetailsView.snp.bottom).offset(12)
+            make.leading.equalToSuperview().offset(16)
+        }
+        sendButton.snp.makeConstraints { make in
+            make.top.equalTo(priceLabel.snp.bottom).offset(12)
+            make.leading.trailing.equalToSuperview().inset(16)
+            make.bottom.equalToSuperview().offset(-16)
+            make.height.equalTo(54)
+        }
+    }
+    
+    private func configure() {
+        titleLabel.text = announcement.title
+        announcerLabel.text = announcement.announcer
+        descriptionView.set(text: announcement.description)
+        priceLabel.text = announcement.price
     }
 }

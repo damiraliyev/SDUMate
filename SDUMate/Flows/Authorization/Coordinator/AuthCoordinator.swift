@@ -57,7 +57,7 @@ final class AuthCoordinator: BaseCoordinator, IAuthCoordinator {
     }
     
     func showHome() {
-        
+        onFlowDidFinish?()
     }
     
     func showUserInfoSetup() {

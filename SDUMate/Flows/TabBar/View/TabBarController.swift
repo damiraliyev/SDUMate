@@ -10,6 +10,7 @@ import UIKit
 protocol TababbleCoordinator: BaseCoordinator {
     var onOwnerTabBarNeedsToBeChanged: ((_ toTabBarItem: OwnerTabBarItem) -> Void)? { get set }
     var tabCoordinatorDelegate: TabCoordinatorDelegate? { get set }
+    var onFlowDidFinish: Completion? { get set }
 }
 
 protocol TabBarPresentable {

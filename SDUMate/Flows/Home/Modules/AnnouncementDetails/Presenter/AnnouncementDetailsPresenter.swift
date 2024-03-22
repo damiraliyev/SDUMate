@@ -8,19 +8,17 @@
 import Foundation
 
 protocol IAnnouncementDetailsPresenter: AnyObject {
-    func backTapped()
+    var onBackTapped: Completion? { get set }
 }
 
 final class AnnouncementDetailsPresenter: IAnnouncementDetailsPresenter {
     weak var view: IAnnouncementDetailsView?
-    private weak var coordinator: IHomeCoordinator?
+    private let coordinator: IHomeCoordinator?
+    
+    var onBackTapped: Completion?
     
     init(view: IAnnouncementDetailsView, coordinator: IHomeCoordinator) {
         self.view = view
         self.coordinator = coordinator
-    }
-    
-    func backTapped() {
-        coordinator?.onBackTapped(completion: nil)
     }
 }

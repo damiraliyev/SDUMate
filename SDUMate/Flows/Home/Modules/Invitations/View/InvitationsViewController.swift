@@ -39,6 +39,7 @@ final class InvitationsViewController: BaseViewController, IInvitationsView {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(AnnouncementCell.self)
+        collectionView.register(InvitationDateHeaderView.self, kind: UICollectionView.elementKindSectionHeader)
         collectionView.contentInset.top = 14
         collectionView.contentInset.bottom = 24
         collectionView.alwaysBounceVertical = true
@@ -93,6 +94,11 @@ extension InvitationsViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension InvitationsViewController: UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        1
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 4
     }
@@ -100,6 +106,20 @@ extension InvitationsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: InvitationCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: 43)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: InvitationDateHeaderView.defaultReuseIdentifier, for: indexPath)
+            return headerView
+        default:
+            return UICollectionReusableView()
+        }
     }
 }
 

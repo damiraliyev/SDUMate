@@ -145,6 +145,7 @@
 		68BDA23E2BAA6F4400FDF1A4 /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BDA2372BAA6F4400FDF1A4 /* BaseTabBarController.swift */; };
 		68BDA23F2BAA6F4400FDF1A4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BDA2382BAA6F4400FDF1A4 /* TabBarController.swift */; };
 		68BDA2432BAA71D200FDF1A4 /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BDA2422BAA71D200FDF1A4 /* TabBarItem.swift */; };
+		68BE75012BB0009200331EFC /* InvitationDateHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BE75002BB0009200331EFC /* InvitationDateHeaderView.swift */; };
 		68C5C4732B944DB5006C9540 /* PhotoSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C5C4722B944DB5006C9540 /* PhotoSetupViewController.swift */; };
 		68C5C4752B944E04006C9540 /* PhotoSetupPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C5C4742B944E04006C9540 /* PhotoSetupPresenter.swift */; };
 		68C5C4782B948CE2006C9540 /* AccountChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C5C4772B948CE2006C9540 /* AccountChoiceViewController.swift */; };
@@ -319,6 +320,7 @@
 		68BDA2372BAA6F4400FDF1A4 /* BaseTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
 		68BDA2382BAA6F4400FDF1A4 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		68BDA2422BAA71D200FDF1A4 /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
+		68BE75002BB0009200331EFC /* InvitationDateHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationDateHeaderView.swift; sourceTree = "<group>"; };
 		68C5C4722B944DB5006C9540 /* PhotoSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSetupViewController.swift; sourceTree = "<group>"; };
 		68C5C4742B944E04006C9540 /* PhotoSetupPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSetupPresenter.swift; sourceTree = "<group>"; };
 		68C5C4772B948CE2006C9540 /* AccountChoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountChoiceViewController.swift; sourceTree = "<group>"; };
@@ -950,6 +952,7 @@
 			children = (
 				68330A6B2BAD5E3900FB14DB /* Cells */,
 				68330A672BAD4B4700FB14DB /* InvitationsViewController.swift */,
+				68BE75002BB0009200331EFC /* InvitationDateHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2115,6 +2118,7 @@
 				681EA8672BAFB22C00BE4D37 /* AppliedFilter.swift in Sources */,
 				68330A6A2BAD4B5100FB14DB /* InvitationsPresenter.swift in Sources */,
 				688442D12B7E076000695763 /* AuthModuleFactory.swift in Sources */,
+				68BE75012BB0009200331EFC /* InvitationDateHeaderView.swift in Sources */,
 				68BDA2432BAA71D200FDF1A4 /* TabBarItem.swift in Sources */,
 				682D08282B7DF31900A5FCC1 /* UITableView+Extension.swift in Sources */,
 				682D082A2B7DF31900A5FCC1 /* UIEdgeInsets+Extensions.swift in Sources */,

@@ -146,6 +146,10 @@
 		68BDA23F2BAA6F4400FDF1A4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BDA2382BAA6F4400FDF1A4 /* TabBarController.swift */; };
 		68BDA2432BAA71D200FDF1A4 /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BDA2422BAA71D200FDF1A4 /* TabBarItem.swift */; };
 		68BE75012BB0009200331EFC /* InvitationDateHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BE75002BB0009200331EFC /* InvitationDateHeaderView.swift */; };
+		68BE75042BB007D600331EFC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BE75032BB007D600331EFC /* ProfileViewController.swift */; };
+		68BE75082BB00AF400331EFC /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BE75072BB00AF400331EFC /* ProfilePresenter.swift */; };
+		68BE750B2BB00B7F00331EFC /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BE750A2BB00B7F00331EFC /* ProfileCoordinator.swift */; };
+		68BE750E2BB00B9000331EFC /* ProfileModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BE750D2BB00B9000331EFC /* ProfileModuleFactory.swift */; };
 		68C5C4732B944DB5006C9540 /* PhotoSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C5C4722B944DB5006C9540 /* PhotoSetupViewController.swift */; };
 		68C5C4752B944E04006C9540 /* PhotoSetupPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C5C4742B944E04006C9540 /* PhotoSetupPresenter.swift */; };
 		68C5C4782B948CE2006C9540 /* AccountChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C5C4772B948CE2006C9540 /* AccountChoiceViewController.swift */; };
@@ -321,6 +325,10 @@
 		68BDA2382BAA6F4400FDF1A4 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		68BDA2422BAA71D200FDF1A4 /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
 		68BE75002BB0009200331EFC /* InvitationDateHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationDateHeaderView.swift; sourceTree = "<group>"; };
+		68BE75032BB007D600331EFC /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		68BE75072BB00AF400331EFC /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
+		68BE750A2BB00B7F00331EFC /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
+		68BE750D2BB00B9000331EFC /* ProfileModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModuleFactory.swift; sourceTree = "<group>"; };
 		68C5C4722B944DB5006C9540 /* PhotoSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSetupViewController.swift; sourceTree = "<group>"; };
 		68C5C4742B944E04006C9540 /* PhotoSetupPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSetupPresenter.swift; sourceTree = "<group>"; };
 		68C5C4772B948CE2006C9540 /* AccountChoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountChoiceViewController.swift; sourceTree = "<group>"; };
@@ -1302,6 +1310,7 @@
 		68929C112BA6F7F3000A38E9 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				68BE75022BB007CC00331EFC /* Profile */,
 				68330A642BAD4B1800FB14DB /* Invitations */,
 				68CFF5602BAC176C006C9AF8 /* AnnouncementDetails */,
 				68CFF54F2BABF4BB006C9AF8 /* Filter */,
@@ -1436,6 +1445,41 @@
 				68CFF5192BABAAC3006C9AF8 /* Modules */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		68BE75022BB007CC00331EFC /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				68BE75092BB00B7000331EFC /* Coordinator */,
+				68BE75062BB00AE600331EFC /* View */,
+				68BE75052BB00AD900331EFC /* Presenter */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		68BE75052BB00AD900331EFC /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				68BE75072BB00AF400331EFC /* ProfilePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		68BE75062BB00AE600331EFC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				68BE75032BB007D600331EFC /* ProfileViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		68BE75092BB00B7000331EFC /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				68BE750A2BB00B7F00331EFC /* ProfileCoordinator.swift */,
+				68BE750D2BB00B9000331EFC /* ProfileModuleFactory.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 		68C5C4702B944DA3006C9540 /* Presenter */ = {
@@ -2004,6 +2048,7 @@
 				682D08292B7DF31900A5FCC1 /* UIStackView+Extension.swift in Sources */,
 				682D08302B7DF31900A5FCC1 /* CGPoint+Extension.swift in Sources */,
 				68D1902D2B8B2ECB0045DBE5 /* LoginViewController.swift in Sources */,
+				68BE750B2BB00B7F00331EFC /* ProfileCoordinator.swift in Sources */,
 				680A97922B98B0EE005EFB17 /* AuthManager.swift in Sources */,
 				6838F7412B936D4200265406 /* FormTextFieldView.swift in Sources */,
 				682D085A2B7DF31900A5FCC1 /* FeedNavigationController.swift in Sources */,
@@ -2026,6 +2071,7 @@
 				68D190322B8B41080045DBE5 /* SMTextFieldView.swift in Sources */,
 				68BDA23C2BAA6F4400FDF1A4 /* TabBarCoordinatorFactory.swift in Sources */,
 				682D08112B7DF31900A5FCC1 /* Device.swift in Sources */,
+				68BE75082BB00AF400331EFC /* ProfilePresenter.swift in Sources */,
 				688442D72B7E0EF600695763 /* EntryViewController.swift in Sources */,
 				68C5C4812B949CE1006C9540 /* StudentSignUpPresenter.swift in Sources */,
 				682D082B2B7DF31900A5FCC1 /* UITextField+Extensions.swift in Sources */,
@@ -2106,6 +2152,7 @@
 				6882A4CD2B786AD400B2AE72 /* SceneDelegate.swift in Sources */,
 				68929C1C2BA6F97E000A38E9 /* HomePresenter.swift in Sources */,
 				68929C1A2BA6F977000A38E9 /* HomeViewController.swift in Sources */,
+				68BE75042BB007D600331EFC /* ProfileViewController.swift in Sources */,
 				682D085C2B7DF31900A5FCC1 /* CoordinatorNavigationController.swift in Sources */,
 				685571C52B9ABA7300865191 /* VerificationSentViewController.swift in Sources */,
 				682D081A2B7DF31900A5FCC1 /* Vibration.swift in Sources */,
@@ -2117,6 +2164,7 @@
 				68929C0A2BA596A1000A38E9 /* PermissionHelper.swift in Sources */,
 				681EA8672BAFB22C00BE4D37 /* AppliedFilter.swift in Sources */,
 				68330A6A2BAD4B5100FB14DB /* InvitationsPresenter.swift in Sources */,
+				68BE750E2BB00B9000331EFC /* ProfileModuleFactory.swift in Sources */,
 				688442D12B7E076000695763 /* AuthModuleFactory.swift in Sources */,
 				68BE75012BB0009200331EFC /* InvitationDateHeaderView.swift in Sources */,
 				68BDA2432BAA71D200FDF1A4 /* TabBarItem.swift in Sources */,

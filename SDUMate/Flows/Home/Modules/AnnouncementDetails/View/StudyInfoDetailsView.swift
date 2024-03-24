@@ -20,6 +20,8 @@ final class StudyInfoDetailsView: UIView {
     
     private let studyProgramView = LabelWithLeftIconView(image: Asset.icSuitcase.image, text: "Computer science")
     
+    private let dateOfEnteringView = LabelWithLeftIconView(image: Asset.icHatClear.image, text: "2020")
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -34,7 +36,8 @@ final class StudyInfoDetailsView: UIView {
         backgroundColor = ._767680.withAlphaComponent(0.2)
         layer.cornerRadius = 15
         addSubview(stackView)
-        stackView.addArrangedSubviews([facultyInfoView, studyProgramView])
+        stackView.addArrangedSubviews([facultyInfoView, studyProgramView, dateOfEnteringView])
+        dateOfEnteringView.safeHide()
     }
     
     private func setupConstraints() {
@@ -42,10 +45,14 @@ final class StudyInfoDetailsView: UIView {
             make.top.bottom.equalToSuperview().inset(16)
             make.leading.trailing.equalToSuperview().inset(16)
         }
-        [facultyInfoView, studyProgramView].forEach {
+        [facultyInfoView, studyProgramView, dateOfEnteringView].forEach {
             $0.snp.makeConstraints { make in
                 make.height.equalTo(30)
             }
         }
+    }
+    
+    func showDateOfEntering() {
+        dateOfEnteringView.safeShow()
     }
 }

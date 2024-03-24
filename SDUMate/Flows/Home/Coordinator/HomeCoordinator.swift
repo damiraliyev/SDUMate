@@ -15,6 +15,7 @@ protocol IHomeCoordinator: IBaseCoordinator {
     func showFilterView(appliedFilter: AppliedFilter?, delegate: FilterViewDelegate)
     func showAnnouncementDetailsView(with announcement: Announcement)
     func showInvitationsView()
+    func showProfileView()
 }
 
 final class HomeCoordinator: BaseCoordinator, TababbleCoordinator {
@@ -62,5 +63,15 @@ extension HomeCoordinator: IHomeCoordinator {
     func showInvitationsView() {
         let invitationsView = moduleFactory.makeInvitationsView(coordinator: self)
         router.push(invitationsView)
+    }
+    
+    func showProfileView() {
+        guard let navigationController = router.navigationController else { return }
+        let profileCoordinator = moduleFactory.makeProfileCoordinator(navigationController: navigationController)
+        profileCoordinator.onFlowDidFinish = { [weak self, weak profileCoordinator] in
+            self?.removeDependency(profileCoordinator)
+        }
+        addDependency(profileCoordinator)
+        profileCoordinator.start()
     }
 }

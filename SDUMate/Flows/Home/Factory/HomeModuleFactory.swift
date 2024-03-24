@@ -46,4 +46,12 @@ final class HomeModuleFactory {
         view.presenter = presenter
         return view
     }
+    
+    func makeProfileCoordinator(navigationController: CoordinatorNavigationController) -> Coordinator & IProfileCoordinator {
+        let coordinator: Coordinator & IProfileCoordinator = ProfileCoordinator(
+            router: Router(navigationController: navigationController),
+            container: container
+        )
+        return coordinator
+    }
 }

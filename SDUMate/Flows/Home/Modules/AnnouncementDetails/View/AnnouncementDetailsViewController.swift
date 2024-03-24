@@ -59,6 +59,11 @@ final class AnnouncementDetailsViewController: BaseViewController, IAnnouncement
         return label
     }()
     
+//    private let typeLabel: UILabel = {
+//        let label = UILabel()
+//        return label
+//    }()
+    
     private let descriptionView = AnnounceDesciptionView()
     
     private let studyInfoDetailsView = StudyInfoDetailsView()

@@ -9,8 +9,11 @@ import Foundation
 
 protocol IHomePresenter {
     var announcements: [Announcement] { get }
+    
     func filterTapped()
     func didSelectItem(at indexPath: IndexPath)
+    func typeRemoved()
+    func categoryRemoved(at indexPath: IndexPath)
 }
 
 final class HomePresenter: IHomePresenter {
@@ -37,6 +40,14 @@ final class HomePresenter: IHomePresenter {
     func didSelectItem(at indexPath: IndexPath) {
         let announcement = announcements[indexPath.row]
         coordinator?.showAnnouncementDetailsView(with: announcement)
+    }
+    
+    func typeRemoved() {
+        filter?.type = nil
+    }
+    
+    func categoryRemoved(at indexPath: IndexPath) {
+        filter?.categories.remove(at: indexPath.row)
     }
 }
 

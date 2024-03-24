@@ -8,7 +8,7 @@
 import Foundation
 
 struct AppliedFilter {
-    let type: AnnounceType
+    var type: AnnounceType?
     let isFreeOnly: Bool
-    let categories: [String]
+    var categories: [String]
 }

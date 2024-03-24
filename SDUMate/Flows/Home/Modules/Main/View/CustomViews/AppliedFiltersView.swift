@@ -9,6 +9,8 @@ import UIKit
 
 protocol AppliedFiltersDelegate: AnyObject {
     func filterTapped()
+    func typeRemoved()
+    func categoryRemoved(at indexPath: IndexPath)
 }
 
 final class AppliedFiltersView: UIView {
@@ -93,16 +95,37 @@ extension AppliedFiltersView: UICollectionViewDelegateFlowLayout {
 extension AppliedFiltersView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let filter else { return 0 }
-        return filter.categories.count + 1
+        let categoriesCount = filter.categories.count
+        return filter.type == nil ? categoriesCount : categoriesCount + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: AppliedFilterCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-        if indexPath.item == 0 {
-            cell.configure(type: filter?.type ?? .offer)
+        if let type = filter?.type {
+            if indexPath.item == 0 {
+                cell.configure(type: type)
+                cell.onRemoveTypeTapped = { [weak self] in
+                    self?.filter?.type = nil
+                    self?.delegate?.typeRemoved()
+                    self?.collectionView.reloadData()
+                }
+            } else {
+                cell.configure(category: filter?.categories[indexPath.row - 1] ?? "")
+                cell.onRemoveCategoryTapped = { [weak self] in
+                    self?.delegate?.categoryRemoved(at: indexPath)
+                    self?.filter?.categories.remove(at: indexPath.row - 1)
+                    self?.collectionView.reloadData()
+                }
+            }
         } else {
-            cell.configure(category: filter?.categories[indexPath.row - 1] ?? "")
+            cell.configure(category: filter?.categories[indexPath.row] ?? "")
+            cell.onRemoveCategoryTapped = { [weak self] in
+                self?.delegate?.categoryRemoved(at: indexPath)
+                self?.filter?.categories.remove(at: indexPath.row)
+                self?.collectionView.reloadData()
+            }
         }
+        
         return cell
     }
     

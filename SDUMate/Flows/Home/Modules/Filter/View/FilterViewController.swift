@@ -27,7 +27,7 @@ final class FilterViewController: BaseViewController, IFilterView {
     
     var presenter: IFilterPresenter?
     weak var delegate: FilterViewDelegate?
-    private var selectedType: AnnounceType = .offer
+    private var selectedType: AnnounceType?
     
     private var categories: [CategoryFilter] = [
         CategoryFilter(name: "Software Engineering", isChosen: false),
@@ -140,7 +140,6 @@ final class FilterViewController: BaseViewController, IFilterView {
         view.backgroundColor = .background
         view.addSubviews([closeButton, titleLabel, typeLabel, typesStackView, freeOnlyView, resetFieldsButton, lineView, tableView, showResultButton])
         typesStackView.addArrangedSubviews([offerTypeView, requestType, collaborateType])
-        colorNeededTypeView(neededView: offerTypeView)
     }
     
     private func setupConstraints() {
@@ -194,7 +193,6 @@ final class FilterViewController: BaseViewController, IFilterView {
     
     func configure(filter: AppliedFilter?) {
         guard let filter else { return }
-        typeLabel.text = filter.type.title
         selectedType = filter.type
         freeOnlyView.isSelected = filter.isFreeOnly
         filter.categories.forEach {
@@ -204,7 +202,9 @@ final class FilterViewController: BaseViewController, IFilterView {
                 }
             }
         }
-        configure(selectedType: filter.type)
+        if let type = filter.type {
+            configure(selectedType: type)
+        }
         tableView.reloadData()
     }
     
@@ -225,17 +225,17 @@ final class FilterViewController: BaseViewController, IFilterView {
     
     @objc func offerTapped() {
         colorNeededTypeView(neededView: offerTypeView)
-        selectedType = .offer
+        processSelection(of: offerTypeView)
     }
     
     @objc func requestTapped() {
         colorNeededTypeView(neededView: requestType)
-        selectedType = .request
+        processSelection(of: requestType)
     }
     
     @objc func collaborateTapped() {
         colorNeededTypeView(neededView: collaborateType)
-        selectedType = .collaborate
+        processSelection(of: collaborateType)
     }
     
     @objc func showResultTapped() {
@@ -249,13 +249,21 @@ final class FilterViewController: BaseViewController, IFilterView {
         presenter?.closeTapped()
     }
     
+    private func processSelection(of view: FilterAnnounceTypeView) {
+        if selectedType == view.type {
+            selectedType = nil
+        } else {
+            selectedType = view.type
+        }
+    }
+    
     private func colorNeededTypeView(neededView: FilterAnnounceTypeView) {
         [offerTypeView, requestType, collaborateType].forEach {
             if $0 != neededView {
                 $0.backgroundColor = ._282645
             }
         }
-        neededView.backgroundColor = ._222294
+        neededView.backgroundColor = neededView.type == selectedType ? ._282645 : ._222294
     }
 }
 

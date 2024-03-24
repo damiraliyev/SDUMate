@@ -9,6 +9,9 @@ import UIKit
 
 final class AppliedFilterCell: UICollectionViewCell {
     
+    var onRemoveCategoryTapped: Completion?
+    var onRemoveTypeTapped: Completion?
+    
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
@@ -17,9 +20,10 @@ final class AppliedFilterCell: UICollectionViewCell {
         return label
     }()
     
-    private let removeButton: UIButton = {
-        let button = UIButton()
+    private lazy var removeButton: BPPaddingButton = {
+        let button = BPPaddingButton(inset: 5)
         button.setImage(Asset.icCloseX.image, for: .normal)
+        button.addTarget(self, action: #selector(removeTapped), for: .touchUpInside)
         return button
     }()
     
@@ -58,5 +62,10 @@ final class AppliedFilterCell: UICollectionViewCell {
     
     func configure(category: String) {
         titleLabel.text = category
+    }
+    
+    @objc func removeTapped() {
+        onRemoveTypeTapped?()
+        onRemoveCategoryTapped?()
     }
 }

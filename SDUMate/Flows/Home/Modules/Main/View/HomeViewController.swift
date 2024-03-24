@@ -119,4 +119,12 @@ extension HomeViewController: AppliedFiltersDelegate {
     func filterTapped() {
         presenter?.filterTapped()
     }
+    
+    func typeRemoved() {
+        presenter?.typeRemoved()
+    }
+    
+    func categoryRemoved(at indexPath: IndexPath) {
+        presenter?.categoryRemoved(at: indexPath)
+    }
 }

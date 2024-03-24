@@ -8,7 +8,7 @@
 import UIKit
 
 final class FilterAnnounceTypeView: UIView {
-    private let type: AnnounceType
+    let type: AnnounceType
     
     private let typeLabel: UILabel = {
         let label = UILabel()

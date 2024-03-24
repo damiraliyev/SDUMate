@@ -93,11 +93,12 @@ final class FilterViewController: BaseViewController, IFilterView {
         return view
     }()
     
-    private let resetFieldsButton: UIButton = {
+    private lazy var resetFieldsButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = .clear
         button.setTitle("Reset fields", for: .normal)
         button.tintColor = .lavender
+        button.addTarget(self, action: #selector(resetTapped), for: .touchUpInside)
         return button
     }()
     
@@ -193,7 +194,6 @@ final class FilterViewController: BaseViewController, IFilterView {
     
     func configure(filter: AppliedFilter?) {
         guard let filter else { return }
-        selectedType = filter.type
         freeOnlyView.isSelected = filter.isFreeOnly
         filter.categories.forEach {
             for i in 0..<categories.count {
@@ -204,6 +204,7 @@ final class FilterViewController: BaseViewController, IFilterView {
         }
         if let type = filter.type {
             configure(selectedType: type)
+            selectedType = filter.type
         }
         tableView.reloadData()
     }
@@ -249,6 +250,17 @@ final class FilterViewController: BaseViewController, IFilterView {
         presenter?.closeTapped()
     }
     
+    @objc func resetTapped() {
+        if let selectedType = selectedType {
+            reset(type: selectedType)
+        }
+        freeOnlyView.isSelected = false
+        for i in 0..<categories.count {
+            categories[i].isChosen = false
+        }
+        tableView.reloadData()
+    }
+    
     private func processSelection(of view: FilterAnnounceTypeView) {
         if selectedType == view.type {
             selectedType = nil
@@ -264,6 +276,18 @@ final class FilterViewController: BaseViewController, IFilterView {
             }
         }
         neededView.backgroundColor = neededView.type == selectedType ? ._282645 : ._222294
+    }
+    
+    private func reset(type: AnnounceType) {
+        switch type {
+        case .offer:
+            colorNeededTypeView(neededView: offerTypeView)
+        case .request:
+            colorNeededTypeView(neededView: requestType)
+        case .collaborate:
+            colorNeededTypeView(neededView: collaborateType)
+        }
+        selectedType = nil
     }
 }
 

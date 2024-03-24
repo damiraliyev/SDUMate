@@ -12,7 +12,7 @@ protocol IHomeCoordinator: IBaseCoordinator {
     
     func onBackTapped(completion: Completion?)
     func dismissPresenterModule(completion: Completion?)
-    func showFilterView()
+    func showFilterView(appliedFilter: AppliedFilter?, delegate: FilterViewDelegate)
     func showAnnouncementDetailsView(with announcement: Announcement)
     func showInvitationsView()
 }
@@ -49,8 +49,8 @@ extension HomeCoordinator: IHomeCoordinator {
         }
     }
     
-    func showFilterView() {
-        let filterViewController = moduleFactory.makeFilterView(coordinator: self)
+    func showFilterView(appliedFilter: AppliedFilter?, delegate: FilterViewDelegate) {
+        let filterViewController = moduleFactory.makeFilterView(appliedFilter: appliedFilter, delegate: delegate, coordinator: self)
         router.present(filterViewController, animated: true, presentType: .panModal)
     }
     

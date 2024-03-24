@@ -9,6 +9,8 @@ import UIKit
 
 protocol IHomeView: Presentable {
     var presenter: IHomePresenter? { get set }
+    
+    func configureAppliedFilters(with filter: AppliedFilter)
 }
 
 final class HomeViewController: BaseViewController {
@@ -80,7 +82,9 @@ final class HomeViewController: BaseViewController {
 }
 
 extension HomeViewController: IHomeView {
-    
+    func configureAppliedFilters(with filter: AppliedFilter) {
+        appliedFiltersView.configure(filter)
+    }
 }
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {

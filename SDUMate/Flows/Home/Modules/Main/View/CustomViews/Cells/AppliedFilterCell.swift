@@ -51,4 +51,12 @@ final class AppliedFilterCell: UICollectionViewCell {
             make.size.equalTo(9)
         }
     }
+    
+    func configure(type: AnnounceType) {
+        titleLabel.text = type.title
+    }
+    
+    func configure(category: String) {
+        titleLabel.text = category
+    }
 }

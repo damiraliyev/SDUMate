@@ -15,6 +15,8 @@ final class AppliedFiltersView: UIView {
     
     weak var delegate: AppliedFiltersDelegate?
     
+    private var filter: AppliedFilter?
+    
     private lazy var filterButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(Asset.icFilter.image, for: .normal)
@@ -73,6 +75,11 @@ final class AppliedFiltersView: UIView {
     @objc func filterTapped() {
         delegate?.filterTapped()
     }
+    
+    func configure(_ filter: AppliedFilter) {
+        self.filter = filter
+        collectionView.reloadData()
+    }
 }
 
 extension AppliedFiltersView: UICollectionViewDelegate {
@@ -85,11 +92,17 @@ extension AppliedFiltersView: UICollectionViewDelegateFlowLayout {
 
 extension AppliedFiltersView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        guard let filter else { return 0 }
+        return filter.categories.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: AppliedFilterCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+        if indexPath.item == 0 {
+            cell.configure(type: filter?.type ?? .offer)
+        } else {
+            cell.configure(category: filter?.categories[indexPath.row - 1] ?? "")
+        }
         return cell
     }
     

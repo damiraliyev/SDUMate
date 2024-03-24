@@ -13,13 +13,21 @@ struct CategoryFilter {
     var isChosen: Bool
 }
 
+protocol FilterViewDelegate: AnyObject {
+    func filtersApplied(filter: AppliedFilter)
+}
+
 protocol IFilterView: Presentable {
     var presenter: IFilterPresenter? { get set }
+    var delegate: FilterViewDelegate? { get set } 
+    func configure(filter: AppliedFilter?)
 }
 
 final class FilterViewController: BaseViewController, IFilterView {
     
     var presenter: IFilterPresenter?
+    weak var delegate: FilterViewDelegate?
+    private var selectedType: AnnounceType = .offer
     
     private var categories: [CategoryFilter] = [
         CategoryFilter(name: "Software Engineering", isChosen: false),
@@ -111,13 +119,14 @@ final class FilterViewController: BaseViewController, IFilterView {
         return tableView
     }()
     
-    private let showResultButton: UIButton = {
+    private lazy var showResultButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = .white
         button.setTitle("Show results", for: .normal)
         button.titleLabel?.font = .medium18
         button.setTitleColor(.dark, for: .normal)
         button.layer.cornerRadius = 10
+        button.addTarget(self, action: #selector(showResultTapped), for: .touchUpInside)
         return button
     }()
     
@@ -131,6 +140,7 @@ final class FilterViewController: BaseViewController, IFilterView {
         view.backgroundColor = .background
         view.addSubviews([closeButton, titleLabel, typeLabel, typesStackView, freeOnlyView, resetFieldsButton, lineView, tableView, showResultButton])
         typesStackView.addArrangedSubviews([offerTypeView, requestType, collaborateType])
+        colorNeededTypeView(neededView: offerTypeView)
     }
     
     private func setupConstraints() {
@@ -182,20 +192,61 @@ final class FilterViewController: BaseViewController, IFilterView {
         }
     }
     
+    func configure(filter: AppliedFilter?) {
+        guard let filter else { return }
+        typeLabel.text = filter.type.title
+        selectedType = filter.type
+        freeOnlyView.isSelected = filter.isFreeOnly
+        filter.categories.forEach {
+            for i in 0..<categories.count {
+                if categories[i].name == $0 {
+                    categories[i].isChosen = true
+                }
+            }
+        }
+        configure(selectedType: filter.type)
+        tableView.reloadData()
+    }
+    
+    private func configure(selectedType: AnnounceType) {
+        switch selectedType {
+        case .offer:
+            offerTapped()
+        case .request:
+            requestTapped()
+        case .collaborate:
+            collaborateTapped()
+        }
+    }
+    
     @objc func closeTapped() {
         presenter?.closeTapped()
     }
     
     @objc func offerTapped() {
         colorNeededTypeView(neededView: offerTypeView)
+        selectedType = .offer
     }
     
     @objc func requestTapped() {
         colorNeededTypeView(neededView: requestType)
+        selectedType = .request
     }
     
     @objc func collaborateTapped() {
         colorNeededTypeView(neededView: collaborateType)
+        selectedType = .collaborate
+    }
+    
+    @objc func showResultTapped() {
+        let selectedCategories = categories.filter {
+            $0.isChosen == true
+        }.map { filter in
+            filter.name
+        }
+        let appliedFilter = AppliedFilter(type: selectedType, isFreeOnly: freeOnlyView.isSelected, categories: selectedCategories)
+        delegate?.filtersApplied(filter: appliedFilter)
+        presenter?.closeTapped()
     }
     
     private func colorNeededTypeView(neededView: FilterAnnounceTypeView) {

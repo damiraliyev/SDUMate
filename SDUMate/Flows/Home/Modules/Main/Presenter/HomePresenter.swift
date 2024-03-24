@@ -16,6 +16,7 @@ protocol IHomePresenter {
 final class HomePresenter: IHomePresenter {
     weak var view: IHomeView?
     private let coordinator: IHomeCoordinator?
+    private var filter: AppliedFilter?
     
     var announcements = [
         Announcement(category: "Software Engineering", title: "Object oriented programming", description: "Object-oriented programming (OOP) is a computer programming model that organizes software design around data, or objects, rather than functions and logic. An object can be defined as a data field that has unique attributes and behavior.", announcer: "mntn7", rating: "5/5", reviewsCount: 55, price: "FREE", creationDate: Date(), isSessionEstablished: false, sessionEstablishedDate: nil, recipient_id: nil, type: "Offer"),
@@ -30,7 +31,7 @@ final class HomePresenter: IHomePresenter {
     }
     
     func filterTapped() {
-        coordinator?.showFilterView()
+        coordinator?.showFilterView(appliedFilter: filter, delegate: self)
     }
     
     func didSelectItem(at indexPath: IndexPath) {
@@ -42,5 +43,12 @@ final class HomePresenter: IHomePresenter {
 extension HomePresenter: HomeHeaderViewDelegate {
     func notificationsTapped() {
         coordinator?.showInvitationsView()
+    }
+}
+
+extension HomePresenter: FilterViewDelegate {
+    func filtersApplied(filter: AppliedFilter) {
+        self.filter = filter
+        view?.configureAppliedFilters(with: filter)
     }
 }

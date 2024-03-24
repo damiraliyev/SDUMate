@@ -23,6 +23,7 @@
 		681D867C2B81F23D0017BF61 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 681D867B2B81F23D0017BF61 /* FirebaseMessaging */; };
 		681D86842B81F23D0017BF61 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 681D86832B81F23D0017BF61 /* FirebaseStorage */; };
 		681EA8652BAFA93600BE4D37 /* CategoryFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681EA8642BAFA93600BE4D37 /* CategoryFilter.swift */; };
+		681EA8672BAFB22C00BE4D37 /* AppliedFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681EA8662BAFB22C00BE4D37 /* AppliedFilter.swift */; };
 		6820574A2BA7E5E500A0180C /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682057492BA7E5E500A0180C /* ForgotPasswordViewController.swift */; };
 		682D080A2B7DF31900A5FCC1 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682D07502B7DF31800A5FCC1 /* UserSettings.swift */; };
 		682D080B2B7DF31900A5FCC1 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682D07522B7DF31800A5FCC1 /* LocationManager.swift */; };
@@ -203,6 +204,7 @@
 		68170C5D2B9C9A7500289980 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		68170C602B9CA24A00289980 /* DBUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBUser.swift; sourceTree = "<group>"; };
 		681EA8642BAFA93600BE4D37 /* CategoryFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFilter.swift; sourceTree = "<group>"; };
+		681EA8662BAFB22C00BE4D37 /* AppliedFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliedFilter.swift; sourceTree = "<group>"; };
 		682057492BA7E5E500A0180C /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		682D07502B7DF31800A5FCC1 /* UserSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		682D07522B7DF31800A5FCC1 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -424,6 +426,7 @@
 			isa = PBXGroup;
 			children = (
 				681EA8642BAFA93600BE4D37 /* CategoryFilter.swift */,
+				681EA8662BAFB22C00BE4D37 /* AppliedFilter.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2109,6 +2112,7 @@
 				68CFF55E2BAC128C006C9AF8 /* AnnounceDesciptionView.swift in Sources */,
 				682D08772B7DFA2600A5FCC1 /* DatePickerViewController.swift in Sources */,
 				68929C0A2BA596A1000A38E9 /* PermissionHelper.swift in Sources */,
+				681EA8672BAFB22C00BE4D37 /* AppliedFilter.swift in Sources */,
 				68330A6A2BAD4B5100FB14DB /* InvitationsPresenter.swift in Sources */,
 				688442D12B7E076000695763 /* AuthModuleFactory.swift in Sources */,
 				68BDA2432BAA71D200FDF1A4 /* TabBarItem.swift in Sources */,

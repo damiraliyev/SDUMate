@@ -21,10 +21,12 @@ final class HomeModuleFactory {
         return view
     }
     
-    func makeFilterView(coordinator: IHomeCoordinator) -> IFilterView {
+    func makeFilterView(appliedFilter: AppliedFilter?, delegate: FilterViewDelegate, coordinator: IHomeCoordinator) -> IFilterView {
         let view: IFilterView = FilterViewController()
         let presenter: IFilterPresenter = FilterPresenter(view: view, coordinator: coordinator)
         view.presenter = presenter
+        view.delegate = delegate
+        view.configure(filter: appliedFilter)
         return view
     }
     

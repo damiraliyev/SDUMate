@@ -55,6 +55,10 @@ extension HomePresenter: HomeHeaderViewDelegate {
     func notificationsTapped() {
         coordinator?.showInvitationsView()
     }
+    
+    func profileTapped() {
+        coordinator?.showProfileView()
+    }
 }
 
 extension HomePresenter: FilterViewDelegate {

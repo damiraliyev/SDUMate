@@ -9,17 +9,21 @@ import UIKit
 
 protocol HomeHeaderViewDelegate: AnyObject {
     func notificationsTapped()
+    func profileTapped()
 }
 
 final class HomeHeaderView: UIView {
     
     weak var delegate: HomeHeaderViewDelegate?
     
-    private let avatarImageView: UIImageView = {
+    private lazy var avatarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = Asset.icAvatarPlaceholder.image
         imageView.contentMode = .scaleAspectFit
         imageView.backgroundColor = ._282645
+        imageView.isUserInteractionEnabled = true
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(profileTapped))
+        imageView.addGestureRecognizer(tapRecognizer)
         return imageView
     }()
     
@@ -96,5 +100,9 @@ final class HomeHeaderView: UIView {
     
     @objc func notificationsTapped() {
         delegate?.notificationsTapped()
+    }
+    
+    @objc func profileTapped() {
+        delegate?.profileTapped()
     }
 }

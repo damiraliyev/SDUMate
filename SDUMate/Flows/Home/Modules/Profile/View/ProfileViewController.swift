@@ -29,6 +29,7 @@ final class ProfileViewController: BaseViewController, IProfileView {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.spacing = 9
+        stackView.alignment = .center
         return stackView
     }()
     
@@ -54,7 +55,11 @@ final class ProfileViewController: BaseViewController, IProfileView {
         return view
     }()
     
-    private let contactDetailsView = UserContactDetailsView()
+    private let contactDetailsView: UserContactDetailsView = {
+        let view = UserContactDetailsView()
+        view.unhideInfo()
+        return view
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,13 +67,34 @@ final class ProfileViewController: BaseViewController, IProfileView {
         setupConstraints()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        profileImageView.layer.cornerRadius = profileImageView.frame.height / 2
+    }
+    
     private func setupViews() {
         view.backgroundColor = ._110F2F
-        view.addSubviews([profileImageView, labelsStackView, studyInfoDetailsView, contactDetailsView])
+        view.addSubviews([navigationBar, profileImageView, labelsStackView, studyInfoDetailsView, contactDetailsView])
         labelsStackView.addArrangedSubviews([fullNameLabel, nicknameLabel])
     }
     
     private func setupConstraints() {
-//        profileImageView
+        profileImageView.snp.makeConstraints { make in
+            make.top.equalTo(navigationBar.snp.bottom).offset(17)
+            make.centerX.equalToSuperview()
+            make.size.equalTo(120)
+        }
+        labelsStackView.snp.makeConstraints { make in
+            make.top.equalTo(profileImageView.snp.bottom).offset(9)
+            make.centerX.equalToSuperview()
+        }
+        studyInfoDetailsView.snp.makeConstraints { make in
+            make.top.equalTo(labelsStackView.snp.bottom).offset(35)
+            make.leading.trailing.equalToSuperview().inset(24)
+        }
+        contactDetailsView.snp.makeConstraints { make in
+            make.top.equalTo(studyInfoDetailsView.snp.bottom).offset(17)
+            make.leading.trailing.equalToSuperview().inset(24)
+        }
     }
 }

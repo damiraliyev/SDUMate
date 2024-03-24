@@ -72,4 +72,10 @@ final class UserContactDetailsView: UIView {
             make.leading.trailing.equalToSuperview().inset(24)
         }
     }
+    
+    func unhideInfo() {
+        phoneNumberView.alpha = 1
+        telegramTagView.alpha = 1
+        descriptionLabel.safeHide()
+    }
 }

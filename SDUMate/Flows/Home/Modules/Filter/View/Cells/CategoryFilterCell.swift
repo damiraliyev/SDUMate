@@ -45,6 +45,7 @@ final class CategoryFilterCell: UITableViewCell {
     private func setupConstraints() {
         checkboxButton.snp.makeConstraints { make in
             make.top.equalToSuperview()
+            make.leading.equalToSuperview()
             make.size.equalTo(24)
         }
         titleLabel.snp.makeConstraints { make in

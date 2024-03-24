@@ -9,6 +9,7 @@ import Foundation
 
 protocol IFilterPresenter: AnyObject {
     func closeTapped()
+    func announceTypeTapped(type: AnnounceType)
 }
 
 final class FilterPresenter: IFilterPresenter {
@@ -23,5 +24,9 @@ final class FilterPresenter: IFilterPresenter {
     
     func closeTapped() {
         coordinator?.dismissPresenterModule(completion: nil)
+    }
+    
+    func announceTypeTapped(type: AnnounceType) {
+        
     }
 }

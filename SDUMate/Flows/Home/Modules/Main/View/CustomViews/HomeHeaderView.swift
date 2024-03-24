@@ -34,7 +34,7 @@ final class HomeHeaderView: UIView {
         let label = UILabel()
         label.textColor = .white
         label.font = .regular16
-        label.text = "Bekzhan Zhakas"
+        label.text = "Damir Aliyev"
         return label
     }()
     
@@ -42,7 +42,7 @@ final class HomeHeaderView: UIView {
         let label = UILabel()
         label.textColor = ._cdcdcd
         label.font = .regular16
-        label.text = "bekzhan"
+        label.text = "mntn7"
         return label
     }()
     

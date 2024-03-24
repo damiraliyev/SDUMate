@@ -59,13 +59,31 @@ final class FilterViewController: BaseViewController, IFilterView {
         return stackView
     }()
     
-    private let offerType = FilterAnnounceTypeView(type: .offer)
+    private lazy var offerTypeView: FilterAnnounceTypeView = {
+        let view = FilterAnnounceTypeView(type: .offer)
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(offerTapped))
+        view.addGestureRecognizer(tapRecognizer)
+        return view
+    }()
     
-    private let requestType = FilterAnnounceTypeView(type: .request)
+    private lazy var requestType: FilterAnnounceTypeView = {
+        let view = FilterAnnounceTypeView(type: .request)
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(requestTapped))
+        view.addGestureRecognizer(tapRecognizer)
+        return view
+    }()
     
-    private let collaborateType = FilterAnnounceTypeView(type: .collaborate)
+    private lazy var collaborateType: FilterAnnounceTypeView = {
+        let view = FilterAnnounceTypeView(type: .collaborate)
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(collaborateTapped))
+        view.addGestureRecognizer(tapRecognizer)
+        return view
+    }()
     
-    private let freeOnlyView = FreeOnlyView()
+    private lazy var freeOnlyView: FreeOnlyView = {
+        let view = FreeOnlyView()
+        return view
+    }()
     
     private let resetFieldsButton: UIButton = {
         let button = UIButton(type: .system)
@@ -112,7 +130,7 @@ final class FilterViewController: BaseViewController, IFilterView {
     private func setupViews() {
         view.backgroundColor = .background
         view.addSubviews([closeButton, titleLabel, typeLabel, typesStackView, freeOnlyView, resetFieldsButton, lineView, tableView, showResultButton])
-        typesStackView.addArrangedSubviews([offerType, requestType, collaborateType])
+        typesStackView.addArrangedSubviews([offerTypeView, requestType, collaborateType])
     }
     
     private func setupConstraints() {
@@ -133,7 +151,7 @@ final class FilterViewController: BaseViewController, IFilterView {
             make.top.equalTo(typeLabel.snp.bottom).offset(15)
             make.leading.equalToSuperview().offset(16)
         }
-        [offerType, requestType, collaborateType].forEach {
+        [offerTypeView, requestType, collaborateType].forEach {
             $0.snp.makeConstraints { make in
                 make.height.equalTo(35)
             }
@@ -166,6 +184,27 @@ final class FilterViewController: BaseViewController, IFilterView {
     
     @objc func closeTapped() {
         presenter?.closeTapped()
+    }
+    
+    @objc func offerTapped() {
+        colorNeededTypeView(neededView: offerTypeView)
+    }
+    
+    @objc func requestTapped() {
+        colorNeededTypeView(neededView: requestType)
+    }
+    
+    @objc func collaborateTapped() {
+        colorNeededTypeView(neededView: collaborateType)
+    }
+    
+    private func colorNeededTypeView(neededView: FilterAnnounceTypeView) {
+        [offerTypeView, requestType, collaborateType].forEach {
+            if $0 != neededView {
+                $0.backgroundColor = ._282645
+            }
+        }
+        neededView.backgroundColor = ._222294
     }
 }
 

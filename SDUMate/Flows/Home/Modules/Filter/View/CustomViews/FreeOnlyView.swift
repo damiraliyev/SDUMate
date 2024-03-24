@@ -9,6 +9,16 @@ import UIKit
 
 final class FreeOnlyView: UIView {
     
+    var isSelected = false {
+        didSet {
+            if isSelected {
+                checkboxButton.setImage(Asset.icCheckedBox.image, for: .normal)
+            } else {
+                checkboxButton.setImage(Asset.icUncheckedBox.image, for: .normal)
+            }
+        }
+    }
+    
     private let freeOnlyLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
@@ -17,10 +27,11 @@ final class FreeOnlyView: UIView {
         return label
     }()
     
-    private let checkboxButton: UIButton = {
+    private lazy var checkboxButton: UIButton = {
         let button = UIButton()
         button.setImage(Asset.icUncheckedBox.image, for: .normal)
         button.setImage(Asset.icCheckedBox.image, for: .selected)
+        button.addTarget(self, action: #selector(checkboxTapped), for: .touchUpInside)
         return button
     }()
     
@@ -47,6 +58,11 @@ final class FreeOnlyView: UIView {
         freeOnlyLabel.snp.makeConstraints { make in
             make.centerY.equalTo(checkboxButton)
             make.leading.equalTo(checkboxButton.snp.trailing).offset(10)
+            make.trailing.equalToSuperview()
         }
+    }
+    
+    @objc func checkboxTapped() {
+        isSelected = !isSelected
     }
 }

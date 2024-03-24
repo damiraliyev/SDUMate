@@ -22,6 +22,7 @@
 		681D866E2B81F23D0017BF61 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 681D866D2B81F23D0017BF61 /* FirebaseFirestoreSwift */; };
 		681D867C2B81F23D0017BF61 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 681D867B2B81F23D0017BF61 /* FirebaseMessaging */; };
 		681D86842B81F23D0017BF61 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 681D86832B81F23D0017BF61 /* FirebaseStorage */; };
+		681EA8652BAFA93600BE4D37 /* CategoryFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681EA8642BAFA93600BE4D37 /* CategoryFilter.swift */; };
 		6820574A2BA7E5E500A0180C /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682057492BA7E5E500A0180C /* ForgotPasswordViewController.swift */; };
 		682D080A2B7DF31900A5FCC1 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682D07502B7DF31800A5FCC1 /* UserSettings.swift */; };
 		682D080B2B7DF31900A5FCC1 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682D07522B7DF31800A5FCC1 /* LocationManager.swift */; };
@@ -93,6 +94,7 @@
 		68330A632BAD1F4B00FB14DB /* SessionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68330A622BAD1F4B00FB14DB /* SessionCell.swift */; };
 		68330A682BAD4B4700FB14DB /* InvitationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68330A672BAD4B4700FB14DB /* InvitationsViewController.swift */; };
 		68330A6A2BAD4B5100FB14DB /* InvitationsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68330A692BAD4B5100FB14DB /* InvitationsPresenter.swift */; };
+		68330A6D2BAD5E4300FB14DB /* InvitationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68330A6C2BAD5E4300FB14DB /* InvitationCell.swift */; };
 		6838F72C2B93415800265406 /* SMNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6838F72B2B93415800265406 /* SMNavigationBar.swift */; };
 		6838F7372B934A0600265406 /* UserInfoSetupCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6838F7362B934A0600265406 /* UserInfoSetupCoordinator.swift */; };
 		6838F7392B934A7700265406 /* UserInfoSetupModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6838F7382B934A7700265406 /* UserInfoSetupModuleFactory.swift */; };
@@ -200,6 +202,7 @@
 		6812F8092B8AF6DE007E27D5 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		68170C5D2B9C9A7500289980 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		68170C602B9CA24A00289980 /* DBUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBUser.swift; sourceTree = "<group>"; };
+		681EA8642BAFA93600BE4D37 /* CategoryFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFilter.swift; sourceTree = "<group>"; };
 		682057492BA7E5E500A0180C /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		682D07502B7DF31800A5FCC1 /* UserSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		682D07522B7DF31800A5FCC1 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -270,6 +273,7 @@
 		68330A622BAD1F4B00FB14DB /* SessionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCell.swift; sourceTree = "<group>"; };
 		68330A672BAD4B4700FB14DB /* InvitationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationsViewController.swift; sourceTree = "<group>"; };
 		68330A692BAD4B5100FB14DB /* InvitationsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationsPresenter.swift; sourceTree = "<group>"; };
+		68330A6C2BAD5E4300FB14DB /* InvitationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationCell.swift; sourceTree = "<group>"; };
 		6838F72B2B93415800265406 /* SMNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMNavigationBar.swift; sourceTree = "<group>"; };
 		6838F7362B934A0600265406 /* UserInfoSetupCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoSetupCoordinator.swift; sourceTree = "<group>"; };
 		6838F7382B934A7700265406 /* UserInfoSetupModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoSetupModuleFactory.swift; sourceTree = "<group>"; };
@@ -412,6 +416,14 @@
 			isa = PBXGroup;
 			children = (
 				68170C602B9CA24A00289980 /* DBUser.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		681EA8632BAFA92A00BE4D37 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				681EA8642BAFA93600BE4D37 /* CategoryFilter.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -933,9 +945,18 @@
 		68330A662BAD4B3100FB14DB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				68330A6B2BAD5E3900FB14DB /* Cells */,
 				68330A672BAD4B4700FB14DB /* InvitationsViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		68330A6B2BAD5E3900FB14DB /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				68330A6C2BAD5E4300FB14DB /* InvitationCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		6838F72D2B9344C000265406 /* UserInfo */ = {
@@ -1717,6 +1738,7 @@
 		68CFF54F2BABF4BB006C9AF8 /* Filter */ = {
 			isa = PBXGroup;
 			children = (
+				681EA8632BAFA92A00BE4D37 /* Model */,
 				68330A5C2BAD10BF00FB14DB /* Presenter */,
 				68CFF5562BAC037C006C9AF8 /* View */,
 			);
@@ -1967,6 +1989,7 @@
 				682D084F2B7DF31900A5FCC1 /* BaseTabBar.swift in Sources */,
 				682D08142B7DF31900A5FCC1 /* AlertInput.swift in Sources */,
 				682D081C2B7DF31900A5FCC1 /* UIColor+Extension.swift in Sources */,
+				681EA8652BAFA93600BE4D37 /* CategoryFilter.swift in Sources */,
 				682D08152B7DF31900A5FCC1 /* ApplicationResponse.swift in Sources */,
 				682D087A2B7DFB3A00A5FCC1 /* SuccessAlertViewController.swift in Sources */,
 				682D082C2B7DF31900A5FCC1 /* UTType+Extension.swift in Sources */,
@@ -2001,6 +2024,7 @@
 				68C5C4812B949CE1006C9540 /* StudentSignUpPresenter.swift in Sources */,
 				682D082B2B7DF31900A5FCC1 /* UITextField+Extensions.swift in Sources */,
 				688442DF2B7E113A00695763 /* EntryModuleFactory.swift in Sources */,
+				68330A6D2BAD5E4300FB14DB /* InvitationCell.swift in Sources */,
 				682D086B2B7DF31900A5FCC1 /* Router.swift in Sources */,
 				682D08342B7DF31900A5FCC1 /* String+Extension.swift in Sources */,
 				682D080A2B7DF31900A5FCC1 /* UserSettings.swift in Sources */,

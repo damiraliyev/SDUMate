@@ -41,7 +41,7 @@ final class AnnouncementCell: UICollectionViewCell {
         label.textColor = ._cdcdcd
         label.font = .regular12
         label.text = "Unit Testing, UI Testing, Snapshot testing and many other stuff of mobile Delevelopment."
-        label.numberOfLines = 0
+        label.numberOfLines = 3
         return label
     }()
     
@@ -100,7 +100,6 @@ final class AnnouncementCell: UICollectionViewCell {
         categoryLabel.snp.makeConstraints { make in
             make.top.equalTo(imageView.snp.bottom).offset(8)
             make.leading.trailing.equalTo(imageView)
-            
         }
         titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(20)
@@ -111,7 +110,7 @@ final class AnnouncementCell: UICollectionViewCell {
             make.top.equalTo(titleLabel.snp.bottom).offset(2)
             make.leading.equalTo(titleLabel)
             make.trailing.equalToSuperview().offset(-8)
-            make.bottom.equalTo(priceView.snp.top).offset(-12)
+//            make.bottom.equalTo(priceView.snp.top).offset(-12)
         }
         announcerLabel.snp.makeConstraints { make in
             make.leading.equalTo(titleLabel)

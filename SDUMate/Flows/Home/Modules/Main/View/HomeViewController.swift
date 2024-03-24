@@ -86,7 +86,7 @@ extension HomeViewController: IHomeView {
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width: CGFloat = view.frame.width - 32
-        let height: CGFloat = 156
+        let height: CGFloat = 172
         return CGSize(width: width, height: height)
     }
     

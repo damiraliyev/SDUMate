@@ -7,20 +7,6 @@
 
 import UIKit
 
-enum AnnounceType {
-    case offer
-    case request
-    case collaborate
-    
-    var title: String {
-        switch self {
-        case .offer:        return "Offer"
-        case .request:      return "Request"
-        case .collaborate:  return "Collaborate"
-        }
-    }
-}
-
 final class FilterAnnounceTypeView: UIView {
     private let type: AnnounceType
     

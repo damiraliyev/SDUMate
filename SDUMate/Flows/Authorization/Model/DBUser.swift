@@ -141,5 +141,7 @@ extension DBUser {
         let rawStudyProgram = dictionary["study_program"] as? String
         self.studyProgram = StudyProgram(rawValue: rawStudyProgram ?? "")
         self.yearOfEntering = dictionary["year_of_entering"] as? Int
+        self.profileImageUrl = dictionary["profile_image_path"] as? String
+        self.profileImagePath = dictionary["profile_image_path"] as? String
     }
 }

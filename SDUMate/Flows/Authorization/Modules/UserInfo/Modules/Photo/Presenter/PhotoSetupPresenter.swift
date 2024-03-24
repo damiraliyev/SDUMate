@@ -110,7 +110,8 @@ extension PhotoSetupPresenter: UIImagePickerControllerDelegate & UINavigationCon
         switch mediaType {
         case UTType.image.description:
             if let image = info[.originalImage] as? UIImage, let imageData = image.compressIfNeeded() {
-             
+                self.view?.set(image: image)
+                self.saveProfileImage(data: imageData)
             }
         default:
             break

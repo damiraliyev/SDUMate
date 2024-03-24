@@ -150,6 +150,7 @@
 		68BE75082BB00AF400331EFC /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BE75072BB00AF400331EFC /* ProfilePresenter.swift */; };
 		68BE750B2BB00B7F00331EFC /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BE750A2BB00B7F00331EFC /* ProfileCoordinator.swift */; };
 		68BE750E2BB00B9000331EFC /* ProfileModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BE750D2BB00B9000331EFC /* ProfileModuleFactory.swift */; };
+		68BE75112BB02CD700331EFC /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = 68BE75102BB02CD700331EFC /* PromiseKit */; };
 		68C5C4732B944DB5006C9540 /* PhotoSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C5C4722B944DB5006C9540 /* PhotoSetupViewController.swift */; };
 		68C5C4752B944E04006C9540 /* PhotoSetupPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C5C4742B944E04006C9540 /* PhotoSetupPresenter.swift */; };
 		68C5C4782B948CE2006C9540 /* AccountChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C5C4772B948CE2006C9540 /* AccountChoiceViewController.swift */; };
@@ -387,6 +388,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6882A4ED2B78734700B2AE72 /* RxMoya in Frameworks */,
+				68BE75112BB02CD700331EFC /* PromiseKit in Frameworks */,
 				6882A4F22B7885DF00B2AE72 /* Swinject-Dynamic in Frameworks */,
 				681D86522B81F23D0017BF61 /* FirebaseAnalytics in Frameworks */,
 				681D866A2B81F23D0017BF61 /* FirebaseFirestore in Frameworks */,
@@ -1938,6 +1940,7 @@
 				681D867B2B81F23D0017BF61 /* FirebaseMessaging */,
 				681D86832B81F23D0017BF61 /* FirebaseStorage */,
 				68C5C48E2B94D382006C9540 /* IQKeyboardManagerSwift */,
+				68BE75102BB02CD700331EFC /* PromiseKit */,
 			);
 			productName = SDUMate;
 			productReference = 6882A4C72B786AD400B2AE72 /* SDUMate.app */;
@@ -1978,6 +1981,7 @@
 				682D08722B7DF77100A5FCC1 /* XCRemoteSwiftPackageReference "PanModal" */,
 				681D86502B81F23D0017BF61 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				68C5C48D2B94D382006C9540 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				68BE750F2BB02CD700331EFC /* XCRemoteSwiftPackageReference "PromiseKit" */,
 			);
 			productRefGroup = 6882A4C82B786AD400B2AE72 /* Products */;
 			projectDirPath = "";
@@ -2458,6 +2462,14 @@
 				version = 2.8.4;
 			};
 		};
+		68BE750F2BB02CD700331EFC /* XCRemoteSwiftPackageReference "PromiseKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mxcl/PromiseKit.git";
+			requirement = {
+				kind = exactVersion;
+				version = 8.1.1;
+			};
+		};
 		68C5C48D2B94D382006C9540 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager";
@@ -2578,6 +2590,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6882A4EE2B7885DF00B2AE72 /* XCRemoteSwiftPackageReference "Swinject" */;
 			productName = "Swinject-Dynamic";
+		};
+		68BE75102BB02CD700331EFC /* PromiseKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 68BE750F2BB02CD700331EFC /* XCRemoteSwiftPackageReference "PromiseKit" */;
+			productName = PromiseKit;
 		};
 		68C5C48E2B94D382006C9540 /* IQKeyboardManagerSwift */ = {
 			isa = XCSwiftPackageProductDependency;

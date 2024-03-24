@@ -93,6 +93,10 @@ final class AuthManager {
         return Auth.auth().currentUser
     }
     
+    func logOut() {
+        try? Auth.auth().signOut()
+    }
+    
     func resetPassword(email: String, completion: @escaping (Error?) -> Void) {
         Auth.auth().sendPasswordReset(withEmail: email) { error in
             completion(error)

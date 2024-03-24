@@ -9,6 +9,8 @@ import UIKit
 
 protocol IProfileView: Presentable {
     var presenter: IProfilePresenter? { get set }
+    
+    func set(image: UIImage)
 }
 
 final class ProfileViewController: BaseViewController, IProfileView {
@@ -21,8 +23,17 @@ final class ProfileViewController: BaseViewController, IProfileView {
     
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
+        imageView.image = Asset.icImagePlaceholder.image
+        imageView.clipsToBounds = true
         return imageView
+    }()
+    
+    private lazy var cameraButton: UIButton = {
+        let button = UIButton()
+        button.clipsToBounds = true
+        button.setBackgroundImage(Asset.icGreenCamera.image, for: .normal)
+        button.addTarget(self, action: #selector(cameraTapped), for: .touchUpInside)
+        return button
     }()
     
     private let labelsStackView: UIStackView = {
@@ -74,7 +85,7 @@ final class ProfileViewController: BaseViewController, IProfileView {
     
     private func setupViews() {
         view.backgroundColor = ._110F2F
-        view.addSubviews([navigationBar, profileImageView, labelsStackView, studyInfoDetailsView, contactDetailsView])
+        view.addSubviews([navigationBar, profileImageView, cameraButton, labelsStackView, studyInfoDetailsView, contactDetailsView])
         labelsStackView.addArrangedSubviews([fullNameLabel, nicknameLabel])
     }
     
@@ -82,7 +93,12 @@ final class ProfileViewController: BaseViewController, IProfileView {
         profileImageView.snp.makeConstraints { make in
             make.top.equalTo(navigationBar.snp.bottom).offset(17)
             make.centerX.equalToSuperview()
-            make.size.equalTo(120)
+            make.size.equalTo(105)
+        }
+        cameraButton.snp.makeConstraints { make in
+            make.bottom.equalTo(profileImageView.snp.bottom).offset(-8)
+            make.trailing.equalTo(profileImageView.snp.trailing)
+            make.size.equalTo(28)
         }
         labelsStackView.snp.makeConstraints { make in
             make.top.equalTo(profileImageView.snp.bottom).offset(9)
@@ -96,5 +112,13 @@ final class ProfileViewController: BaseViewController, IProfileView {
             make.top.equalTo(studyInfoDetailsView.snp.bottom).offset(17)
             make.leading.trailing.equalToSuperview().inset(24)
         }
+    }
+    
+    func set(image: UIImage) {
+        profileImageView.image = image
+    }
+    
+    @objc func cameraTapped() {
+        presenter?.cameraTapped()
     }
 }

@@ -19,12 +19,15 @@ final class AnnouncementDetailsManager {
     
     func sendInvitation(invitation: Invitation) -> Promise<Void> {
         return Promise<Void> { seal in
-            invitationsCollection.addDocument(data: invitation.makeDictionary()) { error in
-                guard error == nil else {
-                    seal.reject(error!)
-                    return
+            let documentRef = invitationsCollection.document()
+            var updatedInvitation = invitation
+            updatedInvitation.id = documentRef.documentID
+            documentRef.setData(updatedInvitation.makeDictionary()) { error in
+                if let error = error {
+                    seal.reject(error)
+                } else {
+                    seal.fulfill(())
                 }
-                seal.fulfill(())
             }
         }
     }

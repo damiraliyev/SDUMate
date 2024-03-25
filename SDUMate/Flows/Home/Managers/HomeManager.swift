@@ -59,7 +59,7 @@ final class HomeManager {
         }
     }
     
-    func fetchAnnouncements() -> Promise<[Announcement]>{
+    func fetchCompleteAnnouncements() -> Promise<[Announcement]> {
         return Promise { seal in
             firstly {
                 getAllAnnouncements()

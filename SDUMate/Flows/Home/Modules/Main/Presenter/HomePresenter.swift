@@ -56,7 +56,7 @@ final class HomePresenter: IHomePresenter {
     
     private func fetchAnnouncements() {
         firstly {
-            homeManager.fetchAnnouncements()
+            homeManager.fetchCompleteAnnouncements()
         } .done { announcements in
             self.announcements = announcements
             self.view?.reload()

@@ -6,9 +6,11 @@
 //
 
 import Foundation
+import PromiseKit
 
 protocol IInvitationsPresenter: AnyObject {
     func backTapped()
+    func viewDidLoad()
 }
 
 final class InvitationsPresenter: IInvitationsPresenter {
@@ -23,5 +25,16 @@ final class InvitationsPresenter: IInvitationsPresenter {
     
     func backTapped() {
         coordinator?.onBackTapped(completion: nil)
+    }
+    
+    func viewDidLoad() {
+        firstly {
+            InvitationManager.shared.fetchCompleteInvitations(userId: AuthManager.shared.getAuthUser()?.uid ?? "")
+        } .done { invitations in
+            print("INVITATIONS", invitations)
+        } .catch { error in
+            self.coordinator?.showErrorAlert(error: error.localizedDescription)
+        }
+        
     }
 }

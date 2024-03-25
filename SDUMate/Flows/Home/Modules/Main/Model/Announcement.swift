@@ -58,27 +58,44 @@ extension Announcement {
 }
 
 
-struct Invitation: Codable {
-    let createdDate: Date
+struct Invitation: Encodable {
+    var id: String
+    let createdDate: String
     let announcerId: String
     let respondentId: String
     let announcementId: String
     let status: String
+    var announcer: DBUser? = nil
+    var respondent: DBUser? = nil
+    var announcement: Announcement? = nil
     
     enum CodingKeys: String, CodingKey {
+        case id
         case createdDate = "created_date"
         case announcerId = "announcer_id"
         case respondentId = "respondent_id"
         case announcementId = "announcement_id"
-        case status
+        case status, announcer, respondent, announcement
     }
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.id, forKey: .id)
         try container.encode(self.createdDate, forKey: .createdDate)
         try container.encode(self.announcerId, forKey: .announcerId)
         try container.encode(self.respondentId, forKey: .respondentId)
         try container.encode(self.announcementId, forKey: .announcementId)
         try container.encode(self.status, forKey: .status)
+    }
+}
+
+extension Invitation {
+    init(dict: [String: Any]) {
+        self.id = dict["id"] as? String ?? ""
+        self.createdDate = dict["created_date"] as? String ?? ""
+        self.announcerId = dict["announcer_id"] as? String ?? ""
+        self.respondentId = dict["respondent_id"] as? String ?? ""
+        self.announcementId = dict["announcement_id"] as? String ?? ""
+        self.status = dict["status"] as? String ?? ""
     }
 }

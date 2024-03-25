@@ -27,7 +27,7 @@ final class AnnouncementDetailsPresenter: IAnnouncementDetailsPresenter {
     }
     
     func sendTapped(_ announcement: Announcement) {
-        let invitation = Invitation(createdDate: Date(), announcerId: announcement.announcerId, respondentId: AuthManager.shared.getAuthUser()?.uid ?? "", announcementId: announcement.id, status: "pending")
+        let invitation = Invitation(id: "", createdDate: Date().toUTCString(), announcerId: announcement.announcerId, respondentId: AuthManager.shared.getAuthUser()?.uid ?? "", announcementId: announcement.id, status: "pending")
         announcementDetailsManager.sendInvitation(invitation: invitation).done { _ in
             print("SENT SUCCESFULLY")
         }.catch { error in

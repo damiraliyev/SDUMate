@@ -50,6 +50,7 @@ final class InvitationsViewController: BaseViewController, IInvitationsView {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter?.viewDidLoad()
         setupViews()
         setupConstraints()
     }

@@ -27,6 +27,7 @@
 		6820574A2BA7E5E500A0180C /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682057492BA7E5E500A0180C /* ForgotPasswordViewController.swift */; };
 		682C4FDB2BB15A3C00C792CB /* HomeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682C4FDA2BB15A3C00C792CB /* HomeManager.swift */; };
 		682C4FDE2BB17F9C00C792CB /* AnnouncementDetailsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682C4FDD2BB17F9C00C792CB /* AnnouncementDetailsManager.swift */; };
+		682C4FE12BB1892D00C792CB /* InvitationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682C4FE02BB1892D00C792CB /* InvitationManager.swift */; };
 		682D080A2B7DF31900A5FCC1 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682D07502B7DF31800A5FCC1 /* UserSettings.swift */; };
 		682D080B2B7DF31900A5FCC1 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682D07522B7DF31800A5FCC1 /* LocationManager.swift */; };
 		682D080C2B7DF31900A5FCC1 /* RequestDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682D07542B7DF31800A5FCC1 /* RequestDecoder.swift */; };
@@ -216,6 +217,7 @@
 		682057492BA7E5E500A0180C /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		682C4FDA2BB15A3C00C792CB /* HomeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeManager.swift; sourceTree = "<group>"; };
 		682C4FDD2BB17F9C00C792CB /* AnnouncementDetailsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementDetailsManager.swift; sourceTree = "<group>"; };
+		682C4FE02BB1892D00C792CB /* InvitationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationManager.swift; sourceTree = "<group>"; };
 		682D07502B7DF31800A5FCC1 /* UserSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		682D07522B7DF31800A5FCC1 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		682D07542B7DF31800A5FCC1 /* RequestDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestDecoder.swift; sourceTree = "<group>"; };
@@ -459,6 +461,14 @@
 			isa = PBXGroup;
 			children = (
 				682C4FDD2BB17F9C00C792CB /* AnnouncementDetailsManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		682C4FDF2BB1891E00C792CB /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				682C4FE02BB1892D00C792CB /* InvitationManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -963,6 +973,7 @@
 		68330A642BAD4B1800FB14DB /* Invitations */ = {
 			isa = PBXGroup;
 			children = (
+				682C4FDF2BB1891E00C792CB /* Managers */,
 				68330A662BAD4B3100FB14DB /* View */,
 				68330A652BAD4B2D00FB14DB /* Presenter */,
 			);
@@ -2198,6 +2209,7 @@
 				68BDA2432BAA71D200FDF1A4 /* TabBarItem.swift in Sources */,
 				682D08282B7DF31900A5FCC1 /* UITableView+Extension.swift in Sources */,
 				682D082A2B7DF31900A5FCC1 /* UIEdgeInsets+Extensions.swift in Sources */,
+				682C4FE12BB1892D00C792CB /* InvitationManager.swift in Sources */,
 				68CFF54E2BABEFCD006C9AF8 /* Announcement.swift in Sources */,
 				682D08582B7DF31900A5FCC1 /* BaseViewController.swift in Sources */,
 				688442DC2B7E102A00695763 /* EntryCoordinator.swift in Sources */,

@@ -9,14 +9,18 @@ import Foundation
 
 final class HomeModuleFactory {
     private let container: DependencyContainer
+    private let homeManager: HomeManager
+    private let announcementDetailsManager: AnnouncementDetailsManager
     
     init(container: DependencyContainer) {
         self.container = container
+        self.homeManager = container.resolve(HomeManager.self)!
+        self.announcementDetailsManager = container.resolve(AnnouncementDetailsManager.self)!
     }
     
     func makeHomeView(coordinator: IHomeCoordinator) -> IHomeView & Presentable {
         let view: IHomeView = HomeViewController()
-        let presenter: IHomePresenter = HomePresenter(view: view, coordinator: coordinator)
+        let presenter: IHomePresenter = HomePresenter(view: view, coordinator: coordinator, homeManager: homeManager)
         view.presenter = presenter
         return view
     }
@@ -32,7 +36,7 @@ final class HomeModuleFactory {
     
     func makeAnnouncementDetailsView(announcement: Announcement, coordinator: IHomeCoordinator) -> IAnnouncementDetailsView {
         let view: IAnnouncementDetailsView = AnnouncementDetailsViewController(announcement: announcement)
-        let presenter: IAnnouncementDetailsPresenter = AnnouncementDetailsPresenter(view: view, coordinator: coordinator)
+        let presenter: IAnnouncementDetailsPresenter = AnnouncementDetailsPresenter(view: view, coordinator: coordinator, manager: announcementDetailsManager)
         presenter.onBackTapped = { [weak coordinator] in
             coordinator?.onBackTapped(completion: nil)
         }

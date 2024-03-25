@@ -11,6 +11,10 @@ import FirebaseAuth
 import PromiseKit
 
 final class HomeManager {
+    
+    static let shared = HomeManager()
+    private init() {}
+    
     private let announcementsCollection = Firestore.firestore().collection("announcements")
     private let usersCollection = Firestore.firestore().collection("users")
     

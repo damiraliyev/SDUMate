@@ -25,5 +25,11 @@ final class DependencyContainerAssembly: Assembly {
         container.register(StorageManager.self) { _ in
             StorageManager.shared
         }
+        container.register(HomeManager.self) { _ in
+            HomeManager.shared
+        }
+        container.register(AnnouncementDetailsManager.self) { _ in
+            AnnouncementDetailsManager.shared
+        }
     }
 }

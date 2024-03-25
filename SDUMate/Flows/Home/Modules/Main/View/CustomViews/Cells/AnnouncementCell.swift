@@ -137,7 +137,7 @@ final class AnnouncementCell: UICollectionViewCell {
         descriptionLabel.text = announcement.description
         announcerLabel.text = announcement.announcer?.nickname
         ratingLabel.text = "\(announcement.announcer?.rating ?? 0)"
-        reviewsCountLabel.text = "\(announcement.announcer?.reviewsCount ?? 0)"
+        reviewsCountLabel.text = "(\(announcement.announcer?.reviewsCount ?? 0))"
         priceView.setValue(to: announcement.price)
     }
 }

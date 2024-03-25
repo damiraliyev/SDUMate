@@ -9,9 +9,11 @@ import Foundation
 
 final class SessionsModuleFactory {
     private let container: DependencyContainer
+    private let announcementDetailsManager: AnnouncementDetailsManager
     
     init(container: DependencyContainer) {
         self.container = container
+        self.announcementDetailsManager = container.resolve(AnnouncementDetailsManager.self)!
     }
     
     func makeSessionsView(coordinator: ISessionsCoordinator) -> ISessionsView {
@@ -28,7 +30,7 @@ final class SessionsModuleFactory {
     
     func makeAnnouncementDetailsView(announcement: Announcement, coordinator: IHomeCoordinator) -> IAnnouncementDetailsView {
         let view: IAnnouncementDetailsView = AnnouncementDetailsViewController(announcement: announcement)
-        let presenter: IAnnouncementDetailsPresenter = AnnouncementDetailsPresenter(view: view, coordinator: coordinator)
+        let presenter: IAnnouncementDetailsPresenter = AnnouncementDetailsPresenter(view: view, coordinator: coordinator, manager: announcementDetailsManager)
         let backTappedCompetion: Completion = { [weak coordinator] in
             coordinator?.onBackTapped(completion: {
                 coordinator?.onFlowDidFinish?()

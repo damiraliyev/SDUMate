@@ -70,13 +70,14 @@ final class AnnouncementDetailsViewController: BaseViewController, IAnnouncement
     
     private let userContactDetailsView = UserContactDetailsView()
     
-    private let sendButton: UIButton = {
+    private lazy var sendButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = .white
         button.setTitle("Send offer", for: .normal)
         button.titleLabel?.font = .medium18
         button.setTitleColor(.dark, for: .normal)
         button.layer.cornerRadius = 10
+        button.addTarget(self, action: #selector(sendTapped), for: .touchUpInside)
         return button
     }()
     
@@ -158,5 +159,9 @@ final class AnnouncementDetailsViewController: BaseViewController, IAnnouncement
         announcerLabel.text = announcement.announcer?.name
         descriptionView.set(text: announcement.description)
         priceLabel.text = announcement.price
+    }
+    
+    @objc func sendTapped() {
+        presenter?.sendTapped(announcement)
     }
 }

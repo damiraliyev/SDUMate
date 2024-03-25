@@ -21,14 +21,16 @@ protocol IHomePresenter {
 final class HomePresenter: IHomePresenter {
     weak var view: IHomeView?
     private let coordinator: IHomeCoordinator?
+    private let homeManager: HomeManager
     private var filter: AppliedFilter?
     let id = AuthManager.shared.getAuthUser()?.uid ?? ""
     var announcements: [Announcement] = [
     ]
     
-    init(view: IHomeView, coordinator: IHomeCoordinator) {
+    init(view: IHomeView, coordinator: IHomeCoordinator, homeManager: HomeManager) {
         self.view = view
         self.coordinator = coordinator
+        self.homeManager = homeManager
     }
     
     func viewDidLoad() {
@@ -51,8 +53,6 @@ final class HomePresenter: IHomePresenter {
     func categoryRemoved(at indexPath: IndexPath) {
         filter?.categories.remove(at: indexPath.row)
     }
-    
-    let homeManager = HomeManager()
     
     private func fetchAnnouncements() {
         firstly {

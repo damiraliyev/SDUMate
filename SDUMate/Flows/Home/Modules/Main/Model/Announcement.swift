@@ -8,6 +8,7 @@
 import Foundation
 
 struct Announcement {
+    let id: String
     let category: String
     let title: String
     let description: String
@@ -24,6 +25,7 @@ struct Announcement {
 
 extension Announcement {
     init() {
+        self.id = ""
         self.category = ""
         self.title = ""
         self.description = ""
@@ -39,6 +41,7 @@ extension Announcement {
     }
     
     init(dict: [String: Any]) {
+        self.id = dict["id"] as? String ?? ""
         self.category = dict["category"] as? String ?? ""
         self.title = dict["title"] as? String ?? ""
         self.description = dict["description"] as? String ?? ""
@@ -55,10 +58,27 @@ extension Announcement {
 }
 
 
-struct Invitation {
+struct Invitation: Codable {
     let createdDate: Date
     let announcerId: String
     let respondentId: String
     let announcementId: String
     let status: String
+    
+    enum CodingKeys: String, CodingKey {
+        case createdDate = "created_date"
+        case announcerId = "announcer_id"
+        case respondentId = "respondent_id"
+        case announcementId = "announcement_id"
+        case status
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.createdDate, forKey: .createdDate)
+        try container.encode(self.announcerId, forKey: .announcerId)
+        try container.encode(self.respondentId, forKey: .respondentId)
+        try container.encode(self.announcementId, forKey: .announcementId)
+        try container.encode(self.status, forKey: .status)
+    }
 }

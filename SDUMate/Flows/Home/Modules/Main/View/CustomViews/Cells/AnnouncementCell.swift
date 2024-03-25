@@ -48,7 +48,7 @@ final class AnnouncementCell: UICollectionViewCell {
     private let announcerLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = .medium12
+        label.font = .medium14
         label.text = "mntn7"
         return label
     }()
@@ -135,9 +135,9 @@ final class AnnouncementCell: UICollectionViewCell {
         categoryLabel.text = announcement.category
         titleLabel.text = announcement.title
         descriptionLabel.text = announcement.description
-        announcerLabel.text = announcement.announcer
-        ratingLabel.text = announcement.rating
-        reviewsCountLabel.text = "\(announcement.reviewsCount)"
+        announcerLabel.text = announcement.announcer?.nickname
+        ratingLabel.text = "\(announcement.announcer?.rating ?? 0)"
+        reviewsCountLabel.text = "\(announcement.announcer?.reviewsCount ?? 0)"
         priceView.setValue(to: announcement.price)
     }
 }

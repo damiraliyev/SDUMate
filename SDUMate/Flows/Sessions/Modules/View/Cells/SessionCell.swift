@@ -135,9 +135,9 @@ final class SessionCell: UICollectionViewCell {
     }
     
     func configure(with announcement: Announcement) {
-        typeLabel.text = announcement.type
+        typeLabel.text = announcement.type.title
         titleAndCategoryLabel.text = "\(announcement.title)/\(announcement.category)"
-        recipientLabel.text = announcement.recipient_id
-        dateLabel.text = announcement.sessionEstablishedDate?.toString(format: "HH:mm")
+        recipientLabel.text = announcement.respondentId
+        dateLabel.text = announcement.sessionEstablishedDate
     }
 }

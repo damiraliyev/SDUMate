@@ -155,7 +155,7 @@ final class AnnouncementDetailsViewController: BaseViewController, IAnnouncement
     
     private func configure() {
         titleLabel.text = announcement.title
-        announcerLabel.text = announcement.announcer
+        announcerLabel.text = announcement.announcer?.name
         descriptionView.set(text: announcement.description)
         priceLabel.text = announcement.price
     }

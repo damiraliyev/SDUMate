@@ -78,4 +78,8 @@ final class UserContactDetailsView: UIView {
         telegramTagView.alpha = 1
         descriptionLabel.safeHide()
     }
+    
+    func configure(with user: DBUser) {
+        telegramTagView.set(text: user.telegramTag ?? "")
+    }
 }

@@ -11,6 +11,7 @@ protocol IHomeView: Presentable {
     var presenter: IHomePresenter? { get set }
     
     func configureAppliedFilters(with filter: AppliedFilter)
+    func reload()
 }
 
 final class HomeViewController: BaseViewController {
@@ -47,6 +48,7 @@ final class HomeViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter?.viewDidLoad()
         setupViews()
         setupConstraints()
     }
@@ -84,6 +86,10 @@ final class HomeViewController: BaseViewController {
 extension HomeViewController: IHomeView {
     func configureAppliedFilters(with filter: AppliedFilter) {
         appliedFiltersView.configure(filter)
+    }
+    
+    func reload() {
+        collectionView.reloadData()
     }
 }
 

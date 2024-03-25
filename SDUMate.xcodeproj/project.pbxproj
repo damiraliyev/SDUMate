@@ -25,6 +25,7 @@
 		681EA8652BAFA93600BE4D37 /* CategoryFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681EA8642BAFA93600BE4D37 /* CategoryFilter.swift */; };
 		681EA8672BAFB22C00BE4D37 /* AppliedFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681EA8662BAFB22C00BE4D37 /* AppliedFilter.swift */; };
 		6820574A2BA7E5E500A0180C /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682057492BA7E5E500A0180C /* ForgotPasswordViewController.swift */; };
+		682C4FDB2BB15A3C00C792CB /* HomeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682C4FDA2BB15A3C00C792CB /* HomeManager.swift */; };
 		682D080A2B7DF31900A5FCC1 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682D07502B7DF31800A5FCC1 /* UserSettings.swift */; };
 		682D080B2B7DF31900A5FCC1 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682D07522B7DF31800A5FCC1 /* LocationManager.swift */; };
 		682D080C2B7DF31900A5FCC1 /* RequestDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682D07542B7DF31800A5FCC1 /* RequestDecoder.swift */; };
@@ -212,6 +213,7 @@
 		681EA8642BAFA93600BE4D37 /* CategoryFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFilter.swift; sourceTree = "<group>"; };
 		681EA8662BAFB22C00BE4D37 /* AppliedFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliedFilter.swift; sourceTree = "<group>"; };
 		682057492BA7E5E500A0180C /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		682C4FDA2BB15A3C00C792CB /* HomeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeManager.swift; sourceTree = "<group>"; };
 		682D07502B7DF31800A5FCC1 /* UserSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		682D07522B7DF31800A5FCC1 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		682D07542B7DF31800A5FCC1 /* RequestDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestDecoder.swift; sourceTree = "<group>"; };
@@ -441,6 +443,14 @@
 				681EA8662BAFB22C00BE4D37 /* AppliedFilter.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		682C4FD92BB15A3000C792CB /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				682C4FDA2BB15A3C00C792CB /* HomeManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		682D07452B7DF31800A5FCC1 /* Core */ = {
@@ -1286,6 +1296,7 @@
 		68929C0E2BA6F7AE000A38E9 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				682C4FD92BB15A3000C792CB /* Managers */,
 				68929C112BA6F7F3000A38E9 /* Modules */,
 				68929C102BA6F7EF000A38E9 /* Factory */,
 				68929C0F2BA6F7E3000A38E9 /* Coordinator */,
@@ -2129,6 +2140,7 @@
 				6820574A2BA7E5E500A0180C /* ForgotPasswordViewController.swift in Sources */,
 				68CFF5252BABAF72006C9AF8 /* SessionsModuleFactory.swift in Sources */,
 				688442C62B7E03FE00695763 /* AppCoordinatorFactory.swift in Sources */,
+				682C4FDB2BB15A3C00C792CB /* HomeManager.swift in Sources */,
 				68929C132BA6F826000A38E9 /* HomeCoordinator.swift in Sources */,
 				682D08182B7DF31900A5FCC1 /* UIImage+Extensions.swift in Sources */,
 				68CFF5422BABC4FD006C9AF8 /* SearchFieldView.swift in Sources */,

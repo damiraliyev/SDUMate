@@ -42,6 +42,10 @@ struct DBUser: Codable {
     let yearOfEntering: Int?
     var profileImagePath: String?
     var profileImageUrl: String?
+    var rating: Double
+    var points: Int
+    var numberOfProvidedHelp: Int
+    var reviewsCount: Int
     
     enum CodingKeys: String, CodingKey {
         case userId = "user_id"
@@ -57,6 +61,10 @@ struct DBUser: Codable {
         case yearOfEntering = "year_of_entering"
         case profileImagePath = "profile_image_path"
         case profileImageUrl = "profile_image_url"
+        case rating
+        case points
+        case numberOfProvidedHelp = "number_of_provided_help"
+        case reviewsCount = "reviews_count"
     }
     
     init(from decoder: Decoder) throws {
@@ -79,6 +87,10 @@ struct DBUser: Codable {
         self.yearOfEntering  = try container.decodeIfPresent(Int.self, forKey: .yearOfEntering)
         self.profileImagePath = try container.decodeIfPresent(String.self, forKey: .profileImagePath)
         self.profileImageUrl = try container.decodeIfPresent(String.self, forKey: .profileImageUrl)
+        self.rating = try container.decodeIfPresent(Double.self, forKey: .rating) ?? 5.0
+        self.points = try container.decodeIfPresent(Int.self, forKey: .points) ?? 0
+        self.numberOfProvidedHelp = try container.decodeIfPresent(Int.self, forKey: .numberOfProvidedHelp) ?? 0
+        self.reviewsCount = try container.decodeIfPresent(Int.self, forKey: .reviewsCount) ?? 0
     }
     
     func encode(to encoder: Encoder) throws {
@@ -98,6 +110,10 @@ struct DBUser: Codable {
         try container.encodeIfPresent(self.yearOfEntering, forKey: .yearOfEntering)
         try container.encodeIfPresent(self.profileImagePath, forKey: .profileImagePath)
         try container.encodeIfPresent(self.profileImageUrl, forKey: .profileImageUrl)
+        try container.encodeIfPresent(self.rating, forKey: .rating)
+        try container.encodeIfPresent(self.points, forKey: .points)
+        try container.encodeIfPresent(self.numberOfProvidedHelp, forKey: .numberOfProvidedHelp)
+        try container.encodeIfPresent(self.reviewsCount, forKey: .reviewsCount)
     }
 }
 
@@ -117,6 +133,10 @@ extension DBUser {
         self.faculty = nil
         self.studyProgram = nil
         self.yearOfEntering = nil
+        self.rating = 5.0
+        self.points = 0
+        self.numberOfProvidedHelp = 0
+        self.reviewsCount = 0
     }
     
     init?(dictionary: [String: Any]) {
@@ -141,7 +161,11 @@ extension DBUser {
         let rawStudyProgram = dictionary["study_program"] as? String
         self.studyProgram = StudyProgram(rawValue: rawStudyProgram ?? "")
         self.yearOfEntering = dictionary["year_of_entering"] as? Int
-        self.profileImageUrl = dictionary["profile_image_path"] as? String
+        self.profileImageUrl = dictionary["profile_image_url"] as? String
         self.profileImagePath = dictionary["profile_image_path"] as? String
+        self.rating = dictionary["rating"] as? Double ?? 5.0
+        self.points = dictionary["points"] as? Int ?? 0
+        self.numberOfProvidedHelp = 0
+        self.reviewsCount = 0
     }
 }

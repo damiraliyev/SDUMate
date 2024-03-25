@@ -11,6 +11,7 @@ import PromiseKit
 
 protocol IProfilePresenter: AnyObject {
     func backTapped()
+    func viewDidLoad()
     func cameraTapped()
 }
 
@@ -34,6 +35,17 @@ final class ProfilePresenter: NSObject, IProfilePresenter {
     func backTapped() {
         coordinator?.backTapped { [weak self] in
             self?.coordinator?.onFlowDidFinish?()
+        }
+    }
+    
+    func viewDidLoad() {
+        guard let userId = authManager.getAuthUser()?.uid else { return }
+        firstly {
+            userManager.getUser(userId: userId)
+        } .done { [weak self] dbUser in
+            self?.view?.configure(with: dbUser)
+        } .catch { error in
+            self.coordinator?.showErrorAlert(error: error.localizedDescription)
         }
     }
     

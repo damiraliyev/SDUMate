@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import Kingfisher
 
 protocol IProfileView: Presentable {
     var presenter: IProfilePresenter? { get set }
     
     func set(image: UIImage)
+    func configure(with user: DBUser)
 }
 
 final class ProfileViewController: BaseViewController, IProfileView {
@@ -74,6 +76,7 @@ final class ProfileViewController: BaseViewController, IProfileView {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter?.viewDidLoad()
         setupViews()
         setupConstraints()
     }
@@ -116,6 +119,12 @@ final class ProfileViewController: BaseViewController, IProfileView {
     
     func set(image: UIImage) {
         profileImageView.image = image
+    }
+    
+    func configure(with user: DBUser) {
+        profileImageView.kf.setImage(with: URL(string: user.profileImageUrl ?? ""))
+        studyInfoDetailsView.configure(with: user)
+        contactDetailsView.configure(with: user)
     }
     
     @objc func cameraTapped() {

@@ -47,6 +47,11 @@ final class LabelWithLeftIconView: UIView {
         titleLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.leading.equalTo(imageView.snp.trailing).offset(15)
+            make.trailing.equalToSuperview()
         }
+    }
+    
+    func set(text: String) {
+        titleLabel.text = text
     }
 }

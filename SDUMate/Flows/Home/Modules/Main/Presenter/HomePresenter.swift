@@ -35,6 +35,7 @@ final class HomePresenter: IHomePresenter {
     
     func viewDidLoad() {
         fetchAnnouncements()
+        fetchUser()
     }
     
     func filterTapped() {
@@ -62,6 +63,16 @@ final class HomePresenter: IHomePresenter {
             self.view?.reload()
         } .catch { error in
             self.coordinator?.showErrorAlert(error: error.localizedDescription)
+        }
+    }
+    
+    private func fetchUser() {
+        homeManager.getUser(userId: id).done { [weak self] user in
+            let fullName = "\(user.name ?? "") \(user.surname ?? "")"
+            let nickname = user.nickname ?? ""
+            self?.view?.setupHeader(fullName: fullName, nickname: nickname)
+        } .catch { [weak self] error in
+            self?.coordinator?.showErrorAlert(error: error.localizedDescription)
         }
     }
 }

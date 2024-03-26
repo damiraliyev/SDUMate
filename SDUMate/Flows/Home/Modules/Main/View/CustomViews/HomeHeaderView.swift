@@ -98,6 +98,11 @@ final class HomeHeaderView: UIView {
         }
     }
     
+    func configure(fullName: String, nickname: String) {
+        fullNameLabel.text = fullName
+        nicknameLabel.text = nickname
+    }
+    
     @objc func notificationsTapped() {
         delegate?.notificationsTapped()
     }

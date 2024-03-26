@@ -11,6 +11,7 @@ protocol IHomeView: Presentable {
     var presenter: IHomePresenter? { get set }
     
     func configureAppliedFilters(with filter: AppliedFilter)
+    func setupHeader(fullName: String, nickname: String)
     func reload()
 }
 
@@ -86,6 +87,10 @@ final class HomeViewController: BaseViewController {
 extension HomeViewController: IHomeView {
     func configureAppliedFilters(with filter: AppliedFilter) {
         appliedFiltersView.configure(filter)
+    }
+    
+    func setupHeader(fullName: String, nickname: String) {
+        headerView.configure(fullName: fullName, nickname: nickname)
     }
     
     func reload() {

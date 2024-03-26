@@ -123,6 +123,8 @@ final class ProfileViewController: BaseViewController, IProfileView {
     
     func configure(with user: DBUser) {
         profileImageView.kf.setImage(with: URL(string: user.profileImageUrl ?? ""))
+        fullNameLabel.text = "\(user.name ?? "") \(user.surname ?? "")"
+        nicknameLabel.text = user.nickname ?? ""
         studyInfoDetailsView.configure(with: user)
         contactDetailsView.configure(with: user)
     }

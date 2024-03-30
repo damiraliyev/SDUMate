@@ -8,6 +8,11 @@
 import UIKit
 import PhotosUI
 
+enum ProfileFromFlowType {
+    case fromHome
+    case fromTab
+}
+
 protocol ProfileCoordinatorDelegate: AnyObject {
     func didTapLogOut()
 }
@@ -31,16 +36,23 @@ final class ProfileCoordinator: BaseCoordinator, IProfileCoordinator, TababbleCo
     
     private let moduleFactory: ProfileModuleFactory
     let permissionHelper: PermissionsHelper
+    private let fromFlow: ProfileFromFlowType
     
-    init(router: Router, container: DependencyContainer) {
+    init(router: Router, container: DependencyContainer, fromFlow: ProfileFromFlowType) {
         self.moduleFactory = ProfileModuleFactory(container: container)
         self.permissionHelper = container.resolve(PermissionsHelper.self)!
+        self.fromFlow = fromFlow
         super.init(router: router)
     }
     
     override func start() {
-        let profileView = moduleFactory.makeProfileView(coordinator: self)
-        router.push(profileView)
+        let profileView = moduleFactory.makeProfileView(coordinator: self, fromFlow: fromFlow)
+        switch fromFlow {
+        case .fromHome:
+            router.push(profileView)
+        case .fromTab:
+            router.setRootModule(profileView)
+        }
     }
     
     func backTapped(completion: Completion?) {

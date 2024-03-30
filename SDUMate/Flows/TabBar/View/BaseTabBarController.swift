@@ -31,6 +31,7 @@ class BaseTabBarController: UITabBarController {
         let appearance = tabBar.standardAppearance
         appearance.stackedLayoutAppearance.normal.iconColor = .white
         appearance.stackedLayoutAppearance.selected.iconColor = .white
+        appearance.backgroundColor = ._110F2F
         tabBar.standardAppearance = appearance
         tabBar.layer.shadowColor = UIColor.moduleDescription.withAlphaComponent(0.3).cgColor
         tabBar.layer.shadowOffset = CGSize(width: 0.0, height: -1.0)

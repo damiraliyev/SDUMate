@@ -18,6 +18,7 @@ protocol IProfileView: Presentable {
 final class ProfileViewController: BaseViewController, IProfileView {
     
     var presenter: IProfilePresenter?
+    private let fromFlow: ProfileFromFlowType
     
     private let sections = ProfileSectionType.allCases
     
@@ -38,14 +39,34 @@ final class ProfileViewController: BaseViewController, IProfileView {
         tableView.backgroundColor = ._110F2F
         tableView.rowHeight = 60
         tableView.sectionHeaderHeight = 20
+        tableView.contentInset.bottom = 20
         return tableView
     }()
+    
+    init(fromFlow: ProfileFromFlowType) {
+        self.fromFlow = fromFlow
+        super.init()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.viewDidLoad()
+        setupNavBar()
         setupViews()
         setupConstraints()
+    }
+    
+    private func setupNavBar() {
+        switch fromFlow {
+        case .fromHome:
+            navigationBar.safeShow()
+        case .fromTab:
+            navigationBar.safeHide()
+        }
     }
 
     private func setupViews() {

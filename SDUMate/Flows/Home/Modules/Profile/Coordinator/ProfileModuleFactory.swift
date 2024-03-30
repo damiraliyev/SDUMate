@@ -16,8 +16,8 @@ final class ProfileModuleFactory {
         self.container = container
     }
     
-    func makeProfileView(coordinator: IProfileCoordinator) -> IProfileView {
-        let view: IProfileView = ProfileViewController()
+    func makeProfileView(coordinator: IProfileCoordinator, fromFlow: ProfileFromFlowType) -> IProfileView {
+        let view: IProfileView = ProfileViewController(fromFlow: fromFlow)
         let presenter: IProfilePresenter = ProfilePresenter(view: view, coordinator: coordinator, container: container)
         view.presenter = presenter
         return view

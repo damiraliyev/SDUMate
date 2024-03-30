@@ -40,4 +40,12 @@ final class ProfileModuleFactory {
         picker.delegate = handler
         return picker
     }
+    
+    func makeEditProfileCoordinator(navigationController: CoordinatorNavigationController) -> Coordinator & IEditProfileCoordinator {
+        let coordinator: Coordinator & IEditProfileCoordinator = EditProfileCoordinator(
+            router: Router(navigationController: navigationController),
+            container: container
+        )
+        return coordinator
+    }
 }

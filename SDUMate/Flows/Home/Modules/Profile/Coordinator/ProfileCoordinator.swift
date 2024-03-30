@@ -122,7 +122,13 @@ final class ProfileCoordinator: BaseCoordinator, IProfileCoordinator, TababbleCo
     }
     
     func showEditProfileView() {
-        
+        guard let navigationController = router.navigationController else { return }
+        let editProfileCoordinator = moduleFactory.makeEditProfileCoordinator(navigationController: navigationController)
+        addDependency(editProfileCoordinator)
+        editProfileCoordinator.start()
+        editProfileCoordinator.onFlowDidFinish = { [weak self, weak editProfileCoordinator] in
+            self?.removeDependency(editProfileCoordinator)
+        }
     }
     
     func didTapLogOut() {

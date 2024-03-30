@@ -13,4 +13,11 @@ final class EditProfileModuleFactory {
     init(container: DependencyContainer) {
         self.container = container
     }
+    
+    func makeEditProfileView(coordinator: IEditProfileCoordinator) -> IEditProfileView {
+        let view: IEditProfileView = EditProfileViewController()
+        let presenter: IEditProfilePresenter = EditProfilePresenter(view: view, coordinator: coordinator)
+        view.presenter = presenter
+        return view
+    }
 }

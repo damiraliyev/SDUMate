@@ -38,6 +38,7 @@ internal enum Asset {
   internal static let icAboutUs = ImageAsset(name: "ic_about_us")
   internal static let icAcceptCheckmark = ImageAsset(name: "ic_accept_checkmark")
   internal static let icArrowRight = ImageAsset(name: "ic_arrow_right")
+  internal static let icArrowRightGray = ImageAsset(name: "ic_arrow_right_gray")
   internal static let icAvatarPlaceholder = ImageAsset(name: "ic_avatar_placeholder")
   internal static let icBackButton = ImageAsset(name: "ic_back_button")
   internal static let icCalendar = ImageAsset(name: "ic_calendar")

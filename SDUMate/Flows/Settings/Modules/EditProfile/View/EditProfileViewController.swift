@@ -15,6 +15,39 @@ final class EditProfileViewController: BaseViewController, IEditProfileView {
     
     var presenter: IEditProfilePresenter?
     
+    private lazy var doneButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Done", for: .normal)
+        button.setTitleColor(.lavender, for: .normal)
+        button.titleLabel?.font = .medium14
+        button.addTarget(self, action: #selector(doneTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var cancelButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Cancel", for: .normal)
+        button.setTitleColor(.lavender, for: .normal)
+        button.titleLabel?.font = .medium14
+        button.addTarget(self, action: #selector(cancelTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.showsVerticalScrollIndicator = true
+        tableView.backgroundColor = ._110F2F
+        tableView.rowHeight = 42
+        let headerView = EditProfileHeaderView(frame: CGRect(x: 0, y: 0, width: UIView.screenWidth, height: UIView.screenHeight / 5.3))
+        tableView.tableHeaderView = headerView
+        tableView.sectionHeaderHeight = 20
+        tableView.contentInset.bottom = 20
+        tableView.register(EditProfileCell.self)
+        return tableView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -22,11 +55,48 @@ final class EditProfileViewController: BaseViewController, IEditProfileView {
     }
     
     private func setupViews() {
-        
+        view.backgroundColor = ._110F2F
+        view.addSubviews([doneButton, cancelButton, tableView])
     }
     
     private func setupConstraints() {
+        doneButton.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(1)
+            make.trailing.equalToSuperview().offset(-16)
+            make.height.equalTo(21)
+        }
+        cancelButton.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(1)
+            make.leading.equalToSuperview().offset(16)
+            make.height.equalTo(21)
+        }
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(doneButton.snp.bottom).offset(2)
+            make.leading.trailing.equalToSuperview().inset(16)
+            make.bottom.equalToSuperview()
+        }
+    }
+    
+    @objc func doneTapped() {
+        
+    }
+    
+    @objc func cancelTapped() {
         
     }
 }
 
+extension EditProfileViewController: UITableViewDelegate {
+    
+}
+
+extension EditProfileViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: EditProfileCell = tableView.dequeueReusableCell(for: indexPath)
+        return cell
+    }
+}

@@ -23,6 +23,8 @@
 		681286E12BB80ACE00F69DEE /* EditProfileModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681286E02BB80ACE00F69DEE /* EditProfileModuleFactory.swift */; };
 		681286E32BB80B8400F69DEE /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681286E22BB80B8400F69DEE /* EditProfileViewController.swift */; };
 		681286E52BB80B9800F69DEE /* EditProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681286E42BB80B9800F69DEE /* EditProfilePresenter.swift */; };
+		681286E82BB81A4300F69DEE /* EditProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681286E72BB81A4300F69DEE /* EditProfileCell.swift */; };
+		681286EA2BB81DED00F69DEE /* EditProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681286E92BB81DED00F69DEE /* EditProfileHeaderView.swift */; };
 		6812F80A2B8AF6DE007E27D5 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6812F8092B8AF6DE007E27D5 /* AuthView.swift */; };
 		68170C5E2B9C9A7500289980 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68170C5D2B9C9A7500289980 /* UserManager.swift */; };
 		68170C612B9CA24A00289980 /* DBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68170C602B9CA24A00289980 /* DBUser.swift */; };
@@ -235,6 +237,8 @@
 		681286E02BB80ACE00F69DEE /* EditProfileModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileModuleFactory.swift; sourceTree = "<group>"; };
 		681286E22BB80B8400F69DEE /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		681286E42BB80B9800F69DEE /* EditProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfilePresenter.swift; sourceTree = "<group>"; };
+		681286E72BB81A4300F69DEE /* EditProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileCell.swift; sourceTree = "<group>"; };
+		681286E92BB81DED00F69DEE /* EditProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileHeaderView.swift; sourceTree = "<group>"; };
 		6812F8092B8AF6DE007E27D5 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		68170C5D2B9C9A7500289980 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		68170C602B9CA24A00289980 /* DBUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBUser.swift; sourceTree = "<group>"; };
@@ -525,7 +529,9 @@
 		681286DC2BB80A8E00F69DEE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				681286E62BB81A3800F69DEE /* Cells */,
 				681286E22BB80B8400F69DEE /* EditProfileViewController.swift */,
+				681286E92BB81DED00F69DEE /* EditProfileHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -537,6 +543,14 @@
 				681286E02BB80ACE00F69DEE /* EditProfileModuleFactory.swift */,
 			);
 			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		681286E62BB81A3800F69DEE /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				681286E72BB81A4300F69DEE /* EditProfileCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		68170C5F2B9CA23A00289980 /* Model */ = {
@@ -2151,6 +2165,7 @@
 				682D084F2B7DF31900A5FCC1 /* BaseTabBar.swift in Sources */,
 				682D08142B7DF31900A5FCC1 /* AlertInput.swift in Sources */,
 				682D081C2B7DF31900A5FCC1 /* UIColor+Extension.swift in Sources */,
+				681286EA2BB81DED00F69DEE /* EditProfileHeaderView.swift in Sources */,
 				681EA8652BAFA93600BE4D37 /* CategoryFilter.swift in Sources */,
 				682D08152B7DF31900A5FCC1 /* ApplicationResponse.swift in Sources */,
 				681286BC2BB7F46500F69DEE /* ProfileFooterView.swift in Sources */,
@@ -2170,6 +2185,7 @@
 				682D08192B7DF31900A5FCC1 /* UIScrollView+Extension.swift in Sources */,
 				68C5C4752B944E04006C9540 /* PhotoSetupPresenter.swift in Sources */,
 				68170C612B9CA24A00289980 /* DBUser.swift in Sources */,
+				681286E82BB81A4300F69DEE /* EditProfileCell.swift in Sources */,
 				681286E32BB80B8400F69DEE /* EditProfileViewController.swift in Sources */,
 				682D080F2B7DF31900A5FCC1 /* GlobalConstants.swift in Sources */,
 				682D080C2B7DF31900A5FCC1 /* RequestDecoder.swift in Sources */,

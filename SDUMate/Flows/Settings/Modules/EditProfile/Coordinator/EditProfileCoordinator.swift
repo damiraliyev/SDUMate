@@ -13,10 +13,15 @@ protocol IEditProfileCoordinator: IBaseCoordinator {
 
 final class EditProfileCoordinator: BaseCoordinator, IEditProfileCoordinator {
     var onFlowDidFinish: Completion?
-    private let moduleFacory: EditProfileModuleFactory
+    private let moduleFactory: EditProfileModuleFactory
     
     init(router: Router, container: DependencyContainer) {
-        self.moduleFacory = EditProfileModuleFactory(container: container)
+        self.moduleFactory = EditProfileModuleFactory(container: container)
         super.init(router: router)
+    }
+    
+    override func start() {
+        let editProfileView = moduleFactory.makeEditProfileView(coordinator: self)
+        router.push(editProfileView)
     }
 }

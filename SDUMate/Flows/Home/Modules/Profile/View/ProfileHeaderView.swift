@@ -26,6 +26,7 @@ final class ProfileHeaderView: UIView {
         let button = UIButton()
         button.setTitle("Change", for: .normal)
         button.setTitleColor(.lavender, for: .normal)
+        button.titleLabel?.font = .regular14
         button.backgroundColor = .clear
         button.addTarget(self, action: #selector(changeTapped), for: .touchUpInside)
         return button
@@ -50,7 +51,7 @@ final class ProfileHeaderView: UIView {
     
     private func setupViews() {
         backgroundColor = .clear
-        addSubviews([userInfoView, profileImageView])
+        addSubviews([userInfoView, changeButton, profileImageView])
     }
     
     private func setupConstraints() {
@@ -58,6 +59,10 @@ final class ProfileHeaderView: UIView {
             make.top.equalToSuperview()
             make.centerX.equalToSuperview()
             make.size.equalTo(110)
+        }
+        changeButton.snp.makeConstraints { make in
+            make.top.trailing.equalToSuperview()
+            make.height.equalTo(21)
         }
         userInfoView.snp.makeConstraints { make in
             make.top.equalTo(profileImageView.snp.bottom).offset(-40)

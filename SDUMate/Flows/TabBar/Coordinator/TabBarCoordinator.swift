@@ -34,6 +34,7 @@ final class TabBarCoordinator: BaseCoordinator {
         coordinatorFactory = TarBarCoordinatorFactory(container: container)
         tabBarController = TabBarController()
         super.init(router: router)
+        NotificationCenter.default.addObserver(self, selector: #selector(didTapLogOut), name: GlobalConstants.logOutNotificationName, object: nil)
     }
     
     override func start() {
@@ -128,8 +129,8 @@ final class TabBarCoordinator: BaseCoordinator {
 }
 
 extension TabBarCoordinator: ProfileCoordinatorDelegate {
-    func didTapLogOut() {
-        tabRootContainers.forEach({ $0.coordinator.onFlowDidFinish?()})
+    @objc func didTapLogOut() {
+        tabRootContainers.forEach({ $0.coordinator.onFlowDidFinish?()} )
         tabRootContainers = []
         clearChildCoordinators()
         tabBarDelegate?.didTapLogOut()

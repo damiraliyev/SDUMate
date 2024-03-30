@@ -110,7 +110,11 @@ final class ProfileCoordinator: BaseCoordinator, IProfileCoordinator, TababbleCo
     
     func didTapLogOut() {
         onFlowDidFinish?()
-        delegate?.didTapLogOut()
+        if let delegate = delegate {
+            delegate.didTapLogOut()
+        } else {
+            NotificationCenter.default.post(name: NSNotification.Name("logOut"), object: nil)
+        }
     }
 }
 

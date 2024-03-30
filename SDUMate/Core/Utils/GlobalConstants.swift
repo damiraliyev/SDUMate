@@ -16,4 +16,5 @@ struct GlobalConstants {
     static let checkInCheckOutDateFormats: [String] = ["yyyy-MM-dd'T'HH:mm:ss.SSSSSSXXXXX", "yyyy-MM-dd'T'HH:mm:ssXXXXX"]
     static let homeIndicatorHeight: CGFloat = 34
     static let gambyTitle = "Gamby"
+    static let logOutNotificationName = NSNotification.Name("logOut")
 }

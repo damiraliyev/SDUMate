@@ -51,7 +51,7 @@ final class TarBarCoordinatorFactory {
         let navigationController = CoordinatorNavigationController()
         navigationController.tabBarItem.image = Asset.icTabProfile.image
         let router = Router(navigationController: navigationController)
-        let coordinator = ProfileCoordinator(router: router, container: container)
+        let coordinator = ProfileCoordinator(router: router, container: container, fromFlow: .fromTab)
         return (coordinator, navigationController)
     }
     

@@ -54,7 +54,8 @@ final class HomeModuleFactory {
     func makeProfileCoordinator(navigationController: CoordinatorNavigationController) -> Coordinator & IProfileCoordinator {
         let coordinator: Coordinator & IProfileCoordinator = ProfileCoordinator(
             router: Router(navigationController: navigationController),
-            container: container
+            container: container,
+            fromFlow: .fromHome
         )
         return coordinator
     }

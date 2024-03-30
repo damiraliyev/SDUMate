@@ -20,4 +20,11 @@ final class EditProfileModuleFactory {
         view.presenter = presenter
         return view
     }
+    
+    func makeEditFieldView(coordinator: IEditProfileCoordinator, item: EditProfileTableItem) -> IEditFieldView {
+        let view: IEditFieldView = EditFieldViewController(item: item)
+        let presenter: IEditFieldPresenter = EditFieldPresenter(view: view, coordinator: coordinator)
+        view.presenter = presenter
+        return view
+    }
 }

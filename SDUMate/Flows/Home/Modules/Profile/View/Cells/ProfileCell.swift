@@ -41,8 +41,8 @@ final class ProfileCell: UITableViewCell {
     
     private func setupViews() {
         backgroundColor = ._767680.withAlphaComponent(0.2)
-        layer.cornerRadius = 12
         selectionStyle = .none
+        separatorInset.right = 15
         contentView.addSubviews([iconImageView, titleLabel, arrowImageView])
     }
     
@@ -50,7 +50,7 @@ final class ProfileCell: UITableViewCell {
         iconImageView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.leading.equalToSuperview().offset(10)
-            make.size.equalTo(40)
+            make.size.equalTo(30)
         }
         titleLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()

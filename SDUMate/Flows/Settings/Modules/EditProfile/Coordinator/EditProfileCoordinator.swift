@@ -9,6 +9,8 @@ import Foundation
 
 protocol IEditProfileCoordinator: IBaseCoordinator {
     var onFlowDidFinish: Completion? { get set }
+    func popModule(completion: Completion?)
+    func showEditFieldView(for item: EditProfileTableItem)
 }
 
 final class EditProfileCoordinator: BaseCoordinator, IEditProfileCoordinator {
@@ -23,5 +25,22 @@ final class EditProfileCoordinator: BaseCoordinator, IEditProfileCoordinator {
     override func start() {
         let editProfileView = moduleFactory.makeEditProfileView(coordinator: self)
         router.push(editProfileView)
+    }
+    
+    func dismissModule(completion: (() -> Void)?) {
+        router.dismissModule { [weak self] in
+            completion?()
+            self?.onFlowDidFinish?()
+        }
+    }
+    
+    func popModule(completion: Completion?) {
+        router.popModule()
+        completion?()
+    }
+    
+    func showEditFieldView(for item: EditProfileTableItem) {
+        let editFieldView = moduleFactory.makeEditFieldView(coordinator: self, item: item)
+        router.push(editFieldView)
     }
 }

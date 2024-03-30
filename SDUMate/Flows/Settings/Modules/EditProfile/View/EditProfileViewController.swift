@@ -14,6 +14,7 @@ protocol IEditProfileView: Presentable {
 final class EditProfileViewController: BaseViewController, IEditProfileView {
     
     var presenter: IEditProfilePresenter?
+    private let sections = EditProfileTableSectionType.allCases
     
     private lazy var doneButton: UIButton = {
         let button = UIButton()
@@ -34,7 +35,7 @@ final class EditProfileViewController: BaseViewController, IEditProfileView {
     }()
     
     private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .grouped)
+        let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.showsVerticalScrollIndicator = true
@@ -72,31 +73,40 @@ final class EditProfileViewController: BaseViewController, IEditProfileView {
         }
         tableView.snp.makeConstraints { make in
             make.top.equalTo(doneButton.snp.bottom).offset(2)
-            make.leading.trailing.equalToSuperview().inset(16)
+            make.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
         }
     }
     
     @objc func doneTapped() {
-        
+        presenter?.doneTapped()
     }
     
     @objc func cancelTapped() {
-        
+        presenter?.cancelTapped()
     }
 }
 
 extension EditProfileViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter?.didSelectRowAt(indexPath)
+    }
 }
 
 extension EditProfileViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return sections.count
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        let section = sections[section]
+        return section.items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: EditProfileCell = tableView.dequeueReusableCell(for: indexPath)
+        let section = sections[indexPath.section]
+        cell.configure(with: section.items[indexPath.row])
         return cell
     }
 }

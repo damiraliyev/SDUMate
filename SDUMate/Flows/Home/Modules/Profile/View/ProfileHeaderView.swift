@@ -61,12 +61,13 @@ final class ProfileHeaderView: UIView {
             make.size.equalTo(110)
         }
         changeButton.snp.makeConstraints { make in
-            make.top.trailing.equalToSuperview()
+            make.top.equalToSuperview()
+            make.trailing.equalToSuperview().offset(-16)
             make.height.equalTo(21)
         }
         userInfoView.snp.makeConstraints { make in
             make.top.equalTo(profileImageView.snp.bottom).offset(-40)
-            make.leading.trailing.equalToSuperview()
+            make.leading.trailing.equalToSuperview().inset(16).priority(.high)
         }
     }
     

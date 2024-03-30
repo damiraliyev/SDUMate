@@ -44,6 +44,9 @@ final class EditProfileCell: UITableViewCell {
     
     private func setupViews() {
         backgroundColor = ._767680.withAlphaComponent(0.2)
+        layer.cornerRadius = 12
+        selectionStyle = .none
+        contentView.layer.cornerRadius = 12
         contentView.addSubviews([titleLabel, valueLabel, arrowImageView])
     }
     
@@ -61,5 +64,9 @@ final class EditProfileCell: UITableViewCell {
             make.trailing.equalToSuperview()
             make.size.equalTo(30)
         }
+    }
+    
+    func configure(with sectionItem: EditProfileTableItem) {
+        titleLabel.text = sectionItem.title
     }
 }

@@ -27,10 +27,12 @@ final class ProfileViewController: BaseViewController, IProfileView {
     }
     
     private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .grouped)
+        let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.showsVerticalScrollIndicator = true
+        tableView.separatorStyle = .singleLine
+        tableView.separatorColor = .moduleDescription
         tableView.register(ProfileCell.self)
         let headerView = ProfileHeaderView(frame: CGRect(x: 0, y: 0, width: UIView.screenWidth - 32, height: 340))
         headerView.delegate = presenter as? ProfileHeaderViewDelegate
@@ -39,7 +41,7 @@ final class ProfileViewController: BaseViewController, IProfileView {
         tableView.tableFooterView = footerView
         footerView.delegate = presenter as? ProfileFooterDelegate
         tableView.backgroundColor = ._110F2F
-        tableView.rowHeight = 60
+        tableView.rowHeight = 50
         tableView.sectionHeaderHeight = 20
         tableView.contentInset.bottom = 20
         return tableView
@@ -79,7 +81,7 @@ final class ProfileViewController: BaseViewController, IProfileView {
     private func setupConstraints() {
         tableView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(22)
-            make.leading.trailing.equalToSuperview().inset(16)
+            make.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
         }
     }

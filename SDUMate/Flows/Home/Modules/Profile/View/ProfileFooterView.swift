@@ -17,7 +17,7 @@ final class ProfileFooterView: UIView {
     
     private lazy var logOutButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = .clear
+        button.backgroundColor = ._767680.withAlphaComponent(0.2)
         button.layer.cornerRadius = 12
         button.setTitle("Log Out", for: .normal)
         button.setTitleColor(._FF453A, for: .normal)
@@ -38,13 +38,14 @@ final class ProfileFooterView: UIView {
     
     private func setupViews() {
         layer.cornerRadius = 12
-        backgroundColor = ._767680.withAlphaComponent(0.2)
+        backgroundColor = .clear
         addSubview(logOutButton)
     }
     
     private func setupConstraints() {
         logOutButton.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.bottom.equalToSuperview()
+            make.leading.trailing.equalToSuperview().inset(16).priority(.high)
         }
     }
     

@@ -8,14 +8,26 @@
 import UIKit
 import PhotosUI
 
-protocol IProfileCoordinator: IBaseCoordinator {
-    var onFlowDidFinish: Completion? { get set }
-    
-    func showPhotoSelectAlert(with options: [AttachmentOption], handler: PHPickerViewControllerDelegate & UIImagePickerControllerDelegate & UINavigationControllerDelegate)
+protocol ProfileCoordinatorDelegate: AnyObject {
+    func didTapLogOut()
 }
 
-final class ProfileCoordinator: BaseCoordinator, IProfileCoordinator {
+protocol IProfileCoordinator: IBaseCoordinator {
+    var onFlowDidFinish: Completion? { get set }
+    var delegate: ProfileCoordinatorDelegate? { get set }
+    
+    
+    func showPhotoSelectAlert(with options: [AttachmentOption], handler: PHPickerViewControllerDelegate & UIImagePickerControllerDelegate & UINavigationControllerDelegate)
+    func didTapLogOut()
+}
+
+final class ProfileCoordinator: BaseCoordinator, IProfileCoordinator, TababbleCoordinator {
+    var onOwnerTabBarNeedsToBeChanged: ((OwnerTabBarItem) -> Void)?
+    
+    var tabCoordinatorDelegate: TabCoordinatorDelegate?
+    
     var onFlowDidFinish: Completion?
+    weak var delegate: ProfileCoordinatorDelegate?
     
     private let moduleFactory: ProfileModuleFactory
     let permissionHelper: PermissionsHelper
@@ -94,6 +106,11 @@ final class ProfileCoordinator: BaseCoordinator, IProfileCoordinator {
     private func showPhotoLibrary(handler: PHPickerViewControllerDelegate) {
         let photoLibrary = moduleFactory.makePhotoLibrary(handler: handler)
         router.present(photoLibrary)
+    }
+    
+    func didTapLogOut() {
+        onFlowDidFinish?()
+        delegate?.didTapLogOut()
     }
 }
 

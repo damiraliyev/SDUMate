@@ -20,7 +20,7 @@ protocol IHomePresenter {
 
 final class HomePresenter: IHomePresenter {
     weak var view: IHomeView?
-    private let coordinator: IHomeCoordinator?
+    private weak var coordinator: IHomeCoordinator?
     private let homeManager: HomeManager
     private var filter: AppliedFilter?
     let id = AuthManager.shared.getAuthUser()?.uid ?? ""

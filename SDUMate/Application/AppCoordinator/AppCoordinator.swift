@@ -8,10 +8,6 @@
 import Moya
 import UIKit
 
-protocol TabCoordinatorDelegate: AnyObject {
-    
-}
-
 final class AppCoordinator: BaseCoordinator {
     private let container: DependencyContainer
     private var tabBarCoordinator: Coordinator?
@@ -27,6 +23,10 @@ final class AppCoordinator: BaseCoordinator {
     
     override func start() {
         clearAll()
+        startProperCoordinator()
+    }
+    
+    private func startProperCoordinator() {
         if authManager.getAuthUser() == nil {
             runAuthFlow()
         } else {
@@ -60,9 +60,16 @@ final class AppCoordinator: BaseCoordinator {
     }
     
     private func runMainFlow() {
-        let coordinator: Coordinator = coordinatorFactory.makeTabBarCoordinator()
+        let coordinator: Coordinator = coordinatorFactory.makeTabBarCoordinator(tabBarDelegate: self)
         tabBarCoordinator = coordinator
         addDependency(coordinator)
         coordinator.start()
+    }
+}
+
+extension AppCoordinator: TabCoordinatorDelegate {
+    func didTapLogOut() {
+        clearAll()
+        startProperCoordinator()
     }
 }

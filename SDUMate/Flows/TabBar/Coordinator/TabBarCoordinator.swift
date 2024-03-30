@@ -12,7 +12,14 @@ struct TabableRootControllerAndCoordinatorContainer {
     var coordinator: TababbleCoordinator
 }
 
+protocol TabCoordinatorDelegate: AnyObject {
+    func didTapLogOut()
+}
+
 final class TabBarCoordinator: BaseCoordinator {
+    
+    weak var tabBarDelegate: TabCoordinatorDelegate?
+    
     private var coordinatorFactory: TarBarCoordinatorFactory
     private var tabRootContainers: [TabableRootControllerAndCoordinatorContainer] = []
     private var tabBarController: TabBarController
@@ -47,11 +54,11 @@ final class TabBarCoordinator: BaseCoordinator {
     private func setupHomeFlow() {
         let (homeCoordinator, rootController) = coordinatorFactory.makeHomeModule()
         homeCoordinator.start()
-        homeCoordinator.tabCoordinatorDelegate = self
         addDependency(homeCoordinator)
         homeCoordinator.onFlowDidFinish = { [weak self, weak homeCoordinator] in
             self?.removeDependency(homeCoordinator)
         }
+    
         guard let controller = rootController.toPresent() else { return }
         self.homeCoordinator = homeCoordinator
         tabRootContainers.append(
@@ -65,7 +72,6 @@ final class TabBarCoordinator: BaseCoordinator {
     private func setupSessionsFlow() {
         let (sessionsCoordinator, rootController) = coordinatorFactory.makeSessionsModule()
         sessionsCoordinator.start()
-        sessionsCoordinator.tabCoordinatorDelegate = self
         addDependency(sessionsCoordinator)
         guard let controller = rootController.toPresent() else { return }
         self.sessionsCoordinator = sessionsCoordinator
@@ -80,7 +86,6 @@ final class TabBarCoordinator: BaseCoordinator {
     private func setupNewRequestFlow() {
         let (newRequestCoordinator, rootController) = coordinatorFactory.makeNewRequestModule()
         newRequestCoordinator.start()
-        newRequestCoordinator.tabCoordinatorDelegate = self
         addDependency(newRequestCoordinator)
         guard let controller = rootController.toPresent() else { return }
         self.newRequestCoordinator = newRequestCoordinator
@@ -95,7 +100,6 @@ final class TabBarCoordinator: BaseCoordinator {
     private func setupRatingFlow() {
         let (ratingCoordinator, rootController) = coordinatorFactory.makeRatingModule()
         ratingCoordinator.start()
-        ratingCoordinator.tabCoordinatorDelegate = self
         addDependency(ratingCoordinator)
         guard let controller = rootController.toPresent() else { return }
         self.ratingCoordinator = ratingCoordinator
@@ -110,7 +114,7 @@ final class TabBarCoordinator: BaseCoordinator {
     private func setupSettingsFlow() {
         let (settingsCoordinator, rootController) = coordinatorFactory.makeSettingsModule()
         settingsCoordinator.start()
-        settingsCoordinator.tabCoordinatorDelegate = self
+        settingsCoordinator.delegate = self
         addDependency(settingsCoordinator)
         guard let controller = rootController.toPresent() else { return }
         self.settingsCoordinator = settingsCoordinator
@@ -123,6 +127,11 @@ final class TabBarCoordinator: BaseCoordinator {
     }
 }
 
-extension TabBarCoordinator: TabCoordinatorDelegate {
-    
+extension TabBarCoordinator: ProfileCoordinatorDelegate {
+    func didTapLogOut() {
+        tabRootContainers.forEach({ $0.coordinator.onFlowDidFinish?()})
+        tabRootContainers = []
+        clearChildCoordinators()
+        tabBarDelegate?.didTapLogOut()
+    }
 }

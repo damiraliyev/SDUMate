@@ -176,3 +176,10 @@ extension ProfilePresenter: PHPickerViewControllerDelegate {
         }
     }
 }
+
+extension ProfilePresenter: ProfileFooterDelegate {
+    func logOutTapped() {
+        AuthManager.shared.logOut()
+        coordinator?.didTapLogOut()
+    }
+}

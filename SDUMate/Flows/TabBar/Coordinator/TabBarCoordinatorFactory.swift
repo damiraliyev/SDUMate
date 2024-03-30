@@ -47,11 +47,11 @@ final class TarBarCoordinatorFactory {
         return (coordinator, navigationController)
     }
     
-    func makeSettingsModule() -> (coordinator: TababbleCoordinator, module: Presentable) {
+    func makeSettingsModule() -> (coordinator: TababbleCoordinator & IProfileCoordinator, module: Presentable) {
         let navigationController = CoordinatorNavigationController()
         navigationController.tabBarItem.image = Asset.icTabProfile.image
         let router = Router(navigationController: navigationController)
-        let coordinator = SettingsCoordinator(router: router, container: container)
+        let coordinator = ProfileCoordinator(router: router, container: container)
         return (coordinator, navigationController)
     }
     

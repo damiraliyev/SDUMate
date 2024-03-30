@@ -24,8 +24,10 @@ final class AppCordinatorFactory {
         return coordinator
     }
     
-    func makeTabBarCoordinator() -> Coordinator {
-        TabBarCoordinator(router: router, container: container)
+    func makeTabBarCoordinator(tabBarDelegate: TabCoordinatorDelegate) -> Coordinator {
+        let coordinator = TabBarCoordinator(router: router, container: container)
+        coordinator.tabBarDelegate = tabBarDelegate
+        return coordinator
     }
     
     func makeHomeCoordinator() -> IHomeCoordinator & Coordinator {

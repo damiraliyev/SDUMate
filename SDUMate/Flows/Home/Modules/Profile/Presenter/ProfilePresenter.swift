@@ -177,6 +177,12 @@ extension ProfilePresenter: PHPickerViewControllerDelegate {
     }
 }
 
+extension ProfilePresenter: ProfileHeaderViewDelegate {
+    func changeTapped() {
+        coordinator?.showEditProfileView()
+    }
+}
+
 extension ProfilePresenter: ProfileFooterDelegate {
     func logOutTapped() {
         AuthManager.shared.logOut()

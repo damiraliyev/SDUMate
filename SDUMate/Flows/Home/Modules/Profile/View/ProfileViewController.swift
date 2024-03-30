@@ -32,7 +32,9 @@ final class ProfileViewController: BaseViewController, IProfileView {
         tableView.dataSource = self
         tableView.showsVerticalScrollIndicator = true
         tableView.register(ProfileCell.self)
-        tableView.tableHeaderView = ProfileHeaderView(frame: CGRect(x: 0, y: 0, width: UIView.screenWidth - 32, height: 340))
+        let headerView = ProfileHeaderView(frame: CGRect(x: 0, y: 0, width: UIView.screenWidth - 32, height: 340))
+        headerView.delegate = presenter as? ProfileHeaderViewDelegate
+        tableView.tableHeaderView = headerView
         let footerView = ProfileFooterView(frame: CGRect(x: 0, y: 0, width: UIView.screenWidth - 32, height: 54))
         tableView.tableFooterView = footerView
         footerView.delegate = presenter as? ProfileFooterDelegate

@@ -7,13 +7,28 @@
 
 import UIKit
 
+protocol ProfileHeaderViewDelegate: AnyObject {
+    func changeTapped()
+}
+
 final class ProfileHeaderView: UIView {
+    
+    weak var delegate: ProfileHeaderViewDelegate?
     
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = Asset.icImagePlaceholder.image
         imageView.clipsToBounds = true
         return imageView
+    }()
+    
+    private lazy var changeButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Change", for: .normal)
+        button.setTitleColor(.lavender, for: .normal)
+        button.backgroundColor = .clear
+        button.addTarget(self, action: #selector(changeTapped), for: .touchUpInside)
+        return button
     }()
     
     private let userInfoView = ProfileUserInfoView()
@@ -48,6 +63,10 @@ final class ProfileHeaderView: UIView {
             make.top.equalTo(profileImageView.snp.bottom).offset(-40)
             make.leading.trailing.equalToSuperview()
         }
+    }
+    
+    @objc func changeTapped() {
+        delegate?.changeTapped()
     }
     
     override var intrinsicContentSize: CGSize {

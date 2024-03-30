@@ -23,6 +23,7 @@ protocol IProfileCoordinator: IBaseCoordinator {
     
     
     func showPhotoSelectAlert(with options: [AttachmentOption], handler: PHPickerViewControllerDelegate & UIImagePickerControllerDelegate & UINavigationControllerDelegate)
+    func showEditProfileView()
     func didTapLogOut()
 }
 
@@ -118,6 +119,10 @@ final class ProfileCoordinator: BaseCoordinator, IProfileCoordinator, TababbleCo
     private func showPhotoLibrary(handler: PHPickerViewControllerDelegate) {
         let photoLibrary = moduleFactory.makePhotoLibrary(handler: handler)
         router.present(photoLibrary)
+    }
+    
+    func showEditProfileView() {
+        
     }
     
     func didTapLogOut() {

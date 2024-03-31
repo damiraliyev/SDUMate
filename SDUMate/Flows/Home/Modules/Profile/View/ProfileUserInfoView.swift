@@ -71,11 +71,11 @@ final class ProfileUserInfoView: UIView {
         return stackView
     }()
     
-    private let facultyView = ProfileStudyInfoView()
+    private let facultyView = ProfileStudyInfoView(title: "Faculty")
     
-    private let studyProgramView = ProfileStudyInfoView()
+    private let studyProgramView = ProfileStudyInfoView(title: "Profession")
     
-    private let yearOfEnteringView = ProfileStudyInfoView()
+    private let yearOfEnteringView = ProfileStudyInfoView(title: "Year of entering")
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -117,5 +117,15 @@ final class ProfileUserInfoView: UIView {
             make.trailing.equalTo(separatorLineView)
             make.bottom.equalToSuperview().offset(-15)
         }
+    }
+    
+    func configure(with user: DBUser) {
+        ratingView.setValue(to: user.rating)
+        usernameLabel.text = "\(user.name ?? "") \(user.surname ?? "")"
+        nicknameLabel.text = user.nickname ?? ""
+        tgTagLabel.text = user.telegramTag ?? ""
+        facultyView.setDescription(to: user.faculty?.rawValue ?? "")
+        studyProgramView.setDescription(to: user.studyProgram?.rawValue ?? "")
+        yearOfEnteringView.setDescription(to: "\(user.yearOfEntering ?? 0)")
     }
 }

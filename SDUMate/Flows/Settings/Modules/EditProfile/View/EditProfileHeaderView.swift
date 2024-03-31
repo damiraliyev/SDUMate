@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol EditProfileHeaderDelegate: AnyObject {
+    func selectPhotoTapped()
+}
+
 final class EditProfileHeaderView: UIView {
+    
+    weak var delegate: EditProfileHeaderDelegate?
     
     private let avatarImageView: UIImageView = {
         let imageView = UIImageView()
@@ -21,6 +27,7 @@ final class EditProfileHeaderView: UIView {
         button.setTitle("Select photo", for: .normal)
         button.setTitleColor(.lavender, for: .normal)
         button.titleLabel?.font = .regular16
+        button.addTarget(self, action: #selector(selectPhotoTapped), for: .touchUpInside)
         return button
     }()
     
@@ -55,5 +62,13 @@ final class EditProfileHeaderView: UIView {
             make.centerX.equalToSuperview()
             make.height.equalTo(24)
         }
+    }
+    
+    func set(image: UIImage?) {
+        avatarImageView.image = image
+    }
+    
+    @objc func selectPhotoTapped() {
+        delegate?.selectPhotoTapped()
     }
 }

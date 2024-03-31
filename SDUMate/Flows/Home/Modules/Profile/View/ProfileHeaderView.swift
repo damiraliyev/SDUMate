@@ -71,6 +71,11 @@ final class ProfileHeaderView: UIView {
         }
     }
     
+    func configure(with user: DBUser) {
+        profileImageView.kf.setImage(with: URL(string: user.profileImageUrl ?? ""))
+        userInfoView.configure(with: user)
+    }
+    
     @objc func changeTapped() {
         delegate?.changeTapped()
     }

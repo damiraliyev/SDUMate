@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import PhotosUI
 
 final class EditProfileModuleFactory {
     private let container: DependencyContainer
@@ -16,7 +17,7 @@ final class EditProfileModuleFactory {
     
     func makeEditProfileView(coordinator: IEditProfileCoordinator) -> IEditProfileView {
         let view: IEditProfileView = EditProfileViewController()
-        let presenter: IEditProfilePresenter = EditProfilePresenter(view: view, coordinator: coordinator)
+        let presenter: IEditProfilePresenter = EditProfilePresenter(view: view, coordinator: coordinator, container: container)
         view.presenter = presenter
         return view
     }
@@ -26,5 +27,23 @@ final class EditProfileModuleFactory {
         let presenter: IEditFieldPresenter = EditFieldPresenter(view: view, coordinator: coordinator)
         view.presenter = presenter
         return view
+    }
+    
+    func makeCameraPicker(handler: UIImagePickerControllerDelegate & UINavigationControllerDelegate) -> UIImagePickerController {
+        let view = UIImagePickerController()
+        view.delegate = handler
+        view.sourceType = .camera
+        view.videoQuality = .typeHigh
+        view.mediaTypes = [UTType.movie.description, UTType.image.description]
+        return view
+    }
+    
+    func makePhotoLibrary(handler: PHPickerViewControllerDelegate) -> UIViewController {
+        var configuration = PHPickerConfiguration()
+        configuration.selectionLimit = 1
+        configuration.filter = .any(of: [.images])
+        let picker = PHPickerViewController(configuration: configuration)
+        picker.delegate = handler
+        return picker
     }
 }

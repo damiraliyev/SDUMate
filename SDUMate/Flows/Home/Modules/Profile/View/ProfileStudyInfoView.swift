@@ -7,13 +7,16 @@
 
 import UIKit
 
-final class ProfileStudyInfoView: UITableViewHeaderFooterView {
+final class ProfileStudyInfoView: UIView {
     
-    private let titleLabel: UILabel = {
+    private let title: String
+    
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .tabItem
         label.font = .medium12
-        label.text = "Faculty"
+        label.text = title
+        label.numberOfLines = 0
         return label
     }()
     
@@ -23,12 +26,20 @@ final class ProfileStudyInfoView: UITableViewHeaderFooterView {
         label.font = .semibold14
         label.text = "Engineering and Natural Science"
         label.numberOfLines = 0
-        label.textAlignment = .left
+        label.textAlignment = .center
         return label
     }()
     
-    override init(reuseIdentifier: String?) {
-        super.init(reuseIdentifier: reuseIdentifier)
+    init(title: String) {
+        self.title = title
+        super.init(frame: .zero)
+        setupViews()
+        setupConstraints()
+    }
+    
+    override init(frame: CGRect) {
+        self.title = ""
+        super.init(frame: frame)
         setupViews()
         setupConstraints()
     }
@@ -44,13 +55,18 @@ final class ProfileStudyInfoView: UITableViewHeaderFooterView {
     
     private func setupConstraints() {
         titleLabel.snp.makeConstraints { make in
-            make.top.leading.equalToSuperview()
+            make.top.equalToSuperview()
+            make.centerX.equalToSuperview()
         }
         descriptionLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(4.8)
             make.leading.trailing.equalToSuperview()
             make.bottom.lessThanOrEqualToSuperview()
         }
+    }
+    
+    func setDescription(to description: String) {
+        descriptionLabel.text = description
     }
 }
 

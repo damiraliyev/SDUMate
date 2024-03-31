@@ -16,7 +16,7 @@ enum UserType: String {
 
 enum Faculty: String, CaseIterable {
     case none
-    case engineeringAndNatScience = "Faculty of Engineering and natural sciences Computer Science and Information systems"
+    case engineeringAndNatScience = "Faculty of Engineering and natural sciences"
     case businessSchool = "Business school"
 }
 

@@ -57,5 +57,9 @@ final class RatingView: UIView {
             make.width.equalTo(9.5)
         }
     }
+    
+    func setValue(to value: Double) {
+        ratingValueLabel.text = "\(value)"
+    }
 }
 

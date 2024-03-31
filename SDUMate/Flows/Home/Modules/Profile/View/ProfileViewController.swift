@@ -26,6 +26,8 @@ final class ProfileViewController: BaseViewController, IProfileView {
         presenter?.backTapped()
     }
     
+    private let profileHeaderView = ProfileHeaderView(frame: CGRect(x: 0, y: 0, width: UIView.screenWidth - 32, height: 340))
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.delegate = self
@@ -34,9 +36,8 @@ final class ProfileViewController: BaseViewController, IProfileView {
         tableView.separatorStyle = .singleLine
         tableView.separatorColor = .moduleDescription
         tableView.register(ProfileCell.self)
-        let headerView = ProfileHeaderView(frame: CGRect(x: 0, y: 0, width: UIView.screenWidth - 32, height: 340))
-        headerView.delegate = presenter as? ProfileHeaderViewDelegate
-        tableView.tableHeaderView = headerView
+        profileHeaderView.delegate = presenter as? ProfileHeaderViewDelegate
+        tableView.tableHeaderView = profileHeaderView
         let footerView = ProfileFooterView(frame: CGRect(x: 0, y: 0, width: UIView.screenWidth - 32, height: 54))
         tableView.tableFooterView = footerView
         footerView.delegate = presenter as? ProfileFooterDelegate
@@ -91,7 +92,7 @@ final class ProfileViewController: BaseViewController, IProfileView {
     }
     
     func configure(with user: DBUser) {
-        
+        profileHeaderView.configure(with: user)
     }
 }
 

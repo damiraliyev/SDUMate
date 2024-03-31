@@ -9,6 +9,8 @@ import UIKit
 
 protocol IEditProfileView: Presentable {
     var presenter: IEditProfilePresenter? { get set }
+    
+    func set(image: UIImage?)
 }
 
 final class EditProfileViewController: BaseViewController, IEditProfileView {
@@ -34,6 +36,8 @@ final class EditProfileViewController: BaseViewController, IEditProfileView {
         return button
     }()
     
+    private lazy var headerView = EditProfileHeaderView(frame: CGRect(x: 0, y: 0, width: UIView.screenWidth, height: UIView.screenHeight / 5.3))
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.delegate = self
@@ -41,7 +45,7 @@ final class EditProfileViewController: BaseViewController, IEditProfileView {
         tableView.showsVerticalScrollIndicator = true
         tableView.backgroundColor = ._110F2F
         tableView.rowHeight = 42
-        let headerView = EditProfileHeaderView(frame: CGRect(x: 0, y: 0, width: UIView.screenWidth, height: UIView.screenHeight / 5.3))
+        headerView.delegate = presenter as? EditProfileHeaderDelegate
         tableView.tableHeaderView = headerView
         tableView.sectionHeaderHeight = 20
         tableView.contentInset.bottom = 20
@@ -76,6 +80,10 @@ final class EditProfileViewController: BaseViewController, IEditProfileView {
             make.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
         }
+    }
+    
+    func set(image: UIImage?) {
+        headerView.set(image: image)
     }
     
     @objc func doneTapped() {

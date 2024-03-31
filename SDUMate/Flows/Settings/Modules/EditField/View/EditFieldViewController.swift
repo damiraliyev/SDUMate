@@ -34,6 +34,15 @@ final class EditFieldViewController: BaseViewController, IEditFieldView {
         return view
     }()
     
+    private let warningLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .tabItem
+        label.font = .regular14
+        label.text = "You can only change this value once within 14 days."
+        label.numberOfLines = 0
+        return label
+    }()
+    
     init(item: EditProfileTableItem) {
         self.item = item
         super.init()
@@ -51,19 +60,23 @@ final class EditFieldViewController: BaseViewController, IEditFieldView {
     
     private func setupViews() {
         view.backgroundColor = ._110F2F
-        view.addSubviews([navigationBar, titleLabel, editTextFieldView])
+        view.addSubviews([navigationBar, titleLabel, editTextFieldView, warningLabel])
         titleLabel.text = "Edit \(item.title)"
     }
     
     private func setupConstraints() {
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(navigationBar.snp.bottom).offset(9)
-            make.leading.equalToSuperview().offset(16)
+            make.leading.equalToSuperview().offset(24)
         }
         editTextFieldView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(14)
-            make.leading.trailing.equalToSuperview().inset(16)
+            make.leading.trailing.equalToSuperview().inset(24)
             make.height.equalTo(40)
+        }
+        warningLabel.snp.makeConstraints { make in
+            make.top.equalTo(editTextFieldView.snp.bottom).offset(9)
+            make.leading.trailing.equalToSuperview().inset(24)
         }
     }
 }

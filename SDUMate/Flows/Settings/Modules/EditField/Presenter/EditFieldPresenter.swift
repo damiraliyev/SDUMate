@@ -46,9 +46,9 @@ final class EditFieldPresenter: IEditFieldPresenter {
         case .correct:
             update(value: value, for: item)
         case .emptyValue:
-            print("You can not provide empty value")
+            view?.showError(withText: "You can not provide empty value")
         case .withoutChange:
-            print("Value is the same")
+            view?.showError(withText: "Value is the same")
         }
     }
     

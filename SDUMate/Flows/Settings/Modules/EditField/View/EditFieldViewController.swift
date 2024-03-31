@@ -11,6 +11,7 @@ protocol IEditFieldView: Presentable {
     var presenter: IEditFieldPresenter? { get set }
     
     func set(initialValue: String?)
+    func showError(withText text: String)
 }
 
 final class EditFieldViewController: BaseViewController, IEditFieldView {
@@ -45,6 +46,15 @@ final class EditFieldViewController: BaseViewController, IEditFieldView {
         return label
     }()
     
+    private let errorLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = ._FF453A
+        label.font = .regular14
+        label.numberOfLines = 0
+        label.safeHide()
+        return label
+    }()
+    
     private lazy var saveButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = ._0A84FF
@@ -74,7 +84,7 @@ final class EditFieldViewController: BaseViewController, IEditFieldView {
     
     private func setupViews() {
         view.backgroundColor = ._110F2F
-        view.addSubviews([navigationBar, titleLabel, editTextFieldView, warningLabel, saveButton])
+        view.addSubviews([navigationBar, titleLabel, editTextFieldView, warningLabel, errorLabel, saveButton])
         titleLabel.text = "Edit \(item.title)"
     }
     
@@ -92,6 +102,10 @@ final class EditFieldViewController: BaseViewController, IEditFieldView {
             make.top.equalTo(editTextFieldView.snp.bottom).offset(9)
             make.leading.trailing.equalToSuperview().inset(24)
         }
+        errorLabel.snp.makeConstraints { make in
+            make.top.equalTo(editTextFieldView.snp.bottom).offset(9)
+            make.leading.trailing.equalToSuperview().inset(24)
+        }
         saveButton.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(24)
             make.height.equalTo(54)
@@ -101,6 +115,20 @@ final class EditFieldViewController: BaseViewController, IEditFieldView {
     
     func set(initialValue: String?) {
         editTextFieldView.set(text: initialValue)
+    }
+    
+    func showError(withText text: String) {
+        errorLabel.text = text
+        errorLabel.safeShow()
+        warningLabel.safeHide()
+        editTextFieldView.layer.borderColor = UIColor._FF453A.cgColor
+        editTextFieldView.layer.borderWidth = 1
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            self.errorLabel.safeHide()
+            self.warningLabel.safeShow()
+            self.editTextFieldView.layer.borderColor = UIColor.clear.cgColor
+            self.editTextFieldView.layer.borderWidth = 0
+        }
     }
     
     @objc func saveTapped() {

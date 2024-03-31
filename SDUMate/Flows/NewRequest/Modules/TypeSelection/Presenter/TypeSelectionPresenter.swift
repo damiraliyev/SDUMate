@@ -9,6 +9,7 @@ import Foundation
 
 protocol ITypeSelectionPresenter: AnyObject {
     func backTapped()
+    func continueTapped()
 }
 
 final class TypeSelectionPresenter: ITypeSelectionPresenter {
@@ -23,5 +24,9 @@ final class TypeSelectionPresenter: ITypeSelectionPresenter {
     
     func backTapped() {
         coordinator?.onBackTapped(completion: nil)
+    }
+    
+    func continueTapped() {
+        coordinator?.showCategorySelectionView()
     }
 }

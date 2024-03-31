@@ -27,4 +27,11 @@ final class NewRequestModuleFactory {
         view.presenter = presenter
         return view
     }
+    
+    func makeCategorySelectionView(coordinator: INewRequestCoordinator) -> ICategorySelectionView {
+        let view: ICategorySelectionView = CategorySelectionViewController()
+        let presenter: ICategorySelectionPresenter = CategorySelectionPresenter(view: view, coordinator: coordinator)
+        view.presenter = presenter
+        return view
+    }
 }

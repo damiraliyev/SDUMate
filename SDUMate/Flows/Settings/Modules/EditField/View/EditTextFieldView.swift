@@ -52,7 +52,7 @@ final class EditTextFieldView: UIView {
         clearButton.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.trailing.equalToSuperview().offset(-6.3)
-            make.size.equalTo(18)
+            make.size.equalTo(20)
         }
     }
     

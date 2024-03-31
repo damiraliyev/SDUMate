@@ -226,6 +226,9 @@
 		68FD901F2BB9615400C948FD /* TypeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FD901E2BB9615400C948FD /* TypeSelectionViewController.swift */; };
 		68FD90212BB9615F00C948FD /* TypeSelectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FD90202BB9615F00C948FD /* TypeSelectionPresenter.swift */; };
 		68FD90242BB966AA00C948FD /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FD90232BB966AA00C948FD /* ProgressView.swift */; };
+		68FD90272BB96C4200C948FD /* SkyFloatingLabelTextField in Frameworks */ = {isa = PBXBuildFile; productRef = 68FD90262BB96C4200C948FD /* SkyFloatingLabelTextField */; };
+		68FD902C2BB988EF00C948FD /* CategorySelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FD902B2BB988EF00C948FD /* CategorySelectionViewController.swift */; };
+		68FD902E2BB9890500C948FD /* CategorySelectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FD902D2BB9890500C948FD /* CategorySelectionPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -428,6 +431,8 @@
 		68FD901E2BB9615400C948FD /* TypeSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeSelectionViewController.swift; sourceTree = "<group>"; };
 		68FD90202BB9615F00C948FD /* TypeSelectionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeSelectionPresenter.swift; sourceTree = "<group>"; };
 		68FD90232BB966AA00C948FD /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		68FD902B2BB988EF00C948FD /* CategorySelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectionViewController.swift; sourceTree = "<group>"; };
+		68FD902D2BB9890500C948FD /* CategorySelectionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectionPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -451,6 +456,7 @@
 				682D08712B7DF6F300A5FCC1 /* Kingfisher in Frameworks */,
 				6882A4E42B7871B200B2AE72 /* SnapKit-Dynamic in Frameworks */,
 				6882A4E92B78734700B2AE72 /* Moya in Frameworks */,
+				68FD90272BB96C4200C948FD /* SkyFloatingLabelTextField in Frameworks */,
 				68C5C48F2B94D382006C9540 /* IQKeyboardManagerSwift in Frameworks */,
 				681D86642B81F23D0017BF61 /* FirebaseDatabase in Frameworks */,
 				6882A4EB2B78734700B2AE72 /* ReactiveMoya in Frameworks */,
@@ -1816,6 +1822,7 @@
 		68CFF50F2BABAA8B006C9AF8 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				68FD90282BB988D600C948FD /* CategorySelection */,
 				68FD90222BB9669300C948FD /* CustomViews */,
 				68FD901B2BB9611800C948FD /* TypeSelection */,
 				68FD901A2BB9610100C948FD /* Main */,
@@ -2124,6 +2131,31 @@
 			path = CustomViews;
 			sourceTree = "<group>";
 		};
+		68FD90282BB988D600C948FD /* CategorySelection */ = {
+			isa = PBXGroup;
+			children = (
+				68FD902A2BB988E200C948FD /* View */,
+				68FD90292BB988DE00C948FD /* Presenter */,
+			);
+			path = CategorySelection;
+			sourceTree = "<group>";
+		};
+		68FD90292BB988DE00C948FD /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				68FD902D2BB9890500C948FD /* CategorySelectionPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		68FD902A2BB988E200C948FD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				68FD902B2BB988EF00C948FD /* CategorySelectionViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2165,6 +2197,7 @@
 				681D86832B81F23D0017BF61 /* FirebaseStorage */,
 				68C5C48E2B94D382006C9540 /* IQKeyboardManagerSwift */,
 				68BE75102BB02CD700331EFC /* PromiseKit */,
+				68FD90262BB96C4200C948FD /* SkyFloatingLabelTextField */,
 			);
 			productName = SDUMate;
 			productReference = 6882A4C72B786AD400B2AE72 /* SDUMate.app */;
@@ -2206,6 +2239,7 @@
 				681D86502B81F23D0017BF61 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				68C5C48D2B94D382006C9540 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				68BE750F2BB02CD700331EFC /* XCRemoteSwiftPackageReference "PromiseKit" */,
+				68FD90252BB96C4200C948FD /* XCRemoteSwiftPackageReference "SkyFloatingLabelTextField" */,
 			);
 			productRefGroup = 6882A4C82B786AD400B2AE72 /* Products */;
 			projectDirPath = "";
@@ -2274,6 +2308,7 @@
 				681286EA2BB81DED00F69DEE /* EditProfileHeaderView.swift in Sources */,
 				681EA8652BAFA93600BE4D37 /* CategoryFilter.swift in Sources */,
 				682D08152B7DF31900A5FCC1 /* ApplicationResponse.swift in Sources */,
+				68FD902C2BB988EF00C948FD /* CategorySelectionViewController.swift in Sources */,
 				681286BC2BB7F46500F69DEE /* ProfileFooterView.swift in Sources */,
 				682D087A2B7DFB3A00A5FCC1 /* SuccessAlertViewController.swift in Sources */,
 				682D082C2B7DF31900A5FCC1 /* UTType+Extension.swift in Sources */,
@@ -2349,6 +2384,7 @@
 				68C5C4732B944DB5006C9540 /* PhotoSetupViewController.swift in Sources */,
 				682D08382B7DF31900A5FCC1 /* DumpableButton.swift in Sources */,
 				68C5C47F2B9494D2006C9540 /* StudentSignUpViewController.swift in Sources */,
+				68FD902E2BB9890500C948FD /* CategorySelectionPresenter.swift in Sources */,
 				68CFF52F2BABB178006C9AF8 /* RatingViewController.swift in Sources */,
 				682D08312B7DF31900A5FCC1 /* Int+Extension.swift in Sources */,
 				68CFF53D2BABB368006C9AF8 /* SettingsCoordinator.swift in Sources */,
@@ -2726,6 +2762,14 @@
 				version = 7.0.1;
 			};
 		};
+		68FD90252BB96C4200C948FD /* XCRemoteSwiftPackageReference "SkyFloatingLabelTextField" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Skyscanner/SkyFloatingLabelTextField.git";
+			requirement = {
+				kind = exactVersion;
+				version = 4.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -2848,6 +2892,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 68C5C48D2B94D382006C9540 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
 			productName = IQKeyboardManagerSwift;
+		};
+		68FD90262BB96C4200C948FD /* SkyFloatingLabelTextField */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 68FD90252BB96C4200C948FD /* XCRemoteSwiftPackageReference "SkyFloatingLabelTextField" */;
+			productName = SkyFloatingLabelTextField;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

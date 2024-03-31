@@ -8,7 +8,7 @@
 import Foundation
 
 protocol INewRequestPresenter: AnyObject {
-    
+    func startTapped()
 }
 
 final class NewRequestPresenter: INewRequestPresenter {
@@ -19,8 +19,9 @@ final class NewRequestPresenter: INewRequestPresenter {
     init(view: INewRequestView, coordinator: INewRequestCoordinator) {
         self.view = view
         self.coordinator = coordinator
-        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
-            self.coordinator?.onBackTapped(completion: nil)
-        }
+    }
+    
+    func startTapped() {
+        coordinator?.startCreationFlow()
     }
 }

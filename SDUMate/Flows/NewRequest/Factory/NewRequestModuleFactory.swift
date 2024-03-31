@@ -20,4 +20,11 @@ final class NewRequestModuleFactory {
         view.presenter = presenter
         return view
     }
+    
+    func makeTypeSelectionView(coordinator: INewRequestCoordinator) -> ITypeSelectionView {
+        let view: ITypeSelectionView = TypeSelectionViewController()
+        let presenter: ITypeSelectionPresenter = TypeSelectionPresenter(view: view, coordinator: coordinator)
+        view.presenter = presenter
+        return view
+    }
 }

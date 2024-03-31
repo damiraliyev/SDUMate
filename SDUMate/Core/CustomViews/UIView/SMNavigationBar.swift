@@ -28,8 +28,10 @@ public final class SMNavigationBar: UIView {
     private lazy var rightButton: BPPaddingButton = {
         let btn = BPPaddingButton(inset: 16)
         let image = Asset.icBackButton.image
-        btn.setImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
-        btn.tintColor = .dark
+//        btn.setImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
+        btn.tintColor = .lavender
+        btn.setTitleColor(.lavender, for: .normal)
+        btn.titleLabel?.font = .medium16
         btn.addTarget(self, action: #selector(rightButtonTapped), for: .touchUpInside)
         return btn
     }()
@@ -60,6 +62,19 @@ public final class SMNavigationBar: UIView {
     public var isRightButtonHidden: Bool = true {
         didSet {
             rightButton.isHidden = isRightButtonHidden
+        }
+    }
+    
+    public var rightButtonTitle: String = "Cancel" {
+        didSet(newValue) {
+            rightButton.setTitle(newValue, for: .normal)
+            rightButton.titleLabel?.font = .medium16
+        }
+    }
+    
+    public var rightButtonTitleColor: UIColor = .clear {
+        didSet(newValue) {
+            rightButton.setTitleColor(newValue, for: .normal)
         }
     }
 
@@ -111,8 +126,7 @@ public final class SMNavigationBar: UIView {
         addSubview(rightButton)
         rightButton.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.right.equalToSuperview().offset(-16)
-            $0.size.equalTo(30)
+            $0.trailing.equalToSuperview().offset(-16)
         }
     }
 

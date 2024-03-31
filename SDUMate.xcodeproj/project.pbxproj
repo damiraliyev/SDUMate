@@ -223,6 +223,8 @@
 		68D1902D2B8B2ECB0045DBE5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D1902C2B8B2ECB0045DBE5 /* LoginViewController.swift */; };
 		68D1902F2B8B2F330045DBE5 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D1902E2B8B2F330045DBE5 /* LoginPresenter.swift */; };
 		68D190322B8B41080045DBE5 /* SMTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D190312B8B41080045DBE5 /* SMTextFieldView.swift */; };
+		68FD901F2BB9615400C948FD /* TypeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FD901E2BB9615400C948FD /* TypeSelectionViewController.swift */; };
+		68FD90212BB9615F00C948FD /* TypeSelectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FD90202BB9615F00C948FD /* TypeSelectionPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -422,6 +424,8 @@
 		68D1902C2B8B2ECB0045DBE5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		68D1902E2B8B2F330045DBE5 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		68D190312B8B41080045DBE5 /* SMTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMTextFieldView.swift; sourceTree = "<group>"; };
+		68FD901E2BB9615400C948FD /* TypeSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeSelectionViewController.swift; sourceTree = "<group>"; };
+		68FD90202BB9615F00C948FD /* TypeSelectionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeSelectionPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1810,8 +1814,8 @@
 		68CFF50F2BABAA8B006C9AF8 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				68CFF5112BABAA95006C9AF8 /* Presenter */,
-				68CFF5102BABAA90006C9AF8 /* View */,
+				68FD901B2BB9611800C948FD /* TypeSelection */,
+				68FD901A2BB9610100C948FD /* Main */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -2075,6 +2079,40 @@
 			path = UIView;
 			sourceTree = "<group>";
 		};
+		68FD901A2BB9610100C948FD /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				68CFF5112BABAA95006C9AF8 /* Presenter */,
+				68CFF5102BABAA90006C9AF8 /* View */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		68FD901B2BB9611800C948FD /* TypeSelection */ = {
+			isa = PBXGroup;
+			children = (
+				68FD901D2BB9613300C948FD /* View */,
+				68FD901C2BB9612B00C948FD /* Presenter */,
+			);
+			path = TypeSelection;
+			sourceTree = "<group>";
+		};
+		68FD901C2BB9612B00C948FD /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				68FD90202BB9615F00C948FD /* TypeSelectionPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		68FD901D2BB9613300C948FD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				68FD901E2BB9615400C948FD /* TypeSelectionViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2208,11 +2246,13 @@
 				682D085E2B7DF31900A5FCC1 /* BaseRepository.swift in Sources */,
 				682D085D2B7DF31900A5FCC1 /* AppLanguage.swift in Sources */,
 				682D08592B7DF31900A5FCC1 /* Presentable.swift in Sources */,
+				68FD901F2BB9615400C948FD /* TypeSelectionViewController.swift in Sources */,
 				68CFF5512BABF4CB006C9AF8 /* FilterViewController.swift in Sources */,
 				68C5C48A2B94BBD1006C9540 /* AlumniSignUpViewController.swift in Sources */,
 				68CFF5472BABCFAD006C9AF8 /* AppliedFilterCell.swift in Sources */,
 				681286BE2BB7F46500F69DEE /* ProfileViewController.swift in Sources */,
 				68CFF5312BABB17E006C9AF8 /* RatingPresenter.swift in Sources */,
+				68FD90212BB9615F00C948FD /* TypeSelectionPresenter.swift in Sources */,
 				682D08252B7DF31900A5FCC1 /* UIImageView+Extentions.swift in Sources */,
 				682D08492B7DF31900A5FCC1 /* CollectionCell.swift in Sources */,
 				682D08222B7DF31900A5FCC1 /* UITextView+Extension.swift in Sources */,

@@ -11,6 +11,7 @@ protocol INewRequestCoordinator: IBaseCoordinator {
     var onFlowDidFinish: Completion? { get set }
     
     func onBackTapped(completion: Completion?)
+    func startCreationFlow()
 }
 
 final class NewRequestCoordinator: BaseCoordinator, TababbleCoordinator {
@@ -31,10 +32,16 @@ final class NewRequestCoordinator: BaseCoordinator, TababbleCoordinator {
         let newRequestView = moduleFactory.makeNewRequestView(coordinator: self)
         router.setRootModule(newRequestView)
     }
+    
+    func startCreationFlow() {
+        let typeSelectionView = moduleFactory.makeTypeSelectionView(coordinator: self)
+        router.push(typeSelectionView)
+    }
 }
 
 extension NewRequestCoordinator: INewRequestCoordinator {
     func onBackTapped(completion: Completion?) {
         router.popModule()
+        completion?()
     }
 }

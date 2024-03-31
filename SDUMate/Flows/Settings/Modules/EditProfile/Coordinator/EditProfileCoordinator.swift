@@ -45,7 +45,7 @@ final class EditProfileCoordinator: BaseCoordinator, IEditProfileCoordinator {
         completion?()
     }
     
-    func showEditFieldView(for item: EditProfileTableItem, editableUserInfo: EditableUserInfo, initialValue initialValue: String?) {
+    func showEditFieldView(for item: EditProfileTableItem, editableUserInfo: EditableUserInfo, initialValue: String?) {
         let editFieldView = moduleFactory.makeEditFieldView(coordinator: self, item: item, editableUserInfo: editableUserInfo, initialValue: initialValue)
         router.push(editFieldView)
     }

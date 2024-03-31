@@ -17,4 +17,5 @@ struct GlobalConstants {
     static let homeIndicatorHeight: CGFloat = 34
     static let gambyTitle = "Gamby"
     static let logOutNotificationName = NSNotification.Name("logOut")
+    static let userInfoChangeNotificationName = NSNotification.Name("infoChanged")
 }

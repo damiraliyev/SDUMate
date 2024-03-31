@@ -24,6 +24,7 @@ final class EditFieldPresenter: IEditFieldPresenter {
     private weak var coordinator: IEditProfileCoordinator?
     private var editableUserInfo: EditableUserInfo
     private let initialValue: String?
+
     
     init(view: IEditFieldView, coordinator: IEditProfileCoordinator, editableUserInfo: EditableUserInfo, initialValue: String?) {
         self.view = view
@@ -84,6 +85,16 @@ final class EditFieldPresenter: IEditFieldPresenter {
         case .yearOfEntering:
             break
         }
-        coordinator?.popModule(completion: nil)
+        guard let id = AuthManager.shared.getAuthUser()?.uid else {
+            coordinator?.showErrorAlert(error: "Something went wrong. Please, relogin.")
+            return
+        }
+        UserManager.shared.setField(userId: id, dict: dict).done { _ in
+            self.coordinator?.popModule(completion: nil)
+            NotificationCenter.default.post(name: GlobalConstants.userInfoChangeNotificationName, object: nil)
+        } .catch { error in
+            self.coordinator?.showErrorAlert(error: error.localizedDescription)
+        }
+        
     }
 }

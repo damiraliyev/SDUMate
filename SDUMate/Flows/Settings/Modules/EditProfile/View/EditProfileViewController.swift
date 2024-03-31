@@ -11,6 +11,7 @@ protocol IEditProfileView: Presentable {
     var presenter: IEditProfilePresenter? { get set }
     
     func set(image: UIImage?)
+    func reload()
 }
 
 final class EditProfileViewController: BaseViewController, IEditProfileView {
@@ -92,6 +93,10 @@ final class EditProfileViewController: BaseViewController, IEditProfileView {
     
     func set(image: UIImage?) {
         headerView.set(image: image)
+    }
+    
+    func reload() {
+        tableView.reloadData()
     }
     
     @objc func doneTapped() {

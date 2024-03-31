@@ -11,6 +11,12 @@ protocol EditProfileHeaderDelegate: AnyObject {
     func selectPhotoTapped()
 }
 
+struct HeaderViewData {
+    let image: UIImage?
+    let nickname: String?
+    let telegramTag: String?
+}
+
 final class EditProfileHeaderView: UIView {
     
     weak var delegate: EditProfileHeaderDelegate?

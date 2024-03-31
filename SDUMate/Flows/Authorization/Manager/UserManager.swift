@@ -81,4 +81,16 @@ final class UserManager {
             }
         }
     }
+    
+    func setField(userId: String, dict: [String: String]) -> Promise<Void> {
+        return Promise { seal in
+            userDocument(userId: userId).updateData(dict) { error in
+                if let error = error {
+                    seal.reject(error)
+                } else {
+                    seal.fulfill(())
+                }
+            }
+        }
+    }
 }

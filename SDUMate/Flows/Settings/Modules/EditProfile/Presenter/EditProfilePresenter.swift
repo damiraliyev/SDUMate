@@ -47,6 +47,7 @@ final class EditProfilePresenter: NSObject, IEditProfilePresenter {
                 self?.coordinator?.showErrorAlert(error: error.localizedDescription)
             }
         }
+        NotificationCenter.default.addObserver(self, selector: #selector(userInfoChanged), name: GlobalConstants.userInfoChangeNotificationName, object: nil)
     }
     
     func viewDidAppear() {
@@ -175,6 +176,16 @@ final class EditProfilePresenter: NSObject, IEditProfilePresenter {
             self?.coordinator?.showErrorAlert(error: error.localizedDescription)
         }
         
+    }
+    
+    @objc func userInfoChanged() {
+        guard let id = authManager.getAuthUser()?.uid else { return }
+        userManager.getUser(userId: id).done { dbUser in
+            self.user = dbUser
+            self.view?.reload()
+        } .catch { error in
+            self.coordinator?.showErrorAlert(error: error.localizedDescription)
+        }
     }
 }
 

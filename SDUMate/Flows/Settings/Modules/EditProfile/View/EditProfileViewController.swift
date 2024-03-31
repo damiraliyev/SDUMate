@@ -55,8 +55,14 @@ final class EditProfileViewController: BaseViewController, IEditProfileView {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter?.viewDidLoad()
         setupViews()
         setupConstraints()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        presenter?.viewDidAppear()
     }
     
     private func setupViews() {
@@ -114,7 +120,8 @@ extension EditProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: EditProfileCell = tableView.dequeueReusableCell(for: indexPath)
         let section = sections[indexPath.section]
-        cell.configure(with: section.items[indexPath.row])
+        guard let viewModel = presenter?.getViewModel(forCellAt: indexPath) else { return cell}
+        cell.configure(with: viewModel)
         return cell
     }
 }

@@ -7,6 +7,11 @@
 
 import UIKit
 
+struct EditProfileCellViewModel {
+    let title: String
+    let value: String
+}
+
 final class EditProfileCell: UITableViewCell {
     
     private let titleLabel: UILabel = {
@@ -22,6 +27,7 @@ final class EditProfileCell: UITableViewCell {
         label.textColor = .tabItem
         label.font = .regular16
         label.text = "mntn7"
+        label.textAlignment = .right
         return label
     }()
     
@@ -57,6 +63,7 @@ final class EditProfileCell: UITableViewCell {
         }
         valueLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
+            make.leading.equalTo(snp.centerX)
             make.trailing.equalTo(arrowImageView.snp.leading).offset(-5.5)
         }
         arrowImageView.snp.makeConstraints { make in
@@ -66,7 +73,8 @@ final class EditProfileCell: UITableViewCell {
         }
     }
     
-    func configure(with sectionItem: EditProfileTableItem) {
-        titleLabel.text = sectionItem.title
+    func configure(with viewModel: EditProfileCellViewModel) {
+        titleLabel.text = viewModel.title
+        valueLabel.text = viewModel.value
     }
 }

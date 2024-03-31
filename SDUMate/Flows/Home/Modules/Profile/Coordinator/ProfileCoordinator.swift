@@ -23,7 +23,7 @@ protocol IProfileCoordinator: IBaseCoordinator {
     
     
     func showPhotoSelectAlert(with options: [AttachmentOption], handler: PHPickerViewControllerDelegate & UIImagePickerControllerDelegate & UINavigationControllerDelegate)
-    func showEditProfileView()
+    func showEditProfileView(user: DBUser?)
     func didTapLogOut()
 }
 
@@ -121,9 +121,9 @@ final class ProfileCoordinator: BaseCoordinator, IProfileCoordinator, TababbleCo
         router.present(photoLibrary)
     }
     
-    func showEditProfileView() {
+    func showEditProfileView(user: DBUser?) {
         guard let navigationController = router.navigationController else { return }
-        let editProfileCoordinator = moduleFactory.makeEditProfileCoordinator(navigationController: navigationController)
+        let editProfileCoordinator = moduleFactory.makeEditProfileCoordinator(navigationController: navigationController, user: user)
         addDependency(editProfileCoordinator)
         editProfileCoordinator.start()
         editProfileCoordinator.onFlowDidFinish = { [weak self, weak editProfileCoordinator] in

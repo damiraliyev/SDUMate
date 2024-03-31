@@ -62,6 +62,10 @@ final class EditTextFieldView: UIView {
         textField.attributedPlaceholder = attributedPlaceholder
     }
     
+    func getText() -> String? {
+        textField.text
+    }
+    
     @objc func textFieldDidChange(_ sender: UITextField) {
         
     }

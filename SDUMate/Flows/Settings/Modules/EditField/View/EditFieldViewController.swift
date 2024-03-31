@@ -43,6 +43,18 @@ final class EditFieldViewController: BaseViewController, IEditFieldView {
         return label
     }()
     
+    private lazy var saveButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor = ._0A84FF
+        button.setTitle("Save", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.tintColor = .white
+        button.layer.cornerRadius = 13
+        button.addTarget(self, action: #selector(saveTapped), for: .touchUpInside
+        )
+        return button
+    }()
+    
     init(item: EditProfileTableItem) {
         self.item = item
         super.init()
@@ -56,11 +68,12 @@ final class EditFieldViewController: BaseViewController, IEditFieldView {
         super.viewDidLoad()
         setupViews()
         setupConstraints()
+
     }
     
     private func setupViews() {
         view.backgroundColor = ._110F2F
-        view.addSubviews([navigationBar, titleLabel, editTextFieldView, warningLabel])
+        view.addSubviews([navigationBar, titleLabel, editTextFieldView, warningLabel, saveButton])
         titleLabel.text = "Edit \(item.title)"
     }
     
@@ -78,5 +91,14 @@ final class EditFieldViewController: BaseViewController, IEditFieldView {
             make.top.equalTo(editTextFieldView.snp.bottom).offset(9)
             make.leading.trailing.equalToSuperview().inset(24)
         }
+        saveButton.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(24)
+            make.height.equalTo(54)
+            make.bottom.equalToSuperview().offset(-57)
+        }
+    }
+    
+    @objc func saveTapped() {
+        presenter?.saveTapped(for: item, value: editTextFieldView.getText())
     }
 }

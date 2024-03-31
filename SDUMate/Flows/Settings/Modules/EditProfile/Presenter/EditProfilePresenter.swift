@@ -10,9 +10,12 @@ import PhotosUI
 import PromiseKit
 
 protocol IEditProfilePresenter: AnyObject {
+    func viewDidLoad()
+    func viewDidAppear()
     func doneTapped()
     func cancelTapped()
     func didSelectRowAt(_ indexPath: IndexPath)
+    func getViewModel(forCellAt indexPath: IndexPath) -> EditProfileCellViewModel?
 }
 
 final class EditProfilePresenter: NSObject, IEditProfilePresenter {
@@ -24,13 +27,30 @@ final class EditProfilePresenter: NSObject, IEditProfilePresenter {
     private let storageManager: StorageManager
     private let userManager: UserManager
     private var user: DBUser?
+    private let editableUserInfo = EditableUserInfo()
     
-    init(view: IEditProfileView, coordinator: IEditProfileCoordinator, container: DependencyContainer) {
+    init(view: IEditProfileView, coordinator: IEditProfileCoordinator, container: DependencyContainer, user: DBUser?) {
         self.view = view
         self.coordinator = coordinator
         self.authManager = container.resolve(AuthManager.self)!
         self.storageManager = container.resolve(StorageManager.self)!
         self.userManager = container.resolve(UserManager.self)!
+        self.user = user
+    }
+    
+    func viewDidLoad() {
+        if user == nil {
+            guard let id = authManager.getAuthUser()?.uid else { return }
+            userManager.getUser(userId: id).done { dbUser in
+                self.user = dbUser
+            } .catch { [weak self] error in
+                self?.coordinator?.showErrorAlert(error: error.localizedDescription)
+            }
+        }
+    }
+    
+    func viewDidAppear() {
+        print("EDITED USER INFO", editableUserInfo)
     }
     
     func doneTapped() {
@@ -48,7 +68,27 @@ final class EditProfilePresenter: NSObject, IEditProfilePresenter {
     func didSelectRowAt(_ indexPath: IndexPath) {
         let section = sections[indexPath.section]
         let item = section.items[indexPath.row]
-        coordinator?.showEditFieldView(for: item)
+        coordinator?.showEditFieldView(for: item, editableUserInfo: editableUserInfo)
+    }
+    
+    func getViewModel(forCellAt indexPath: IndexPath) -> EditProfileCellViewModel? {
+        guard let user = user else { return nil }
+        let section = sections[indexPath.section]
+        let item = section.items[indexPath.row]
+        let title = item.title
+        let value = switch item {
+        case .name: user.name
+        case .surname: user.surname
+        case .nickname: user.nickname
+        case .telegram: user.telegramTag
+        case .email: user.email
+        case .faculty: user.faculty?.rawValue
+        case .profession: user.studyProgram?.rawValue
+        case .yearOfEntering: "\(user.yearOfEntering ?? 0)"
+        }
+        guard let value = value else { return nil }
+        let viewModel = EditProfileCellViewModel(title: title, value: value)
+        return viewModel
     }
     
     func cameraTapped() {

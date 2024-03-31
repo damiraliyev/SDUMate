@@ -43,6 +43,7 @@ final class ProfilePresenter: NSObject, IProfilePresenter {
         firstly {
             userManager.getUser(userId: userId)
         } .done { [weak self] dbUser in
+            self?.user = dbUser
             self?.view?.configure(with: dbUser)
         } .catch { error in
             self.coordinator?.showErrorAlert(error: error.localizedDescription)
@@ -179,7 +180,7 @@ extension ProfilePresenter: PHPickerViewControllerDelegate {
 
 extension ProfilePresenter: ProfileHeaderViewDelegate {
     func changeTapped() {
-        coordinator?.showEditProfileView()
+        coordinator?.showEditProfileView(user: self.user)
     }
 }
 

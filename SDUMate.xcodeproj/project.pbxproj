@@ -128,6 +128,7 @@
 		6838F7412B936D4200265406 /* FormTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6838F7402B936D4200265406 /* FormTextFieldView.swift */; };
 		6838F7452B93988E00265406 /* StudySetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6838F7442B93988E00265406 /* StudySetupViewController.swift */; };
 		6838F7472B9398B900265406 /* StudySetupPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6838F7462B9398B900265406 /* StudySetupPresenter.swift */; };
+		683AABE02BB8EBCD00B33B93 /* EditableUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683AABDF2BB8EBCD00B33B93 /* EditableUserInfo.swift */; };
 		684BA7BA2B896ECA0055BEE3 /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684BA7B92B896EC90055BEE3 /* GradientButton.swift */; };
 		68530AB32B9DACAC00E59383 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68530AB22B9DACAC00E59383 /* UserInfo.swift */; };
 		68530AB52B9DD3A400E59383 /* DefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68530AB42B9DD3A400E59383 /* DefaultCell.swift */; };
@@ -334,6 +335,7 @@
 		6838F7402B936D4200265406 /* FormTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextFieldView.swift; sourceTree = "<group>"; };
 		6838F7442B93988E00265406 /* StudySetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudySetupViewController.swift; sourceTree = "<group>"; };
 		6838F7462B9398B900265406 /* StudySetupPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudySetupPresenter.swift; sourceTree = "<group>"; };
+		683AABDF2BB8EBCD00B33B93 /* EditableUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableUserInfo.swift; sourceTree = "<group>"; };
 		684BA7B92B896EC90055BEE3 /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 		68530AB22B9DACAC00E59383 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		68530AB42B9DD3A400E59383 /* DefaultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCell.swift; sourceTree = "<group>"; };
@@ -520,6 +522,7 @@
 			isa = PBXGroup;
 			children = (
 				681286DD2BB80A9200F69DEE /* Coordinator */,
+				683AABDE2BB8EB9F00B33B93 /* Model */,
 				681286DC2BB80A8E00F69DEE /* View */,
 				681286DB2BB80A8800F69DEE /* Presenter */,
 			);
@@ -1267,6 +1270,14 @@
 				68530AB42B9DD3A400E59383 /* DefaultCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		683AABDE2BB8EB9F00B33B93 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				683AABDF2BB8EBCD00B33B93 /* EditableUserInfo.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		68530AB12B9DAC8400E59383 /* Model */ = {
@@ -2218,6 +2229,7 @@
 				682D080B2B7DF31900A5FCC1 /* LocationManager.swift in Sources */,
 				68CFF51F2BABAB17006C9AF8 /* SessionsViewController.swift in Sources */,
 				682D08292B7DF31900A5FCC1 /* UIStackView+Extension.swift in Sources */,
+				683AABE02BB8EBCD00B33B93 /* EditableUserInfo.swift in Sources */,
 				682D08302B7DF31900A5FCC1 /* CGPoint+Extension.swift in Sources */,
 				68D1902D2B8B2ECB0045DBE5 /* LoginViewController.swift in Sources */,
 				681286F62BB874F900F69DEE /* EditTextFieldView.swift in Sources */,

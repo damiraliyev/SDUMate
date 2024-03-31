@@ -11,7 +11,7 @@ import PhotosUI
 protocol IEditProfileCoordinator: IBaseCoordinator {
     var onFlowDidFinish: Completion? { get set }
     func popModule(completion: Completion?)
-    func showEditFieldView(for item: EditProfileTableItem)
+    func showEditFieldView(for item: EditProfileTableItem, editableUserInfo: EditableUserInfo)
     func showPhotoSelectAlert(with options: [AttachmentOption], handler: PHPickerViewControllerDelegate & UIImagePickerControllerDelegate & UINavigationControllerDelegate)
 }
 
@@ -19,15 +19,17 @@ final class EditProfileCoordinator: BaseCoordinator, IEditProfileCoordinator {
     var onFlowDidFinish: Completion?
     private let moduleFactory: EditProfileModuleFactory
     let permissionHelper: PermissionsHelper
+    private let user: DBUser?
     
-    init(router: Router, container: DependencyContainer) {
+    init(router: Router, container: DependencyContainer, user: DBUser?) {
         self.moduleFactory = EditProfileModuleFactory(container: container)
         self.permissionHelper = container.resolve(PermissionsHelper.self)!
+        self.user = user
         super.init(router: router)
     }
     
     override func start() {
-        let editProfileView = moduleFactory.makeEditProfileView(coordinator: self)
+        let editProfileView = moduleFactory.makeEditProfileView(coordinator: self, user: user)
         router.push(editProfileView)
     }
     
@@ -43,8 +45,8 @@ final class EditProfileCoordinator: BaseCoordinator, IEditProfileCoordinator {
         completion?()
     }
     
-    func showEditFieldView(for item: EditProfileTableItem) {
-        let editFieldView = moduleFactory.makeEditFieldView(coordinator: self, item: item)
+    func showEditFieldView(for item: EditProfileTableItem, editableUserInfo: EditableUserInfo) {
+        let editFieldView = moduleFactory.makeEditFieldView(coordinator: self, item: item, editableUserInfo: editableUserInfo)
         router.push(editFieldView)
     }
     

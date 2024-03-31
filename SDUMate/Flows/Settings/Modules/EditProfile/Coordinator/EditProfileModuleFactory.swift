@@ -15,16 +15,16 @@ final class EditProfileModuleFactory {
         self.container = container
     }
     
-    func makeEditProfileView(coordinator: IEditProfileCoordinator) -> IEditProfileView {
+    func makeEditProfileView(coordinator: IEditProfileCoordinator, user: DBUser?) -> IEditProfileView {
         let view: IEditProfileView = EditProfileViewController()
-        let presenter: IEditProfilePresenter = EditProfilePresenter(view: view, coordinator: coordinator, container: container)
+        let presenter: IEditProfilePresenter = EditProfilePresenter(view: view, coordinator: coordinator, container: container, user: user)
         view.presenter = presenter
         return view
     }
     
-    func makeEditFieldView(coordinator: IEditProfileCoordinator, item: EditProfileTableItem) -> IEditFieldView {
+    func makeEditFieldView(coordinator: IEditProfileCoordinator, item: EditProfileTableItem, editableUserInfo: EditableUserInfo) -> IEditFieldView {
         let view: IEditFieldView = EditFieldViewController(item: item)
-        let presenter: IEditFieldPresenter = EditFieldPresenter(view: view, coordinator: coordinator)
+        let presenter: IEditFieldPresenter = EditFieldPresenter(view: view, coordinator: coordinator, editableUserInfo: editableUserInfo)
         view.presenter = presenter
         return view
     }

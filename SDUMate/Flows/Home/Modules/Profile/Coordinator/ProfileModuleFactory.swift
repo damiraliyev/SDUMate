@@ -41,10 +41,11 @@ final class ProfileModuleFactory {
         return picker
     }
     
-    func makeEditProfileCoordinator(navigationController: CoordinatorNavigationController) -> Coordinator & IEditProfileCoordinator {
+    func makeEditProfileCoordinator(navigationController: CoordinatorNavigationController, user: DBUser?) -> Coordinator & IEditProfileCoordinator {
         let coordinator: Coordinator & IEditProfileCoordinator = EditProfileCoordinator(
             router: Router(navigationController: navigationController),
-            container: container
+            container: container,
+            user: user
         )
         return coordinator
     }

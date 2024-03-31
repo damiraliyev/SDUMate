@@ -1,5 +1,5 @@
 //
-//  CategorySelectionPresenter.swift
+//  DescriptionSetupPresenter.swift
 //  SDUMate
 //
 //  Created by Damir Aliyev on 31.03.2024.
@@ -7,16 +7,16 @@
 
 import Foundation
 
-protocol ICategorySelectionPresenter: AnyObject {
+protocol IDescriptionSetupPresenter: AnyObject {
     func backTapped()
     func continueTapped()
 }
 
-final class CategorySelectionPresenter: ICategorySelectionPresenter {
-    weak var view: ICategorySelectionView?
+final class DescriptionSetupPresenter: IDescriptionSetupPresenter {
+    weak var view: IDescriptionSetupView?
     private weak var coordinator: INewRequestCoordinator?
     
-    init(view: ICategorySelectionView, coordinator: INewRequestCoordinator) {
+    init(view: IDescriptionSetupView, coordinator: INewRequestCoordinator) {
         self.view = view
         self.coordinator = coordinator
     }
@@ -26,6 +26,6 @@ final class CategorySelectionPresenter: ICategorySelectionPresenter {
     }
     
     func continueTapped() {
-        coordinator?.showDescriptionSetupView()
+        coordinator?.showPriceSetupView()
     }
 }

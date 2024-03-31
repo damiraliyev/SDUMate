@@ -229,6 +229,10 @@
 		68FD90272BB96C4200C948FD /* SkyFloatingLabelTextField in Frameworks */ = {isa = PBXBuildFile; productRef = 68FD90262BB96C4200C948FD /* SkyFloatingLabelTextField */; };
 		68FD902C2BB988EF00C948FD /* CategorySelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FD902B2BB988EF00C948FD /* CategorySelectionViewController.swift */; };
 		68FD902E2BB9890500C948FD /* CategorySelectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FD902D2BB9890500C948FD /* CategorySelectionPresenter.swift */; };
+		68FD90332BB9B0FC00C948FD /* DescriptionSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FD90322BB9B0FC00C948FD /* DescriptionSetupViewController.swift */; };
+		68FD90352BB9B10400C948FD /* DescriptionSetupPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FD90342BB9B10400C948FD /* DescriptionSetupPresenter.swift */; };
+		68FD903A2BBA2DA800C948FD /* PriceSetupPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FD90392BBA2DA800C948FD /* PriceSetupPresenter.swift */; };
+		68FD903C2BBA2DB100C948FD /* PriceSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FD903B2BBA2DB100C948FD /* PriceSetupViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -433,6 +437,10 @@
 		68FD90232BB966AA00C948FD /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		68FD902B2BB988EF00C948FD /* CategorySelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectionViewController.swift; sourceTree = "<group>"; };
 		68FD902D2BB9890500C948FD /* CategorySelectionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectionPresenter.swift; sourceTree = "<group>"; };
+		68FD90322BB9B0FC00C948FD /* DescriptionSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionSetupViewController.swift; sourceTree = "<group>"; };
+		68FD90342BB9B10400C948FD /* DescriptionSetupPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionSetupPresenter.swift; sourceTree = "<group>"; };
+		68FD90392BBA2DA800C948FD /* PriceSetupPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceSetupPresenter.swift; sourceTree = "<group>"; };
+		68FD903B2BBA2DB100C948FD /* PriceSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceSetupViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1822,6 +1830,8 @@
 		68CFF50F2BABAA8B006C9AF8 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				68FD90362BBA2D8200C948FD /* PriceSetup */,
+				68FD902F2BB9B09300C948FD /* DescriptionSetup */,
 				68FD90282BB988D600C948FD /* CategorySelection */,
 				68FD90222BB9669300C948FD /* CustomViews */,
 				68FD901B2BB9611800C948FD /* TypeSelection */,
@@ -2156,6 +2166,56 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		68FD902F2BB9B09300C948FD /* DescriptionSetup */ = {
+			isa = PBXGroup;
+			children = (
+				68FD90312BB9B0E800C948FD /* View */,
+				68FD90302BB9B0E400C948FD /* Presenter */,
+			);
+			path = DescriptionSetup;
+			sourceTree = "<group>";
+		};
+		68FD90302BB9B0E400C948FD /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				68FD90342BB9B10400C948FD /* DescriptionSetupPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		68FD90312BB9B0E800C948FD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				68FD90322BB9B0FC00C948FD /* DescriptionSetupViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		68FD90362BBA2D8200C948FD /* PriceSetup */ = {
+			isa = PBXGroup;
+			children = (
+				68FD90382BBA2D9600C948FD /* View */,
+				68FD90372BBA2D8F00C948FD /* Presenter */,
+			);
+			path = PriceSetup;
+			sourceTree = "<group>";
+		};
+		68FD90372BBA2D8F00C948FD /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				68FD90392BBA2DA800C948FD /* PriceSetupPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		68FD90382BBA2D9600C948FD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				68FD903B2BBA2DB100C948FD /* PriceSetupViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2279,6 +2339,7 @@
 				68CFF56A2BAC22B4006C9AF8 /* UserContactDetailsView.swift in Sources */,
 				681286BB2BB7F46500F69DEE /* RatingView.swift in Sources */,
 				682D081F2B7DF31900A5FCC1 /* UIView+SkeletonExtensions.swift in Sources */,
+				68FD90352BB9B10400C948FD /* DescriptionSetupPresenter.swift in Sources */,
 				6838F7372B934A0600265406 /* UserInfoSetupCoordinator.swift in Sources */,
 				68BDA23E2BAA6F4400FDF1A4 /* BaseTabBarController.swift in Sources */,
 				68CFF5682BAC228E006C9AF8 /* LabelWithLeftIconView.swift in Sources */,
@@ -2327,6 +2388,7 @@
 				682D08372B7DF31900A5FCC1 /* TableCell.swift in Sources */,
 				682D08192B7DF31900A5FCC1 /* UIScrollView+Extension.swift in Sources */,
 				68C5C4752B944E04006C9540 /* PhotoSetupPresenter.swift in Sources */,
+				68FD90332BB9B0FC00C948FD /* DescriptionSetupViewController.swift in Sources */,
 				68170C612B9CA24A00289980 /* DBUser.swift in Sources */,
 				681286E82BB81A4300F69DEE /* EditProfileCell.swift in Sources */,
 				681286E32BB80B8400F69DEE /* EditProfileViewController.swift in Sources */,
@@ -2375,6 +2437,7 @@
 				682D083B2B7DF31900A5FCC1 /* BPSegmentedControl.swift in Sources */,
 				682D081B2B7DF31900A5FCC1 /* UILabel+Extensions.swift in Sources */,
 				68CFF5552BABF84D006C9AF8 /* FreeOnlyView.swift in Sources */,
+				68FD903A2BBA2DA800C948FD /* PriceSetupPresenter.swift in Sources */,
 				68CFF52D2BABB117006C9AF8 /* NewRequestCoordinator.swift in Sources */,
 				682D085B2B7DF31900A5FCC1 /* BaseCoordinator.swift in Sources */,
 				68CFF5492BABD86B006C9AF8 /* AnnouncementCell.swift in Sources */,
@@ -2395,6 +2458,7 @@
 				68CFF5232BABAF49006C9AF8 /* SessionsCoordinator.swift in Sources */,
 				681286F22BB8445000F69DEE /* EditFieldViewController.swift in Sources */,
 				68CFF5332BABB215006C9AF8 /* RatingModuleFactory.swift in Sources */,
+				68FD903C2BBA2DB100C948FD /* PriceSetupViewController.swift in Sources */,
 				68CFF55C2BAC1154006C9AF8 /* AnnouncementDetailsViewController.swift in Sources */,
 				68170C5E2B9C9A7500289980 /* UserManager.swift in Sources */,
 				68CFF5352BABB259006C9AF8 /* RatingCoordinator.swift in Sources */,

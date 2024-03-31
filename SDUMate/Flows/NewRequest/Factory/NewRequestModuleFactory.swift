@@ -34,4 +34,18 @@ final class NewRequestModuleFactory {
         view.presenter = presenter
         return view
     }
+    
+    func makeDescriptionSetupView(coordinator: INewRequestCoordinator) -> IDescriptionSetupView {
+        let view: IDescriptionSetupView = DescriptionSetupViewController()
+        let presenter: IDescriptionSetupPresenter = DescriptionSetupPresenter(view: view, coordinator: coordinator)
+        view.presenter = presenter
+        return view
+    }
+    
+    func makePriceSetupView(coordinator: INewRequestCoordinator) -> IPriceSetupView {
+        let view: IPriceSetupView = PriceSetupViewController()
+        let presenter: IPriceSetupPresenter = PriceSetupPresenter(view: view, coordinator: coordinator)
+        view.presenter = presenter
+        return view
+    }
 }

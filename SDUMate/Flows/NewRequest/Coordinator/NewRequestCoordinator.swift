@@ -35,6 +35,6 @@ final class NewRequestCoordinator: BaseCoordinator, TababbleCoordinator {
 
 extension NewRequestCoordinator: INewRequestCoordinator {
     func onBackTapped(completion: Completion?) {
-        
+        router.popModule()
     }
 }

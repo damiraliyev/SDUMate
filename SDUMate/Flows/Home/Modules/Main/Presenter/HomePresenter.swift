@@ -34,6 +34,7 @@ final class HomePresenter: IHomePresenter {
     }
     
     func viewDidLoad() {
+        NotificationCenter.default.addObserver(self, selector: #selector(userInfoChanged), name: GlobalConstants.userInfoChangeNotificationName, object: nil)
         fetchAnnouncements()
         fetchUser()
     }
@@ -73,6 +74,15 @@ final class HomePresenter: IHomePresenter {
             self?.view?.setupHeader(fullName: fullName, nickname: nickname)
         } .catch { [weak self] error in
             self?.coordinator?.showErrorAlert(error: error.localizedDescription)
+        }
+    }
+    
+    @objc func userInfoChanged() {
+        UserManager.shared.getUser(userId: id).done { dbUser in
+            let fullName = "\(dbUser.name ?? "") \(dbUser.surname ?? "")"
+            self.view?.setupHeader(fullName: fullName, nickname: dbUser.nickname ?? "")
+        } .catch { error in
+            self.coordinator?.showErrorAlert(error: error.localizedDescription)
         }
     }
 }

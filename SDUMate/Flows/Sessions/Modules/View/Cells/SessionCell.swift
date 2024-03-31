@@ -22,6 +22,7 @@ final class SessionCell: UICollectionViewCell {
         label.textColor = .white
         label.font = .semibold16
         label.text = "Swift UI/Software Engineering"
+        label.numberOfLines = 2
         return label
     }()
     
@@ -106,8 +107,9 @@ final class SessionCell: UICollectionViewCell {
     
     private func setupConstraints() {
         typeLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(16)
+            make.top.equalToSuperview().offset(10)
             make.leading.equalToSuperview().offset(12)
+            make.height.equalTo(26)
         }
         threeDotsButton.snp.makeConstraints { make in
             make.centerY.equalTo(typeLabel)
@@ -119,25 +121,28 @@ final class SessionCell: UICollectionViewCell {
             make.top.equalTo(typeLabel.snp.bottom).offset(8)
             make.leading.trailing.equalToSuperview().inset(12)
         }
+        titleAndCategoryLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
         recipientLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleAndCategoryLabel.snp.bottom).offset(5)
             make.leading.equalToSuperview().offset(12)
+            make.bottom.equalTo(dateLabel.snp.top).offset(-5)
+            make.height.equalTo(15)
         }
         dateLabel.snp.makeConstraints { make in
-            make.top.equalTo(recipientLabel.snp.bottom).offset(10)
             make.leading.equalToSuperview().offset(12)
+            make.bottom.equalTo(buttonsStackView.snp.top).offset(-5)
+            make.height.equalTo(18)
         }
         buttonsStackView.snp.makeConstraints { make in
-            make.top.equalTo(dateLabel.snp.bottom).offset(5)
             make.leading.trailing.equalToSuperview().inset(12)
             make.bottom.equalToSuperview().offset(-15)
+            make.height.equalTo(42)
         }
     }
     
     func configure(with announcement: Announcement) {
         typeLabel.text = announcement.type.title
         titleAndCategoryLabel.text = "\(announcement.title)/\(announcement.category)"
-        recipientLabel.text = announcement.respondentId
-        dateLabel.text = announcement.sessionEstablishedDate
+        recipientLabel.text = "MOCK TEXT"
+        dateLabel.text = "31.03.2024"
     }
 }

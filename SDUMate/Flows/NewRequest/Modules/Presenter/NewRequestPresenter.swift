@@ -19,5 +19,8 @@ final class NewRequestPresenter: INewRequestPresenter {
     init(view: INewRequestView, coordinator: INewRequestCoordinator) {
         self.view = view
         self.coordinator = coordinator
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+            self.coordinator?.onBackTapped(completion: nil)
+        }
     }
 }

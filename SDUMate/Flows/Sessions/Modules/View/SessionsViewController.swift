@@ -185,7 +185,7 @@ extension SessionsViewController: ISessionsView {
 extension SessionsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width: CGFloat = view.frame.width - 32
-        let height: CGFloat = 187
+        let height: CGFloat = 195
         return CGSize(width: width, height: height)
     }
     

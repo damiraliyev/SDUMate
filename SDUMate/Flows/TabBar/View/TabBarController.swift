@@ -47,6 +47,7 @@ extension TabBarController: TabBarPresentable {
 
 extension TabBarController: UITabBarControllerDelegate {
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        print(tabBar.items?.firstIndex(of: item))
         animateTabBarBackgroundView(tabBar: tabBar, item: item, index: nil)
     }
 }

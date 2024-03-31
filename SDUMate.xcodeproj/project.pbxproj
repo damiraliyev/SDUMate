@@ -225,6 +225,7 @@
 		68D190322B8B41080045DBE5 /* SMTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D190312B8B41080045DBE5 /* SMTextFieldView.swift */; };
 		68FD901F2BB9615400C948FD /* TypeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FD901E2BB9615400C948FD /* TypeSelectionViewController.swift */; };
 		68FD90212BB9615F00C948FD /* TypeSelectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FD90202BB9615F00C948FD /* TypeSelectionPresenter.swift */; };
+		68FD90242BB966AA00C948FD /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FD90232BB966AA00C948FD /* ProgressView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -426,6 +427,7 @@
 		68D190312B8B41080045DBE5 /* SMTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMTextFieldView.swift; sourceTree = "<group>"; };
 		68FD901E2BB9615400C948FD /* TypeSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeSelectionViewController.swift; sourceTree = "<group>"; };
 		68FD90202BB9615F00C948FD /* TypeSelectionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeSelectionPresenter.swift; sourceTree = "<group>"; };
+		68FD90232BB966AA00C948FD /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1814,6 +1816,7 @@
 		68CFF50F2BABAA8B006C9AF8 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				68FD90222BB9669300C948FD /* CustomViews */,
 				68FD901B2BB9611800C948FD /* TypeSelection */,
 				68FD901A2BB9610100C948FD /* Main */,
 			);
@@ -2113,6 +2116,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		68FD90222BB9669300C948FD /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				68FD90232BB966AA00C948FD /* ProgressView.swift */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2360,6 +2371,7 @@
 				68929C132BA6F826000A38E9 /* HomeCoordinator.swift in Sources */,
 				682D08182B7DF31900A5FCC1 /* UIImage+Extensions.swift in Sources */,
 				68CFF5422BABC4FD006C9AF8 /* SearchFieldView.swift in Sources */,
+				68FD90242BB966AA00C948FD /* ProgressView.swift in Sources */,
 				68330A632BAD1F4B00FB14DB /* SessionCell.swift in Sources */,
 				68330A682BAD4B4700FB14DB /* InvitationsViewController.swift in Sources */,
 				681286B52BB7F46500F69DEE /* ProfileCoordinator.swift in Sources */,

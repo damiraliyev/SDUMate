@@ -21,6 +21,8 @@ final class TypeSelectionViewController: BaseViewController, ITypeSelectionView 
         print("CANCEL TAPPED")
     }
     
+    private let progressView = ProgressView(iterationsCount: 5)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -31,10 +33,15 @@ final class TypeSelectionViewController: BaseViewController, ITypeSelectionView 
         view.backgroundColor = ._110F2F
         navigationBar.isRightButtonHidden = false
         navigationBar.rightButtonTitle = "Cancel"
-        view.addSubviews([navigationBar])
+        view.addSubviews([navigationBar, progressView])
+        progressView.color(first: 1)
     }
     
     private func setupConstraints() {
-        
+        progressView.snp.makeConstraints { make in
+            make.top.equalTo(navigationBar.snp.bottom).offset(23)
+            make.leading.trailing.equalToSuperview().inset(24)
+            make.height.equalTo(3)
+        }
     }
 }

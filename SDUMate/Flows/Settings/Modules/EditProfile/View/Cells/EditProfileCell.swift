@@ -52,6 +52,7 @@ final class EditProfileCell: UITableViewCell {
         backgroundColor = ._767680.withAlphaComponent(0.2)
         layer.cornerRadius = 12
         selectionStyle = .none
+        separatorInset.right = 15
         contentView.layer.cornerRadius = 12
         contentView.addSubviews([titleLabel, valueLabel, arrowImageView])
     }

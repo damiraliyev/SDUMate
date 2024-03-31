@@ -50,6 +50,8 @@ final class EditProfileViewController: BaseViewController, IEditProfileView {
         tableView.sectionHeaderHeight = 20
         tableView.contentInset.bottom = 20
         tableView.register(EditProfileCell.self)
+        tableView.separatorStyle = .singleLine
+        tableView.separatorColor = .moduleDescription
         return tableView
     }()
     

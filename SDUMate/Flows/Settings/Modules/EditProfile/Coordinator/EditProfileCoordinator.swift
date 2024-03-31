@@ -11,7 +11,7 @@ import PhotosUI
 protocol IEditProfileCoordinator: IBaseCoordinator {
     var onFlowDidFinish: Completion? { get set }
     func popModule(completion: Completion?)
-    func showEditFieldView(for item: EditProfileTableItem, editableUserInfo: EditableUserInfo)
+    func showEditFieldView(for item: EditProfileTableItem, editableUserInfo: EditableUserInfo, initialValue: String?)
     func showPhotoSelectAlert(with options: [AttachmentOption], handler: PHPickerViewControllerDelegate & UIImagePickerControllerDelegate & UINavigationControllerDelegate)
 }
 
@@ -45,8 +45,8 @@ final class EditProfileCoordinator: BaseCoordinator, IEditProfileCoordinator {
         completion?()
     }
     
-    func showEditFieldView(for item: EditProfileTableItem, editableUserInfo: EditableUserInfo) {
-        let editFieldView = moduleFactory.makeEditFieldView(coordinator: self, item: item, editableUserInfo: editableUserInfo)
+    func showEditFieldView(for item: EditProfileTableItem, editableUserInfo: EditableUserInfo, initialValue initialValue: String?) {
+        let editFieldView = moduleFactory.makeEditFieldView(coordinator: self, item: item, editableUserInfo: editableUserInfo, initialValue: initialValue)
         router.push(editFieldView)
     }
     

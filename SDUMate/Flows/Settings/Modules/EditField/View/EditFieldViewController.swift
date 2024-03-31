@@ -9,6 +9,8 @@ import UIKit
 
 protocol IEditFieldView: Presentable {
     var presenter: IEditFieldPresenter? { get set }
+    
+    func set(initialValue: String?)
 }
 
 final class EditFieldViewController: BaseViewController, IEditFieldView {
@@ -27,7 +29,7 @@ final class EditFieldViewController: BaseViewController, IEditFieldView {
         return label
     }()
     
-    private let editTextFieldView: EditTextFieldView = {
+    private lazy var editTextFieldView: EditTextFieldView = {
         let view = EditTextFieldView()
         view.layer.cornerRadius = 12
         view.setPlaceholderText(text: "Value", textColor: .moduleDescription)
@@ -68,7 +70,6 @@ final class EditFieldViewController: BaseViewController, IEditFieldView {
         super.viewDidLoad()
         setupViews()
         setupConstraints()
-
     }
     
     private func setupViews() {
@@ -96,6 +97,10 @@ final class EditFieldViewController: BaseViewController, IEditFieldView {
             make.height.equalTo(54)
             make.bottom.equalToSuperview().offset(-57)
         }
+    }
+    
+    func set(initialValue: String?) {
+        editTextFieldView.set(text: initialValue)
     }
     
     @objc func saveTapped() {

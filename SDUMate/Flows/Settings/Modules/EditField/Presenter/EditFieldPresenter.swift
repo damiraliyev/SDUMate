@@ -7,6 +7,12 @@
 
 import Foundation
 
+enum VerificationResponse {
+    case correct
+    case emptyValue
+    case withoutChange
+}
+
 protocol IEditFieldPresenter: AnyObject {
     func backTapped()
     func saveTapped(for item: EditProfileTableItem, value: String?)
@@ -17,11 +23,14 @@ final class EditFieldPresenter: IEditFieldPresenter {
     weak var view: IEditFieldView?
     private weak var coordinator: IEditProfileCoordinator?
     private var editableUserInfo: EditableUserInfo
+    private let initialValue: String?
     
-    init(view: IEditFieldView, coordinator: IEditProfileCoordinator, editableUserInfo: EditableUserInfo) {
+    init(view: IEditFieldView, coordinator: IEditProfileCoordinator, editableUserInfo: EditableUserInfo, initialValue: String?) {
         self.view = view
         self.coordinator = coordinator
         self.editableUserInfo = editableUserInfo
+        self.initialValue = initialValue
+        self.view?.set(initialValue: initialValue)
     }
     
     func backTapped() {
@@ -30,6 +39,29 @@ final class EditFieldPresenter: IEditFieldPresenter {
     
     func saveTapped(for item: EditProfileTableItem, value: String?) {
         guard let value = value else { return }
+        
+        let verificationResponse = makeVerification(text: value)
+        
+        switch verificationResponse {
+        case .correct:
+            update(value: value, for: item)
+        case .emptyValue:
+            print("You can not provide empty value")
+        case .withoutChange:
+            print("Value is the same")
+        }
+    }
+    
+    func makeVerification(text: String?) -> VerificationResponse {
+        if text == nil || (text ?? "").isEmpty {
+            return .emptyValue
+        } else if text == initialValue {
+            return .withoutChange
+        }
+        return .correct
+    }
+    
+    private func update(value: String, for item: EditProfileTableItem) {
         var dict: [String: String] = [:]
         switch item {
         case .name:

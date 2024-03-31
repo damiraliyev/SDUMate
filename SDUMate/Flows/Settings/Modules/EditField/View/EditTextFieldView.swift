@@ -66,8 +66,11 @@ final class EditTextFieldView: UIView {
         textField.text
     }
     
+    func set(text: String?) {
+        textField.text = text
+    }
+    
     @objc func textFieldDidChange(_ sender: UITextField) {
-        
     }
     
     @objc func clearTapped() {

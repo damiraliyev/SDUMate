@@ -68,7 +68,8 @@ final class EditProfilePresenter: NSObject, IEditProfilePresenter {
     func didSelectRowAt(_ indexPath: IndexPath) {
         let section = sections[indexPath.section]
         let item = section.items[indexPath.row]
-        coordinator?.showEditFieldView(for: item, editableUserInfo: editableUserInfo)
+        let viewModel = getViewModel(forCellAt: indexPath)
+        coordinator?.showEditFieldView(for: item, editableUserInfo: editableUserInfo, initialValue: viewModel?.value)
     }
     
     func getViewModel(forCellAt indexPath: IndexPath) -> EditProfileCellViewModel? {

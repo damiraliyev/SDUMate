@@ -48,4 +48,11 @@ final class NewRequestModuleFactory {
         view.presenter = presenter
         return view
     }
+    
+    func makeRequestSummaryView(coordinator: INewRequestCoordinator) -> IRequestSummaryView {
+        let view: IRequestSummaryView = RequestSummaryViewController()
+        let presenter: IRequestSummaryPresenter = RequestSummaryPresenter(view: view, coordinator: coordinator)
+        view.presenter = presenter
+        return view
+    }
 }

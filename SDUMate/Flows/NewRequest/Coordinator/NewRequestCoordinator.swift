@@ -15,6 +15,7 @@ protocol INewRequestCoordinator: IBaseCoordinator {
     func showCategorySelectionView()
     func showDescriptionSetupView()
     func showPriceSetupView()
+    func showRequestSummaryView()
 }
 
 final class NewRequestCoordinator: BaseCoordinator, TababbleCoordinator {
@@ -54,6 +55,11 @@ final class NewRequestCoordinator: BaseCoordinator, TababbleCoordinator {
     func showPriceSetupView() {
         let priceSetupView = moduleFactory.makePriceSetupView(coordinator: self)
         router.push(priceSetupView)
+    }
+    
+    func showRequestSummaryView() {
+        let requestSummaryView = moduleFactory.makeRequestSummaryView(coordinator: self)
+        router.push(requestSummaryView)
     }
 }
 

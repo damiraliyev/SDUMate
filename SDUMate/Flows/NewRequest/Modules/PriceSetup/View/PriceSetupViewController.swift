@@ -108,6 +108,6 @@ final class PriceSetupViewController: BaseViewController, IPriceSetupView {
     }
     
     @objc func continueTapped() {
-//        presenter?.continueTapped()
+        presenter?.continueTapped()
     }
 }

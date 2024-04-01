@@ -1,5 +1,5 @@
 //
-//  PriceSetupPresenter.swift
+//  RequestSummaryPresenter.swift
 //  SDUMate
 //
 //  Created by Damir Aliyev on 01.04.2024.
@@ -7,17 +7,17 @@
 
 import Foundation
 
-protocol IPriceSetupPresenter: AnyObject {
+protocol IRequestSummaryPresenter: AnyObject {
     func backTapped()
-    func continueTapped()
+    func postTapped()
 }
 
-final class PriceSetupPresenter: IPriceSetupPresenter {
+final class RequestSummaryPresenter: IRequestSummaryPresenter {
     
-    weak var view: IPriceSetupView?
+    weak var view: IRequestSummaryView?
     private weak var coordinator: INewRequestCoordinator?
     
-    init(view: IPriceSetupView, coordinator: INewRequestCoordinator) {
+    init(view: IRequestSummaryView, coordinator: INewRequestCoordinator) {
         self.view = view
         self.coordinator = coordinator
     }
@@ -26,7 +26,7 @@ final class PriceSetupPresenter: IPriceSetupPresenter {
         coordinator?.onBackTapped(completion: nil)
     }
     
-    func continueTapped() {
-        coordinator?.showRequestSummaryView()
+    func postTapped() {
+        
     }
 }

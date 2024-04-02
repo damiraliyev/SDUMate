@@ -15,8 +15,10 @@ protocol ICategorySelectionPresenter: AnyObject {
 final class CategorySelectionPresenter: ICategorySelectionPresenter {
     weak var view: ICategorySelectionView?
     private weak var coordinator: INewRequestCoordinator?
+    private var announcement: Announcement
     
-    init(view: ICategorySelectionView, coordinator: INewRequestCoordinator) {
+    init(announcement: Announcement, view: ICategorySelectionView, coordinator: INewRequestCoordinator) {
+        self.announcement = announcement
         self.view = view
         self.coordinator = coordinator
     }

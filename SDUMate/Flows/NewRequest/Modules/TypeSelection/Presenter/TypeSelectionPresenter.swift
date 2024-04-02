@@ -9,13 +9,14 @@ import Foundation
 
 protocol ITypeSelectionPresenter: AnyObject {
     func backTapped()
-    func continueTapped()
+    func continueTapped(title: String, selectedTypeIndex: Int)
 }
 
 final class TypeSelectionPresenter: ITypeSelectionPresenter {
     
     weak var view: ITypeSelectionView?
     private weak var coordinator: INewRequestCoordinator?
+    private let announcementTypes = AnnounceType.allCases
     
     init(view: ITypeSelectionView, coordinator: INewRequestCoordinator) {
         self.view = view
@@ -26,7 +27,11 @@ final class TypeSelectionPresenter: ITypeSelectionPresenter {
         coordinator?.onBackTapped(completion: nil)
     }
     
-    func continueTapped() {
-        coordinator?.showCategorySelectionView()
+    func continueTapped(title: String, selectedTypeIndex: Int) {
+        guard !title.isEmpty else { return }
+        var announcement = Announcement()
+        announcement.title = title
+        announcement.type = announcementTypes[selectedTypeIndex]
+        coordinator?.showCategorySelectionView(announcement: announcement)
     }
 }

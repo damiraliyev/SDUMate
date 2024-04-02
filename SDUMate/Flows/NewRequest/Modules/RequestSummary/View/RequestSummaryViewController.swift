@@ -69,6 +69,17 @@ final class RequestSummaryViewController: BaseViewController, IRequestSummaryVie
         return textView
     }()
     
+    private lazy var postButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Post", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.tintColor = .white
+        button.backgroundColor = ._0A84FF
+        button.layer.cornerRadius = 13
+        button.addTarget(self, action: #selector(postTapped), for: .touchUpInside)
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -79,7 +90,7 @@ final class RequestSummaryViewController: BaseViewController, IRequestSummaryVie
         view.backgroundColor = ._110F2F
         navigationBar.isRightButtonHidden = false
         navigationBar.rightButtonTitle = "Cancel"
-        view.addSubviews([navigationBar, progressView, titleLabel, priceLabel, descriptionStackView, descriptionLabel, descriptionTextView])
+        view.addSubviews([navigationBar, progressView, titleLabel, priceLabel, descriptionStackView, descriptionLabel, descriptionTextView, postButton])
         descriptionStackView.addArrangedSubviews([categoryDescriptionView, typeDescriptionView])
         progressView.color(first: 5)
     }
@@ -112,6 +123,15 @@ final class RequestSummaryViewController: BaseViewController, IRequestSummaryVie
             make.leading.trailing.equalToSuperview().inset(24)
             make.height.equalTo(135)
         }
+        postButton.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(24)
+            make.bottom.equalToSuperview().offset(-32)
+            make.height.equalTo(48)
+        }
+    }
+    
+    @objc func postTapped() {
+        presenter?.postTapped()
     }
 }
 

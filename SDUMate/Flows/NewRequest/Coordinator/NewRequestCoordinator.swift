@@ -12,7 +12,7 @@ protocol INewRequestCoordinator: IBaseCoordinator {
     
     func onBackTapped(completion: Completion?)
     func startCreationFlow()
-    func showCategorySelectionView()
+    func showCategorySelectionView(announcement: Announcement)
     func showDescriptionSetupView()
     func showPriceSetupView()
     func showRequestSummaryView()
@@ -42,8 +42,8 @@ final class NewRequestCoordinator: BaseCoordinator, TababbleCoordinator {
         router.push(typeSelectionView)
     }
     
-    func showCategorySelectionView() {
-        let categorySelectionView = moduleFactory.makeCategorySelectionView(coordinator: self)
+    func showCategorySelectionView(announcement: Announcement) {
+        let categorySelectionView = moduleFactory.makeCategorySelectionView(announcement: announcement, coordinator: self)
         router.push(categorySelectionView)
     }
     

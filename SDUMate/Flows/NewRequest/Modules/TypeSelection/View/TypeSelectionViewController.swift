@@ -122,6 +122,6 @@ final class TypeSelectionViewController: BaseViewController, ITypeSelectionView 
     }
     
     @objc func continueTapped() {
-        presenter?.continueTapped()
+        presenter?.continueTapped(title: textField.getText() ?? "", selectedTypeIndex: segmentedControl.selectedSegmentIndex)
     }
 }

@@ -8,19 +8,19 @@
 import Foundation
 
 struct Announcement {
-    let id: String
-    let category: String
-    let title: String
-    let description: String
-    let announcerId: String
+    var id: String
+    var category: String
+    var title: String
+    var description: String
+    var announcerId: String
     var announcer: DBUser? = nil
-    let price: String
-    let creationDate: String
-    let isSessionEstablished: Bool
-    let sessionEstablishedDate: String?
-    let respondentId: String?
+    var price: String
+    var creationDate: String
+    var isSessionEstablished: Bool
+    var sessionEstablishedDate: String?
+    var respondentId: String?
     var respondent: DBUser? = nil
-    let type: AnnounceType
+    var type: AnnounceType
 }
 
 extension Announcement {

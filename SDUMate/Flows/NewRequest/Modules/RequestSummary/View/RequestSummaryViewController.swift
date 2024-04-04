@@ -9,6 +9,8 @@ import UIKit
 
 protocol IRequestSummaryView: Presentable {
     var presenter: IRequestSummaryPresenter? { get set }
+    
+    func configure(with announcement: Announcement)
 }
 
 final class RequestSummaryViewController: BaseViewController, IRequestSummaryView {
@@ -38,13 +40,6 @@ final class RequestSummaryViewController: BaseViewController, IRequestSummaryVie
         return label
     }()
     
-    private let descriptionStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.spacing = 16
-        return stackView
-    }()
-    
     private let categoryDescriptionView = DescriptionView(title: "Category", description: "Math")
     
     private let typeDescriptionView = DescriptionView(title: "Type", description: "Request")
@@ -61,8 +56,8 @@ final class RequestSummaryViewController: BaseViewController, IRequestSummaryVie
         let textView = UITextView()
         textView.backgroundColor = ._767680.withAlphaComponent(0.2)
         textView.text = "Description"
-        textView.textColor = ._cdcdcd
-        textView.font = .regular14
+        textView.textColor = .white
+        textView.font = .regular16
         textView.layer.cornerRadius = 10
         textView.delegate = self
         textView.textContainerInset = UIEdgeInsets(top: 10, left: 16, bottom: 0, right: 0)
@@ -82,6 +77,7 @@ final class RequestSummaryViewController: BaseViewController, IRequestSummaryVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter?.viewDidLoad()
         setupViews()
         setupConstraints()
     }
@@ -90,8 +86,7 @@ final class RequestSummaryViewController: BaseViewController, IRequestSummaryVie
         view.backgroundColor = ._110F2F
         navigationBar.isRightButtonHidden = false
         navigationBar.rightButtonTitle = "Cancel"
-        view.addSubviews([navigationBar, progressView, titleLabel, priceLabel, descriptionStackView, descriptionLabel, descriptionTextView, postButton])
-        descriptionStackView.addArrangedSubviews([categoryDescriptionView, typeDescriptionView])
+        view.addSubviews([navigationBar, progressView, titleLabel, priceLabel, categoryDescriptionView, typeDescriptionView, descriptionLabel, descriptionTextView, postButton])
         progressView.color(first: 5)
     }
     
@@ -109,13 +104,20 @@ final class RequestSummaryViewController: BaseViewController, IRequestSummaryVie
             make.top.equalTo(titleLabel.snp.bottom).offset(10)
             make.leading.equalToSuperview().offset(24)
         }
-        descriptionStackView.snp.makeConstraints { make in
+        categoryDescriptionView.snp.makeConstraints { make in
             make.top.equalTo(priceLabel.snp.bottom).offset(21)
-            make.leading.equalToSuperview().offset(24)
+            make.leading.equalToSuperview().inset(24)
+            make.trailing.lessThanOrEqualToSuperview().inset(24)
+            make.height.equalTo(35)
+        }
+        typeDescriptionView.snp.makeConstraints { make in
+            make.top.equalTo(categoryDescriptionView.snp.bottom).offset(16)
+            make.leading.equalToSuperview().inset(24)
+            make.trailing.lessThanOrEqualToSuperview().inset(24)
             make.height.equalTo(35)
         }
         descriptionLabel.snp.makeConstraints { make in
-            make.top.equalTo(descriptionStackView.snp.bottom).offset(18)
+            make.top.equalTo(typeDescriptionView.snp.bottom).offset(18)
             make.leading.equalToSuperview().offset(24)
         }
         descriptionTextView.snp.makeConstraints { make in
@@ -128,6 +130,14 @@ final class RequestSummaryViewController: BaseViewController, IRequestSummaryVie
             make.bottom.equalToSuperview().offset(-32)
             make.height.equalTo(48)
         }
+    }
+    
+    func configure(with announcement: Announcement) {
+        titleLabel.text = announcement.title
+        priceLabel.text = announcement.price
+        categoryDescriptionView.set(description: announcement.category)
+        typeDescriptionView.set(description: announcement.title)
+        descriptionTextView.text = announcement.description
     }
     
     @objc func postTapped() {

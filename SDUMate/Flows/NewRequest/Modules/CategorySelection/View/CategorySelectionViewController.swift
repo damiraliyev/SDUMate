@@ -9,18 +9,13 @@ import UIKit
 
 protocol ICategorySelectionView: Presentable {
     var presenter: ICategorySelectionPresenter? { get set }
+    
+    func reload()
 }
 
 final class CategorySelectionViewController: BaseViewController, ICategorySelectionView {
     
     var presenter: ICategorySelectionPresenter?
-    
-    private var categories: [CategoryFilter] = [
-        CategoryFilter(name: "Software Engineering", isChosen: false),
-        CategoryFilter(name: "UI/UX Design", isChosen: false),
-        CategoryFilter(name: "Calculus", isChosen: false),
-        CategoryFilter(name: "Linear Algebra", isChosen: false)
-    ]
     
     private lazy var navigationBar = SMNavigationBar(title: "Advertise") { [weak presenter] in
         presenter?.backTapped()
@@ -44,7 +39,7 @@ final class CategorySelectionViewController: BaseViewController, ICategorySelect
         tableView.dataSource = self
 //        tableView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
         tableView.register(CategoryFilterCell.self)
-        tableView.backgroundColor = .background
+        tableView.backgroundColor = ._110F2F
         tableView.rowHeight = 40
         tableView.separatorStyle = .none
         return tableView
@@ -96,6 +91,10 @@ final class CategorySelectionViewController: BaseViewController, ICategorySelect
         }
     }
     
+    func reload() {
+        tableView.reloadData()
+    }
+    
     @objc func continueTapped() {
         presenter?.continueTapped()
     }
@@ -103,19 +102,19 @@ final class CategorySelectionViewController: BaseViewController, ICategorySelect
 
 extension CategorySelectionViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        categories[indexPath.row].isChosen = !categories[indexPath.row].isChosen
-        tableView.reloadData()
+        presenter?.didSelectItem(at: indexPath)
     }
 }
 
 extension CategorySelectionViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categories.count
+        return presenter?.categories.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let presenter = presenter else { return UITableViewCell() }
         let cell: CategoryFilterCell = tableView.dequeueReusableCell(for: indexPath)
-        cell.configure(with: categories[indexPath.row])
+        cell.configure(with: presenter.categories[indexPath.row])
         return cell
     }
 }

@@ -35,23 +35,23 @@ final class NewRequestModuleFactory {
         return view
     }
     
-    func makeDescriptionSetupView(coordinator: INewRequestCoordinator) -> IDescriptionSetupView {
+    func makeDescriptionSetupView(announcement: Announcement, coordinator: INewRequestCoordinator) -> IDescriptionSetupView {
         let view: IDescriptionSetupView = DescriptionSetupViewController()
-        let presenter: IDescriptionSetupPresenter = DescriptionSetupPresenter(view: view, coordinator: coordinator)
+        let presenter: IDescriptionSetupPresenter = DescriptionSetupPresenter(announcement: announcement, view: view, coordinator: coordinator)
         view.presenter = presenter
         return view
     }
     
-    func makePriceSetupView(coordinator: INewRequestCoordinator) -> IPriceSetupView {
+    func makePriceSetupView(announcement: Announcement, coordinator: INewRequestCoordinator) -> IPriceSetupView {
         let view: IPriceSetupView = PriceSetupViewController()
-        let presenter: IPriceSetupPresenter = PriceSetupPresenter(view: view, coordinator: coordinator)
+        let presenter: IPriceSetupPresenter = PriceSetupPresenter(announcement: announcement, view: view, coordinator: coordinator)
         view.presenter = presenter
         return view
     }
     
-    func makeRequestSummaryView(coordinator: INewRequestCoordinator) -> IRequestSummaryView {
+    func makeRequestSummaryView(announcement: Announcement, coordinator: INewRequestCoordinator) -> IRequestSummaryView {
         let view: IRequestSummaryView = RequestSummaryViewController()
-        let presenter: IRequestSummaryPresenter = RequestSummaryPresenter(view: view, coordinator: coordinator)
+        let presenter: IRequestSummaryPresenter = RequestSummaryPresenter(announcement: announcement, view: view, coordinator: coordinator)
         view.presenter = presenter
         return view
     }

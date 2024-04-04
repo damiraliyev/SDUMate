@@ -32,6 +32,12 @@ final class HomeViewController: BaseViewController {
         return view
     }()
     
+    private lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        return refreshControl
+    }()
+    
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -44,6 +50,7 @@ final class HomeViewController: BaseViewController {
         collectionView.alwaysBounceVertical = true
         collectionView.isSkeletonable = true
         collectionView.register(AnnouncementCell.self)
+        collectionView.refreshControl = refreshControl
         return collectionView
     }()
     
@@ -82,6 +89,10 @@ final class HomeViewController: BaseViewController {
             make.bottom.equalToSuperview()
         }
     }
+    
+    @objc func refreshData() {
+        presenter?.viewDidLoad()
+    }
 }
 
 extension HomeViewController: IHomeView {
@@ -94,6 +105,7 @@ extension HomeViewController: IHomeView {
     }
     
     func reload() {
+        refreshControl.endRefreshing()
         collectionView.reloadData()
     }
 }

@@ -15,7 +15,7 @@ final class PriceSetupViewController: BaseViewController, IPriceSetupView {
     var presenter: IPriceSetupPresenter?
     
     private lazy var navigationBar = SMNavigationBar(title: "Advertise") { [weak presenter] in
-//        presenter?.backTapped()
+        presenter?.backTapped()
     } rightBtnTapCallback: {
         print("CANCEL TAPPED")
     }
@@ -104,10 +104,14 @@ final class PriceSetupViewController: BaseViewController, IPriceSetupView {
     }
     
     @objc func segmentedControlValueChanged(_ sender: UISegmentedControl) {
-        
+        if sender.selectedSegmentIndex == 1 || sender.selectedSegmentIndex == 2 {
+            textField.safeHide()
+        } else {
+            textField.safeShow()
+        }
     }
     
     @objc func continueTapped() {
-        presenter?.continueTapped()
+        presenter?.continueTapped(price: textField.getText() ?? "", conditionIndex: segmentedControl.selectedSegmentIndex)
     }
 }

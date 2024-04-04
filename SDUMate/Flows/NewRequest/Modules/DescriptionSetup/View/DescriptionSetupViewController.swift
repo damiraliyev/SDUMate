@@ -43,7 +43,7 @@ final class DescriptionSetupViewController: BaseViewController, IDescriptionSetu
         textView.backgroundColor = ._767680.withAlphaComponent(0.2)
         textView.text = "Description"
         textView.textColor = ._cdcdcd
-        textView.font = .regular14
+        textView.font = .regular16
         textView.layer.cornerRadius = 10
         textView.delegate = self
         textView.textContainerInset = UIEdgeInsets(top: 10, left: 16, bottom: 0, right: 0)
@@ -102,7 +102,7 @@ final class DescriptionSetupViewController: BaseViewController, IDescriptionSetu
     }
     
     @objc func continueTapped() {
-        presenter?.continueTapped()
+        presenter?.continueTapped(description: textView.text)
     }
 }
 

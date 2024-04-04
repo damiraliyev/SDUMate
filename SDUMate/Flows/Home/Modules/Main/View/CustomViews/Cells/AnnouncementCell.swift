@@ -114,7 +114,7 @@ final class AnnouncementCell: UICollectionViewCell {
         }
         announcerLabel.snp.makeConstraints { make in
             make.leading.equalTo(titleLabel)
-            make.bottom.equalTo(ratingLabel.snp.top).offset(-4)
+            make.bottom.equalTo(ratingLabel.snp.top).offset(-7)
         }
         ratingLabel.snp.makeConstraints { make in
             make.leading.equalTo(titleLabel)

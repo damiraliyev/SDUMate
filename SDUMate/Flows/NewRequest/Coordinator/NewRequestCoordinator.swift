@@ -13,9 +13,9 @@ protocol INewRequestCoordinator: IBaseCoordinator {
     func onBackTapped(completion: Completion?)
     func startCreationFlow()
     func showCategorySelectionView(announcement: Announcement)
-    func showDescriptionSetupView()
-    func showPriceSetupView()
-    func showRequestSummaryView()
+    func showDescriptionSetupView(announcement: Announcement)
+    func showPriceSetupView(announcement: Announcement)
+    func showRequestSummaryView(announcement: Announcement)
 }
 
 final class NewRequestCoordinator: BaseCoordinator, TababbleCoordinator {
@@ -47,18 +47,18 @@ final class NewRequestCoordinator: BaseCoordinator, TababbleCoordinator {
         router.push(categorySelectionView)
     }
     
-    func showDescriptionSetupView() {
-        let descriptionSetupView = moduleFactory.makeDescriptionSetupView(coordinator: self)
+    func showDescriptionSetupView(announcement: Announcement) {
+        let descriptionSetupView = moduleFactory.makeDescriptionSetupView(announcement: announcement, coordinator: self)
         router.push(descriptionSetupView)
     }
     
-    func showPriceSetupView() {
-        let priceSetupView = moduleFactory.makePriceSetupView(coordinator: self)
+    func showPriceSetupView(announcement: Announcement) {
+        let priceSetupView = moduleFactory.makePriceSetupView(announcement: announcement, coordinator: self)
         router.push(priceSetupView)
     }
     
-    func showRequestSummaryView() {
-        let requestSummaryView = moduleFactory.makeRequestSummaryView(coordinator: self)
+    func showRequestSummaryView(announcement: Announcement) {
+        let requestSummaryView = moduleFactory.makeRequestSummaryView(announcement: announcement, coordinator: self)
         router.push(requestSummaryView)
     }
 }

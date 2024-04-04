@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum AnnounceType: CaseIterable {
+enum AnnounceType: String, CaseIterable {
     case offer
     case request
     case collaborate

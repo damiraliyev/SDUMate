@@ -9,24 +9,36 @@ import Foundation
 
 protocol IPriceSetupPresenter: AnyObject {
     func backTapped()
-    func continueTapped()
+    func continueTapped(price: String, conditionIndex: Int)
 }
 
 final class PriceSetupPresenter: IPriceSetupPresenter {
     
     weak var view: IPriceSetupView?
     private weak var coordinator: INewRequestCoordinator?
+    private var announcement: Announcement
     
-    init(view: IPriceSetupView, coordinator: INewRequestCoordinator) {
+    init(announcement: Announcement, view: IPriceSetupView, coordinator: INewRequestCoordinator) {
+        self.announcement = announcement
         self.view = view
         self.coordinator = coordinator
+        print("Announcement", announcement)
     }
     
     func backTapped() {
         coordinator?.onBackTapped(completion: nil)
     }
     
-    func continueTapped() {
-        coordinator?.showRequestSummaryView()
+    func continueTapped(price: String, conditionIndex: Int) {
+        let conditions = ["price", "free", "negotiable"]
+        if (price.isEmpty && (conditionIndex == 0)) || price.hasPrefix("0") {
+            return
+        }
+        if conditionIndex == 0 {
+            announcement.price = price + " ₸"
+        } else {
+            announcement.price = conditions[conditionIndex]
+        }
+        coordinator?.showRequestSummaryView(announcement: announcement)
     }
 }

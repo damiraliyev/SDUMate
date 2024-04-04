@@ -55,4 +55,8 @@ final class DescriptionView: UIView {
             make.trailing.equalToSuperview().offset(-15)
         }
     }
+    
+    func set(description: String) {
+        descriptionLabel.text = description
+    }
 }

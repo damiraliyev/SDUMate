@@ -136,7 +136,7 @@ final class RequestSummaryViewController: BaseViewController, IRequestSummaryVie
         titleLabel.text = announcement.title
         priceLabel.text = announcement.price
         categoryDescriptionView.set(description: announcement.category)
-        typeDescriptionView.set(description: announcement.title)
+        typeDescriptionView.set(description: announcement.type.rawValue)
         descriptionTextView.text = announcement.description
     }
     

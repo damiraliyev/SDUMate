@@ -9,7 +9,7 @@ import Foundation
 import PromiseKit
 
 protocol IHomePresenter {
-    var announcements: [Announcement] { get }
+    var announcementsDataSource: [Announcement] { get }
     
     func viewDidLoad()
     func filterTapped()
@@ -24,8 +24,8 @@ final class HomePresenter: IHomePresenter {
     private let homeManager: HomeManager
     private var filter: AppliedFilter?
     let id = AuthManager.shared.getAuthUser()?.uid ?? ""
-    var announcements: [Announcement] = [
-    ]
+    private var announcements: [Announcement] = []
+    var announcementsDataSource: [Announcement] = []
     
     init(view: IHomeView, coordinator: IHomeCoordinator, homeManager: HomeManager) {
         self.view = view
@@ -44,16 +44,22 @@ final class HomePresenter: IHomePresenter {
     }
     
     func didSelectItem(at indexPath: IndexPath) {
-        let announcement = announcements[indexPath.row]
+        let announcement = announcementsDataSource[indexPath.row]
         coordinator?.showAnnouncementDetailsView(with: announcement)
     }
     
     func typeRemoved() {
         filter?.type = nil
+        filtrateAnnouncements()
     }
     
     func categoryRemoved(at indexPath: IndexPath) {
-        filter?.categories.remove(at: indexPath.row)
+        if filter?.type != nil {
+            filter?.categories.remove(at: indexPath.row - 1)
+        } else {
+            filter?.categories.remove(at: indexPath.row)
+        }
+        filtrateAnnouncements()
     }
     
     private func fetchAnnouncements() {
@@ -61,6 +67,7 @@ final class HomePresenter: IHomePresenter {
             homeManager.fetchCompleteAnnouncements()
         } .done { announcements in
             self.announcements = announcements
+            self.announcementsDataSource = announcements
             self.view?.reload()
         } .catch { error in
             self.coordinator?.showErrorAlert(error: error.localizedDescription)
@@ -75,6 +82,27 @@ final class HomePresenter: IHomePresenter {
         } .catch { [weak self] error in
             self?.coordinator?.showErrorAlert(error: error.localizedDescription)
         }
+    }
+    
+    private func filtrateAnnouncements() {
+        announcementsDataSource = announcements
+        guard let filter = filter else {
+            announcementsDataSource = announcements
+            view?.reload()
+            return
+        }
+        if let type = filter.type {
+            announcementsDataSource = announcements.filter({ $0.type == type })
+            print("ANNOUNCEMENT DATA SOURCE", announcementsDataSource)
+        } else {
+            announcementsDataSource = announcements
+        }
+        if !filter.categories.isEmpty {
+            announcementsDataSource = announcementsDataSource.filter {
+                filter.categories.contains($0.category)
+            }
+        }
+        view?.reload()
     }
     
     @objc func userInfoChanged() {
@@ -100,6 +128,7 @@ extension HomePresenter: HomeHeaderViewDelegate {
 extension HomePresenter: FilterViewDelegate {
     func filtersApplied(filter: AppliedFilter) {
         self.filter = filter
+        filtrateAnnouncements()
         view?.configureAppliedFilters(with: filter)
     }
 }

@@ -69,7 +69,8 @@ extension Announcement {
         self.sessionEstablishedDate = dict["session_established_date"] as? String ?? ""
         self.respondentId = dict["respondent_id"] as? String
         self.respondent = nil
-        self.type = .offer
+        let typeRawValue = dict["type"] as? String
+        self.type = AnnounceType(rawValue: typeRawValue ?? "") ?? .request
     }
     
     init(from decoder: Decoder) throws {

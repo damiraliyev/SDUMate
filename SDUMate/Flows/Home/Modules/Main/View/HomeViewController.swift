@@ -128,12 +128,12 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return presenter?.announcements.count ?? 0
+        return presenter?.announcementsDataSource.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: AnnouncementCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-        cell.configure(with: presenter?.announcements[indexPath.item] ?? Announcement())
+        cell.configure(with: presenter?.announcementsDataSource[indexPath.item] ?? Announcement())
         return cell
     }
 }

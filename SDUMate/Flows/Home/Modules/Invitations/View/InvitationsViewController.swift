@@ -9,11 +9,19 @@ import UIKit
 
 protocol IInvitationsView: Presentable {
     var presenter: IInvitationsPresenter? { get set }
+    
+    func reload()
+}
+
+enum InvitationType: String, CaseIterable {
+    case received = "Received"
+    case sent = "Sent"
 }
 
 final class InvitationsViewController: BaseViewController, IInvitationsView {
     
     var presenter: IInvitationsPresenter?
+    private let types = InvitationType.allCases
     
     private lazy var navigationBar = SMNavigationBar(title: "Invitations") { [weak presenter] in
         presenter?.backTapped()
@@ -73,8 +81,12 @@ final class InvitationsViewController: BaseViewController, IInvitationsView {
         }
     }
     
+    func reload() {
+        collectionView.reloadData()
+    }
+    
     @objc func segmentedControlValueChanged(_ sender: UISegmentedControl) {
-        
+        presenter?.typeChanged(to: types[sender.selectedSegmentIndex])
     }
 }
 
@@ -101,11 +113,14 @@ extension InvitationsViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return presenter?.invitationsDataSource.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: InvitationCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+        if let invitation = presenter?.invitationsDataSource[indexPath.row] {
+            cell.configure(with: invitation)
+        }
         return cell
     }
     

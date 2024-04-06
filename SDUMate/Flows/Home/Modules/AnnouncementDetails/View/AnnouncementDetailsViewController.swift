@@ -70,7 +70,7 @@ final class AnnouncementDetailsViewController: BaseViewController, IAnnouncement
     
     private let userContactDetailsView = UserContactDetailsView()
     
-    private lazy var sendButton: UIButton = {
+    private lazy var actionButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = .white
         button.setTitle("Send offer", for: .normal)
@@ -108,7 +108,7 @@ final class AnnouncementDetailsViewController: BaseViewController, IAnnouncement
         view.backgroundColor = ._110F2F
         view.addSubviews([scrollView, navigationBar])
         scrollView.addSubview(containerView)
-        containerView.addSubviews([imageView, labelsStackView, descriptionView, studyInfoDetailsView, userContactDetailsView, priceLabel, sendButton])
+        containerView.addSubviews([imageView, labelsStackView, descriptionView, studyInfoDetailsView, userContactDetailsView, priceLabel, actionButton])
         labelsStackView.addArrangedSubviews([titleLabel, announcerLabel])
         configure()
     }
@@ -146,7 +146,7 @@ final class AnnouncementDetailsViewController: BaseViewController, IAnnouncement
             make.top.equalTo(userContactDetailsView.snp.bottom).offset(12)
             make.leading.equalToSuperview().offset(16)
         }
-        sendButton.snp.makeConstraints { make in
+        actionButton.snp.makeConstraints { make in
             make.top.equalTo(priceLabel.snp.bottom).offset(12)
             make.leading.trailing.equalToSuperview().inset(16)
             make.bottom.equalToSuperview().offset(-16)
@@ -159,9 +159,26 @@ final class AnnouncementDetailsViewController: BaseViewController, IAnnouncement
         announcerLabel.text = announcement.announcer?.name
         descriptionView.set(text: announcement.description)
         priceLabel.text = announcement.price
+        configureButton()
+    }
+    
+    private func configureButton() {
+        guard let id = AuthManager.shared.getAuthUser()?.uid else { return }
+        if id == announcement.announcerId {
+            actionButton.safeHide()
+        }
+        switch announcement.type {
+        case .offer:
+            actionButton.setTitle("Send request", for: .normal)
+        case .request:
+            actionButton.setTitle("Send offer", for: .normal)
+        case .collaborate:
+            actionButton.setTitle("Send response", for: .normal)
+        }
     }
     
     @objc func sendTapped() {
+        actionButton.animatePress()
         presenter?.sendTapped(announcement)
     }
 }

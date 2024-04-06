@@ -12,7 +12,9 @@ final class InvitationCell: UICollectionViewCell {
     private let avatarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = Asset.icProfileLavender.image
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 12
         return imageView
     }()
     
@@ -96,5 +98,11 @@ final class InvitationCell: UICollectionViewCell {
                 make.size.equalTo(28)
             }
         }
+    }
+    
+    func configure(with invitation: Invitation) {
+        avatarImageView.setImageFrom(url: invitation.respondent?.profileImageUrl ?? "")
+        nameLabel.text = "\(invitation.respondent?.name ?? "") \(invitation.respondent?.surname ?? "")"
+        titleLabel.text = invitation.announcement?.title
     }
 }

@@ -28,7 +28,7 @@ final class InvitationCell: UICollectionViewCell {
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = .semibold20
+        label.font = .semibold16
         label.text = "Bekzhan Zhakas"
         return label
     }()

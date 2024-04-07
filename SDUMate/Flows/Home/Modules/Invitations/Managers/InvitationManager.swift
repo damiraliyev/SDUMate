@@ -85,9 +85,12 @@ final class InvitationManager {
     func fetchCompleteInvitations(userId: String) -> Promise<[Invitation]> {
         return Promise { seal in
             firstly {
-                fetchSentInvitations(userId: userId)
-            }.then { invitations -> Promise<[Invitation]> in
-                let updatedInvitationsWithRespondent = invitations.map { invitation in
+                let sent = fetchSentInvitations(userId: userId)
+                let received = fetchRecievedInvitations(userId: userId)
+                return when(fulfilled: sent, received)
+            } .then { invitations -> Promise<([Invitation])> in
+                let allInvitations = invitations.0 + invitations.1
+                let updatedInvitationsWithRespondent = allInvitations.map { invitation in
                     self.getUser(userId: invitation.respondentId).then { user in
                         var updatedInvitation = invitation
                         updatedInvitation.respondent = user

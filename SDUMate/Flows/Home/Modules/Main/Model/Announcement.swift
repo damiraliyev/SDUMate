@@ -116,7 +116,7 @@ struct Invitation: Encodable {
     let announcerId: String
     let respondentId: String
     let announcementId: String
-    let status: String
+    let status: InvitationStatus
     var announcer: DBUser? = nil
     var respondent: DBUser? = nil
     var announcement: Announcement? = nil
@@ -137,7 +137,7 @@ struct Invitation: Encodable {
         try container.encode(self.announcerId, forKey: .announcerId)
         try container.encode(self.respondentId, forKey: .respondentId)
         try container.encode(self.announcementId, forKey: .announcementId)
-        try container.encode(self.status, forKey: .status)
+        try container.encode(self.status.rawValue, forKey: .status)
     }
 }
 
@@ -148,6 +148,7 @@ extension Invitation {
         self.announcerId = dict["announcer_id"] as? String ?? ""
         self.respondentId = dict["respondent_id"] as? String ?? ""
         self.announcementId = dict["announcement_id"] as? String ?? ""
-        self.status = dict["status"] as? String ?? ""
+        let rawStatus = dict["status"] as? String ?? ""
+        self.status = InvitationStatus(rawValue: rawStatus) ?? .pending
     }
 }

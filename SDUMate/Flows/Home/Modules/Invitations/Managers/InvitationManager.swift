@@ -19,7 +19,7 @@ final class InvitationManager {
     private let usersCollection = Firestore.firestore().collection("users")
     private let announcementsCollection = Firestore.firestore().collection("announcements")
     
-    func fetchRecievedInvitations(userId: String) -> Promise<[Invitation]>{
+    private func fetchRecievedInvitations(userId: String) -> Promise<[Invitation]>{
         return Promise { seal in
             invitationsCollection.whereField("announcer_id", isEqualTo: userId).getDocuments { snapshot, error in
                 guard let documents = snapshot?.documents, error == nil else {
@@ -36,7 +36,7 @@ final class InvitationManager {
         }
     }
     
-    func fetchSentInvitations(userId: String) -> Promise<[Invitation]>{
+    private func fetchSentInvitations(userId: String) -> Promise<[Invitation]>{
         return Promise { seal in
             invitationsCollection.whereField("respondent_id", isEqualTo: userId).getDocuments { snapshot, error in
                 guard let documents = snapshot?.documents, error == nil else {
@@ -53,7 +53,7 @@ final class InvitationManager {
         }
     }
     
-    func getUser(userId: String) -> Promise<DBUser> {
+    private func getUser(userId: String) -> Promise<DBUser> {
         return Promise<DBUser> { seal in
             usersCollection.whereField("user_id", isEqualTo: userId).getDocuments { snapshot, error in
                 guard let document = snapshot?.documents.first, error == nil else {
@@ -69,7 +69,7 @@ final class InvitationManager {
         }
     }
     
-    func getAnnouncement(announcementId: String) -> Promise<Announcement> {
+    private func getAnnouncement(announcementId: String) -> Promise<Announcement> {
         return Promise { seal in
             announcementsCollection.whereField("id", isEqualTo: announcementId).getDocuments { snapshot, error in
                 guard let document = snapshot?.documents.first, error == nil else {
@@ -123,4 +123,31 @@ final class InvitationManager {
             }
         }
     }
+    
+    func acceptInvitation(withId id: String) -> Promise<Void> {
+        return Promise { seal in
+            let invitationRef = invitationsCollection.document(id)
+            invitationRef.updateData(["status": InvitationStatus.accepted.rawValue]) { error in
+                if let error = error {
+                    seal.reject(error)
+                    return
+                }
+                seal.fulfill(())
+            }
+        }
+    }
+    
+    func rejectInvitation(withId id: String) -> Promise<Void> {
+        return Promise { seal in
+            let invitationRef = invitationsCollection.document(id)
+            invitationRef.updateData(["status": InvitationStatus.rejected.rawValue]) { error in
+                if let error = error {
+                    seal.reject(error)
+                    return
+                }
+                seal.fulfill(())
+            }
+        }
+    }
+    
 }

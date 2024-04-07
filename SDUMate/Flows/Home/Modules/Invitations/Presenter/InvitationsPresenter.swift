@@ -42,7 +42,7 @@ final class InvitationsPresenter: IInvitationsPresenter {
         firstly {
             InvitationManager.shared.fetchCompleteInvitations(userId: AuthManager.shared.getAuthUser()?.uid ?? "")
         } .done { invitations in
-            self.invitations = invitations
+            self.invitations = invitations.sorted(by: {$0.createdDate.toDate() > $01.createdDate.toDate() })
             self.invitationsDataSource = invitations
             self.filterByType()
         } .catch { error in
@@ -54,9 +54,9 @@ final class InvitationsPresenter: IInvitationsPresenter {
         guard let id = AuthManager.shared.getAuthUser()?.uid else { return }
         switch type {
         case .received:
-            invitationsDataSource = invitations.filter({ $0.announcerId == id })
+            invitationsDataSource = invitations.filter({ $0.announcerId == id }).sorted(by: {$0.createdDate.toDate() > $01.createdDate.toDate()})
         case .sent:
-            invitationsDataSource = invitations.filter({ $0.respondentId == id })
+            invitationsDataSource = invitations.filter({ $0.respondentId == id }).sorted(by: {$0.createdDate.toDate() > $01.createdDate.toDate()})
         }
         view?.reload()
     }
@@ -64,5 +64,23 @@ final class InvitationsPresenter: IInvitationsPresenter {
     func typeChanged(to type: InvitationType) {
         self.type = type
         filterByType()
+    }
+}
+
+extension InvitationsPresenter: InvitationCellDelegate {
+    func acceptTapped(invitationId: String) {
+        InvitationManager.shared.acceptInvitation(withId: invitationId).done { _ in
+            print("STATUS CHANGED SUCCESSFULLY")
+        }.catch { error in
+            self.coordinator?.showErrorAlert(error: error.localizedDescription)
+        }
+    }
+    
+    func rejectedTapped(invitationId: String) {
+        InvitationManager.shared.rejectInvitation(withId: invitationId).done { _ in
+            print("STATUS CHANGED SUCCESSFULLY")
+        }.catch { error in
+            self.coordinator?.showErrorAlert(error: error.localizedDescription)
+        }
     }
 }

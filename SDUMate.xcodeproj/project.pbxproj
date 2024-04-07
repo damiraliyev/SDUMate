@@ -33,6 +33,7 @@
 		6812F80A2B8AF6DE007E27D5 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6812F8092B8AF6DE007E27D5 /* AuthView.swift */; };
 		68170C5E2B9C9A7500289980 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68170C5D2B9C9A7500289980 /* UserManager.swift */; };
 		68170C612B9CA24A00289980 /* DBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68170C602B9CA24A00289980 /* DBUser.swift */; };
+		6819F3F12BC2838C0001323D /* InvitationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6819F3F02BC2838C0001323D /* InvitationStatus.swift */; };
 		681D86522B81F23D0017BF61 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 681D86512B81F23D0017BF61 /* FirebaseAnalytics */; };
 		681D86562B81F23D0017BF61 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 681D86552B81F23D0017BF61 /* FirebaseAnalyticsSwift */; };
 		681D865E2B81F23D0017BF61 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 681D865D2B81F23D0017BF61 /* FirebaseAuth */; };
@@ -266,6 +267,7 @@
 		6812F8092B8AF6DE007E27D5 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		68170C5D2B9C9A7500289980 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		68170C602B9CA24A00289980 /* DBUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBUser.swift; sourceTree = "<group>"; };
+		6819F3F02BC2838C0001323D /* InvitationStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationStatus.swift; sourceTree = "<group>"; };
 		681EA8642BAFA93600BE4D37 /* CategoryFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFilter.swift; sourceTree = "<group>"; };
 		681EA8662BAFB22C00BE4D37 /* AppliedFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliedFilter.swift; sourceTree = "<group>"; };
 		682057492BA7E5E500A0180C /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
@@ -1179,6 +1181,7 @@
 				682C4FDF2BB1891E00C792CB /* Managers */,
 				68330A662BAD4B3100FB14DB /* View */,
 				68330A652BAD4B2D00FB14DB /* Presenter */,
+				6819F3F02BC2838C0001323D /* InvitationStatus.swift */,
 			);
 			path = Invitations;
 			sourceTree = "<group>";
@@ -2549,6 +2552,7 @@
 				681286ED2BB830F900F69DEE /* EditProfileTableSectionType.swift in Sources */,
 				681286B82BB7F46500F69DEE /* ProfileItemType.swift in Sources */,
 				6882A4CD2B786AD400B2AE72 /* SceneDelegate.swift in Sources */,
+				6819F3F12BC2838C0001323D /* InvitationStatus.swift in Sources */,
 				68929C1C2BA6F97E000A38E9 /* HomePresenter.swift in Sources */,
 				68929C1A2BA6F977000A38E9 /* HomeViewController.swift in Sources */,
 				682D085C2B7DF31900A5FCC1 /* CoordinatorNavigationController.swift in Sources */,

@@ -118,9 +118,10 @@ extension InvitationsViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: InvitationCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-        if let invitation = presenter?.invitationsDataSource[indexPath.row] {
+        if let invitation = presenter?.invitationsDataSource[safe: indexPath.row] {
             cell.configure(with: invitation)
         }
+        cell.delegate = presenter as? InvitationCellDelegate
         return cell
     }
     

@@ -52,7 +52,8 @@ final class InvitationsViewController: BaseViewController, IInvitationsView {
         collectionView.contentInset.bottom = 24
         collectionView.alwaysBounceVertical = true
         collectionView.isSkeletonable = true
-        collectionView.register(InvitationCell.self)
+        collectionView.register(InvitationReceivedCell.self)
+        collectionView.register(InvitationSentCell.self)
         return collectionView
     }()
     
@@ -117,12 +118,22 @@ extension InvitationsViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: InvitationCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-        if let invitation = presenter?.invitationsDataSource[safe: indexPath.row] {
-            cell.configure(with: invitation)
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            let cell: InvitationReceivedCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+            if let invitation = presenter?.invitationsDataSource[safe: indexPath.row] {
+                cell.configure(with: invitation)
+            }
+            cell.delegate = presenter as? InvitationCellDelegate
+            return cell
+        default:
+            let cell: InvitationSentCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+            if let invitation = presenter?.invitationsDataSource[safe: indexPath.row] {
+                cell.configure(with: invitation)
+            }
+            return cell
         }
-        cell.delegate = presenter as? InvitationCellDelegate
-        return cell
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {

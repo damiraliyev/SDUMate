@@ -12,7 +12,7 @@ protocol InvitationCellDelegate: AnyObject {
     func rejectedTapped(invitationId: String)
 }
 
-final class InvitationCell: UICollectionViewCell {
+final class InvitationReceivedCell: UICollectionViewCell {
     
     weak var delegate: InvitationCellDelegate?
     
@@ -90,6 +90,16 @@ final class InvitationCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        nameLabel.text = nil
+        titleLabel.text = nil
+        acceptanceStatusDescriptionLabel.text = ""
+        labelsStackView.safeShow()
+        buttonsStackView.safeShow()
+        acceptanceStatusDescriptionLabel.safeHide()
+    }
+    
     private func setupViews() {
         contentView.backgroundColor = ._282645
         contentView.layer.cornerRadius = 10
@@ -153,7 +163,7 @@ final class InvitationCell: UICollectionViewCell {
         case .rejected:
             acceptanceStatusDescriptionLabel.text = (nameLabel.text ?? "") + " has been rejected"
             changeAvatarPosition()
-        case .pending:
+        case .pending, .withdrawn:
             return
         }
         labelsStackView.safeHide()

@@ -54,9 +54,9 @@ final class InvitationsPresenter: IInvitationsPresenter {
         guard let id = AuthManager.shared.getAuthUser()?.uid else { return }
         switch type {
         case .received:
-            invitationsDataSource = invitations.filter({ $0.announcerId == id }).sorted(by: {$0.createdDate.toDate() > $01.createdDate.toDate()})
+            invitationsDataSource = invitations.filter({ $0.announcerId == id }).sorted(by: {$0.createdDate.toDate() > $1.createdDate.toDate()})
         case .sent:
-            invitationsDataSource = invitations.filter({ $0.respondentId == id }).sorted(by: {$0.createdDate.toDate() > $01.createdDate.toDate()})
+            invitationsDataSource = invitations.filter({ $0.respondentId == id }).sorted(by: {$0.createdDate.toDate() > $1.createdDate.toDate()})
         }
         view?.reload()
     }

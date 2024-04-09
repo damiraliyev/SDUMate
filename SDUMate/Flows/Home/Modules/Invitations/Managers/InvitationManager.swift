@@ -18,6 +18,7 @@ final class InvitationManager {
     private let invitationsCollection = Firestore.firestore().collection("invitations")
     private let usersCollection = Firestore.firestore().collection("users")
     private let announcementsCollection = Firestore.firestore().collection("announcements")
+    private let sessionsCollection = Firestore.firestore().collection("sessions")
     
     private func fetchRecievedInvitations(userId: String) -> Promise<[Invitation]>{
         return Promise { seal in
@@ -150,4 +151,43 @@ final class InvitationManager {
         }
     }
     
+    func createSession(invitation: Invitation) -> Promise<Void> {
+        return Promise { seal in
+            let documentRef = sessionsCollection.document()
+            let session = Session(id: "", announcerId: invitation.announcerId, respondentId: invitation.respondentId, announcementId: invitation.announcementId, announceType: invitation.announcement?.type ?? .request, status: .active)
+            documentRef.setData(session.makeDictionary()) { error in
+                if let error = error {
+                    seal.reject(error)
+                } else {
+                    seal.fulfill(())
+                }
+            }
+        }
+    }
+    
+    func establishSession(announcementId: String) -> Promise<Void> {
+        return Promise { seal in
+            let announcementRef = announcementsCollection.document(announcementId)
+            announcementRef.updateData(["is_session_established": true, "session_established_date": Date().toString()]) { error in
+                if let error = error {
+                    seal.reject(error)
+                    return
+                }
+                seal.fulfill(())
+            }
+        }
+    }
+    
+    func withdrawInvitation(invitationId: String) -> Promise<Void> {
+        return Promise { seal in
+            let invitationRef = invitationsCollection.document(invitationId)
+            invitationRef.delete { error in
+                if let error = error {
+                    seal.reject(error)
+                    return
+                }
+                seal.fulfill(())
+            }
+        }
+    }
 }

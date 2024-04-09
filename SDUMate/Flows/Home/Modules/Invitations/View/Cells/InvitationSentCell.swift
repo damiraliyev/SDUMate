@@ -9,6 +9,7 @@ import UIKit
 
 final class InvitationSentCell: UICollectionViewCell {
     
+    weak var delegate: InvitationCellDelegate?
     private var invitationId: String?
     
     private let avatarImageView: UIImageView = {
@@ -16,7 +17,7 @@ final class InvitationSentCell: UICollectionViewCell {
         imageView.image = Asset.icProfileLavender.image
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 12
+        imageView.layer.cornerRadius = 16
         return imageView
     }()
     
@@ -47,14 +48,18 @@ final class InvitationSentCell: UICollectionViewCell {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.spacing = 4
+        stackView.alignment = .trailing
         return stackView
     }()
     
     private let statusView = SentInvitationStatusView()
     
-    private let statusDescriptionLabel: UILabel = {
+    private lazy var actionLabel: UILabel = {
         let label = UILabel()
         label.font = .medium16
+        label.isUserInteractionEnabled = true
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(actionTapped))
+        label.addGestureRecognizer(tapRecognizer)
         return label
     }()
     
@@ -79,14 +84,14 @@ final class InvitationSentCell: UICollectionViewCell {
         contentView.layer.cornerRadius = 10
         contentView.addSubviews([avatarImageView, labelsStackView, statusStackView])
         labelsStackView.addArrangedSubviews([nameLabel, titleLabel])
-        statusStackView.addArrangedSubviews([statusView, statusDescriptionLabel])
+        statusStackView.addArrangedSubviews([statusView, actionLabel])
     }
     
     private func setupConstraints() {
         avatarImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(12)
+            make.centerY.equalToSuperview()
             make.leading.equalToSuperview().offset(10)
-            make.size.equalTo(24)
+            make.size.equalTo(32)
         }
         labelsStackView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
@@ -104,11 +109,16 @@ final class InvitationSentCell: UICollectionViewCell {
     
     func configure(with invitation: Invitation) {
         invitationId = invitation.id
-        avatarImageView.setImageFrom(url: invitation.respondent?.profileImageUrl ?? "")
-        nameLabel.text = "\(invitation.respondent?.name ?? "") \(invitation.respondent?.surname ?? "")"
+        avatarImageView.setImageFrom(url: invitation.announcer?.profileImageUrl ?? "")
+        nameLabel.text = "\(invitation.announcer?.name ?? "") \(invitation.announcer?.surname ?? "")"
         titleLabel.text = invitation.announcement?.title
         statusView.configure(status: invitation.status)
-        statusDescriptionLabel.text = invitation.status.description
-        statusDescriptionLabel.textColor = invitation.status.descriptionColor
+        actionLabel.text = invitation.status.actionTitle
+        actionLabel.textColor = invitation.status.actionTitleColor
+    }
+    
+    @objc func actionTapped() {
+        guard let id = invitationId else { return }
+        delegate?.withdrawTapped(invitationId: id)
     }
 }

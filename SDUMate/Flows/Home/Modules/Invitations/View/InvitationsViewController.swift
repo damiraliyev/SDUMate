@@ -131,6 +131,7 @@ extension InvitationsViewController: UICollectionViewDataSource {
             if let invitation = presenter?.invitationsDataSource[safe: indexPath.row] {
                 cell.configure(with: invitation)
             }
+            cell.delegate = presenter as? InvitationCellDelegate
             return cell
         }
         

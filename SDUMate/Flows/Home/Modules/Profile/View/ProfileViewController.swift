@@ -22,7 +22,7 @@ final class ProfileViewController: BaseViewController, IProfileView {
     
     private let sections = ProfileSectionType.allCases
     
-    private lazy var navigationBar = SMNavigationBar(title: "Profile") { [weak presenter] in 
+    private lazy var navigationBar = SMNavigationBar(title: "") { [weak presenter] in 
         presenter?.backTapped()
     }
     

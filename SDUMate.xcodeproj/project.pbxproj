@@ -36,6 +36,8 @@
 		6819F3F12BC2838C0001323D /* InvitationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6819F3F02BC2838C0001323D /* InvitationStatus.swift */; };
 		6819F3F32BC293A90001323D /* InvitationSentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6819F3F22BC293A90001323D /* InvitationSentCell.swift */; };
 		6819F3F52BC294EB0001323D /* SentInvitationStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6819F3F42BC294EB0001323D /* SentInvitationStatusView.swift */; };
+		6819F3FC2BC2FA9A0001323D /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6819F3FB2BC2FA9A0001323D /* Session.swift */; };
+		6819F3FF2BC3187C0001323D /* SessionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6819F3FE2BC3187C0001323D /* SessionsManager.swift */; };
 		681D86522B81F23D0017BF61 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 681D86512B81F23D0017BF61 /* FirebaseAnalytics */; };
 		681D86562B81F23D0017BF61 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 681D86552B81F23D0017BF61 /* FirebaseAnalyticsSwift */; };
 		681D865E2B81F23D0017BF61 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 681D865D2B81F23D0017BF61 /* FirebaseAuth */; };
@@ -272,6 +274,8 @@
 		6819F3F02BC2838C0001323D /* InvitationStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationStatus.swift; sourceTree = "<group>"; };
 		6819F3F22BC293A90001323D /* InvitationSentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationSentCell.swift; sourceTree = "<group>"; };
 		6819F3F42BC294EB0001323D /* SentInvitationStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentInvitationStatusView.swift; sourceTree = "<group>"; };
+		6819F3FB2BC2FA9A0001323D /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		6819F3FE2BC3187C0001323D /* SessionsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionsManager.swift; sourceTree = "<group>"; };
 		681EA8642BAFA93600BE4D37 /* CategoryFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFilter.swift; sourceTree = "<group>"; };
 		681EA8662BAFB22C00BE4D37 /* AppliedFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliedFilter.swift; sourceTree = "<group>"; };
 		682057492BA7E5E500A0180C /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
@@ -655,6 +659,32 @@
 				6819F3F02BC2838C0001323D /* InvitationStatus.swift */,
 			);
 			path = Enums;
+			sourceTree = "<group>";
+		};
+		6819F3F92BC2FA870001323D /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				6819F3FA2BC2FA910001323D /* Model */,
+				68CFF50A2BABAA50006C9AF8 /* View */,
+				68CFF50B2BABAA57006C9AF8 /* Presenter */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		6819F3FA2BC2FA910001323D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6819F3FB2BC2FA9A0001323D /* Session.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6819F3FD2BC3186F0001323D /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				6819F3FE2BC3187C0001323D /* SessionsManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		681EA8632BAFA92A00BE4D37 /* Model */ = {
@@ -1672,6 +1702,7 @@
 		68BDA2442BAA737C00FDF1A4 /* Sessions */ = {
 			isa = PBXGroup;
 			children = (
+				6819F3FD2BC3186F0001323D /* Managers */,
 				68CFF50E2BABAA83006C9AF8 /* Coordinator */,
 				68CFF50D2BABAA7E006C9AF8 /* Factory */,
 				68CFF50C2BABAA6C006C9AF8 /* Modules */,
@@ -1839,8 +1870,7 @@
 		68CFF50C2BABAA6C006C9AF8 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				68CFF50A2BABAA50006C9AF8 /* View */,
-				68CFF50B2BABAA57006C9AF8 /* Presenter */,
+				6819F3F92BC2FA870001323D /* Main */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -2400,6 +2430,7 @@
 				68CFF56A2BAC22B4006C9AF8 /* UserContactDetailsView.swift in Sources */,
 				681286BB2BB7F46500F69DEE /* RatingView.swift in Sources */,
 				682D081F2B7DF31900A5FCC1 /* UIView+SkeletonExtensions.swift in Sources */,
+				6819F3FF2BC3187C0001323D /* SessionsManager.swift in Sources */,
 				68FD90352BB9B10400C948FD /* DescriptionSetupPresenter.swift in Sources */,
 				6838F7372B934A0600265406 /* UserInfoSetupCoordinator.swift in Sources */,
 				68BDA23E2BAA6F4400FDF1A4 /* BaseTabBarController.swift in Sources */,
@@ -2455,6 +2486,7 @@
 				6819F3F32BC293A90001323D /* InvitationSentCell.swift in Sources */,
 				68FD90332BB9B0FC00C948FD /* DescriptionSetupViewController.swift in Sources */,
 				68170C612B9CA24A00289980 /* DBUser.swift in Sources */,
+				6819F3FC2BC2FA9A0001323D /* Session.swift in Sources */,
 				681286E82BB81A4300F69DEE /* EditProfileCell.swift in Sources */,
 				681286E32BB80B8400F69DEE /* EditProfileViewController.swift in Sources */,
 				682D080F2B7DF31900A5FCC1 /* GlobalConstants.swift in Sources */,

@@ -78,7 +78,7 @@ final class HomePresenter: IHomePresenter {
         homeManager.getUser(userId: id).done { [weak self] user in
             let fullName = "\(user.name ?? "") \(user.surname ?? "")"
             let nickname = user.nickname ?? ""
-            self?.view?.setupHeader(fullName: fullName, nickname: nickname)
+            self?.view?.setupHeader(fullName: fullName, nickname: nickname, avatarUrl: user.profileImageUrl)
         } .catch { [weak self] error in
             self?.coordinator?.showErrorAlert(error: error.localizedDescription)
         }
@@ -108,7 +108,7 @@ final class HomePresenter: IHomePresenter {
     @objc func userInfoChanged() {
         UserManager.shared.getUser(userId: id).done { dbUser in
             let fullName = "\(dbUser.name ?? "") \(dbUser.surname ?? "")"
-            self.view?.setupHeader(fullName: fullName, nickname: dbUser.nickname ?? "")
+            self.view?.setupHeader(fullName: fullName, nickname: dbUser.nickname ?? "", avatarUrl: nil)
         } .catch { error in
             self.coordinator?.showErrorAlert(error: error.localizedDescription)
         }

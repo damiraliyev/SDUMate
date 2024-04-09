@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol IHomeCoordinator: IBaseCoordinator {
     var onFlowDidFinish: Completion? { get set }
@@ -16,6 +17,7 @@ protocol IHomeCoordinator: IBaseCoordinator {
     func showAnnouncementDetailsView(with announcement: Announcement)
     func showInvitationsView()
     func showProfileView()
+    func showWithdrawConfirmationSheet(endAction: UIAlertAction, cancelAction: UIAlertAction)
 }
 
 final class HomeCoordinator: BaseCoordinator, TababbleCoordinator {
@@ -73,5 +75,13 @@ extension HomeCoordinator: IHomeCoordinator {
         }
         addDependency(profileCoordinator)
         profileCoordinator.start()
+    }
+    
+    func showWithdrawConfirmationSheet(endAction: UIAlertAction, cancelAction: UIAlertAction) {
+        let alertController = UIAlertController(title: "Are you sure you want to do this?", message: nil, preferredStyle: .actionSheet)
+        alertController.addAction(endAction)
+        let cancelAction = UIAlertAction(title: CoreL10n.cancel, style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        router.presentAlert(alertController, animated: true)
     }
 }

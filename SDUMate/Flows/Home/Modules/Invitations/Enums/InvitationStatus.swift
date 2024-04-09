@@ -13,18 +13,18 @@ enum InvitationStatus: String {
     case rejected
     case withdrawn
     
-    var description: String {
+    var actionTitle: String {
         switch self {
-        case .pending:      return ""
-        case .accepted:     return "Go to session"
-        case .rejected:     return "Rejected"
-        case .withdrawn:    return "Withrawn"
+        case .pending:      return "Withdraw"
+        case .accepted:     return ""
+        case .rejected:     return ""
+        case .withdrawn:    return ""
         }
     }
     
-    var descriptionColor: UIColor {
+    var actionTitleColor: UIColor {
         switch self {
-        case .pending:   return .lavender
+        case .pending:   return ._FF5353
         case .accepted:  return .orange
         case .rejected:  return ._FF5353
         case .withdrawn: return ._FF5353

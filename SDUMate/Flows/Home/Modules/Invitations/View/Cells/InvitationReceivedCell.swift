@@ -10,6 +10,7 @@ import UIKit
 protocol InvitationCellDelegate: AnyObject {
     func acceptTapped(invitationId: String)
     func rejectedTapped(invitationId: String)
+    func withdrawTapped(invitationId: String)
 }
 
 final class InvitationReceivedCell: UICollectionViewCell {
@@ -23,7 +24,7 @@ final class InvitationReceivedCell: UICollectionViewCell {
         imageView.image = Asset.icProfileLavender.image
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 12
+        imageView.layer.cornerRadius = 16
         return imageView
     }()
     
@@ -110,9 +111,9 @@ final class InvitationReceivedCell: UICollectionViewCell {
     
     private func setupConstraints() {
         avatarImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(12)
+            make.centerY.equalToSuperview()
             make.leading.equalToSuperview().offset(10)
-            make.size.equalTo(24)
+            make.size.equalTo(32)
         }
         labelsStackView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
@@ -159,23 +160,13 @@ final class InvitationReceivedCell: UICollectionViewCell {
         switch status {
         case .accepted:
             acceptanceStatusDescriptionLabel.text = (nameLabel.text ?? "") + " has been accepted"
-            changeAvatarPosition()
         case .rejected:
             acceptanceStatusDescriptionLabel.text = (nameLabel.text ?? "") + " has been rejected"
-            changeAvatarPosition()
         case .pending, .withdrawn:
             return
         }
         labelsStackView.safeHide()
         buttonsStackView.safeHide()
         acceptanceStatusDescriptionLabel.safeShow()
-    }
-    
-    private func changeAvatarPosition() {
-        avatarImageView.snp.remakeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.leading.equalToSuperview().offset(10)
-            make.size.equalTo(24)
-        }
     }
 }

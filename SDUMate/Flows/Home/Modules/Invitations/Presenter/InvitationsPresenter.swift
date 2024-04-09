@@ -7,6 +7,7 @@
 
 import Foundation
 import PromiseKit
+import UIKit
 
 protocol IInvitationsPresenter: AnyObject {
     var invitationsDataSource: [Invitation] { get }
@@ -69,9 +70,20 @@ final class InvitationsPresenter: IInvitationsPresenter {
 
 extension InvitationsPresenter: InvitationCellDelegate {
     func acceptTapped(invitationId: String) {
-        InvitationManager.shared.acceptInvitation(withId: invitationId).done { _ in
-            print("STATUS CHANGED SUCCESSFULLY")
-        }.catch { error in
+        firstly {
+            InvitationManager.shared.acceptInvitation(withId: invitationId)
+        }.then { _ -> Promise<Void> in
+            guard let invitation = self.invitations.filter({ $0.id == invitationId }).first else {
+                return Promise.value(())
+            }
+            return InvitationManager.shared.createSession(invitation: invitation)
+        } .then({ _ -> Promise<Void> in
+            guard let invitation = self.invitations.filter({ $0.id == invitationId }).first else {
+                return Promise.value(())
+            }
+            return InvitationManager.shared.establishSession(announcementId: invitation.announcementId)
+        })
+        .catch { error in
             self.coordinator?.showErrorAlert(error: error.localizedDescription)
         }
     }
@@ -79,6 +91,23 @@ extension InvitationsPresenter: InvitationCellDelegate {
     func rejectedTapped(invitationId: String) {
         InvitationManager.shared.rejectInvitation(withId: invitationId).done { _ in
             print("STATUS CHANGED SUCCESSFULLY")
+        }.catch { error in
+            self.coordinator?.showErrorAlert(error: error.localizedDescription)
+        }
+    }
+    
+    func withdrawTapped(invitationId: String) {
+        // present action sheet
+        let endAction = UIAlertAction(title: "End session", style: .destructive) { [weak self] _ in
+            self?.withdrawInvitation(invitationId: invitationId)
+        }
+        let cancelAction = UIAlertAction(title: CoreL10n.cancel, style: .cancel, handler: nil)
+        coordinator?.showWithdrawConfirmationSheet(endAction: endAction, cancelAction: cancelAction)
+    }
+    
+    private func withdrawInvitation(invitationId: String) {
+        InvitationManager.shared.withdrawInvitation(invitationId: invitationId).done { () in
+            print("Invitation withdrawn")
         }.catch { error in
             self.coordinator?.showErrorAlert(error: error.localizedDescription)
         }

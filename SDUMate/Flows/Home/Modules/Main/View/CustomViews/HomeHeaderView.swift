@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 protocol HomeHeaderViewDelegate: AnyObject {
     func notificationsTapped()
@@ -19,8 +20,9 @@ final class HomeHeaderView: UIView {
     private lazy var avatarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = Asset.icAvatarPlaceholder.image
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.backgroundColor = ._282645
+        imageView.clipsToBounds = true
         imageView.isUserInteractionEnabled = true
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(profileTapped))
         imageView.addGestureRecognizer(tapRecognizer)
@@ -98,9 +100,12 @@ final class HomeHeaderView: UIView {
         }
     }
     
-    func configure(fullName: String, nickname: String) {
+    func configure(fullName: String, nickname: String, avatarUrl: String?) {
         fullNameLabel.text = fullName
         nicknameLabel.text = nickname
+        if let avatarUrl = URL(string: avatarUrl ?? "") {
+            avatarImageView.kf.setImage(with: avatarUrl)
+        }
     }
     
     @objc func notificationsTapped() {

@@ -208,6 +208,7 @@ extension SessionsViewController: UICollectionViewDataSource {
         let cell: SessionCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
         if let session = presenter?.dataSource[indexPath.row] {
             cell.configure(with: session)
+            cell.delegate = presenter as? SessionCellDelegate
         }
         return cell
     }

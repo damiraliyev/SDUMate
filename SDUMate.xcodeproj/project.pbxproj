@@ -229,6 +229,8 @@
 		68D1902D2B8B2ECB0045DBE5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D1902C2B8B2ECB0045DBE5 /* LoginViewController.swift */; };
 		68D1902F2B8B2F330045DBE5 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D1902E2B8B2F330045DBE5 /* LoginPresenter.swift */; };
 		68D190322B8B41080045DBE5 /* SMTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D190312B8B41080045DBE5 /* SMTextFieldView.swift */; };
+		68D41DB32BC5245000D596B8 /* SessionAnnouncementInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D41DB22BC5245000D596B8 /* SessionAnnouncementInfoViewController.swift */; };
+		68D41DB52BC5249300D596B8 /* SessionAnnouncementInfoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D41DB42BC5249300D596B8 /* SessionAnnouncementInfoPresenter.swift */; };
 		68FD901F2BB9615400C948FD /* TypeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FD901E2BB9615400C948FD /* TypeSelectionViewController.swift */; };
 		68FD90212BB9615F00C948FD /* TypeSelectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FD90202BB9615F00C948FD /* TypeSelectionPresenter.swift */; };
 		68FD90242BB966AA00C948FD /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FD90232BB966AA00C948FD /* ProgressView.swift */; };
@@ -447,6 +449,8 @@
 		68D1902C2B8B2ECB0045DBE5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		68D1902E2B8B2F330045DBE5 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		68D190312B8B41080045DBE5 /* SMTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMTextFieldView.swift; sourceTree = "<group>"; };
+		68D41DB22BC5245000D596B8 /* SessionAnnouncementInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionAnnouncementInfoViewController.swift; sourceTree = "<group>"; };
+		68D41DB42BC5249300D596B8 /* SessionAnnouncementInfoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionAnnouncementInfoPresenter.swift; sourceTree = "<group>"; };
 		68FD901E2BB9615400C948FD /* TypeSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeSelectionViewController.swift; sourceTree = "<group>"; };
 		68FD90202BB9615F00C948FD /* TypeSelectionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeSelectionPresenter.swift; sourceTree = "<group>"; };
 		68FD90232BB966AA00C948FD /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
@@ -1870,6 +1874,7 @@
 		68CFF50C2BABAA6C006C9AF8 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				68D41DAD2BC5240E00D596B8 /* SessionAnnouncementInfo */,
 				6819F3F92BC2FA870001323D /* Main */,
 			);
 			path = Modules;
@@ -2162,6 +2167,31 @@
 				6838F7402B936D4200265406 /* FormTextFieldView.swift */,
 			);
 			path = UIView;
+			sourceTree = "<group>";
+		};
+		68D41DAD2BC5240E00D596B8 /* SessionAnnouncementInfo */ = {
+			isa = PBXGroup;
+			children = (
+				68D41DB12BC5244000D596B8 /* View */,
+				68D41DB02BC5243C00D596B8 /* Presenter */,
+			);
+			path = SessionAnnouncementInfo;
+			sourceTree = "<group>";
+		};
+		68D41DB02BC5243C00D596B8 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				68D41DB42BC5249300D596B8 /* SessionAnnouncementInfoPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		68D41DB12BC5244000D596B8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				68D41DB22BC5245000D596B8 /* SessionAnnouncementInfoViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		68FD901A2BB9610100C948FD /* Main */ = {
@@ -2486,6 +2516,7 @@
 				6819F3F32BC293A90001323D /* InvitationSentCell.swift in Sources */,
 				68FD90332BB9B0FC00C948FD /* DescriptionSetupViewController.swift in Sources */,
 				68170C612B9CA24A00289980 /* DBUser.swift in Sources */,
+				68D41DB52BC5249300D596B8 /* SessionAnnouncementInfoPresenter.swift in Sources */,
 				6819F3FC2BC2FA9A0001323D /* Session.swift in Sources */,
 				681286E82BB81A4300F69DEE /* EditProfileCell.swift in Sources */,
 				681286E32BB80B8400F69DEE /* EditProfileViewController.swift in Sources */,
@@ -2625,6 +2656,7 @@
 				68CFF54E2BABEFCD006C9AF8 /* Announcement.swift in Sources */,
 				682D08582B7DF31900A5FCC1 /* BaseViewController.swift in Sources */,
 				688442DC2B7E102A00695763 /* EntryCoordinator.swift in Sources */,
+				68D41DB32BC5245000D596B8 /* SessionAnnouncementInfoViewController.swift in Sources */,
 				68929C152BA6F889000A38E9 /* HomeModuleFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

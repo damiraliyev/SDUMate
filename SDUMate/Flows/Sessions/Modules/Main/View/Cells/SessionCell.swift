@@ -7,7 +7,17 @@
 
 import UIKit
 
+protocol SessionCellDelegate: AnyObject {
+    func contactTapped(sessionId: String)
+    func moreTapped(session: Session)
+    func threeDotsTapped(sessionId: String)
+}
+
 final class SessionCell: UICollectionViewCell {
+    
+    weak var delegate: SessionCellDelegate?
+    
+    private var session: Session?
     
     private let typeLabel: UILabel = {
         let label = UILabel()
@@ -42,7 +52,7 @@ final class SessionCell: UICollectionViewCell {
         return label
     }()
     
-    private let buttonsStackView: UIStackView = {
+    private lazy var buttonsStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 6
@@ -50,7 +60,7 @@ final class SessionCell: UICollectionViewCell {
         return stackView
     }()
     
-    private let contactButton: UIButton = {
+    private lazy var contactButton: UIButton = {
         let button = UIButton(type: .system)
         button.tintColor = ._164DDC
         button.backgroundColor = .clear
@@ -60,23 +70,26 @@ final class SessionCell: UICollectionViewCell {
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor._164DDC.cgColor
         button.layer.cornerRadius = 10
+        button.addTarget(self, action: #selector(contactTapped), for: .touchUpInside)
         return button
     }()
     
-    private let moreButton: UIButton = {
-        let button = UIButton(type: .system)
+    private lazy var moreButton: UIButton = {
+        let button = UIButton()
         button.tintColor = .white
         button.backgroundColor = ._164DDC
         button.setTitle("More", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = .medium16
         button.layer.cornerRadius = 10
+        button.addTarget(self, action: #selector(moreTapped), for: .touchUpInside)
         return button
     }()
     
-    private let threeDotsButton: UIButton = {
+    private lazy var threeDotsButton: UIButton = {
         let button = UIButton()
         button.setImage(Asset.ic3Dots.image, for: .normal)
+        button.addTarget(self, action: #selector(threeDotsTapped), for: .touchUpInside)
         return button
     }()
     
@@ -96,6 +109,7 @@ final class SessionCell: UICollectionViewCell {
         titleAndCategoryLabel.text = ""
         recipientLabel.text = nil
         dateLabel.text = nil
+        session = nil
     }
     
     private func setupViews() {
@@ -141,6 +155,7 @@ final class SessionCell: UICollectionViewCell {
     
     func configure(with session: Session) {
         guard let id = AuthManager.shared.getAuthUser()?.uid else { return }
+        self.session = session
         typeLabel.text = session.announcement?.type.title
         titleAndCategoryLabel.text = "\(session.announcement?.title ?? "")/\(session.announcement?.category ?? "")"
         if session.respondentId == id {
@@ -149,5 +164,20 @@ final class SessionCell: UICollectionViewCell {
             recipientLabel.text = "Respondent: \(session.respondent?.name ?? "") \(session.respondent?.surname ?? "")"
         }
         dateLabel.text = session.createdDate?.convertDateToString()
+    }
+    
+    @objc func contactTapped() {
+        guard let session = session else { return }
+//        delegate?.contactTapped(sessionId: sessionId)
+    }
+    
+    @objc func moreTapped() {
+        guard let session = session else { return }
+        delegate?.moreTapped(session: session)
+    }
+    
+    @objc func threeDotsTapped() {
+        guard let session = session else { return }
+//        delegate?.threeDotsTapped(sessionId: session)
     }
 }

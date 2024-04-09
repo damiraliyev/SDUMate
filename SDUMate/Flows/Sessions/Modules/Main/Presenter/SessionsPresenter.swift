@@ -57,7 +57,7 @@ final class SessionsPresenter: ISessionsPresenter {
     func didSelectItem(at indexPath: IndexPath) {
         let session = dataSource[indexPath.row]
         guard let announcement = session.announcement else { return }
-        coordinator?.showAnnouncementDetailsView(with: announcement)
+//        coordinator?.showAnnouncementDetailsView(with: announcement)
     }
     
     private func configureEmptyStateIfNeeded() {
@@ -73,3 +73,21 @@ final class SessionsPresenter: ISessionsPresenter {
     }
 }
 
+extension SessionsPresenter: SessionCellDelegate {
+    func contactTapped(sessionId: String) {
+        
+    }
+    
+    func moreTapped(session: Session) {
+        guard let announcement = session.announcement,
+              let announcer = session.announcer,
+              let respondent = session.respondent else {
+            return
+        }
+        coordinator?.showAnnouncementDetailsView(with: announcement, announcer: announcer, respondent: respondent)
+    }
+    
+    func threeDotsTapped(sessionId: String) {
+        
+    }
+}

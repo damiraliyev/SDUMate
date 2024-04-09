@@ -28,17 +28,9 @@ final class SessionsModuleFactory {
         return coordinator
     }
     
-    func makeAnnouncementDetailsView(announcement: Announcement, coordinator: IHomeCoordinator) -> IAnnouncementDetailsView {
-        let view: IAnnouncementDetailsView = AnnouncementDetailsViewController(announcement: announcement)
-        let presenter: IAnnouncementDetailsPresenter = AnnouncementDetailsPresenter(view: view, coordinator: coordinator, manager: announcementDetailsManager)
-        let backTappedCompetion: Completion = { [weak coordinator] in
-            coordinator?.onBackTapped(completion: {
-                coordinator?.onFlowDidFinish?()
-            })
-        }
-        presenter.onBackTapped = {
-            backTappedCompetion()
-        }
+    func makeAnnouncementDetailsView(announcement: Announcement, announcer: DBUser, respondent: DBUser,coordinator: ISessionsCoordinator) -> ISessionAnnouncementInfoView {
+        let view: ISessionAnnouncementInfoView = SessionAnnouncementInfoViewController(announcement: announcement, announcer: announcer, respondent: respondent)
+        let presenter: ISessionAnnouncementInfoPresenter = SessionAnnouncementInfoPresenter(view: view, coordinator: coordinator)
         view.presenter = presenter
         return view
     }

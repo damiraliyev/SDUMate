@@ -20,18 +20,19 @@ final class SessionsManager {
     
     private func fetchSessionsFromFirebase() -> Promise<[Session]> {
         return Promise { seal in
+            var sessions: [Session] = []
             sessionsCollection.getDocuments { snapshot, error in
                 guard let documents = snapshot?.documents, error == nil else {
                     seal.reject(error ?? URLError(.badServerResponse))
                     return
                 }
-                var sessions: [Session] = []
                 for document in documents {
                     guard let session = try? Session.decodeSession(from: document.data()) else {
                         continue
                     }
                     sessions.append(session)
                 }
+                seal.fulfill(sessions)
             }
         }
     }
@@ -69,7 +70,7 @@ final class SessionsManager {
                 let updatedSessionsWithAnnouncer = sessions.map { session in
                     self.getUser(userId: session.announcerId).then { user in
                         var updatedSession = session
-                        updatedSession.respondent = user
+                        updatedSession.announcer = user
                         return Promise.value(updatedSession)
                     }
                 }

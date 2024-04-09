@@ -22,6 +22,7 @@ struct Session: Codable {
     var announcer: DBUser?
     var respondent: DBUser?
     var announcement: Announcement?
+    var createdDate: String?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -30,6 +31,7 @@ struct Session: Codable {
         case announcementId = "announcement_id"
         case announceType = "announce_type"
         case status = "status"
+        case createdDate = "created_date"
     }
     
     static func decodeSession(from dictionary: [String: Any]) throws -> Session {
@@ -53,6 +55,7 @@ extension Session {
         let statusRawValue = try container.decode(String.self, forKey: .status)
         self.announceType = AnnounceType(rawValue: announceTypeRawValue) ?? .request
         self.status = SessionStatus(rawValue: statusRawValue) ?? .finished
+        self.createdDate = try container.decodeIfPresent(String.self, forKey: .createdDate)
     }
 }
 
@@ -65,5 +68,6 @@ extension Session {
         try container.encode(announcementId, forKey: .announcementId)
         try container.encode(announceType.rawValue, forKey: .announceType)
         try container.encode(status.rawValue, forKey: .status)
+        try container.encode(createdDate, forKey: .createdDate)
     }
 }

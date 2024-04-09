@@ -86,6 +86,7 @@ final class SessionsViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter?.viewDidLoad()
         setupViews()
         setupConstraints()
     }
@@ -205,7 +206,9 @@ extension SessionsViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: SessionCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-        cell.configure(with: presenter?.dataSource[indexPath.row] ?? Announcement())
+        if let session = presenter?.dataSource[indexPath.row] {
+            cell.configure(with: session)
+        }
         return cell
     }
 }

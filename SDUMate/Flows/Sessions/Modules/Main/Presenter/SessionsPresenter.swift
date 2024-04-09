@@ -8,8 +8,9 @@
 import Foundation
 
 protocol ISessionsPresenter: AnyObject {
-    var dataSource: [Announcement] { get }
+    var dataSource: [Session] { get }
     
+    func viewDidLoad()
     func typeTapped(type: SessionSelection)
     func didSelectItem(at indexPath: IndexPath)
 }
@@ -19,37 +20,43 @@ final class SessionsPresenter: ISessionsPresenter {
     weak var view: ISessionsView?
     private weak var coordinator: ISessionsCoordinator?
     private let id = AuthManager.shared.getAuthUser()?.uid ?? ""
-    lazy var announcements = [
-        Announcement(id: "", category: "Software Engineering", title: "Object oriented programming", description: "Object-oriented programming (OOP) is a computer programming model that organizes software design around data, or objects, rather than functions and logic. An object can be defined as a data field that has unique attributes and behavior.", announcerId: id, price: "FREE", createdDate: "", isSessionEstablished: false, sessionEstablishedDate: nil, respondentId: nil, respondent: nil, type: .offer),
-        Announcement(id: "", category: "Software Engineering", title: "Unit testing iOS", description: "Unit testing is the process where you test the smallest functional unit of code. Software testing helps ensure code quality, and it's an integral part of software development.", announcerId: id, price: "5000 ₸", createdDate: "", isSessionEstablished: false, sessionEstablishedDate: nil, respondentId: nil, respondent: nil, type: .request),
-        Announcement(id: "", category: "Software Engineering", title: "Swift UI", description: "SwiftUI is an innovative, exceptionally simple way to build user interfaces across all Apple platforms with the power of Swift.", announcerId: id, price: "10 000 ₸", createdDate: "", isSessionEstablished: false, sessionEstablishedDate: nil, respondentId: nil, respondent: nil, type: .request),
-        Announcement(id: "", category: "Software Engineering", title: "Swift concurrency", description: "The concurrency model in Swift is built on top of threads, but you don't interact with them directly.", announcerId: id, price: "FREE", createdDate: "", isSessionEstablished: false, sessionEstablishedDate: nil, respondentId: nil, respondent: nil,type: .offer)
-    ]
+    lazy var sessions: [Session] = []
     
-    lazy var dataSource: [Announcement] = announcements
+    lazy var dataSource: [Session] = sessions
     
     init(view: ISessionsView, coordinator: ISessionsCoordinator) {
         self.view = view
         self.coordinator = coordinator
     }
     
+    func viewDidLoad() {
+        SessionsManager.shared.fetchCompleteSessions().done { sessions in
+            self.sessions = sessions
+            self.dataSource = sessions
+            self.view?.reload()
+        } .catch { error in
+            self.coordinator?.showErrorAlert(error: error.localizedDescription)
+        }
+    }
+    
     func typeTapped(type: SessionSelection) {
         switch type {
         case .all:
-            dataSource = announcements
+            dataSource = sessions
         case .offer:
-            dataSource = announcements.filter { $0.type == .offer }
+            dataSource = sessions.filter { $0.announcement?.type == .offer }
         case .request:
-            dataSource = announcements.filter { $0.type == .request }
+            dataSource = sessions.filter { $0.announcement?.type == .request }
         case .collaborate:
-            dataSource = announcements.filter { $0.type == .collaborate }
+            dataSource = sessions.filter { $0.announcement?.type == .collaborate }
         }
         configureEmptyStateIfNeeded()
         view?.reload()
     }
     
     func didSelectItem(at indexPath: IndexPath) {
-        let announcement = dataSource[indexPath.row]
+        let session = dataSource[indexPath.row]
+        guard let announcement = session.announcement else { return }
         coordinator?.showAnnouncementDetailsView(with: announcement)
     }
     
@@ -59,6 +66,10 @@ final class SessionsPresenter: ISessionsPresenter {
         } else {
             view?.hideEmptyState()
         }
+    }
+    
+    deinit {
+        print("DEINITED PRESENTEr")
     }
 }
 

@@ -139,10 +139,15 @@ final class SessionCell: UICollectionViewCell {
         }
     }
     
-    func configure(with announcement: Announcement) {
-        typeLabel.text = announcement.type.title
-        titleAndCategoryLabel.text = "\(announcement.title)/\(announcement.category)"
-        recipientLabel.text = "MOCK TEXT"
-        dateLabel.text = "31.03.2024"
+    func configure(with session: Session) {
+        guard let id = AuthManager.shared.getAuthUser()?.uid else { return }
+        typeLabel.text = session.announcement?.type.title
+        titleAndCategoryLabel.text = "\(session.announcement?.title ?? "")/\(session.announcement?.category ?? "")"
+        if session.respondentId == id {
+            recipientLabel.text = "Announcer: \(session.announcer?.name ?? "") \(session.announcer?.surname ?? "")"
+        } else {
+            recipientLabel.text = "Respondent: \(session.respondent?.name ?? "") \(session.respondent?.surname ?? "")"
+        }
+        dateLabel.text = session.createdDate?.convertDateToString()
     }
 }

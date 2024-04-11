@@ -76,6 +76,10 @@ final class ProfileHeaderView: UIView {
         userInfoView.configure(with: user)
     }
     
+    func hideChangeButton() {
+        changeButton.safeHide()
+    }
+    
     @objc func changeTapped() {
         delegate?.changeTapped()
     }

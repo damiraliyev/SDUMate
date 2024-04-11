@@ -13,7 +13,9 @@ protocol ISessionsCoordinator: IBaseCoordinator {
     var onFlowDidFinish: Completion? { get set }
     
     func onBackTapped(completion: Completion?)
+    func showOtherSideProfile(responder: DBUser, announcementDescription: String)
     func showAnnouncementDetailsView(with announcement: Announcement, announcer: DBUser, respondent: DBUser)
+    
 }
 
 final class SessionsCoordinator: BaseCoordinator, TababbleCoordinator {
@@ -41,8 +43,17 @@ extension SessionsCoordinator: ISessionsCoordinator {
         
     }
     
+    func showOtherSideProfile(responder: DBUser, announcementDescription: String) {
+        let view = moduleFactory.makeResponderInfoView(responder: responder, announcementDescription: announcementDescription, coordinator: self)
+        router.push(view)
+    }
+    
     func showAnnouncementDetailsView(with announcement: Announcement, announcer: DBUser, respondent: DBUser) {
         let announcementDetailsView = moduleFactory.makeAnnouncementDetailsView(announcement: announcement, announcer: announcer, respondent: respondent, coordinator: self)
         router.present(announcementDetailsView, animated: true, presentType: .panModal)
     }
+}
+
+extension SessionsCoordinator: IAnnouncementResponderInfoCoordinator {
+    
 }

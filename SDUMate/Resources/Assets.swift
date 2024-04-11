@@ -69,6 +69,7 @@ internal enum Asset {
   internal static let icRejectX = ImageAsset(name: "ic_reject_x")
   internal static let icSduLogo = ImageAsset(name: "ic_sdu_logo")
   internal static let icStar = ImageAsset(name: "ic_star")
+  internal static let icStarEmptyGold = ImageAsset(name: "ic_star_empty_gold")
   internal static let icSuitcase = ImageAsset(name: "ic_suitcase")
   internal static let icUncheckedBox = ImageAsset(name: "ic_unchecked_box")
   internal static let icXCloseBold = ImageAsset(name: "ic_x_close_bold")

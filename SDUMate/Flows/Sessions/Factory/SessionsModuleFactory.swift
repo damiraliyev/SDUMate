@@ -28,6 +28,13 @@ final class SessionsModuleFactory {
         return coordinator
     }
     
+    func makeResponderInfoView(responder: DBUser, announcementDescription: String, coordinator: IAnnouncementResponderInfoCoordinator) -> IAnnouncementResponderInfoView {
+        let view: IAnnouncementResponderInfoView = AnnouncementResponderInfoViewController()
+        let presenter: IAnnouncementResponderInfoPresenter = AnnouncementResponderInfoPresenter(responder: responder, announcementDescription: announcementDescription, view: view, coordinator: coordinator)
+        view.presenter = presenter
+        return view
+    }
+    
     func makeAnnouncementDetailsView(announcement: Announcement, announcer: DBUser, respondent: DBUser,coordinator: ISessionsCoordinator) -> ISessionAnnouncementInfoView {
         let view: ISessionAnnouncementInfoView = SessionAnnouncementInfoViewController(announcement: announcement, announcer: announcer, respondent: respondent)
         let presenter: ISessionAnnouncementInfoPresenter = SessionAnnouncementInfoPresenter(view: view, coordinator: coordinator)

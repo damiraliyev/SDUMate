@@ -231,6 +231,9 @@
 		68D190322B8B41080045DBE5 /* SMTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D190312B8B41080045DBE5 /* SMTextFieldView.swift */; };
 		68D41DB32BC5245000D596B8 /* SessionAnnouncementInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D41DB22BC5245000D596B8 /* SessionAnnouncementInfoViewController.swift */; };
 		68D41DB52BC5249300D596B8 /* SessionAnnouncementInfoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D41DB42BC5249300D596B8 /* SessionAnnouncementInfoPresenter.swift */; };
+		68D41DBA2BC561EB00D596B8 /* AnnouncementResponderInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D41DB92BC561EB00D596B8 /* AnnouncementResponderInfoViewController.swift */; };
+		68D41DBC2BC561F600D596B8 /* AnnouncementResponderInfoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D41DBB2BC561F600D596B8 /* AnnouncementResponderInfoPresenter.swift */; };
+		68D41DBE2BC568C000D596B8 /* FeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D41DBD2BC568C000D596B8 /* FeedbackView.swift */; };
 		68FD901F2BB9615400C948FD /* TypeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FD901E2BB9615400C948FD /* TypeSelectionViewController.swift */; };
 		68FD90212BB9615F00C948FD /* TypeSelectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FD90202BB9615F00C948FD /* TypeSelectionPresenter.swift */; };
 		68FD90242BB966AA00C948FD /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FD90232BB966AA00C948FD /* ProgressView.swift */; };
@@ -451,6 +454,9 @@
 		68D190312B8B41080045DBE5 /* SMTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMTextFieldView.swift; sourceTree = "<group>"; };
 		68D41DB22BC5245000D596B8 /* SessionAnnouncementInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionAnnouncementInfoViewController.swift; sourceTree = "<group>"; };
 		68D41DB42BC5249300D596B8 /* SessionAnnouncementInfoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionAnnouncementInfoPresenter.swift; sourceTree = "<group>"; };
+		68D41DB92BC561EB00D596B8 /* AnnouncementResponderInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementResponderInfoViewController.swift; sourceTree = "<group>"; };
+		68D41DBB2BC561F600D596B8 /* AnnouncementResponderInfoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementResponderInfoPresenter.swift; sourceTree = "<group>"; };
+		68D41DBD2BC568C000D596B8 /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
 		68FD901E2BB9615400C948FD /* TypeSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeSelectionViewController.swift; sourceTree = "<group>"; };
 		68FD90202BB9615F00C948FD /* TypeSelectionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeSelectionPresenter.swift; sourceTree = "<group>"; };
 		68FD90232BB966AA00C948FD /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
@@ -1874,6 +1880,7 @@
 		68CFF50C2BABAA6C006C9AF8 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				68D41DB62BC561AE00D596B8 /* UserInfo */,
 				68D41DAD2BC5240E00D596B8 /* SessionAnnouncementInfo */,
 				6819F3F92BC2FA870001323D /* Main */,
 			);
@@ -2190,6 +2197,32 @@
 			isa = PBXGroup;
 			children = (
 				68D41DB22BC5245000D596B8 /* SessionAnnouncementInfoViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		68D41DB62BC561AE00D596B8 /* UserInfo */ = {
+			isa = PBXGroup;
+			children = (
+				68D41DB82BC561D200D596B8 /* View */,
+				68D41DB72BC561CD00D596B8 /* Presenter */,
+			);
+			path = UserInfo;
+			sourceTree = "<group>";
+		};
+		68D41DB72BC561CD00D596B8 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				68D41DBB2BC561F600D596B8 /* AnnouncementResponderInfoPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		68D41DB82BC561D200D596B8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				68D41DB92BC561EB00D596B8 /* AnnouncementResponderInfoViewController.swift */,
+				68D41DBD2BC568C000D596B8 /* FeedbackView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2600,6 +2633,7 @@
 				682C4FDB2BB15A3C00C792CB /* HomeManager.swift in Sources */,
 				68929C132BA6F826000A38E9 /* HomeCoordinator.swift in Sources */,
 				682D08182B7DF31900A5FCC1 /* UIImage+Extensions.swift in Sources */,
+				68D41DBA2BC561EB00D596B8 /* AnnouncementResponderInfoViewController.swift in Sources */,
 				68CFF5422BABC4FD006C9AF8 /* SearchFieldView.swift in Sources */,
 				68FD90242BB966AA00C948FD /* ProgressView.swift in Sources */,
 				68330A632BAD1F4B00FB14DB /* SessionCell.swift in Sources */,
@@ -2610,6 +2644,7 @@
 				681286BD2BB7F46500F69DEE /* ProfileStudyInfoView.swift in Sources */,
 				682D082D2B7DF31900A5FCC1 /* Collection+Extension.swift in Sources */,
 				68330A602BAD132300FB14DB /* InsetButton.swift in Sources */,
+				68D41DBC2BC561F600D596B8 /* AnnouncementResponderInfoPresenter.swift in Sources */,
 				682D08392B7DF31900A5FCC1 /* BPPaddingButton.swift in Sources */,
 				681286B92BB7F46500F69DEE /* ProfileHeaderView.swift in Sources */,
 				68CFF5402BABBF44006C9AF8 /* HomeHeaderView.swift in Sources */,
@@ -2652,6 +2687,7 @@
 				68BDA2432BAA71D200FDF1A4 /* TabBarItem.swift in Sources */,
 				682D08282B7DF31900A5FCC1 /* UITableView+Extension.swift in Sources */,
 				682D082A2B7DF31900A5FCC1 /* UIEdgeInsets+Extensions.swift in Sources */,
+				68D41DBE2BC568C000D596B8 /* FeedbackView.swift in Sources */,
 				682C4FE12BB1892D00C792CB /* InvitationManager.swift in Sources */,
 				68CFF54E2BABEFCD006C9AF8 /* Announcement.swift in Sources */,
 				682D08582B7DF31900A5FCC1 /* BaseViewController.swift in Sources */,

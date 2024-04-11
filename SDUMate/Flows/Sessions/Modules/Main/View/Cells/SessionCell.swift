@@ -8,7 +8,7 @@
 import UIKit
 
 protocol SessionCellDelegate: AnyObject {
-    func contactTapped(sessionId: String)
+    func contactTapped(otherSide: DBUser, announcementDescription: String)
     func moreTapped(session: Session)
     func threeDotsTapped(sessionId: String)
 }
@@ -167,8 +167,19 @@ final class SessionCell: UICollectionViewCell {
     }
     
     @objc func contactTapped() {
-        guard let session = session else { return }
-//        delegate?.contactTapped(sessionId: sessionId)
+        guard let session = session,
+              let id = AuthManager.shared.getAuthUser()?.uid,
+              let announcer = session.announcer,
+              let respondent = session.respondent else {
+            return
+        }
+        let otherSide: DBUser
+        if id == session.respondentId {
+            otherSide = announcer
+        } else {
+            otherSide = respondent
+        }
+        delegate?.contactTapped(otherSide: otherSide, announcementDescription: session.announcement?.description ?? "")
     }
     
     @objc func moreTapped() {

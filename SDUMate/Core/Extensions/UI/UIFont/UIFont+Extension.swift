@@ -36,6 +36,7 @@ extension UIFont {
     static let semibold14 = UIFont(name: Constants.semibold, size: 14)!
     static let semibold15 = UIFont(name: Constants.semibold, size: 15)!
     static let semibold16 = UIFont(name: Constants.semibold, size: 16)!
+    static let semibold18 = UIFont(name: Constants.semibold, size: 18)!
     static let semibold20 = UIFont(name: Constants.semibold, size: 20)!
     static let semibold24 = UIFont(name: Constants.semibold, size: 24)!
     static let semibold28 = UIFont(name: Constants.semibold, size: 28)!

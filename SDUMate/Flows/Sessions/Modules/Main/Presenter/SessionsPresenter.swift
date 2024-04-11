@@ -74,8 +74,8 @@ final class SessionsPresenter: ISessionsPresenter {
 }
 
 extension SessionsPresenter: SessionCellDelegate {
-    func contactTapped(sessionId: String) {
-        
+    func contactTapped(otherSide: DBUser, announcementDescription: String) {
+        coordinator?.showOtherSideProfile(responder: otherSide, announcementDescription: announcementDescription)
     }
     
     func moreTapped(session: Session) {

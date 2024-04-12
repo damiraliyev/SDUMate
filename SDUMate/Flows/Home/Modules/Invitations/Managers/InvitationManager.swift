@@ -154,7 +154,7 @@ final class InvitationManager {
     func createSession(invitation: Invitation) -> Promise<Void> {
         return Promise { seal in
             let documentRef = sessionsCollection.document()
-            let session = Session(id: "", announcerId: invitation.announcerId, respondentId: invitation.respondentId, announcementId: invitation.announcementId, announceType: invitation.announcement?.type ?? .request, status: .active)
+            let session = Session(id: documentRef.documentID, announcerId: invitation.announcerId, respondentId: invitation.respondentId, announcementId: invitation.announcementId, announceType: invitation.announcement?.type ?? .request, status: .active)
             documentRef.setData(session.makeDictionary()) { error in
                 if let error = error {
                     seal.reject(error)

@@ -76,7 +76,7 @@ final class AnnouncementResponderInfoViewController: BaseViewController, IAnnoun
         presenter?.viewDidLoad()
         setupViews()
         setupConstraints()
-        configureFeedbacks()
+        configure(feedbacks: [])
     }
     
     private func setupViews() {
@@ -119,7 +119,13 @@ final class AnnouncementResponderInfoViewController: BaseViewController, IAnnoun
         }
     }
     
-    private func configureFeedbacks() {
+    private func configure(feedbacks: [Feedback]) {
+        guard feedbacks.count > 0 else {
+            feedbackLabel.text = "No feedbacks yet"
+            feedbacksStackView.safeHide()
+            seeAllLabel.safeHide()
+            return
+        }
         let feedBackView1 = FeedbackView()
         feedBackView1.configureStars(starRating: 5)
         let feedBackView2 = FeedbackView()

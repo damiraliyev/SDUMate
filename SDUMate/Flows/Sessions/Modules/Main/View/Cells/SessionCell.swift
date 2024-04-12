@@ -10,7 +10,7 @@ import UIKit
 protocol SessionCellDelegate: AnyObject {
     func contactTapped(otherSide: DBUser, announcementDescription: String)
     func moreTapped(session: Session)
-    func threeDotsTapped(sessionId: String)
+    func threeDotsTapped(session: Session)
 }
 
 final class SessionCell: UICollectionViewCell {
@@ -189,6 +189,6 @@ final class SessionCell: UICollectionViewCell {
     
     @objc func threeDotsTapped() {
         guard let session = session else { return }
-//        delegate?.threeDotsTapped(sessionId: session)
+        delegate?.threeDotsTapped(session: session)
     }
 }

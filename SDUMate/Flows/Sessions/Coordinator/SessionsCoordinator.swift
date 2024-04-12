@@ -5,9 +5,7 @@
 //  Created by Damir Aliyev on 21.03.2024.
 //
 
-import Foundation
-
-import Foundation
+import UIKit
 
 protocol ISessionsCoordinator: IBaseCoordinator {
     var onFlowDidFinish: Completion? { get set }
@@ -15,7 +13,7 @@ protocol ISessionsCoordinator: IBaseCoordinator {
     func onBackTapped(completion: Completion?)
     func showOtherSideProfile(responder: DBUser, announcementDescription: String)
     func showAnnouncementDetailsView(with announcement: Announcement, announcer: DBUser, respondent: DBUser)
-    
+    func showEndSessionAlert(endAction: UIAlertAction, cancelAction: UIAlertAction)
 }
 
 final class SessionsCoordinator: BaseCoordinator, TababbleCoordinator {
@@ -40,7 +38,8 @@ final class SessionsCoordinator: BaseCoordinator, TababbleCoordinator {
 
 extension SessionsCoordinator: ISessionsCoordinator {
     func onBackTapped(completion: Completion?) {
-        
+        router.popModule()
+        completion?()
     }
     
     func showOtherSideProfile(responder: DBUser, announcementDescription: String) {
@@ -51,6 +50,14 @@ extension SessionsCoordinator: ISessionsCoordinator {
     func showAnnouncementDetailsView(with announcement: Announcement, announcer: DBUser, respondent: DBUser) {
         let announcementDetailsView = moduleFactory.makeAnnouncementDetailsView(announcement: announcement, announcer: announcer, respondent: respondent, coordinator: self)
         router.present(announcementDetailsView, animated: true, presentType: .panModal)
+    }
+    
+    func showEndSessionAlert(endAction: UIAlertAction, cancelAction: UIAlertAction) {
+        let alertController = UIAlertController(title: "Are you sure you want to do this?", message: nil, preferredStyle: .actionSheet)
+        alertController.addAction(endAction)
+        let cancelAction = UIAlertAction(title: CoreL10n.cancel, style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        router.presentAlert(alertController, animated: true)
     }
 }
 

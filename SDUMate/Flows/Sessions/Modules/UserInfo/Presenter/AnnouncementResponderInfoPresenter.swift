@@ -8,7 +8,7 @@
 import Foundation
 
 protocol IAnnouncementResponderInfoCoordinator: IBaseCoordinator {
-    func backTapped(completion: Completion?)
+    func onBackTapped(completion: Completion?)
 }
 
 protocol IAnnouncementResponderInfoPresenter: AnyObject {
@@ -31,7 +31,7 @@ final class AnnouncementResponderInfoPresenter: IAnnouncementResponderInfoPresen
     }
     
     func backTapped() {
-        coordinator?.backTapped(completion: nil)
+        coordinator?.onBackTapped(completion: nil)
     }
     
     func viewDidLoad() {

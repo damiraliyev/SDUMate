@@ -104,4 +104,15 @@ final class SessionsManager {
             }
         }
     }
+    
+    func endSession(sessionId: String, newStatus: SessionStatus) -> Promise<Void> {
+        return Promise { seal in
+            sessionsCollection.document(sessionId).updateData(["status": newStatus.rawValue]) { error in
+                if let error = error {
+                    seal.reject(error)
+                }
+                seal.fulfill(())
+            }
+        }
+    }
 }

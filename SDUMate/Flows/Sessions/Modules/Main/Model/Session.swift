@@ -9,6 +9,8 @@ import Foundation
 
 enum SessionStatus: String {
     case active
+    case responderFinished = "responder_finished"
+    case announcerFinished = "announcer_finished"
     case finished
 }
 

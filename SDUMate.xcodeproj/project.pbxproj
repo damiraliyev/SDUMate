@@ -172,6 +172,7 @@
 		68929C152BA6F889000A38E9 /* HomeModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68929C142BA6F889000A38E9 /* HomeModuleFactory.swift */; };
 		68929C1A2BA6F977000A38E9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68929C192BA6F977000A38E9 /* HomeViewController.swift */; };
 		68929C1C2BA6F97E000A38E9 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68929C1B2BA6F97E000A38E9 /* HomePresenter.swift */; };
+		68A4D05A2BCC976D00E7E532 /* PostOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A4D0592BCC976D00E7E532 /* PostOptionsView.swift */; };
 		68A5F1E02B7E6C5D003C38AF /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A5F1DF2B7E6C5D003C38AF /* Assets.swift */; };
 		68A6484D2BA8B7E6000D3845 /* ForgotPasswordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A6484C2BA8B7E6000D3845 /* ForgotPasswordPresenter.swift */; };
 		68BDA23C2BAA6F4400FDF1A4 /* TabBarCoordinatorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BDA2342BAA6F4400FDF1A4 /* TabBarCoordinatorFactory.swift */; };
@@ -400,6 +401,7 @@
 		68929C142BA6F889000A38E9 /* HomeModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModuleFactory.swift; sourceTree = "<group>"; };
 		68929C192BA6F977000A38E9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		68929C1B2BA6F97E000A38E9 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
+		68A4D0592BCC976D00E7E532 /* PostOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostOptionsView.swift; sourceTree = "<group>"; };
 		68A5F1DF2B7E6C5D003C38AF /* Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		68A6484C2BA8B7E6000D3845 /* ForgotPasswordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordPresenter.swift; sourceTree = "<group>"; };
 		68BDA2342BAA6F4400FDF1A4 /* TabBarCoordinatorFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarCoordinatorFactory.swift; sourceTree = "<group>"; };
@@ -1961,6 +1963,7 @@
 			isa = PBXGroup;
 			children = (
 				68CFF5262BABB014006C9AF8 /* NewRequestViewController.swift */,
+				68A4D0592BCC976D00E7E532 /* PostOptionsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2548,6 +2551,7 @@
 				68929C082BA595BE000A38E9 /* AttachmentOption.swift in Sources */,
 				68859EB02BC8BEEB002A8FD9 /* ProvideFeedbackPresenter.swift in Sources */,
 				682D08272B7DF31900A5FCC1 /* UIViewController+Preview.swift in Sources */,
+				68A4D05A2BCC976D00E7E532 /* PostOptionsView.swift in Sources */,
 				682D085E2B7DF31900A5FCC1 /* BaseRepository.swift in Sources */,
 				682D085D2B7DF31900A5FCC1 /* AppLanguage.swift in Sources */,
 				682D08592B7DF31900A5FCC1 /* Presentable.swift in Sources */,

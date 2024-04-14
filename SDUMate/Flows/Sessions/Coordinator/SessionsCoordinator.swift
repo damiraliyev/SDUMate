@@ -14,7 +14,7 @@ protocol ISessionsCoordinator: IBaseCoordinator {
     func showOtherSideProfile(responder: DBUser, announcementDescription: String)
     func showAnnouncementDetailsView(with announcement: Announcement, announcer: DBUser, respondent: DBUser)
     func showEndSessionAlert(endAction: UIAlertAction, cancelAction: UIAlertAction)
-    func showFeedback(otherSide: DBUser, announcement: Announcement)
+    func showProvideFeedback(otherSide: DBUser, session: Session)
 }
 
 final class SessionsCoordinator: BaseCoordinator, TababbleCoordinator {
@@ -61,9 +61,13 @@ extension SessionsCoordinator: ISessionsCoordinator {
         router.presentAlert(alertController, animated: true)
     }
     
-    func showFeedback(otherSide: DBUser, announcement: Announcement) {
-        let provideFeedbackView = moduleFactory.makeProvideFeedbackView(otherSide: otherSide, announcement: announcement, coordinator: self)
+    func showProvideFeedback(otherSide: DBUser, session: Session) {
+        let provideFeedbackView = moduleFactory.makeProvideFeedbackView(otherSide: otherSide, session: session, coordinator: self)
         router.present(provideFeedbackView, animated: true, presentType: .panModal)
+    }
+    
+    func dismissModule(completion: (() -> Void)?) {
+        router.dismissModule(completion: completion)
     }
 }
 

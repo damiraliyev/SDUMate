@@ -10,6 +10,8 @@ import PanModal
 
 protocol IProvideFeedbackView: Presentable {
     var presenter: IProvideFeedbackPresenter? { get set }
+    
+    func configure(profileImageUrl: String?, fullName: String, title: String)
 }
 
 final class ProvideFeedbackViewController: BaseViewController, IProvideFeedbackView {
@@ -26,8 +28,9 @@ final class ProvideFeedbackViewController: BaseViewController, IProvideFeedbackV
     
     private let avatarImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.image = Asset.icDoubleAcceptance.image
+        imageView.clipsToBounds = true
         return imageView
     }()
     
@@ -41,15 +44,16 @@ final class ProvideFeedbackViewController: BaseViewController, IProvideFeedbackV
     private let fullNameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = .bold24
+        label.font = .bold16
         label.text = "Mock full name"
+        label.numberOfLines = 0
         return label
     }()
     
     private let announcementTitleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = .semibold18
+        label.font = .semibold14
         label.text = "Mock text"
         label.numberOfLines = 0
         return label
@@ -83,15 +87,33 @@ final class ProvideFeedbackViewController: BaseViewController, IProvideFeedbackV
         return textView
     }()
     
+    private lazy var doneButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor = ._0A84FF
+        button.setTitle("Done", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = .regular16
+        button.tintColor = .white
+        button.layer.cornerRadius = 13
+        button.addTarget(self, action: #selector(doneTapped), for: .touchUpInside)
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter?.viewDidLoad()
         setupViews()
         setupConstraints()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        avatarImageView.layer.cornerRadius = avatarImageView.frame.height / 2
+    }
+    
     private func setupViews() {
         view.backgroundColor = ._2A2848
-        view.addSubviews([sessionEndedLabel, avatarImageView, labelsStackView, starsStackView, howEverythingGoLabel, commentTextView])
+        view.addSubviews([sessionEndedLabel, avatarImageView, labelsStackView, starsStackView, howEverythingGoLabel, commentTextView, doneButton])
         labelsStackView.addArrangedSubviews([fullNameLabel, announcementTitleLabel])
         configureStars()
     }
@@ -124,8 +146,20 @@ final class ProvideFeedbackViewController: BaseViewController, IProvideFeedbackV
         commentTextView.snp.makeConstraints { make in
             make.top.equalTo(howEverythingGoLabel.snp.bottom).offset(16)
             make.leading.trailing.equalToSuperview().inset(24)
-            make.height.equalTo(105)
+            make.height.equalTo(120)
         }
+        doneButton.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().offset(-36)
+            make.leading.trailing.equalToSuperview().inset(24)
+            make.height.equalTo(48)
+        }
+    }
+    
+    func configure(profileImageUrl: String?, fullName: String, title: String) {
+        fullNameLabel.text = fullName
+        announcementTitleLabel.text = title
+        guard let url = URL(string: profileImageUrl ?? "") else { return }
+        avatarImageView.kf.setImage(with: url)
     }
     
     private func configureStars() {
@@ -133,8 +167,29 @@ final class ProvideFeedbackViewController: BaseViewController, IProvideFeedbackV
             let imageView = UIImageView()
             imageView.contentMode = .scaleAspectFit
             imageView.image = Asset.icStarEmptyGold.image
+            imageView.tag = i
+            imageView.isUserInteractionEnabled = true
+            let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(starTapped))
+            imageView.addGestureRecognizer(tapRecognizer)
             starsStackView.addArrangedSubview(imageView)
         }
+    }
+    
+    @objc func starTapped(_ sender: UITapGestureRecognizer) {
+        guard let tag = sender.view?.tag else { return }
+        presenter?.starTapped(withTag: tag)
+        for (index, subview) in starsStackView.arrangedSubviews.enumerated() {
+            guard let imageView = subview as? UIImageView else { return }
+            if index <= tag {
+                imageView.image = Asset.icStar.image
+            } else {
+                imageView.image = Asset.icStarEmptyGold.image
+            }
+        }
+    }
+    
+    @objc func doneTapped() {
+        presenter?.doneTapped(comment: commentTextView.text)
     }
 }
 
@@ -158,7 +213,7 @@ extension ProvideFeedbackViewController: UITextViewDelegate {
 extension ProvideFeedbackViewController: PanModalPresentable {
     var panScrollable: UIScrollView? { nil }
     
-    var cornerRadius: CGFloat { 16 }
+    var cornerRadius: CGFloat { 20 }
     
     var shouldRoundTopCorners: Bool { true }
     
@@ -176,3 +231,4 @@ extension ProvideFeedbackViewController: PanModalPresentable {
         .contentHeight(UIView.screenHeight * 0.8)
     }
 }
+

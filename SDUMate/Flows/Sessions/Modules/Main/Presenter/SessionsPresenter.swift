@@ -31,8 +31,18 @@ final class SessionsPresenter: ISessionsPresenter {
     
     func viewDidLoad() {
         SessionsManager.shared.fetchCompleteSessions().done { sessions in
-            self.sessions = sessions
-            self.dataSource = sessions
+            guard let id = AuthManager.shared.getAuthUser()?.uid else { return }
+            self.sessions = sessions.filter { (session: Session) -> Bool in
+                if session.status == .active {
+                    return true
+                } else if id == session.respondentId && session.status == .announcerFinished {
+                    return true
+                } else if id == session.announcerId && session.status == .responderFinished {
+                    return true
+                }
+                return false
+            }
+            self.dataSource = self.sessions
             self.view?.reload()
         } .catch { error in
             self.coordinator?.showErrorAlert(error: error.localizedDescription)
@@ -89,30 +99,17 @@ extension SessionsPresenter: SessionCellDelegate {
     
     func threeDotsTapped(session: Session) {
         guard let id = AuthManager.shared.getAuthUser()?.uid else { return }
-        var status: SessionStatus
         var otherSide: DBUser?
-        if id == session.announcerId && session.status == .active {
-            status = .announcerFinished
-        } else if id == session.respondentId && session.status == .active {
-            status = .responderFinished
-        } else {
-            status = .finished
-        }
         if id == session.announcerId {
             otherSide = session.respondent
         } else if id == session.respondentId {
             otherSide = session.announcer
         }
         let endAction = UIAlertAction(title: "End session", style: .destructive) { [weak self] _ in
-            SessionsManager.shared.endSession(sessionId: session.id, newStatus: status).done { _ in
-                guard let otherSide = otherSide,
-                let announcement = session.announcement else {
-                    return
-                }
-                self?.coordinator?.showFeedback(otherSide: otherSide, announcement: announcement)
-            }.catch { error in
-                self?.coordinator?.showErrorAlert(error: error.localizedDescription)
+            guard let otherSide = otherSide else {
+                return
             }
+            self?.coordinator?.showProvideFeedback(otherSide: otherSide, session: session)
         }
         let cancelAction = UIAlertAction(title: CoreL10n.cancel, style: .cancel, handler: nil)
         coordinator?.showEndSessionAlert(endAction: endAction, cancelAction: cancelAction)

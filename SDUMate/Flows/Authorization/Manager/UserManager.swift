@@ -93,4 +93,21 @@ final class UserManager {
             }
         }
     }
+    
+    func fetchFeedbacks(userId: String) -> Promise<[Feedback]> {
+        return Promise { seal in
+            userDocument(userId: userId).collection("feedbacks").getDocuments { snapshot, error in
+                guard let documents = snapshot?.documents, error == nil else {
+                    seal.reject(error ?? URLError(.badServerResponse))
+                    return
+                }
+                var feedbacks: [Feedback] = []
+                for doc in documents {
+                    let feedback = Feedback(from: doc.data())
+                    feedbacks.append(feedback)
+                }
+                seal.fulfill(feedbacks)
+            }
+        }
+    }
 }

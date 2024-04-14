@@ -115,4 +115,35 @@ final class SessionsManager {
             }
         }
     }
+    
+    func sendFeedback(userId: String, feedback: Feedback) -> Promise<Void> {
+        return Promise { seal in
+            let document = usersCollection.document(userId).collection("feedbacks").document()
+            var feedbackCopy = feedback
+            feedbackCopy.id = document.documentID
+            let data = feedbackCopy.makeDictionary()
+            document.setData(data) { error in
+                if let error {
+                    seal.reject(error)
+                }
+                seal.fulfill(())
+            }
+        }
+    }
+    
+    func updateUserRankingRates(userId: String, newRating: Double, newReviewsCount: Int, newNumberOfProvidedHelp: Int, newPoints: Int) -> Promise<Void> {
+        return Promise { seal in
+            var dict = [:]
+            dict["rating"] = newRating
+            dict["reviews_count"] = newReviewsCount
+            dict["number_of_provided_help"] = newNumberOfProvidedHelp
+            dict["points"] = newPoints
+            usersCollection.document(userId).updateData(dict) { error in
+                if let error = error {
+                    seal.reject(error)
+                }
+                seal.fulfill(())
+            }
+        }
+    }
 }

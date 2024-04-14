@@ -10,7 +10,7 @@ import UIKit
 protocol IAnnouncementResponderInfoView: Presentable {
     var presenter: IAnnouncementResponderInfoPresenter? { get set }
     
-    func configure(with responder: DBUser, announcementDescription: String)
+    func configure(with responder: DBUser, announcementDescription: String, feedbacks: [Feedback])
 }
 
 final class AnnouncementResponderInfoViewController: BaseViewController, IAnnouncementResponderInfoView {
@@ -76,7 +76,6 @@ final class AnnouncementResponderInfoViewController: BaseViewController, IAnnoun
         presenter?.viewDidLoad()
         setupViews()
         setupConstraints()
-        configure(feedbacks: [])
     }
     
     private func setupViews() {
@@ -126,16 +125,22 @@ final class AnnouncementResponderInfoViewController: BaseViewController, IAnnoun
             seeAllLabel.safeHide()
             return
         }
-        let feedBackView1 = FeedbackView()
-        feedBackView1.configureStars(starRating: 5)
-        let feedBackView2 = FeedbackView()
-        feedBackView2.configureStars(starRating: 5)
-        feedbacksStackView.addArrangedSubviews([feedBackView1, feedBackView2])
+        let upperRange = min(feedbacks.count, 2)
+        for i in 0..<upperRange {
+            let feedbackView = FeedbackView(feedback: feedbacks[i])
+            feedbacksStackView.addArrangedSubview(feedbackView)
+        }
+        if feedbacks.count < 2 {
+            seeAllLabel.safeHide()
+        } else {
+            seeAllLabel.safeShow()
+        }
     }
     
-    func configure(with responder: DBUser, announcementDescription: String) {
+    func configure(with responder: DBUser, announcementDescription: String, feedbacks: [Feedback]) {
         profileHeaderView.configure(with: responder)
         view.layoutIfNeeded()
         descriptionTextView.text = announcementDescription
+        configure(feedbacks: feedbacks)
     }
 }

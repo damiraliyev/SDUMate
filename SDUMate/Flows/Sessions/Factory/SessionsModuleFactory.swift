@@ -42,9 +42,9 @@ final class SessionsModuleFactory {
         return view
     }
     
-    func makeProvideFeedbackView(otherSide: DBUser, announcement: Announcement, coordinator: ISessionsCoordinator) -> IProvideFeedbackView {
+    func makeProvideFeedbackView(otherSide: DBUser, session: Session, coordinator: ISessionsCoordinator) -> IProvideFeedbackView {
         let view: IProvideFeedbackView = ProvideFeedbackViewController()
-        let presenter: IProvideFeedbackPresenter = ProvideFeedbackPresenter(view: view, coordinator: coordinator)
+        let presenter: IProvideFeedbackPresenter = ProvideFeedbackPresenter(view: view, coordinator: coordinator, otherSide: otherSide, session: session)
         view.presenter = presenter
         return view
     }

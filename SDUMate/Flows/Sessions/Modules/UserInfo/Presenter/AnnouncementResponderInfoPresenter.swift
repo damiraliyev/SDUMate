@@ -35,6 +35,11 @@ final class AnnouncementResponderInfoPresenter: IAnnouncementResponderInfoPresen
     }
     
     func viewDidLoad() {
-        view?.configure(with: responder, announcementDescription: announcementDescription)
+        UserManager.shared.fetchFeedbacks(userId: responder.userId).done { [weak self] feedbacks in
+            guard let self else { return }
+            view?.configure(with: responder, announcementDescription: announcementDescription, feedbacks: feedbacks)
+        }.catch { error in
+            self.coordinator?.showErrorAlert(error: error.localizedDescription)
+        }
     }
 }

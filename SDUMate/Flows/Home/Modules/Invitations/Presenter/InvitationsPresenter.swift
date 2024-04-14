@@ -69,6 +69,10 @@ final class InvitationsPresenter: IInvitationsPresenter {
 }
 
 extension InvitationsPresenter: InvitationCellDelegate {
+    func profileTapped(responder: DBUser, announcementDescription: String) {
+        self.coordinator?.showResponderInfo(responder: responder, announcementDescription: announcementDescription)
+    }
+    
     func acceptTapped(invitationId: String) {
         firstly {
             InvitationManager.shared.acceptInvitation(withId: invitationId)

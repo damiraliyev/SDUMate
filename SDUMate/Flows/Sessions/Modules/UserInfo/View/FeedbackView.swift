@@ -9,6 +9,8 @@ import UIKit
 
 final class FeedbackView: UIView {
     
+    private let feedback: Feedback
+    
     private let fullNameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
@@ -42,8 +44,9 @@ final class FeedbackView: UIView {
         return label
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(feedback: Feedback) {
+        self.feedback = feedback
+        super.init(frame: .zero)
         setupViews()
         setupConstraints()
     }
@@ -55,6 +58,10 @@ final class FeedbackView: UIView {
     private func setupViews() {
         backgroundColor = .clear
         addSubviews([fullNameLabel, starsStackView, dateLabel, feedBackLabel])
+        fullNameLabel.text = "\(feedback.reviewer?.name ?? "") \(feedback.reviewer?.surname ?? "")"
+        configureStars(starRating: feedback.rating)
+        dateLabel.text = feedback.createdDate?.changeDateFormat(from: "YYYY-MM-DD'T'HH:mm:SSZ", to: "YYYY.MM.DD")
+        feedBackLabel.text = feedback.description
     }
     
     private func setupConstraints() {

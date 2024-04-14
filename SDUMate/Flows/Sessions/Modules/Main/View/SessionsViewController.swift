@@ -59,6 +59,12 @@ final class SessionsViewController: BaseViewController {
         return button
     }()
     
+    private lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        return refreshControl
+    }()
+    
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -71,6 +77,7 @@ final class SessionsViewController: BaseViewController {
         collectionView.alwaysBounceVertical = true
         collectionView.isSkeletonable = true
         collectionView.register(SessionCell.self)
+        collectionView.refreshControl = refreshControl
         return collectionView
     }()
     
@@ -159,6 +166,10 @@ final class SessionsViewController: BaseViewController {
         presenter?.typeTapped(type: .collaborate)
     }
     
+    @objc func refreshData() {
+        presenter?.viewDidLoad()
+    }
+    
     private func colorNeededButton(neededButton: UIButton) {
         let _ = [allButton, offerButton, requestButton, collaborateButton].map { button in
             if button != neededButton {
@@ -171,6 +182,7 @@ final class SessionsViewController: BaseViewController {
 
 extension SessionsViewController: ISessionsView {
     func reload() {
+        refreshControl.endRefreshing()
         collectionView.reloadData()
     }
     

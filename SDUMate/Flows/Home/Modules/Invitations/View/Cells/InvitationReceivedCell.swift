@@ -8,6 +8,7 @@
 import UIKit
 
 protocol InvitationCellDelegate: AnyObject {
+    func profileTapped(responder: DBUser, announcementDescription: String)
     func acceptTapped(invitationId: String)
     func rejectedTapped(invitationId: String)
     func withdrawTapped(invitationId: String)
@@ -18,13 +19,17 @@ final class InvitationReceivedCell: UICollectionViewCell {
     weak var delegate: InvitationCellDelegate?
     
     private var invitationId: String?
+    private var invitation: Invitation?
     
-    private let avatarImageView: UIImageView = {
+    private lazy var avatarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = Asset.icProfileLavender.image
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 16
+        imageView.isUserInteractionEnabled = true
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(profileTapped))
+        imageView.addGestureRecognizer(tapRecognizer)
         return imageView
     }()
     
@@ -138,10 +143,16 @@ final class InvitationReceivedCell: UICollectionViewCell {
     
     func configure(with invitation: Invitation) {
         invitationId = invitation.id
+        self.invitation = invitation
         avatarImageView.setImageFrom(url: invitation.respondent?.profileImageUrl ?? "")
         nameLabel.text = "\(invitation.respondent?.name ?? "") \(invitation.respondent?.surname ?? "")"
         titleLabel.text = invitation.announcement?.title
         configureStatusDescription(status: invitation.status)
+    }
+    
+    @objc func profileTapped() {
+        guard let respondent = invitation?.respondent else { return }
+        delegate?.profileTapped(responder: respondent, announcementDescription: invitation?.announcement?.description ?? "")
     }
     
     @objc func acceptTapped() {

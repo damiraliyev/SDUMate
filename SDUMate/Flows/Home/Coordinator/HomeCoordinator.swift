@@ -18,6 +18,7 @@ protocol IHomeCoordinator: IBaseCoordinator {
     func showInvitationsView()
     func showProfileView()
     func showWithdrawConfirmationSheet(endAction: UIAlertAction, cancelAction: UIAlertAction)
+    func showResponderInfo(responder: DBUser, announcementDescription: String)
 }
 
 final class HomeCoordinator: BaseCoordinator, TababbleCoordinator {
@@ -84,4 +85,13 @@ extension HomeCoordinator: IHomeCoordinator {
         alertController.addAction(cancelAction)
         router.presentAlert(alertController, animated: true)
     }
+    
+    func showResponderInfo(responder: DBUser, announcementDescription: String) {
+        let view = moduleFactory.makeResponderInfoView(responder: responder, announcementDescription: announcementDescription, coordinator: self)
+        router.push(view)
+    }
+}
+
+extension HomeCoordinator: IAnnouncementResponderInfoCoordinator {
+    
 }

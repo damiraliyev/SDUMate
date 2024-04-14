@@ -59,4 +59,11 @@ final class HomeModuleFactory {
         )
         return coordinator
     }
+    
+    func makeResponderInfoView(responder: DBUser, announcementDescription: String, coordinator: IAnnouncementResponderInfoCoordinator) -> IAnnouncementResponderInfoView {
+        let view: IAnnouncementResponderInfoView = AnnouncementResponderInfoViewController()
+        let presenter: IAnnouncementResponderInfoPresenter = AnnouncementResponderInfoPresenter(responder: responder, announcementDescription: announcementDescription, view: view, coordinator: coordinator)
+        view.presenter = presenter
+        return view
+    }
 }

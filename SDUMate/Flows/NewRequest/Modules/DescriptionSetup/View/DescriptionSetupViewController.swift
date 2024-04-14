@@ -17,7 +17,7 @@ final class DescriptionSetupViewController: BaseViewController, IDescriptionSetu
     private lazy var navigationBar = SMNavigationBar(title: "Advertise") { [weak presenter] in
         presenter?.backTapped()
     } rightBtnTapCallback: {
-        print("CANCEL TAPPED")
+    print("CANCEL TAPPED")
     }
     
     private let progressView = ProgressView(iterationsCount: 5)

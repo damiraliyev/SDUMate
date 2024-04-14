@@ -90,6 +90,7 @@ extension SessionsPresenter: SessionCellDelegate {
     func threeDotsTapped(session: Session) {
         guard let id = AuthManager.shared.getAuthUser()?.uid else { return }
         var status: SessionStatus
+        var otherSide: DBUser?
         if id == session.announcerId && session.status == .active {
             status = .announcerFinished
         } else if id == session.respondentId && session.status == .active {
@@ -97,9 +98,18 @@ extension SessionsPresenter: SessionCellDelegate {
         } else {
             status = .finished
         }
+        if id == session.announcerId {
+            otherSide = session.respondent
+        } else if id == session.respondentId {
+            otherSide = session.announcer
+        }
         let endAction = UIAlertAction(title: "End session", style: .destructive) { [weak self] _ in
             SessionsManager.shared.endSession(sessionId: session.id, newStatus: status).done { _ in
-                print("NEED TO SHOW FEEDBACK")
+                guard let otherSide = otherSide,
+                let announcement = session.announcement else {
+                    return
+                }
+                self?.coordinator?.showFeedback(otherSide: otherSide, announcement: announcement)
             }.catch { error in
                 self?.coordinator?.showErrorAlert(error: error.localizedDescription)
             }

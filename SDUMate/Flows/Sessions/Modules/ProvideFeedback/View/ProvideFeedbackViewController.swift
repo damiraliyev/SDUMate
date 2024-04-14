@@ -9,12 +9,12 @@ import UIKit
 import PanModal
 
 protocol IProvideFeedbackView: Presentable {
-    var presenter: IProfilePresenter? { get set }
+    var presenter: IProvideFeedbackPresenter? { get set }
 }
 
 final class ProvideFeedbackViewController: BaseViewController, IProvideFeedbackView {
     
-    var presenter: IProfilePresenter?
+    var presenter: IProvideFeedbackPresenter?
     
     private let sessionEndedLabel: UILabel = {
         let label = UILabel()
@@ -27,6 +27,7 @@ final class ProvideFeedbackViewController: BaseViewController, IProvideFeedbackV
     private let avatarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
+        imageView.image = Asset.icDoubleAcceptance.image
         return imageView
     }()
     
@@ -50,6 +51,7 @@ final class ProvideFeedbackViewController: BaseViewController, IProvideFeedbackV
         label.textColor = .white
         label.font = .semibold18
         label.text = "Mock text"
+        label.numberOfLines = 0
         return label
     }()
     
@@ -57,6 +59,7 @@ final class ProvideFeedbackViewController: BaseViewController, IProvideFeedbackV
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 13
+        stackView.distribution = .fillEqually
         return stackView
     }()
     
@@ -64,6 +67,7 @@ final class ProvideFeedbackViewController: BaseViewController, IProvideFeedbackV
         let label = UILabel()
         label.textColor = .white
         label.font = .regular18
+        label.text = "How did everything go?"
         return label
     }()
     
@@ -87,10 +91,50 @@ final class ProvideFeedbackViewController: BaseViewController, IProvideFeedbackV
     
     private func setupViews() {
         view.backgroundColor = ._2A2848
+        view.addSubviews([sessionEndedLabel, avatarImageView, labelsStackView, starsStackView, howEverythingGoLabel, commentTextView])
+        labelsStackView.addArrangedSubviews([fullNameLabel, announcementTitleLabel])
+        configureStars()
     }
     
     private func setupConstraints() {
-        
+        sessionEndedLabel.snp.makeConstraints { make in
+            make.top.equalTo(37)
+            make.centerX.equalToSuperview()
+        }
+        avatarImageView.snp.makeConstraints { make in
+            make.top.equalTo(sessionEndedLabel.snp.bottom).offset(36)
+            make.leading.equalToSuperview().offset(37)
+            make.size.equalTo(85)
+        }
+        labelsStackView.snp.makeConstraints { make in
+            make.centerY.equalTo(avatarImageView)
+            make.leading.equalTo(avatarImageView.snp.trailing).offset(21)
+            make.trailing.equalToSuperview().offset(-24)
+        }
+        starsStackView.snp.makeConstraints { make in
+            make.top.equalTo(avatarImageView.snp.bottom).offset(25)
+            make.leading.equalTo(avatarImageView)
+            make.trailing.equalToSuperview().offset(-36)
+            make.height.equalTo(60)
+        }
+        howEverythingGoLabel.snp.makeConstraints { make in
+            make.top.equalTo(starsStackView.snp.bottom).offset(24)
+            make.leading.equalToSuperview().offset(36)
+        }
+        commentTextView.snp.makeConstraints { make in
+            make.top.equalTo(howEverythingGoLabel.snp.bottom).offset(16)
+            make.leading.trailing.equalToSuperview().inset(24)
+            make.height.equalTo(105)
+        }
+    }
+    
+    private func configureStars() {
+        for i in 0..<5 {
+            let imageView = UIImageView()
+            imageView.contentMode = .scaleAspectFit
+            imageView.image = Asset.icStarEmptyGold.image
+            starsStackView.addArrangedSubview(imageView)
+        }
     }
 }
 

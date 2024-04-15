@@ -93,5 +93,8 @@ extension HomeCoordinator: IHomeCoordinator {
 }
 
 extension HomeCoordinator: IAnnouncementResponderInfoCoordinator {
-    
+    func showFeedbacks(userId: String) {
+        let view = moduleFactory.makeFeedbacksView(userId: userId, coordinator: self)
+        router.push(view)
+    }
 }

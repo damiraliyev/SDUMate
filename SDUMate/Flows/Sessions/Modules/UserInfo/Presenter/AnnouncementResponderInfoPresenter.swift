@@ -9,11 +9,13 @@ import Foundation
 
 protocol IAnnouncementResponderInfoCoordinator: IBaseCoordinator {
     func onBackTapped(completion: Completion?)
+    func showFeedbacks(userId: String)
 }
 
 protocol IAnnouncementResponderInfoPresenter: AnyObject {
     func backTapped()
     func viewDidLoad()
+    func seeAllTapped()
 }
 
 final class AnnouncementResponderInfoPresenter: IAnnouncementResponderInfoPresenter {
@@ -41,5 +43,9 @@ final class AnnouncementResponderInfoPresenter: IAnnouncementResponderInfoPresen
         }.catch { error in
             self.coordinator?.showErrorAlert(error: error.localizedDescription)
         }
+    }
+    
+    func seeAllTapped() {
+        self.coordinator?.showFeedbacks(userId: responder.userId)
     }
 }

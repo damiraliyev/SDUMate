@@ -63,11 +63,14 @@ final class AnnouncementResponderInfoViewController: BaseViewController, IAnnoun
         return stackView
     }()
     
-    private let seeAllLabel: UILabel = {
+    private lazy var seeAllLabel: UILabel = {
         let label = UILabel()
         label.textColor = .orange
         label.font = .semibold16
         label.text = "See all"
+        label.isUserInteractionEnabled = true
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(seeAllTapped))
+        label.addGestureRecognizer(tapRecognizer)
         return label
     }()
     
@@ -142,5 +145,9 @@ final class AnnouncementResponderInfoViewController: BaseViewController, IAnnoun
         view.layoutIfNeeded()
         descriptionTextView.text = announcementDescription
         configure(feedbacks: feedbacks)
+    }
+    
+    @objc func seeAllTapped() {
+        presenter?.seeAllTapped()
     }
 }

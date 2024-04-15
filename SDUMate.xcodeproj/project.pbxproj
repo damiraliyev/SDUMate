@@ -173,6 +173,9 @@
 		68929C1A2BA6F977000A38E9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68929C192BA6F977000A38E9 /* HomeViewController.swift */; };
 		68929C1C2BA6F97E000A38E9 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68929C1B2BA6F97E000A38E9 /* HomePresenter.swift */; };
 		68A4D05A2BCC976D00E7E532 /* PostOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A4D0592BCC976D00E7E532 /* PostOptionsView.swift */; };
+		68A4D05F2BCCA4D600E7E532 /* FeedbacksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A4D05E2BCCA4D600E7E532 /* FeedbacksViewController.swift */; };
+		68A4D0612BCCA4DD00E7E532 /* FeedbacksPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A4D0602BCCA4DD00E7E532 /* FeedbacksPresenter.swift */; };
+		68A4D0632BCCA70400E7E532 /* FeedbackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A4D0622BCCA70400E7E532 /* FeedbackCell.swift */; };
 		68A5F1E02B7E6C5D003C38AF /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A5F1DF2B7E6C5D003C38AF /* Assets.swift */; };
 		68A6484D2BA8B7E6000D3845 /* ForgotPasswordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A6484C2BA8B7E6000D3845 /* ForgotPasswordPresenter.swift */; };
 		68BDA23C2BAA6F4400FDF1A4 /* TabBarCoordinatorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BDA2342BAA6F4400FDF1A4 /* TabBarCoordinatorFactory.swift */; };
@@ -402,6 +405,9 @@
 		68929C192BA6F977000A38E9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		68929C1B2BA6F97E000A38E9 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		68A4D0592BCC976D00E7E532 /* PostOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostOptionsView.swift; sourceTree = "<group>"; };
+		68A4D05E2BCCA4D600E7E532 /* FeedbacksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbacksViewController.swift; sourceTree = "<group>"; };
+		68A4D0602BCCA4DD00E7E532 /* FeedbacksPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbacksPresenter.swift; sourceTree = "<group>"; };
+		68A4D0622BCCA70400E7E532 /* FeedbackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackCell.swift; sourceTree = "<group>"; };
 		68A5F1DF2B7E6C5D003C38AF /* Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		68A6484C2BA8B7E6000D3845 /* ForgotPasswordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordPresenter.swift; sourceTree = "<group>"; };
 		68BDA2342BAA6F4400FDF1A4 /* TabBarCoordinatorFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarCoordinatorFactory.swift; sourceTree = "<group>"; };
@@ -1689,6 +1695,32 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
+		68A4D05B2BCCA4B700E7E532 /* Feedbacks */ = {
+			isa = PBXGroup;
+			children = (
+				68A4D05D2BCCA4C600E7E532 /* View */,
+				68A4D05C2BCCA4C100E7E532 /* Presenter */,
+			);
+			path = Feedbacks;
+			sourceTree = "<group>";
+		};
+		68A4D05C2BCCA4C100E7E532 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				68A4D0602BCCA4DD00E7E532 /* FeedbacksPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		68A4D05D2BCCA4C600E7E532 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				68A4D05E2BCCA4D600E7E532 /* FeedbacksViewController.swift */,
+				68A4D0622BCCA70400E7E532 /* FeedbackCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		68A648492BA8B7C6000D3845 /* ForgotPassword */ = {
 			isa = PBXGroup;
 			children = (
@@ -1921,6 +1953,7 @@
 		68CFF50C2BABAA6C006C9AF8 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				68A4D05B2BCCA4B700E7E532 /* Feedbacks */,
 				68859EA92BC8BE38002A8FD9 /* ProvideFeedback */,
 				68D41DB62BC561AE00D596B8 /* UserInfo */,
 				68D41DAD2BC5240E00D596B8 /* SessionAnnouncementInfo */,
@@ -2553,6 +2586,7 @@
 				682D08272B7DF31900A5FCC1 /* UIViewController+Preview.swift in Sources */,
 				68A4D05A2BCC976D00E7E532 /* PostOptionsView.swift in Sources */,
 				682D085E2B7DF31900A5FCC1 /* BaseRepository.swift in Sources */,
+				68A4D05F2BCCA4D600E7E532 /* FeedbacksViewController.swift in Sources */,
 				682D085D2B7DF31900A5FCC1 /* AppLanguage.swift in Sources */,
 				682D08592B7DF31900A5FCC1 /* Presentable.swift in Sources */,
 				68FD901F2BB9615400C948FD /* TypeSelectionViewController.swift in Sources */,
@@ -2607,6 +2641,7 @@
 				6882A4CB2B786AD400B2AE72 /* AppDelegate.swift in Sources */,
 				682D086A2B7DF31900A5FCC1 /* Core.swift in Sources */,
 				6838F73F2B934B9200265406 /* AboutSetupPresenter.swift in Sources */,
+				68A4D0632BCCA70400E7E532 /* FeedbackCell.swift in Sources */,
 				68A6484D2BA8B7E6000D3845 /* ForgotPasswordPresenter.swift in Sources */,
 				68CFF5662BAC1D4F006C9AF8 /* StudyInfoDetailsView.swift in Sources */,
 				682D08212B7DF31900A5FCC1 /* UIFont+Extension.swift in Sources */,
@@ -2686,6 +2721,7 @@
 				68FD90242BB966AA00C948FD /* ProgressView.swift in Sources */,
 				68330A632BAD1F4B00FB14DB /* SessionCell.swift in Sources */,
 				68330A682BAD4B4700FB14DB /* InvitationsViewController.swift in Sources */,
+				68A4D0612BCCA4DD00E7E532 /* FeedbacksPresenter.swift in Sources */,
 				681286B52BB7F46500F69DEE /* ProfileCoordinator.swift in Sources */,
 				682D08232B7DF31900A5FCC1 /* UIDevice+Extension.swift in Sources */,
 				68D1902F2B8B2F330045DBE5 /* LoginPresenter.swift in Sources */,

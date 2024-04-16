@@ -19,7 +19,7 @@ final class InvitationDateHeaderView: UICollectionReusableView {
         let label = UILabel()
         label.textColor = .lavender
         label.font = .medium14
-        label.text = "04 march 2024"
+        label.text = "15 april 2024"
         return label
     }()
     

@@ -123,7 +123,7 @@ final class ProfileUserInfoView: UIView {
         ratingView.setValue(to: user.rating)
         usernameLabel.text = "\(user.name ?? "") \(user.surname ?? "")"
         nicknameLabel.text = user.nickname ?? ""
-        tgTagLabel.text = "@" + (user.telegramTag ?? "")
+        tgTagLabel.text = (user.telegramTag ?? "")
         facultyView.setDescription(to: user.faculty?.rawValue ?? "")
         studyProgramView.setDescription(to: user.studyProgram?.rawValue ?? "")
         yearOfEnteringView.setDescription(to: "\(user.yearOfEntering ?? 0)")

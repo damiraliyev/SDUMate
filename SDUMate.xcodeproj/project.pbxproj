@@ -139,6 +139,8 @@
 		68530AB32B9DACAC00E59383 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68530AB22B9DACAC00E59383 /* UserInfo.swift */; };
 		68530AB52B9DD3A400E59383 /* DefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68530AB42B9DD3A400E59383 /* DefaultCell.swift */; };
 		685571C52B9ABA7300865191 /* VerificationSentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685571C42B9ABA7300865191 /* VerificationSentViewController.swift */; };
+		687376792BCE1DD400B3F08A /* RatingHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687376782BCE1DD400B3F08A /* RatingHeaderView.swift */; };
+		6873767B2BCE1E9400B3F08A /* TopContributorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6873767A2BCE1E9400B3F08A /* TopContributorView.swift */; };
 		6882A4CB2B786AD400B2AE72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6882A4CA2B786AD400B2AE72 /* AppDelegate.swift */; };
 		6882A4CD2B786AD400B2AE72 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6882A4CC2B786AD400B2AE72 /* SceneDelegate.swift */; };
 		6882A4CF2B786AD400B2AE72 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6882A4CE2B786AD400B2AE72 /* ViewController.swift */; };
@@ -377,6 +379,8 @@
 		68530AB22B9DACAC00E59383 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		68530AB42B9DD3A400E59383 /* DefaultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCell.swift; sourceTree = "<group>"; };
 		685571C42B9ABA7300865191 /* VerificationSentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationSentViewController.swift; sourceTree = "<group>"; };
+		687376782BCE1DD400B3F08A /* RatingHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingHeaderView.swift; sourceTree = "<group>"; };
+		6873767A2BCE1E9400B3F08A /* TopContributorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopContributorView.swift; sourceTree = "<group>"; };
 		6882A4C72B786AD400B2AE72 /* SDUMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDUMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6882A4CA2B786AD400B2AE72 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6882A4CC2B786AD400B2AE72 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -1403,6 +1407,15 @@
 			path = VerificationSent;
 			sourceTree = "<group>";
 		};
+		687376772BCE1DBE00B3F08A /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				687376782BCE1DD400B3F08A /* RatingHeaderView.swift */,
+				6873767A2BCE1E9400B3F08A /* TopContributorView.swift */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
 		6882A4BE2B786AD400B2AE72 = {
 			isa = PBXGroup;
 			children = (
@@ -2037,6 +2050,7 @@
 		68CFF5152BABAAAB006C9AF8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				687376772BCE1DBE00B3F08A /* CustomViews */,
 				68CFF52E2BABB178006C9AF8 /* RatingViewController.swift */,
 			);
 			path = View;
@@ -2715,6 +2729,7 @@
 				681286DF2BB80AC100F69DEE /* EditProfileCoordinator.swift in Sources */,
 				682C4FDB2BB15A3C00C792CB /* HomeManager.swift in Sources */,
 				68929C132BA6F826000A38E9 /* HomeCoordinator.swift in Sources */,
+				687376792BCE1DD400B3F08A /* RatingHeaderView.swift in Sources */,
 				682D08182B7DF31900A5FCC1 /* UIImage+Extensions.swift in Sources */,
 				68D41DBA2BC561EB00D596B8 /* AnnouncementResponderInfoViewController.swift in Sources */,
 				68CFF5422BABC4FD006C9AF8 /* SearchFieldView.swift in Sources */,
@@ -2723,6 +2738,7 @@
 				68330A682BAD4B4700FB14DB /* InvitationsViewController.swift in Sources */,
 				68A4D0612BCCA4DD00E7E532 /* FeedbacksPresenter.swift in Sources */,
 				681286B52BB7F46500F69DEE /* ProfileCoordinator.swift in Sources */,
+				6873767B2BCE1E9400B3F08A /* TopContributorView.swift in Sources */,
 				682D08232B7DF31900A5FCC1 /* UIDevice+Extension.swift in Sources */,
 				68D1902F2B8B2F330045DBE5 /* LoginPresenter.swift in Sources */,
 				681286BD2BB7F46500F69DEE /* ProfileStudyInfoView.swift in Sources */,

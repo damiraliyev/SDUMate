@@ -18,6 +18,7 @@ final class TopContributorView: UIView {
     
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.image = Asset.icAvatarPlaceholder.image
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
@@ -39,10 +40,11 @@ final class TopContributorView: UIView {
         return imageView
     }()
     
+    private let stackContainerView = UIView()
+    
     private let labelsStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = 1
         stackView.alignment = .center
         return stackView
     }()
@@ -50,8 +52,10 @@ final class TopContributorView: UIView {
     private let fullNameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = .medium16
-        label.text = "Name Surname"
+        label.font = .medium14
+        label.text = "Cristiano Ronalo Lionel Messi"
+        label.numberOfLines = 0
+        label.textAlignment = .center
         return label
     }()
     
@@ -66,15 +70,17 @@ final class TopContributorView: UIView {
     private let studyProgramLabel: UILabel = {
         let label = UILabel()
         label.textColor = .lavender
-        label.font = .medium10
-        label.text = "Computer science"
+        label.font = .medium12
+        label.text = "Faculty of engineering and natural sciences"
+        label.numberOfLines = 0
+        label.textAlignment = .center
         return label
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
-        setupConstraints()
+//        setupConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -83,13 +89,22 @@ final class TopContributorView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        crownImageView.layer.cornerRadius = crownImageView.frame.height / 2
+        profileImageView.layer.cornerRadius = profileImageView.frame.height / 2
+        setupConstraints()
+        pedestalView.layer.borderColor = UIColor.lightGray.cgColor
+        pedestalView.layer.borderWidth = 0.5
     }
     
     private func setupViews() {
         backgroundColor = .clear
-        addSubviews([crownImageView, profileImageView, trophyImageView, pedestalView, labelsStackView])
+        addSubviews([crownImageView, pedestalView, profileImageView, trophyImageView, labelsStackView])
         labelsStackView.addArrangedSubviews([fullNameLabel, ratingLabel, studyProgramLabel])
+        fullNameLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        ratingLabel.setContentHuggingPriority(.defaultLow, for: .vertical)
+        studyProgramLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        fullNameLabel.preferredMaxLayoutWidth = fullNameLabel.frame.size.width
+        ratingLabel.preferredMaxLayoutWidth = fullNameLabel.frame.size.width
+        studyProgramLabel.preferredMaxLayoutWidth = fullNameLabel.frame.size.width
     }
     
     private func setupConstraints() {
@@ -108,14 +123,19 @@ final class TopContributorView: UIView {
             make.bottom.equalTo(profileImageView.snp.bottom).offset(2)
             make.size.equalTo(20)
         }
+        labelsStackView.snp.makeConstraints { make in
+            make.top.equalTo(profileImageView.snp.bottom).offset(7)
+            make.leading.trailing.equalToSuperview().inset(4).priority(.high)
+            make.bottom.equalToSuperview().offset(-10).priority(.high)
+        }
         pedestalView.snp.makeConstraints { make in
             make.top.equalTo(profileImageView.snp.centerY)
-            make.leading.trailing.bottom.equalToSuperview()
-        }
-        labelsStackView.snp.makeConstraints { make in
-            make.top.equalTo(profileImageView.snp.bottom).offset(29)
-            make.leading.trailing.equalToSuperview().inset(8)
-            make.bottom.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(labelsStackView)
         }
     }
+    
+//    override var intrinsicContentSize: CGSize {
+//        return CGSize(width: 120, height: 180)
+//    }
 }

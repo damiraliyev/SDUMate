@@ -24,7 +24,9 @@ final class RatingHeaderView: UIView {
     }
     
     override func layoutSubviews() {
-        setupConstraints()
+        setupConstraintsForBronze()
+        setupConstraintsForTop2()
+        print("GOLD", goldContributor.frame.height)
     }
     
     private func setupViews() {
@@ -32,24 +34,33 @@ final class RatingHeaderView: UIView {
         addSubviews([silverContributor, goldContributor, bronzeContributor])
     }
     
-    private func setupConstraints() {
-        let width = (frame.width - 16) / 3
-        silverContributor.snp.makeConstraints { make in
+    private func setupConstraintsForBronze() {
+        let width = frame.width / 3
+        bronzeContributor.snp.makeConstraints { make in
+            make.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.width.equalTo(width)
+            make.height.greaterThanOrEqualTo(182)
+        }
+    }
+    
+    private func setupConstraintsForTop2() {
+        let width = frame.width / 3
+        silverContributor.snp.remakeConstraints { make in
             make.leading.equalToSuperview()
             make.bottom.equalToSuperview()
             make.width.equalTo(width)
-            make.height.equalTo(153)
+            make.height.greaterThanOrEqualTo(bronzeContributor.snp.height).offset(15)
         }
-        goldContributor.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview()
+        goldContributor.snp.remakeConstraints { make in
+            make.bottom.equalToSuperview()
             make.leading.equalTo(silverContributor.snp.trailing)
             make.width.equalTo(width)
+            make.height.equalTo(silverContributor.snp.height).offset(15)
         }
-        bronzeContributor.snp.makeConstraints { make in
-            make.leading.equalTo(goldContributor.snp.trailing)
-            make.bottom.equalToSuperview()
-            make.width.equalTo(width)
-            make.height.equalTo(145)
-        }
+    }
+    
+    func getHeight() -> CGFloat {
+        return goldContributor.frame.height
     }
 }

@@ -92,6 +92,7 @@ final class InvitationsViewController: BaseViewController, IInvitationsView {
 }
 
 extension InvitationsViewController: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width: CGFloat = view.frame.width - 32
         let height: CGFloat = 72
@@ -99,7 +100,11 @@ extension InvitationsViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
+        return 25
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 0, bottom: 25, right: 0)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -110,25 +115,26 @@ extension InvitationsViewController: UICollectionViewDelegateFlowLayout {
 extension InvitationsViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        1
+        return presenter?.getSectionsCount() ?? 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return presenter?.invitationsDataSource.count ?? 0
+        return presenter?.getItemsCount(for: section) ?? 0
     }
+
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
             let cell: InvitationReceivedCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            if let invitation = presenter?.invitationsDataSource[safe: indexPath.row] {
+            if let invitation = presenter?.getInvitation(for: indexPath) {
                 cell.configure(with: invitation)
             }
             cell.delegate = presenter as? InvitationCellDelegate
             return cell
         default:
             let cell: InvitationSentCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            if let invitation = presenter?.invitationsDataSource[safe: indexPath.row] {
+            if let invitation = presenter?.getInvitation(for: indexPath) {
                 cell.configure(with: invitation)
             }
             cell.delegate = presenter as? InvitationCellDelegate
@@ -144,7 +150,8 @@ extension InvitationsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
-            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: InvitationDateHeaderView.defaultReuseIdentifier, for: indexPath)
+            let headerView: InvitationDateHeaderView = collectionView.dequeueReuseableView(kind: UICollectionView.elementKindSectionHeader, indexPath)
+            headerView.set(title: presenter?.getSectionTitle(for: indexPath.section))
             return headerView
         default:
             return UICollectionReusableView()

@@ -53,4 +53,8 @@ final class InvitationDateHeaderView: UICollectionReusableView {
             make.leading.trailing.equalToSuperview().inset(10)
         }
     }
+    
+    func set(title: String?) {
+        dateLabel.text = title
+    }
 }

@@ -15,11 +15,19 @@ protocol IInvitationsPresenter: AnyObject {
     func backTapped()
     func viewDidLoad()
     func typeChanged(to type: InvitationType)
+    func getInvitation(for indexPath: IndexPath) -> Invitation?
+    func getSectionsCount() -> Int
+    func getItemsCount(for section: Int) -> Int
+    func getSectionTitle(for section: Int) -> String?
 }
 
 final class InvitationsPresenter: IInvitationsPresenter {
     private var invitations: [Invitation] = []
     var invitationsDataSource: [Invitation] = []
+    
+    var dateSection: [Int: String] = [:]
+    var invitationsDict: [String: [Invitation]] = [:]
+    var invitationsDataSourceDict: [String: [Invitation]] = [:]
     
     weak var view: IInvitationsView?
     private weak var coordinator: IHomeCoordinator?
@@ -43,6 +51,7 @@ final class InvitationsPresenter: IInvitationsPresenter {
         firstly {
             InvitationManager.shared.fetchCompleteInvitations(userId: AuthManager.shared.getAuthUser()?.uid ?? "")
         } .done { invitations in
+            self.setupData(with: invitations)
             self.invitations = invitations.sorted(by: {$0.createdDate.toDate() > $01.createdDate.toDate() })
             self.invitationsDataSource = invitations
             self.filterByType()
@@ -51,13 +60,44 @@ final class InvitationsPresenter: IInvitationsPresenter {
         }
     }
     
+    private func setupData(with invitations: [Invitation]) {
+        for invitation in invitations {
+            let date = invitation.createdDate.toDate().toString(format: "dd.MM.yyyy")
+            if let inv = invitationsDict[date] {
+                invitationsDict[date]?.append(invitation)
+            } else {
+                invitationsDict[date] = [invitation]
+            }
+        }
+    }
+    
     private func filterByType() {
         guard let id = AuthManager.shared.getAuthUser()?.uid else { return }
         switch type {
         case .received:
-            invitationsDataSource = invitations.filter({ $0.announcerId == id }).sorted(by: {$0.createdDate.toDate() > $1.createdDate.toDate()})
+            for (key, _) in invitationsDict {
+                invitationsDataSourceDict[key] = invitationsDict[key]!.filter({ $0.announcerId == id }).sorted(by: {$0.createdDate.toDate() > $1.createdDate.toDate()})
+            }
         case .sent:
-            invitationsDataSource = invitations.filter({ $0.respondentId == id }).sorted(by: {$0.createdDate.toDate() > $1.createdDate.toDate()})
+            for (key, _) in invitationsDict {
+                invitationsDataSourceDict[key] = invitationsDict[key]!.filter({ $0.respondentId == id }).sorted(by: {$0.createdDate.toDate() > $1.createdDate.toDate()})
+            }
+        }
+        for (key, _) in invitationsDataSourceDict {
+            if invitationsDataSourceDict[key]!.isEmpty {
+                invitationsDataSourceDict.removeValue(forKey: key)
+            }
+        }
+        
+        dateSection.removeAll()
+        var dates: [String] = []
+        
+        for (key, _) in invitationsDataSourceDict {
+            dates.append(key)
+        }
+        dates = dates.sorted(by: { $0 > $1 })
+        for i in 0..<dates.count {
+            dateSection[i] = dates[i]
         }
         view?.reload()
     }
@@ -115,5 +155,24 @@ extension InvitationsPresenter: InvitationCellDelegate {
         }.catch { error in
             self.coordinator?.showErrorAlert(error: error.localizedDescription)
         }
+    }
+    
+    func getInvitation(for indexPath: IndexPath) -> Invitation? {
+        guard let invitation = invitationsDataSourceDict[dateSection[indexPath.section] ?? ""]?[safe: indexPath.row] else { return nil }
+        return invitation
+    }
+    
+    func getSectionsCount() -> Int {
+        return dateSection.count
+    }
+    
+    func getItemsCount(for section: Int) -> Int {
+        let date = dateSection[section] ?? ""
+        guard let invitations = invitationsDataSourceDict[date] else { return 0 }
+        return invitations.count
+    }
+    
+    func getSectionTitle(for section: Int) -> String? {
+        return dateSection[section]
     }
 }

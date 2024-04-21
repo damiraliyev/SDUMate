@@ -10,6 +10,7 @@ import Foundation
 protocol IDescriptionSetupPresenter: AnyObject {
     func backTapped()
     func continueTapped(description: String)
+    func viewDidLoad()
 }
 
 final class DescriptionSetupPresenter: IDescriptionSetupPresenter {
@@ -22,6 +23,10 @@ final class DescriptionSetupPresenter: IDescriptionSetupPresenter {
         self.view = view
         self.coordinator = coordinator
         print("Announcement", announcement)
+    }
+    
+    func viewDidLoad() {
+        view?.configure(category: announcement.category)
     }
     
     func backTapped() {

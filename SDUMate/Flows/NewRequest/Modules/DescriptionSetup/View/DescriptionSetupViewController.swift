@@ -9,6 +9,8 @@ import UIKit
 
 protocol IDescriptionSetupView: Presentable {
     var presenter: IDescriptionSetupPresenter? { get set }
+    
+    func configure(category: String)
 }
 
 final class DescriptionSetupViewController: BaseViewController, IDescriptionSetupView {
@@ -63,6 +65,7 @@ final class DescriptionSetupViewController: BaseViewController, IDescriptionSetu
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter?.viewDidLoad()
         setupViews()
         setupConstraints()
     }
@@ -99,6 +102,10 @@ final class DescriptionSetupViewController: BaseViewController, IDescriptionSetu
             make.bottom.equalToSuperview().offset(-32)
             make.height.equalTo(48)
         }
+    }
+    
+    func configure(category: String) {
+        categoryLabel.text = "Category: \(category)"
     }
     
     @objc func continueTapped() {

@@ -61,7 +61,7 @@ final class CategorySelectionViewController: BaseViewController, ICategorySelect
         let label = UILabel()
         label.font = .regular14
         label.textColor = ._FF453A
-        label.text = "Field is required"
+        label.text = "Select a category"
         label.safeHide()
         return label
     }()

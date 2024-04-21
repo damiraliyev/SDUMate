@@ -33,6 +33,7 @@ final class PriceSetupPresenter: IPriceSetupPresenter {
     func continueTapped(price: String, conditionIndex: Int) {
         let conditions = ["price", "free", "negotiable"]
         if (price.isEmpty && (conditionIndex == 0)) || price.hasPrefix("0") {
+            view?.showError(error: "Specify the price")
             return
         }
         if conditionIndex == 0 {

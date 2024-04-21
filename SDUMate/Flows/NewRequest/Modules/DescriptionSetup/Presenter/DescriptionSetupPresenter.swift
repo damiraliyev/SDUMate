@@ -35,6 +35,10 @@ final class DescriptionSetupPresenter: IDescriptionSetupPresenter {
     }
     
     func continueTapped(description: String) {
+        guard !description.isEmpty else {
+            view?.showError(error: "Field is required")
+            return
+        }
         announcement.description = description
         coordinator?.showPriceSetupView(announcement: announcement)
     }

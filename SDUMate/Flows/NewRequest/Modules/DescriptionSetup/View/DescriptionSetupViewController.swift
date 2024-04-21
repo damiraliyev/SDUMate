@@ -11,6 +11,7 @@ protocol IDescriptionSetupView: Presentable {
     var presenter: IDescriptionSetupPresenter? { get set }
     
     func configure(category: String)
+    func showError(error: String?)
 }
 
 final class DescriptionSetupViewController: BaseViewController, IDescriptionSetupView {
@@ -52,6 +53,15 @@ final class DescriptionSetupViewController: BaseViewController, IDescriptionSetu
         return textView
     }()
     
+    private let errorLabel: UILabel = {
+        let label = UILabel()
+        label.font = .regular14
+        label.textColor = ._FF453A
+        label.text = "Field is required"
+        label.safeHide()
+        return label
+    }()
+    
     private lazy var continueButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Continue", for: .normal)
@@ -74,7 +84,7 @@ final class DescriptionSetupViewController: BaseViewController, IDescriptionSetu
         view.backgroundColor = ._110F2F
         navigationBar.isRightButtonHidden = false
         navigationBar.rightButtonTitle = "Cancel"
-        view.addSubviews([navigationBar, progressView, titleLabel, categoryLabel, textView, continueButton])
+        view.addSubviews([navigationBar, progressView, titleLabel, categoryLabel, errorLabel, textView, continueButton])
         progressView.color(first: 3)
     }
     
@@ -97,6 +107,10 @@ final class DescriptionSetupViewController: BaseViewController, IDescriptionSetu
             make.leading.trailing.equalToSuperview().inset(24)
             make.height.equalTo(150)
         }
+        errorLabel.snp.makeConstraints { make in
+            make.top.equalTo(textView.snp.bottom).offset(10)
+            make.leading.equalTo(24)
+        }
         continueButton.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(24)
             make.bottom.equalToSuperview().offset(-32)
@@ -108,8 +122,25 @@ final class DescriptionSetupViewController: BaseViewController, IDescriptionSetu
         categoryLabel.text = "Category: \(category)"
     }
     
+    func showError(error: String?) {
+        textView.layer.borderColor = UIColor._FF453A.cgColor
+        textView.layer.borderWidth = 1
+        errorLabel.text = error
+        errorLabel.safeShow()
+        textView.shake()
+    }
+    
+    func hideError() {
+        textView.layer.borderWidth = 0
+        errorLabel.safeHide()
+    }
+    
     @objc func continueTapped() {
-        presenter?.continueTapped(description: textView.text)
+        if textView.textColor == ._cdcdcd {
+            presenter?.continueTapped(description: "")
+        } else {
+            presenter?.continueTapped(description: textView.text)
+        }
     }
 }
 
@@ -118,6 +149,7 @@ extension DescriptionSetupViewController: UITextViewDelegate {
         if textView.textColor == ._cdcdcd {
             textView.text = nil
             textView.textColor = .white
+            hideError()
         }
     }
     

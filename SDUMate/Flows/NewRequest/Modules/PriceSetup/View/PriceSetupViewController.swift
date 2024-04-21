@@ -9,6 +9,8 @@ import UIKit
 
 protocol IPriceSetupView: Presentable {
     var presenter: IPriceSetupPresenter? { get set }
+    
+    func showError(error: String?)
 }
 
 final class PriceSetupViewController: BaseViewController, IPriceSetupView {
@@ -43,12 +45,22 @@ final class PriceSetupViewController: BaseViewController, IPriceSetupView {
         return segmentedControl
     }()
     
-    private let textField: EditTextFieldView = {
+    private lazy var textField: EditTextFieldView = {
         let textField = EditTextFieldView()
         textField.setPlaceholderText(text: "Price")
         textField.backgroundColor = ._767680.withAlphaComponent(0.2)
         textField.layer.cornerRadius = 8
+        textField.delegate = self
         return textField
+    }()
+    
+    private let errorLabel: UILabel = {
+        let label = UILabel()
+        label.font = .regular14
+        label.textColor = ._FF453A
+        label.text = "Field is required"
+        label.safeHide()
+        return label
     }()
     
     private lazy var continueButton: UIButton = {
@@ -72,7 +84,7 @@ final class PriceSetupViewController: BaseViewController, IPriceSetupView {
         view.backgroundColor = ._110F2F
         navigationBar.isRightButtonHidden = false
         navigationBar.rightButtonTitle = "Cancel"
-        view.addSubviews([navigationBar, progressView, titleLabel, textField, segmentedControl, continueButton])
+        view.addSubviews([navigationBar, progressView, titleLabel, textField, errorLabel, segmentedControl, continueButton])
         progressView.color(first: 4)
     }
     
@@ -96,11 +108,28 @@ final class PriceSetupViewController: BaseViewController, IPriceSetupView {
             make.leading.trailing.equalToSuperview().inset(24)
             make.height.equalTo(45)
         }
+        errorLabel.snp.makeConstraints { make in
+            make.top.equalTo(textField.snp.bottom).offset(8)
+            make.leading.equalToSuperview().offset(24)
+        }
         continueButton.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(24)
             make.bottom.equalToSuperview().offset(-32)
             make.height.equalTo(48)
         }
+    }
+    
+    func showError(error: String?) {
+        textField.layer.borderColor = UIColor._FF453A.cgColor
+        textField.layer.borderWidth = 1
+        errorLabel.text = error
+        errorLabel.safeShow()
+        textField.shake()
+    }
+    
+    func hideError() {
+        textField.layer.borderWidth = 0
+        errorLabel.safeHide()
     }
     
     @objc func segmentedControlValueChanged(_ sender: UISegmentedControl) {
@@ -113,5 +142,11 @@ final class PriceSetupViewController: BaseViewController, IPriceSetupView {
     
     @objc func continueTapped() {
         presenter?.continueTapped(price: textField.getText() ?? "", conditionIndex: segmentedControl.selectedSegmentIndex)
+    }
+}
+
+extension PriceSetupViewController: EditTextFieldDelegate {
+    func textChanged(to text: String) {
+        hideError()
     }
 }

@@ -11,6 +11,7 @@ protocol ICategorySelectionView: Presentable {
     var presenter: ICategorySelectionPresenter? { get set }
     
     func reload()
+    func shakeViews()
 }
 
 final class CategorySelectionViewController: BaseViewController, ICategorySelectionView {
@@ -56,6 +57,15 @@ final class CategorySelectionViewController: BaseViewController, ICategorySelect
         return button
     }()
     
+    private let errorLabel: UILabel = {
+        let label = UILabel()
+        label.font = .regular14
+        label.textColor = ._FF453A
+        label.text = "Field is required"
+        label.safeHide()
+        return label
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -65,7 +75,7 @@ final class CategorySelectionViewController: BaseViewController, ICategorySelect
     private func setupViews() {
         view.backgroundColor = ._110F2F
         navigationBar.rightButtonTitle = "Cancel"
-        view.addSubviews([navigationBar, progressView, titleLabel, tableView, continueButton])
+        view.addSubviews([navigationBar, progressView, titleLabel, tableView, errorLabel, continueButton])
         progressView.color(first: 2)
     }
     
@@ -93,6 +103,18 @@ final class CategorySelectionViewController: BaseViewController, ICategorySelect
     
     func reload() {
         tableView.reloadData()
+    }
+    
+    func shakeViews() {
+        errorLabel.safeShow()
+        errorLabel.snp.remakeConstraints { make in
+            make.top.equalTo(tableView).offset(tableView.contentSize.height + 5)
+            make.leading.equalToSuperview().offset(24)
+        }
+        tableView.shake()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.errorLabel.safeHide()
+        }
     }
     
     @objc func continueTapped() {

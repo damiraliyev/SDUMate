@@ -38,7 +38,7 @@ final class CategorySelectionPresenter: ICategorySelectionPresenter {
     
     func continueTapped() {
         guard let chosen = getChosen() else {
-            #warning("NEED TO SHOW ERROR")
+            view?.shakeViews()
             return
         }
         announcement.category = chosen.name

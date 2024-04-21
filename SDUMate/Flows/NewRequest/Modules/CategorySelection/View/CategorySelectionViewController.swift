@@ -114,7 +114,7 @@ extension CategorySelectionViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let presenter = presenter else { return UITableViewCell() }
         let cell: CategoryFilterCell = tableView.dequeueReusableCell(for: indexPath)
-        cell.backgroundColor = ._110F2F
+        cell.contentView.backgroundColor = ._110F2F
         cell.configure(with: presenter.categories[indexPath.row])
         return cell
     }

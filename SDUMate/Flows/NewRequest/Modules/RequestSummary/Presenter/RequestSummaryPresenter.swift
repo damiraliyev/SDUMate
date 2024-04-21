@@ -12,6 +12,7 @@ protocol IRequestSummaryPresenter: AnyObject {
     func viewDidLoad()
     func backTapped()
     func postTapped()
+    func cancelTapped()
 }
 
 final class RequestSummaryPresenter: IRequestSummaryPresenter {
@@ -44,5 +45,12 @@ final class RequestSummaryPresenter: IRequestSummaryPresenter {
         } .catch { error in
             self.coordinator?.showErrorAlert(error: error.localizedDescription)
         }
+    }
+    
+    func cancelTapped() {
+        let alertInput = AlertInput(title: "Confirm", message: "Are you sure you want to do this?", cancelTitle: "No", actionTitle: "Yes") {
+            self.coordinator?.popToRoot()
+        }
+        coordinator?.presentAlert(input: alertInput)
     }
 }

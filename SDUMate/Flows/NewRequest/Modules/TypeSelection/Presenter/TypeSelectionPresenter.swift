@@ -10,6 +10,7 @@ import Foundation
 protocol ITypeSelectionPresenter: AnyObject {
     func backTapped()
     func continueTapped(title: String, selectedTypeIndex: Int)
+    func cancelTapped()
 }
 
 final class TypeSelectionPresenter: ITypeSelectionPresenter {
@@ -33,5 +34,12 @@ final class TypeSelectionPresenter: ITypeSelectionPresenter {
         announcement.title = title
         announcement.type = announcementTypes[selectedTypeIndex]
         coordinator?.showCategorySelectionView(announcement: announcement)
+    }
+    
+    func cancelTapped() {
+        let alertInput = AlertInput(title: "Confirm", message: "Are you sure you want to do this?", cancelTitle: "No", actionTitle: "Yes") {
+            self.coordinator?.popToRoot()
+        }
+        coordinator?.presentAlert(input: alertInput)
     }
 }

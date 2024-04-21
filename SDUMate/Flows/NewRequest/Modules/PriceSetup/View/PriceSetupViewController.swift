@@ -16,8 +16,8 @@ final class PriceSetupViewController: BaseViewController, IPriceSetupView {
     
     private lazy var navigationBar = SMNavigationBar(title: "Advertise") { [weak presenter] in
         presenter?.backTapped()
-    } rightBtnTapCallback: {
-        print("CANCEL TAPPED")
+    } rightBtnTapCallback: { [weak presenter] in
+        presenter?.cancelTapped()
     }
     
     private let progressView = ProgressView(iterationsCount: 5)

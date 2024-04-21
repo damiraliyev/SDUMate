@@ -2321,8 +2321,8 @@
 		68FD901A2BB9610100C948FD /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				68CFF5112BABAA95006C9AF8 /* Presenter */,
 				68CFF5102BABAA90006C9AF8 /* View */,
+				68CFF5112BABAA95006C9AF8 /* Presenter */,
 			);
 			path = Main;
 			sourceTree = "<group>";

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol INewRequestCoordinator: IBaseCoordinator {
     var onFlowDidFinish: Completion? { get set }
@@ -16,6 +17,8 @@ protocol INewRequestCoordinator: IBaseCoordinator {
     func showDescriptionSetupView(announcement: Announcement)
     func showPriceSetupView(announcement: Announcement)
     func showRequestSummaryView(announcement: Announcement)
+    func presentAlert(input: AlertInput)
+    func popToRoot()
 }
 
 final class NewRequestCoordinator: BaseCoordinator, TababbleCoordinator {
@@ -60,6 +63,21 @@ final class NewRequestCoordinator: BaseCoordinator, TababbleCoordinator {
     func showRequestSummaryView(announcement: Announcement) {
         let requestSummaryView = moduleFactory.makeRequestSummaryView(announcement: announcement, coordinator: self)
         router.push(requestSummaryView)
+    }
+    
+    func presentAlert(input: AlertInput) {
+        let alertController = UIAlertController(title: input.title, message: input.message, preferredStyle: .alert)
+        alertController.addAction(title: input.actionTitle ?? "") { _ in
+            input.actionCallBack?()
+        }
+        alertController.addAction(title: input.cancelTitle ?? "") { _ in
+            input.cancelActionCallBack?()
+        }
+        router.presentAlert(alertController, animated: true)
+    }
+    
+    func popToRoot() {
+        router.popToRootModule()
     }
 }
 

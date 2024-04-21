@@ -10,6 +10,7 @@ import Foundation
 protocol IPriceSetupPresenter: AnyObject {
     func backTapped()
     func continueTapped(price: String, conditionIndex: Int)
+    func cancelTapped()
 }
 
 final class PriceSetupPresenter: IPriceSetupPresenter {
@@ -40,5 +41,12 @@ final class PriceSetupPresenter: IPriceSetupPresenter {
             announcement.price = conditions[conditionIndex]
         }
         coordinator?.showRequestSummaryView(announcement: announcement)
+    }
+    
+    func cancelTapped() {
+        let alertInput = AlertInput(title: "Confirm", message: "Are you sure you want to do this?", cancelTitle: "No", actionTitle: "Yes") {
+            self.coordinator?.popToRoot()
+        }
+        coordinator?.presentAlert(input: alertInput)
     }
 }

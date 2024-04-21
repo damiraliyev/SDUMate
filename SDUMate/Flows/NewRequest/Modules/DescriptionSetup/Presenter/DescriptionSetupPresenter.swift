@@ -11,6 +11,7 @@ protocol IDescriptionSetupPresenter: AnyObject {
     func backTapped()
     func continueTapped(description: String)
     func viewDidLoad()
+    func cancelTapped()
 }
 
 final class DescriptionSetupPresenter: IDescriptionSetupPresenter {
@@ -36,5 +37,12 @@ final class DescriptionSetupPresenter: IDescriptionSetupPresenter {
     func continueTapped(description: String) {
         announcement.description = description
         coordinator?.showPriceSetupView(announcement: announcement)
+    }
+    
+    func cancelTapped() {
+        let alertInput = AlertInput(title: "Confirm", message: "Are you sure you want to do this?", cancelTitle: "No", actionTitle: "Yes") {
+            self.coordinator?.popToRoot()
+        }
+        coordinator?.presentAlert(input: alertInput)
     }
 }

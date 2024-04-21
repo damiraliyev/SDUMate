@@ -29,7 +29,10 @@ final class TypeSelectionPresenter: ITypeSelectionPresenter {
     }
     
     func continueTapped(title: String, selectedTypeIndex: Int) {
-        guard !title.isEmpty else { return }
+        guard !title.isEmpty else {
+            view?.showError(error: "Filed is required")
+            return
+        }
         var announcement = Announcement()
         announcement.title = title
         announcement.type = announcementTypes[selectedTypeIndex]

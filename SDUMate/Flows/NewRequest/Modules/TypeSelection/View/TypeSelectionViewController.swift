@@ -10,6 +10,8 @@ import SkyFloatingLabelTextField
 
 protocol ITypeSelectionView: Presentable {
     var presenter: ITypeSelectionPresenter? { get set }
+    
+    func showError(error: String?)
 }
 
 final class TypeSelectionViewController: BaseViewController, ITypeSelectionView {
@@ -32,11 +34,12 @@ final class TypeSelectionViewController: BaseViewController, ITypeSelectionView 
         return label
     }()
     
-    private let textField: EditTextFieldView = {
+    private lazy var textField: EditTextFieldView = {
         let textField = EditTextFieldView()
         textField.setPlaceholderText(text: "Write title")
         textField.backgroundColor = ._767680.withAlphaComponent(0.2)
         textField.layer.cornerRadius = 8
+        textField.delegate = self
         return textField
     }()
     
@@ -72,6 +75,15 @@ final class TypeSelectionViewController: BaseViewController, ITypeSelectionView 
         return button
     }()
     
+    private let errorLabel: UILabel = {
+        let label = UILabel()
+        label.font = .regular14
+        label.textColor = ._FF453A
+        label.text = "Field is required"
+        label.safeHide()
+        return label
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -82,7 +94,7 @@ final class TypeSelectionViewController: BaseViewController, ITypeSelectionView 
         view.backgroundColor = ._110F2F
         navigationBar.isRightButtonHidden = false
         navigationBar.rightButtonTitle = "Cancel"
-        view.addSubviews([navigationBar, progressView, titleLabel, textField, selectLabel, segmentedControl, continueButton])
+        view.addSubviews([navigationBar, progressView, titleLabel, textField, errorLabel, selectLabel, segmentedControl, continueButton])
         progressView.color(first: 1)
     }
     
@@ -101,8 +113,12 @@ final class TypeSelectionViewController: BaseViewController, ITypeSelectionView 
             make.leading.trailing.equalToSuperview().inset(24)
             make.height.equalTo(45)
         }
+        errorLabel.snp.makeConstraints { make in
+            make.top.equalTo(textField.snp.bottom).offset(10)
+            make.leading.equalTo(textField)
+        }
         selectLabel.snp.makeConstraints { make in
-            make.top.equalTo(textField.snp.bottom).offset(30)
+            make.top.equalTo(errorLabel.snp.bottom).offset(25)
             make.leading.equalToSuperview().offset(24)
         }
         segmentedControl.snp.makeConstraints { make in
@@ -117,11 +133,30 @@ final class TypeSelectionViewController: BaseViewController, ITypeSelectionView 
         }
     }
     
+    func showError(error: String?) {
+        textField.layer.borderColor = UIColor._FF453A.cgColor
+        textField.layer.borderWidth = 1
+        errorLabel.text = error
+        errorLabel.safeShow()
+        textField.shake()
+    }
+    
+    func hideError() {
+        textField.layer.borderWidth = 0
+        errorLabel.safeHide()
+    }
+    
     @objc func segmentedControlValueChanged(_ sender: UISegmentedControl) {
         
     }
     
     @objc func continueTapped() {
         presenter?.continueTapped(title: textField.getText() ?? "", selectedTypeIndex: segmentedControl.selectedSegmentIndex)
+    }
+}
+
+extension TypeSelectionViewController: EditTextFieldDelegate {
+    func textChanged(to text: String) {
+        hideError()
     }
 }

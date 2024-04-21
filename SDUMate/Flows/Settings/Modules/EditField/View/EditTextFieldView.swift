@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol EditTextFieldDelegate: AnyObject {
+    func textChanged(to text: String)
+}
+
 final class EditTextFieldView: UIView {
+    
+    weak var delegate: EditTextFieldDelegate?
     
     private lazy var textField: UITextField = {
         let textField = UITextField()
@@ -71,6 +77,7 @@ final class EditTextFieldView: UIView {
     }
     
     @objc func textFieldDidChange(_ sender: UITextField) {
+        delegate?.textChanged(to: sender.text ?? "")
     }
     
     @objc func clearTapped() {

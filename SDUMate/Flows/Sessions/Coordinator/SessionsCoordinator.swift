@@ -73,9 +73,7 @@ extension SessionsCoordinator: ISessionsCoordinator {
 
 extension SessionsCoordinator: IAnnouncementResponderInfoCoordinator {
     func showFeedbacks(userId: String) {
-        func showFeedbacks(userId: String) {
-            let view = moduleFactory.makeFeedbacksView(userId: userId, coordinator: self)
-            router.push(view)
-        }
+        let view = moduleFactory.makeFeedbacksView(userId: userId, coordinator: self)
+        router.push(view)
     }
 }

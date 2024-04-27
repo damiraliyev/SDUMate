@@ -112,7 +112,8 @@ final class ProvideFeedbackPresenter: IProvideFeedbackPresenter {
         }
         let newPoints = otherSide.points + additionalPoints
         let newReviewsCount = otherSide.reviewsCount + 1
-        let newRating = (otherSide.rating + Double(providedStars)) / Double(newReviewsCount + 1)
+        let ratingsSum = (otherSide.rating * Double(newReviewsCount) + Double(providedStars))
+        let newRating = ratingsSum / Double(newReviewsCount + 1)
         SessionsManager.shared.updateUserRankingRates(userId: otherSide.userId, newRating: newRating, newReviewsCount: newReviewsCount, newNumberOfProvidedHelp: newNumberOfProvidedHelp, newPoints: newPoints).done { _ in
             self.dispatchGroup.leave()
         } .catch { error in

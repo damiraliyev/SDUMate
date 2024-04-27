@@ -54,6 +54,7 @@ final class FeedbackCell: UITableViewCell {
     
     private func setupViews() {
         backgroundColor = ._110F2F
+        selectionStyle = .none
         addSubviews([fullNameLabel, starsStackView, dateLabel, feedBackLabel])
     }
     

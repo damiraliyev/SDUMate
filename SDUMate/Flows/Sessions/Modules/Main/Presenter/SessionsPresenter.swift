@@ -50,18 +50,39 @@ final class SessionsPresenter: ISessionsPresenter {
     }
     
     func typeTapped(type: SessionSelection) {
+        guard let id = AuthManager.shared.getAuthUser()?.uid else { return }
         switch type {
         case .all:
             dataSource = sessions
         case .offer:
-            dataSource = sessions.filter { $0.announcement?.type == .offer }
+            filterOffers()
         case .request:
-            dataSource = sessions.filter { $0.announcement?.type == .request }
+            filterRequests()
         case .collaborate:
-            dataSource = sessions.filter { $0.announcement?.type == .collaborate }
+            filterCollaborations()
         }
         configureEmptyStateIfNeeded()
         view?.reload()
+    }
+    
+    private func filterOffers() {
+        dataSource = sessions.filter { session in
+            let firstCase = session.announcement?.type == .offer && session.announcerId == id
+            let secondCase = session.announcement?.type == .request && session.respondentId == id
+            return firstCase || secondCase
+        }
+    }
+    
+    private func filterRequests() {
+        dataSource = sessions.filter {
+            let firstCase = $0.announcement?.type == .offer && $0.respondentId == id
+            let secondCase = $0.announcement?.type == .request && $0.announcerId == id
+            return firstCase || secondCase
+        }
+    }
+    
+    private func filterCollaborations() {
+        dataSource = sessions.filter { $0.announcement?.type == .collaborate }
     }
     
     func didSelectItem(at indexPath: IndexPath) {
@@ -79,7 +100,7 @@ final class SessionsPresenter: ISessionsPresenter {
     }
     
     deinit {
-        print("DEINITED PRESENTEr")
+        print("DEINITED PRESENTER")
     }
 }
 

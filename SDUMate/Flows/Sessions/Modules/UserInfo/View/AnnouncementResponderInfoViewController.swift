@@ -111,7 +111,7 @@ final class AnnouncementResponderInfoViewController: BaseViewController, IAnnoun
             make.leading.equalToSuperview().offset(16)
         }
         feedbacksStackView.snp.makeConstraints { make in
-            make.top.equalTo(feedbackLabel.snp.bottom).offset(11)
+            make.top.equalTo(feedbackLabel.snp.bottom).offset(8)
             make.leading.trailing.equalToSuperview().inset(16)
         }
         seeAllLabel.snp.makeConstraints { make in

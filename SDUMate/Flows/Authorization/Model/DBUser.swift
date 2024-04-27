@@ -166,6 +166,6 @@ extension DBUser {
         self.rating = dictionary["rating"] as? Double ?? 5.0
         self.points = dictionary["points"] as? Int ?? 0
         self.numberOfProvidedHelp = 0
-        self.reviewsCount = 0
+        self.reviewsCount = dictionary["reviews_count"] as? Int ?? 0
     }
 }

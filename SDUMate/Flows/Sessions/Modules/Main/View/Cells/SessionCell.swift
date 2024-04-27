@@ -156,7 +156,7 @@ final class SessionCell: UICollectionViewCell {
     func configure(with session: Session) {
         guard let id = AuthManager.shared.getAuthUser()?.uid else { return }
         self.session = session
-        typeLabel.text = session.announcement?.type.title
+        configureType(for: session)
         titleAndCategoryLabel.text = "\(session.announcement?.title ?? "")/\(session.announcement?.category ?? "")"
         if session.respondentId == id {
             recipientLabel.text = "Announcer: \(session.announcer?.name ?? "") \(session.announcer?.surname ?? "")"
@@ -164,6 +164,21 @@ final class SessionCell: UICollectionViewCell {
             recipientLabel.text = "Respondent: \(session.respondent?.name ?? "") \(session.respondent?.surname ?? "")"
         }
         dateLabel.text = session.createdDate?.convertDateToString()
+    }
+    
+    private func configureType(for session: Session) {
+        guard let id = AuthManager.shared.getAuthUser()?.uid else { return }
+        if id == session.announcerId && session.announceType == .offer {
+            typeLabel.text = "Offer"
+        } else if id == session.respondentId && session.announceType == .offer {
+            typeLabel.text = "Request"
+        } else if id == session.announcerId && session.announceType == .request {
+            typeLabel.text = "Request"
+        } else if id == session.respondentId && session.announceType == .request {
+            typeLabel.text = "Offer"
+        } else if session.announceType == .collaborate {
+            typeLabel.text = "Collaborate"
+        }
     }
     
     @objc func contactTapped() {

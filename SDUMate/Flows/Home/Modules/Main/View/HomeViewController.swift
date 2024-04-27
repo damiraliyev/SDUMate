@@ -24,7 +24,13 @@ final class HomeViewController: BaseViewController {
         return view
     }()
     
-    private let searchFieldView = SearchFieldView()
+    private lazy var searchFieldView: SearchFieldView = {
+        let view = SearchFieldView()
+        view.onTextEntered = { [weak presenter] text in
+            presenter?.searchTextEntered(text: text)
+        }
+        return view
+    }()
     
     private lazy var appliedFiltersView: AppliedFiltersView = {
         let view = AppliedFiltersView()

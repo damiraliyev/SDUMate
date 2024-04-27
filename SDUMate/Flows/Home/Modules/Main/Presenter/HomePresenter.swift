@@ -8,7 +8,7 @@
 import Foundation
 import PromiseKit
 
-protocol IHomePresenter {
+protocol IHomePresenter: AnyObject {
     var announcementsDataSource: [Announcement] { get }
     
     func viewDidLoad()
@@ -16,6 +16,7 @@ protocol IHomePresenter {
     func didSelectItem(at indexPath: IndexPath)
     func typeRemoved()
     func categoryRemoved(at indexPath: IndexPath)
+    func searchTextEntered(text: String)
 }
 
 final class HomePresenter: IHomePresenter {
@@ -26,6 +27,7 @@ final class HomePresenter: IHomePresenter {
     let id = AuthManager.shared.getAuthUser()?.uid ?? ""
     private var announcements: [Announcement] = []
     var announcementsDataSource: [Announcement] = []
+    private var searchText: String?
     
     init(view: IHomeView, coordinator: IHomeCoordinator, homeManager: HomeManager) {
         self.view = view
@@ -50,7 +52,7 @@ final class HomePresenter: IHomePresenter {
     
     func typeRemoved() {
         filter?.type = nil
-        filtrateAnnouncements()
+        filtrateAnnouncements(searchText: searchText)
     }
     
     func categoryRemoved(at indexPath: IndexPath) {
@@ -59,7 +61,12 @@ final class HomePresenter: IHomePresenter {
         } else {
             filter?.categories.remove(at: indexPath.row)
         }
-        filtrateAnnouncements()
+        filtrateAnnouncements(searchText: searchText)
+    }
+    
+    func searchTextEntered(text: String) {
+        searchText = text
+        filtrateAnnouncements(searchText: text)
     }
     
     private func fetchAnnouncements() {
@@ -84,16 +91,17 @@ final class HomePresenter: IHomePresenter {
         }
     }
     
-    private func filtrateAnnouncements() {
+    private func filtrateAnnouncements(searchText: String? = nil) {
         announcementsDataSource = announcements
+        
         guard let filter = filter else {
             announcementsDataSource = announcements
+            search(searchText: searchText)
             view?.reload()
             return
         }
         if let type = filter.type {
             announcementsDataSource = announcements.filter({ $0.type == type })
-            print("ANNOUNCEMENT DATA SOURCE", announcementsDataSource)
         } else {
             announcementsDataSource = announcements
         }
@@ -102,7 +110,17 @@ final class HomePresenter: IHomePresenter {
                 filter.categories.contains($0.category)
             }
         }
+        search(searchText: searchText)
         view?.reload()
+    }
+    
+    private func search(searchText: String?) {
+        guard let searchText = searchText, !searchText.isEmpty else { return }
+        announcementsDataSource = announcementsDataSource.filter { announcement in
+            let lowercasedAnnouncementTitle = announcement.title.lowercased()
+            let lowercasedSearchText = searchText.lowercased()
+            return (lowercasedAnnouncementTitle).contains(lowercasedSearchText)
+        }
     }
     
     @objc func userInfoChanged() {
@@ -128,7 +146,7 @@ extension HomePresenter: HomeHeaderViewDelegate {
 extension HomePresenter: FilterViewDelegate {
     func filtersApplied(filter: AppliedFilter) {
         self.filter = filter
-        filtrateAnnouncements()
+        filtrateAnnouncements(searchText: searchText)
         view?.configureAppliedFilters(with: filter)
     }
 }

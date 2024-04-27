@@ -9,6 +9,8 @@ import UIKit
 
 final class SearchFieldView: UIView {
     
+    var onTextEntered: ((_ text: String) -> Void)?
+    
     private let loupeImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = Asset.icLoupe.image
@@ -56,6 +58,6 @@ final class SearchFieldView: UIView {
     }
     
     @objc func textFieldDidChange(_ sender: UITextField) {
-        
+        onTextEntered?(sender.text ?? "")
     }
 }

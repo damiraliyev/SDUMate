@@ -24,7 +24,7 @@ final class HomePresenter: IHomePresenter {
     private weak var coordinator: IHomeCoordinator?
     private let homeManager: HomeManager
     private var filter: AppliedFilter?
-    let id = AuthManager.shared.getAuthUser()?.uid ?? ""
+    private let id = AuthManager.shared.getAuthUser()?.uid ?? ""
     private var announcements: [Announcement] = []
     var announcementsDataSource: [Announcement] = []
     private var searchText: String?

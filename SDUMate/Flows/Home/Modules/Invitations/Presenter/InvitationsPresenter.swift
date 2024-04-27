@@ -48,6 +48,11 @@ final class InvitationsPresenter: IInvitationsPresenter {
     }
     
     private func fetchInvitations() {
+        invitations = []
+        invitationsDataSource = []
+        dateSection = [:]
+        invitationsDict = [:]
+        invitationsDataSourceDict = [:]
         firstly {
             InvitationManager.shared.fetchCompleteInvitations(userId: AuthManager.shared.getAuthUser()?.uid ?? "")
         } .done { invitations in
@@ -99,6 +104,7 @@ final class InvitationsPresenter: IInvitationsPresenter {
         for i in 0..<dates.count {
             dateSection[i] = dates[i]
         }
+        view?.hideLoading()
         view?.reload()
     }
     

@@ -16,10 +16,10 @@ protocol IPriceSetupPresenter: AnyObject {
 final class PriceSetupPresenter: IPriceSetupPresenter {
     
     weak var view: IPriceSetupView?
-    private weak var coordinator: INewRequestCoordinator?
+    private weak var coordinator: INewPostCoordinator?
     private var announcement: Announcement
     
-    init(announcement: Announcement, view: IPriceSetupView, coordinator: INewRequestCoordinator) {
+    init(announcement: Announcement, view: IPriceSetupView, coordinator: INewPostCoordinator) {
         self.announcement = announcement
         self.view = view
         self.coordinator = coordinator

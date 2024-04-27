@@ -61,6 +61,7 @@ final class SessionsViewController: BaseViewController {
     
     private lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = .lavender
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         return refreshControl
     }()

@@ -17,7 +17,7 @@ protocol ICategorySelectionPresenter: AnyObject {
 
 final class CategorySelectionPresenter: ICategorySelectionPresenter {
     weak var view: ICategorySelectionView?
-    private weak var coordinator: INewRequestCoordinator?
+    private weak var coordinator: INewPostCoordinator?
     private var announcement: Announcement
     var categories: [CategoryFilter] = [
         CategoryFilter(name: "Software Engineering", isChosen: false),
@@ -26,7 +26,7 @@ final class CategorySelectionPresenter: ICategorySelectionPresenter {
         CategoryFilter(name: "Linear Algebra", isChosen: false)
     ]
     
-    init(announcement: Announcement, view: ICategorySelectionView, coordinator: INewRequestCoordinator) {
+    init(announcement: Announcement, view: ICategorySelectionView, coordinator: INewPostCoordinator) {
         self.announcement = announcement
         self.view = view
         self.coordinator = coordinator

@@ -7,16 +7,16 @@
 
 import Foundation
 
-protocol INewRequestPresenter: AnyObject {
+protocol INewPostPresenter: AnyObject {
     func startTapped()
 }
 
-final class NewRequestPresenter: INewRequestPresenter {
+final class NewRequestPresenter: INewPostPresenter {
     
-    weak var view: INewRequestView?
-    private weak var coordinator: INewRequestCoordinator?
+    weak var view: INewPostView?
+    private weak var coordinator: INewPostCoordinator?
     
-    init(view: INewRequestView, coordinator: INewRequestCoordinator) {
+    init(view: INewPostView, coordinator: INewPostCoordinator) {
         self.view = view
         self.coordinator = coordinator
     }

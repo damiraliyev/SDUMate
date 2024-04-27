@@ -7,13 +7,13 @@
 
 import UIKit
 
-protocol INewRequestView: Presentable {
-    var presenter: INewRequestPresenter? { get set }
+protocol INewPostView: Presentable {
+    var presenter: INewPostPresenter? { get set }
 }
 
-final class NewRequestViewController: BaseViewController, INewRequestView {
+final class NewPostViewController: BaseViewController, INewPostView {
     
-    var presenter: INewRequestPresenter?
+    var presenter: INewPostPresenter?
     
     private let postLabel: UILabel = {
         let label = UILabel()

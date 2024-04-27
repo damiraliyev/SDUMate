@@ -11,6 +11,7 @@ protocol IInvitationsView: Presentable {
     var presenter: IInvitationsPresenter? { get set }
     
     func reload()
+    func hideLoading()
 }
 
 enum InvitationType: String, CaseIterable {
@@ -40,6 +41,13 @@ final class InvitationsViewController: BaseViewController, IInvitationsView {
         return segmentedControl
     }()
     
+    private lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = .lavender
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        return refreshControl
+    }()
+    
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -54,6 +62,7 @@ final class InvitationsViewController: BaseViewController, IInvitationsView {
         collectionView.isSkeletonable = true
         collectionView.register(InvitationReceivedCell.self)
         collectionView.register(InvitationSentCell.self)
+        collectionView.refreshControl = refreshControl
         return collectionView
     }()
     
@@ -84,6 +93,14 @@ final class InvitationsViewController: BaseViewController, IInvitationsView {
     
     func reload() {
         collectionView.reloadData()
+    }
+    
+    func hideLoading() {
+        refreshControl.endRefreshing()
+    }
+    
+    @objc func refreshData() {
+        presenter?.viewDidLoad()
     }
     
     @objc func segmentedControlValueChanged(_ sender: UISegmentedControl) {

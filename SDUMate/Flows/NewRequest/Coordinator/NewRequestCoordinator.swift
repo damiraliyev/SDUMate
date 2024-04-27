@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-protocol INewRequestCoordinator: IBaseCoordinator {
+protocol INewPostCoordinator: IBaseCoordinator {
     var onFlowDidFinish: Completion? { get set }
     
     func onBackTapped(completion: Completion?)
@@ -81,7 +81,7 @@ final class NewRequestCoordinator: BaseCoordinator, TababbleCoordinator {
     }
 }
 
-extension NewRequestCoordinator: INewRequestCoordinator {
+extension NewRequestCoordinator: INewPostCoordinator {
     func onBackTapped(completion: Completion?) {
         router.popModule()
         completion?()

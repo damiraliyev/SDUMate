@@ -22,7 +22,10 @@ protocol IProfileCoordinator: IBaseCoordinator {
     var delegate: ProfileCoordinatorDelegate? { get set }
     
     
-    func showPhotoSelectAlert(with options: [AttachmentOption], handler: PHPickerViewControllerDelegate & UIImagePickerControllerDelegate & UINavigationControllerDelegate)
+    func showPhotoSelectAlert(
+        with options: [AttachmentOption],
+        handler: PHPickerViewControllerDelegate & UIImagePickerControllerDelegate & UINavigationControllerDelegate
+    )
     func showEditProfileView(user: DBUser?)
     func didTapLogOut()
 }

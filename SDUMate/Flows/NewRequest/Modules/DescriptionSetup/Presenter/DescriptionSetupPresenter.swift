@@ -16,10 +16,10 @@ protocol IDescriptionSetupPresenter: AnyObject {
 
 final class DescriptionSetupPresenter: IDescriptionSetupPresenter {
     weak var view: IDescriptionSetupView?
-    private weak var coordinator: INewRequestCoordinator?
+    private weak var coordinator: INewPostCoordinator?
     private var announcement: Announcement
     
-    init(announcement: Announcement, view: IDescriptionSetupView, coordinator: INewRequestCoordinator) {
+    init(announcement: Announcement, view: IDescriptionSetupView, coordinator: INewPostCoordinator) {
         self.announcement = announcement
         self.view = view
         self.coordinator = coordinator

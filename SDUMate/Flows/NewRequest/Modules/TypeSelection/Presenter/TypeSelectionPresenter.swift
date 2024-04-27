@@ -16,10 +16,10 @@ protocol ITypeSelectionPresenter: AnyObject {
 final class TypeSelectionPresenter: ITypeSelectionPresenter {
     
     weak var view: ITypeSelectionView?
-    private weak var coordinator: INewRequestCoordinator?
+    private weak var coordinator: INewPostCoordinator?
     private let announcementTypes = AnnounceType.allCases
     
-    init(view: ITypeSelectionView, coordinator: INewRequestCoordinator) {
+    init(view: ITypeSelectionView, coordinator: INewPostCoordinator) {
         self.view = view
         self.coordinator = coordinator
     }

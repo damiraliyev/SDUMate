@@ -37,6 +37,7 @@ final class PriceView: UIView {
         layer.borderColor = UIColor._cdcdcd.cgColor
         backgroundColor = .textFieldInner
         addSubview(priceLabel)
+//        isSkeletonable = true
     }
     
     private func setupConstraints() {

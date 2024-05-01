@@ -16,6 +16,7 @@ protocol IEditProfilePresenter: AnyObject {
     func cancelTapped()
     func didSelectRowAt(_ indexPath: IndexPath)
     func getViewModel(forCellAt indexPath: IndexPath) -> EditProfileCellViewModel?
+    func showError(error: Error)
 }
 
 final class EditProfilePresenter: NSObject, IEditProfilePresenter {
@@ -43,9 +44,12 @@ final class EditProfilePresenter: NSObject, IEditProfilePresenter {
             guard let id = authManager.getAuthUser()?.uid else { return }
             userManager.getUser(userId: id).done { dbUser in
                 self.user = dbUser
+                self.view?.configureAvatar(with: dbUser.profileImageUrl)
             } .catch { [weak self] error in
                 self?.coordinator?.showErrorAlert(error: error.localizedDescription)
             }
+        } else {
+            self.view?.configureAvatar(with: user?.profileImageUrl)
         }
         NotificationCenter.default.addObserver(self, selector: #selector(userInfoChanged), name: GlobalConstants.userInfoChangeNotificationName, object: nil)
     }
@@ -100,6 +104,7 @@ final class EditProfilePresenter: NSObject, IEditProfilePresenter {
     
     func saveProfileImage(data: Data) {
         guard let userId = authManager.getAuthUser()?.uid else { return }
+        view?.showLoading()
         firstly {
             userManager.getUser(userId: userId)
         }.done { [weak self] dbUser in
@@ -111,14 +116,19 @@ final class EditProfilePresenter: NSObject, IEditProfilePresenter {
                 } .done {
                     self.uploadImageToStorage(userId: userId, data: data)
                 } .catch { error in
-                    self.coordinator?.showErrorAlert(error: error.localizedDescription)
+                    self.uploadImageToStorage(userId: userId, data: data)
                 }
             } else {
                 self.uploadImageToStorage(userId: userId, data: data)
             }
         } .catch { [weak self] error in
             self?.coordinator?.showErrorAlert(error: error.localizedDescription)
+            self?.view?.hideLoading()
         }
+    }
+    
+    func showError(error: Error) {
+        coordinator?.showErrorAlert(error: error.localizedDescription)
     }
     
     private func deleteImage(for path: String, completion: @escaping (() -> Void))  {
@@ -140,6 +150,7 @@ final class EditProfilePresenter: NSObject, IEditProfilePresenter {
             } .catch { [weak self] error in
                 self?.coordinator?.showErrorAlert(error: error.localizedDescription)
                 seal.reject(error)
+                self?.view?.hideLoading()
             }
         }
     }
@@ -151,6 +162,7 @@ final class EditProfilePresenter: NSObject, IEditProfilePresenter {
             self.fetchImageUrl(path: metaResult.imagePath)
         } .catch { error in
             self.coordinator?.showErrorAlert(error: error.localizedDescription)
+            self.view?.hideLoading()
         }
         
     }
@@ -163,6 +175,7 @@ final class EditProfilePresenter: NSObject, IEditProfilePresenter {
             self?.updateDBUser(path: path, newImageUrl: url.absoluteString)
         } .catch { [weak self] error in
             self?.coordinator?.showErrorAlert(error: error.localizedDescription)
+            self?.view?.hideLoading()
         }
     }
     
@@ -170,21 +183,29 @@ final class EditProfilePresenter: NSObject, IEditProfilePresenter {
         guard let userId = authManager.getAuthUser()?.uid else { return }
         firstly {
             userManager.setProfileImage(userId: userId, profileImagePath: path, profileImageUrl: newImageUrl)
-        } .done { error in
-            print("Success")
+        } .done { [weak self] error in
+            let alertInput = AlertInput(title: "Success!", message: "Information updated!", actionTitle: "Ok")
+            self?.coordinator?.showAlertWithoutCancel(input: alertInput, style: .default)
+            NotificationCenter.default.post(name: GlobalConstants.userInfoChangeNotificationName, object: nil)
+            self?.view?.hideLoading()
         } .catch { [weak self] error in
             self?.coordinator?.showErrorAlert(error: error.localizedDescription)
+            self?.view?.hideLoading()
         }
         
     }
     
     @objc func userInfoChanged() {
         guard let id = authManager.getAuthUser()?.uid else { return }
+//        view?.showLoading()
         userManager.getUser(userId: id).done { dbUser in
             self.user = dbUser
+            self.view?.configureAvatar(with: dbUser.profileImageUrl)
             self.view?.reload()
+//            self.view?.hideLoading()
         } .catch { error in
             self.coordinator?.showErrorAlert(error: error.localizedDescription)
+//            self.view?.hideLoading()
         }
     }
 }

@@ -14,6 +14,7 @@ final class AnnouncementCell: UICollectionViewCell {
         imageView.image = Asset.icMath.image
         imageView.backgroundColor = ._323266
         imageView.contentMode = .scaleAspectFit
+//        imageView.isSkeletonable = true
         return imageView
     }()
     
@@ -24,6 +25,8 @@ final class AnnouncementCell: UICollectionViewCell {
         label.text = "Software engineering"
         label.numberOfLines = 2
         label.textAlignment = .center
+//        label.isSkeletonable = true
+//        label.lastLineFillPercent = 80
         return label
     }()
     
@@ -33,6 +36,8 @@ final class AnnouncementCell: UICollectionViewCell {
         label.font = .semibold15
         label.text = "Object oriented programming"
         label.numberOfLines = 2
+//        label.isSkeletonable = true
+//        label.lastLineFillPercent = 80
         return label
     }()
     
@@ -40,8 +45,10 @@ final class AnnouncementCell: UICollectionViewCell {
         let label = UILabel()
         label.textColor = ._cdcdcd
         label.font = .regular12
-        label.text = "Unit Testing, UI Testing, Snapshot testing and many other stuff of mobile Delevelopment."
+//        label.text = "Unit Testing, UI Testing, Snapshot testing and many other stuff of mobile Delevelopment."
         label.numberOfLines = 3
+//        label.isSkeletonable = true
+//        label.lastLineFillPercent = 80
         return label
     }()
     
@@ -50,6 +57,8 @@ final class AnnouncementCell: UICollectionViewCell {
         label.textColor = .white
         label.font = .medium14
         label.text = "mntn7"
+//        label.isSkeletonable = true
+//        label.lastLineFillPercent = 80
         return label
     }()
     
@@ -58,6 +67,8 @@ final class AnnouncementCell: UICollectionViewCell {
         label.textColor = .white
         label.font = .regular12
         label.text = "5/5"
+//        label.isSkeletonable = true
+//        label.lastLineFillPercent = 80
         return label
     }()
     
@@ -66,6 +77,8 @@ final class AnnouncementCell: UICollectionViewCell {
         label.textColor = ._cdcdcd
         label.font = .regular14
         label.text = "100"
+//        label.isSkeletonable = true
+//        label.lastLineFillPercent = 80
         return label
     }()
     
@@ -81,6 +94,15 @@ final class AnnouncementCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        categoryLabel.text = nil
+        titleLabel.text = nil
+        descriptionLabel.text = nil
+        announcerLabel.text = nil
+        ratingLabel.text = nil
+        reviewsCountLabel.text = nil
+    }
+    
     private func setupViews() {
         contentView.backgroundColor = ._282645
         contentView.layer.cornerRadius = 18
@@ -89,6 +111,9 @@ final class AnnouncementCell: UICollectionViewCell {
         contentView.addSubviews([imageView, categoryLabel, titleLabel, 
                                  descriptionLabel, announcerLabel, ratingLabel,
                                  reviewsCountLabel, priceView])
+        skeletonCornerRadius = 18
+        contentView.isSkeletonable = true
+        isSkeletonable = true
     }
     
     private func setupConstraints() {

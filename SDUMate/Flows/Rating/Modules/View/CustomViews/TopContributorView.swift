@@ -53,7 +53,7 @@ final class TopContributorView: UIView {
         let label = UILabel()
         label.textColor = .white
         label.font = .medium14
-        label.text = "Cristiano Ronalo Lionel Messi"
+        label.text = "Cristiano Ronaldo"
         label.numberOfLines = 0
         label.textAlignment = .center
         return label
@@ -71,8 +71,7 @@ final class TopContributorView: UIView {
         let label = UILabel()
         label.textColor = .lavender
         label.font = .medium12
-        label.text = "Faculty of engineering and natural sciences"
-        label.numberOfLines = 0
+        label.text = "Computer science"
         label.textAlignment = .center
         return label
     }()

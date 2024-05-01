@@ -114,7 +114,7 @@ final class FilterViewController: BaseViewController, IFilterView {
         tableView.dataSource = self
         tableView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
         tableView.register(CategoryFilterCell.self)
-        tableView.backgroundColor = .background
+        tableView.backgroundColor = ._110F2F
         tableView.rowHeight = 40
         tableView.separatorStyle = .none
         return tableView
@@ -138,7 +138,7 @@ final class FilterViewController: BaseViewController, IFilterView {
     }
     
     private func setupViews() {
-        view.backgroundColor = .background
+        view.backgroundColor = ._110F2F
         view.addSubviews([closeButton, titleLabel, typeLabel, typesStackView, freeOnlyView, resetFieldsButton, lineView, tableView, showResultButton])
         typesStackView.addArrangedSubviews([offerTypeView, requestType, collaborateType])
     }

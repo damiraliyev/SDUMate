@@ -33,10 +33,10 @@ final class HomePresenter: IHomePresenter {
         self.view = view
         self.coordinator = coordinator
         self.homeManager = homeManager
+        NotificationCenter.default.addObserver(self, selector: #selector(userInfoChanged), name: GlobalConstants.userInfoChangeNotificationName, object: nil)
     }
     
     func viewDidLoad() {
-        NotificationCenter.default.addObserver(self, selector: #selector(userInfoChanged), name: GlobalConstants.userInfoChangeNotificationName, object: nil)
         fetchAnnouncements()
         fetchUser()
     }
@@ -70,14 +70,17 @@ final class HomePresenter: IHomePresenter {
     }
     
     private func fetchAnnouncements() {
+        view?.showLoading()
         firstly {
             homeManager.fetchCompleteAnnouncements()
         } .done { announcements in
             self.announcements = announcements
             self.announcementsDataSource = announcements
             self.view?.reload()
+            self.view?.hideLoading()
         } .catch { error in
             self.coordinator?.showErrorAlert(error: error.localizedDescription)
+            self.view?.hideLoading()
         }
     }
     
@@ -126,7 +129,7 @@ final class HomePresenter: IHomePresenter {
     @objc func userInfoChanged() {
         UserManager.shared.getUser(userId: id).done { dbUser in
             let fullName = "\(dbUser.name ?? "") \(dbUser.surname ?? "")"
-            self.view?.setupHeader(fullName: fullName, nickname: dbUser.nickname ?? "", avatarUrl: nil)
+            self.view?.setupHeader(fullName: fullName, nickname: dbUser.nickname ?? "", avatarUrl: dbUser.profileImageUrl)
         } .catch { error in
             self.coordinator?.showErrorAlert(error: error.localizedDescription)
         }

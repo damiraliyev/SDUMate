@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 protocol IHomeView: Presentable {
     var presenter: IHomePresenter? { get set }
@@ -13,6 +14,8 @@ protocol IHomeView: Presentable {
     func configureAppliedFilters(with filter: AppliedFilter)
     func setupHeader(fullName: String, nickname: String, avatarUrl: String?)
     func reload()
+    func showLoading()
+    func hideLoading()
 }
 
 final class HomeViewController: BaseViewController {
@@ -56,7 +59,7 @@ final class HomeViewController: BaseViewController {
         collectionView.contentInset.bottom = 24
         collectionView.alwaysBounceVertical = true
         collectionView.isSkeletonable = true
-        collectionView.register(AnnouncementCell.self)
+        collectionView.isUserInteractionDisabledWhenSkeletonIsActive = false
         collectionView.refreshControl = refreshControl
         return collectionView
     }()
@@ -112,8 +115,21 @@ extension HomeViewController: IHomeView {
     }
     
     func reload() {
-        refreshControl.endRefreshing()
         collectionView.reloadData()
+    }
+    
+    func showLoading() {
+        let animation = SkeletonAnimationBuilder().makeSlidingAnimation(withDirection: .topLeftBottomRight)
+        DispatchQueue.main.async {
+            self.collectionView.startSkeletonAnimation()
+            self.collectionView.showAnimatedGradientSkeleton(usingGradient: .init(baseColor: ._282645),animation: animation)
+        }
+    }
+    
+    func hideLoading() {
+        collectionView.stopSkeletonAnimation()
+        collectionView.hideSkeleton(transition: .crossDissolve(0.25))
+        refreshControl.endRefreshing()
     }
 }
 
@@ -156,5 +172,15 @@ extension HomeViewController: AppliedFiltersDelegate {
     
     func categoryRemoved(at indexPath: IndexPath) {
         presenter?.categoryRemoved(at: indexPath)
+    }
+}
+
+extension HomeViewController: SkeletonCollectionViewDataSource {
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> SkeletonView.ReusableCellIdentifier {
+        return AnnouncementCell.defaultReuseIdentifier
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 5
     }
 }

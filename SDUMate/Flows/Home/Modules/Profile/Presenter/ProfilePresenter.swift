@@ -39,16 +39,22 @@ final class ProfilePresenter: NSObject, IProfilePresenter {
     }
     
     func viewDidLoad() {
+        NotificationCenter.default.addObserver(self, selector: #selector(userInfoChanged), name: GlobalConstants.userInfoChangeNotificationName, object: nil)
+        fetchUserData()
+    }
+    
+    private func fetchUserData() {
         guard let userId = authManager.getAuthUser()?.uid else { return }
         firstly {
             userManager.getUser(userId: userId)
         } .done { [weak self] dbUser in
             self?.user = dbUser
             self?.view?.configure(with: dbUser)
+            self?.view?.hideLoading()
         } .catch { error in
             self.coordinator?.showErrorAlert(error: error.localizedDescription)
+            self.view?.hideLoading()
         }
-        NotificationCenter.default.addObserver(self, selector: #selector(userInfoChanged), name: GlobalConstants.userInfoChangeNotificationName, object: nil)
     }
     
     func cameraTapped() {

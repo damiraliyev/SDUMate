@@ -37,7 +37,7 @@ final class CategoryFilterCell: UITableViewCell {
     }
     
     private func setupViews() {
-        contentView.backgroundColor = .background
+        contentView.backgroundColor = ._110F2F
 //        contentView.addSubviews([containerView])
         contentView.addSubviews([checkboxButton, titleLabel])
     }

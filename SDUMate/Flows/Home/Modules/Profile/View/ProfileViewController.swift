@@ -13,6 +13,7 @@ protocol IProfileView: Presentable {
     
     func set(image: UIImage)
     func configure(with user: DBUser)
+    func hideLoading()
 }
 
 final class ProfileViewController: BaseViewController, IProfileView {
@@ -27,6 +28,13 @@ final class ProfileViewController: BaseViewController, IProfileView {
     }
     
     private let profileHeaderView = ProfileHeaderView(frame: CGRect(x: 0, y: 0, width: UIView.screenWidth - 32, height: 340))
+    
+    private lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = .lavender
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        return refreshControl
+    }()
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
@@ -45,6 +53,7 @@ final class ProfileViewController: BaseViewController, IProfileView {
         tableView.rowHeight = 50
         tableView.sectionHeaderHeight = 20
         tableView.contentInset.bottom = 20
+        tableView.refreshControl = refreshControl
         return tableView
     }()
     
@@ -93,6 +102,14 @@ final class ProfileViewController: BaseViewController, IProfileView {
     
     func configure(with user: DBUser) {
         profileHeaderView.configure(with: user)
+    }
+    
+    func hideLoading() {
+        refreshControl.endRefreshing()
+    }
+    
+    @objc func refreshData() {
+        presenter?.viewDidLoad()
     }
 }
 

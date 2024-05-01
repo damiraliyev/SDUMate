@@ -6,12 +6,17 @@
 //
 
 import UIKit
+import Kingfisher
+import Lottie
 
 protocol IEditProfileView: Presentable {
     var presenter: IEditProfilePresenter? { get set }
     
     func set(image: UIImage?)
     func reload()
+    func configureAvatar(with urlString: String?)
+    func showLoading()
+    func hideLoading()
 }
 
 final class EditProfileViewController: BaseViewController, IEditProfileView {
@@ -56,6 +61,17 @@ final class EditProfileViewController: BaseViewController, IEditProfileView {
         return tableView
     }()
     
+    private lazy var loadingAnimationView: LottieAnimationView = {
+        let animation = LottieAnimation.named("Loading")
+        let animationView = LottieAnimationView(animation: animation)
+        animationView.contentMode = .scaleAspectFill
+        animationView.loopMode = .loop
+        animationView.safeHide()
+        let colorProvider = ColorValueProvider(UIColor.lavender.lottieColorValue)
+        animationView.setValueProvider(colorProvider, keypath: AnimationKeypath(keypath: "**.Color"))
+        return animationView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.viewDidLoad()
@@ -70,7 +86,7 @@ final class EditProfileViewController: BaseViewController, IEditProfileView {
     
     private func setupViews() {
         view.backgroundColor = ._110F2F
-        view.addSubviews([doneButton, cancelButton, tableView])
+        view.addSubviews([doneButton, cancelButton, tableView, loadingAnimationView])
     }
     
     private func setupConstraints() {
@@ -89,6 +105,10 @@ final class EditProfileViewController: BaseViewController, IEditProfileView {
             make.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
         }
+        loadingAnimationView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.size.equalTo(120)
+        }
     }
     
     func set(image: UIImage?) {
@@ -97,6 +117,28 @@ final class EditProfileViewController: BaseViewController, IEditProfileView {
     
     func reload() {
         tableView.reloadData()
+    }
+    
+    func configureAvatar(with urlString: String?) {
+        guard let url = URL(string: urlString ?? "") else { return }
+        KingfisherManager.shared.retrieveImage(with: url) { [weak self] result in
+            switch result {
+            case .success(let result):
+                self?.headerView.set(image: result.image)
+            case .failure(let error):
+                self?.presenter?.showError(error: error)
+            }
+        }
+    }
+    
+    func showLoading() {
+        loadingAnimationView.safeShow()
+        loadingAnimationView.play()
+    }
+    
+    func hideLoading() {
+        loadingAnimationView.safeHide()
+        loadingAnimationView.stop()
     }
     
     @objc func doneTapped() {

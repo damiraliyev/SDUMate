@@ -148,13 +148,11 @@
 		6882A4D42B786AD600B2AE72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6882A4D32B786AD600B2AE72 /* Assets.xcassets */; };
 		6882A4D72B786AD600B2AE72 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6882A4D52B786AD600B2AE72 /* LaunchScreen.storyboard */; };
 		6882A4E22B7871B200B2AE72 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6882A4E12B7871B200B2AE72 /* SnapKit */; };
-		6882A4E42B7871B200B2AE72 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 6882A4E32B7871B200B2AE72 /* SnapKit-Dynamic */; };
 		6882A4E72B78734700B2AE72 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 6882A4E62B78734700B2AE72 /* CombineMoya */; };
 		6882A4E92B78734700B2AE72 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 6882A4E82B78734700B2AE72 /* Moya */; };
 		6882A4EB2B78734700B2AE72 /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 6882A4EA2B78734700B2AE72 /* ReactiveMoya */; };
 		6882A4ED2B78734700B2AE72 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 6882A4EC2B78734700B2AE72 /* RxMoya */; };
 		6882A4F02B7885DF00B2AE72 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 6882A4EF2B7885DF00B2AE72 /* Swinject */; };
-		6882A4F22B7885DF00B2AE72 /* Swinject-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 6882A4F12B7885DF00B2AE72 /* Swinject-Dynamic */; };
 		688442C02B7E02C200695763 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688442BF2B7E02C200695763 /* AppCoordinator.swift */; };
 		688442C42B7E03C800695763 /* DependencyContainerAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688442C32B7E03C800695763 /* DependencyContainerAssembly.swift */; };
 		688442C62B7E03FE00695763 /* AppCoordinatorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688442C52B7E03FE00695763 /* AppCoordinatorFactory.swift */; };
@@ -501,7 +499,6 @@
 			files = (
 				6882A4ED2B78734700B2AE72 /* RxMoya in Frameworks */,
 				68BE75112BB02CD700331EFC /* PromiseKit in Frameworks */,
-				6882A4F22B7885DF00B2AE72 /* Swinject-Dynamic in Frameworks */,
 				681D86522B81F23D0017BF61 /* FirebaseAnalytics in Frameworks */,
 				681D866A2B81F23D0017BF61 /* FirebaseFirestore in Frameworks */,
 				681D867C2B81F23D0017BF61 /* FirebaseMessaging in Frameworks */,
@@ -514,7 +511,6 @@
 				6882A4F02B7885DF00B2AE72 /* Swinject in Frameworks */,
 				68C442752BE2424D0028BB4A /* Lottie in Frameworks */,
 				682D08712B7DF6F300A5FCC1 /* Kingfisher in Frameworks */,
-				6882A4E42B7871B200B2AE72 /* SnapKit-Dynamic in Frameworks */,
 				6882A4E92B78734700B2AE72 /* Moya in Frameworks */,
 				68FD90272BB96C4200C948FD /* SkyFloatingLabelTextField in Frameworks */,
 				68C5C48F2B94D382006C9540 /* IQKeyboardManagerSwift in Frameworks */,
@@ -2487,13 +2483,11 @@
 			name = SDUMate;
 			packageProductDependencies = (
 				6882A4E12B7871B200B2AE72 /* SnapKit */,
-				6882A4E32B7871B200B2AE72 /* SnapKit-Dynamic */,
 				6882A4E62B78734700B2AE72 /* CombineMoya */,
 				6882A4E82B78734700B2AE72 /* Moya */,
 				6882A4EA2B78734700B2AE72 /* ReactiveMoya */,
 				6882A4EC2B78734700B2AE72 /* RxMoya */,
 				6882A4EF2B7885DF00B2AE72 /* Swinject */,
-				6882A4F12B7885DF00B2AE72 /* Swinject-Dynamic */,
 				682D086D2B7DF68800A5FCC1 /* SkeletonView */,
 				682D08702B7DF6F300A5FCC1 /* Kingfisher */,
 				682D08732B7DF77100A5FCC1 /* PanModal */,
@@ -2885,7 +2879,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -2942,7 +2936,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -2967,7 +2961,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2996,7 +2990,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3200,11 +3194,6 @@
 			package = 6882A4E02B7871B200B2AE72 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
-		6882A4E32B7871B200B2AE72 /* SnapKit-Dynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6882A4E02B7871B200B2AE72 /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = "SnapKit-Dynamic";
-		};
 		6882A4E62B78734700B2AE72 /* CombineMoya */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 6882A4E52B78734700B2AE72 /* XCRemoteSwiftPackageReference "Moya" */;
@@ -3229,11 +3218,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6882A4EE2B7885DF00B2AE72 /* XCRemoteSwiftPackageReference "Swinject" */;
 			productName = Swinject;
-		};
-		6882A4F12B7885DF00B2AE72 /* Swinject-Dynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6882A4EE2B7885DF00B2AE72 /* XCRemoteSwiftPackageReference "Swinject" */;
-			productName = "Swinject-Dynamic";
 		};
 		68BE75102BB02CD700331EFC /* PromiseKit */ = {
 			isa = XCSwiftPackageProductDependency;

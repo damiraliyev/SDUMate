@@ -7,7 +7,31 @@
 
 import UIKit
 
+enum TopContributorType {
+    case gold
+    case silver
+    case bronze
+    
+    var borderImage: UIImage {
+        switch self {
+        case .gold:   return Asset.icGoldBorder.image
+        case .silver: return Asset.icSilverBorder.image
+        case .bronze: return Asset.icBronzeBorder.image
+        }
+    }
+    
+    var trophyImage: UIImage {
+        switch self {
+        case .gold:   return Asset.icTrophyGold.image
+        case .silver: return Asset.icTrophySilver.image
+        case .bronze:  return Asset.icTrophyBronze.image
+        }
+    }
+}
+
 final class TopContributorView: UIView {
+    
+    private let type: TopContributorType
     
     private let crownImageView: UIImageView = {
         let imageView = UIImageView()
@@ -21,6 +45,12 @@ final class TopContributorView: UIView {
         imageView.image = Asset.icAvatarPlaceholder.image
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
+        return imageView
+    }()
+    
+    private let borderImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = Asset.icGoldBorder.image
         return imageView
     }()
     
@@ -67,19 +97,11 @@ final class TopContributorView: UIView {
         return label
     }()
     
-    private let studyProgramLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .lavender
-        label.font = .medium12
-        label.text = "Computer science"
-        label.textAlignment = .center
-        return label
-    }()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(type: TopContributorType) {
+        self.type = type
+        super.init(frame: .zero)
         setupViews()
-//        setupConstraints()
+        setupConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -89,21 +111,17 @@ final class TopContributorView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         profileImageView.layer.cornerRadius = profileImageView.frame.height / 2
-        setupConstraints()
+        borderImageView.layer.cornerRadius = profileImageView.frame.height / 2
         pedestalView.layer.borderColor = UIColor.lightGray.cgColor
         pedestalView.layer.borderWidth = 0.5
     }
     
     private func setupViews() {
         backgroundColor = .clear
-        addSubviews([crownImageView, pedestalView, profileImageView, trophyImageView, labelsStackView])
-        labelsStackView.addArrangedSubviews([fullNameLabel, ratingLabel, studyProgramLabel])
-        fullNameLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
-        ratingLabel.setContentHuggingPriority(.defaultLow, for: .vertical)
-        studyProgramLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
-        fullNameLabel.preferredMaxLayoutWidth = fullNameLabel.frame.size.width
-        ratingLabel.preferredMaxLayoutWidth = fullNameLabel.frame.size.width
-        studyProgramLabel.preferredMaxLayoutWidth = fullNameLabel.frame.size.width
+        addSubviews([crownImageView, pedestalView, profileImageView, borderImageView, trophyImageView, labelsStackView])
+        labelsStackView.addArrangedSubviews([fullNameLabel, ratingLabel])
+        trophyImageView.image = type.trophyImage
+        borderImageView.image = type.borderImage
     }
     
     private func setupConstraints() {
@@ -117,6 +135,10 @@ final class TopContributorView: UIView {
             make.centerX.equalToSuperview()
             make.size.equalTo(70)
         }
+        borderImageView.snp.makeConstraints { make in
+            make.center.equalTo(profileImageView)
+            make.size.equalTo(72)
+        }
         trophyImageView.snp.makeConstraints { make in
             make.trailing.equalTo(profileImageView)
             make.bottom.equalTo(profileImageView.snp.bottom).offset(2)
@@ -125,16 +147,15 @@ final class TopContributorView: UIView {
         labelsStackView.snp.makeConstraints { make in
             make.top.equalTo(profileImageView.snp.bottom).offset(7)
             make.leading.trailing.equalToSuperview().inset(4).priority(.high)
-            make.bottom.equalToSuperview().offset(-10).priority(.high)
         }
         pedestalView.snp.makeConstraints { make in
             make.top.equalTo(profileImageView.snp.centerY)
             make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(labelsStackView)
+            make.bottom.equalToSuperview()
         }
     }
     
-//    override var intrinsicContentSize: CGSize {
-//        return CGSize(width: 120, height: 180)
-//    }
+    func hideCrown() {
+        crownImageView.safeHide()
+    }
 }

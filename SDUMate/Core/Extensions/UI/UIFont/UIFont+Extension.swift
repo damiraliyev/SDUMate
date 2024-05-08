@@ -44,6 +44,7 @@ extension UIFont {
     
     static let bold14 = UIFont(name: Constants.bold, size: 14)!
     static let bold16 = UIFont(name: Constants.bold, size: 16)!
+    static let bold20 = UIFont(name: Constants.bold, size: 20)!
     static let bold22 = UIFont(name: Constants.bold, size: 22)
     static let bold24 = UIFont(name: Constants.bold, size: 24)
     static let bold48 = UIFont(name: Constants.bold, size: 48)!

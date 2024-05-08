@@ -136,6 +136,7 @@
 		6838F7452B93988E00265406 /* StudySetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6838F7442B93988E00265406 /* StudySetupViewController.swift */; };
 		6838F7472B9398B900265406 /* StudySetupPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6838F7462B9398B900265406 /* StudySetupPresenter.swift */; };
 		683AABE02BB8EBCD00B33B93 /* EditableUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683AABDF2BB8EBCD00B33B93 /* EditableUserInfo.swift */; };
+		6849882E2BEBE78C00A0F6D1 /* ContributorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6849882D2BEBE78C00A0F6D1 /* ContributorCell.swift */; };
 		684BA7BA2B896ECA0055BEE3 /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684BA7B92B896EC90055BEE3 /* GradientButton.swift */; };
 		68530AB32B9DACAC00E59383 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68530AB22B9DACAC00E59383 /* UserInfo.swift */; };
 		68530AB52B9DD3A400E59383 /* DefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68530AB42B9DD3A400E59383 /* DefaultCell.swift */; };
@@ -377,6 +378,7 @@
 		6838F7442B93988E00265406 /* StudySetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudySetupViewController.swift; sourceTree = "<group>"; };
 		6838F7462B9398B900265406 /* StudySetupPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudySetupPresenter.swift; sourceTree = "<group>"; };
 		683AABDF2BB8EBCD00B33B93 /* EditableUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableUserInfo.swift; sourceTree = "<group>"; };
+		6849882D2BEBE78C00A0F6D1 /* ContributorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributorCell.swift; sourceTree = "<group>"; };
 		684BA7B92B896EC90055BEE3 /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 		68530AB22B9DACAC00E59383 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		68530AB42B9DD3A400E59383 /* DefaultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCell.swift; sourceTree = "<group>"; };
@@ -1415,6 +1417,7 @@
 				687376782BCE1DD400B3F08A /* RatingHeaderView.swift */,
 				6873767A2BCE1E9400B3F08A /* TopContributorView.swift */,
 				6831E2382BDE2EC400278233 /* RatingCell.swift */,
+				6849882D2BEBE78C00A0F6D1 /* ContributorCell.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -2733,6 +2736,7 @@
 				68CFF5252BABAF72006C9AF8 /* SessionsModuleFactory.swift in Sources */,
 				688442C62B7E03FE00695763 /* AppCoordinatorFactory.swift in Sources */,
 				681286DF2BB80AC100F69DEE /* EditProfileCoordinator.swift in Sources */,
+				6849882E2BEBE78C00A0F6D1 /* ContributorCell.swift in Sources */,
 				682C4FDB2BB15A3C00C792CB /* HomeManager.swift in Sources */,
 				68929C132BA6F826000A38E9 /* HomeCoordinator.swift in Sources */,
 				687376792BCE1DD400B3F08A /* RatingHeaderView.swift in Sources */,

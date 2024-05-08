@@ -98,19 +98,22 @@ final class ProvideFeedbackPresenter: IProvideFeedbackPresenter {
     
     private func updateUserRankingRates() {
         var newNumberOfProvidedHelp = otherSide.numberOfProvidedHelp
-        if session.announcement?.type == .request && otherSide.userId == session.respondentId {
+        var newPoints = otherSide.points
+        let firstCase = session.announcement?.type == .request && otherSide.userId == session.respondentId
+        let secondCase = session.announcement?.type == .offer && otherSide.userId == session.announcerId
+        if firstCase || secondCase {
             newNumberOfProvidedHelp += 1
+            let additionalPoints = switch providedStars {
+            case 5: 7
+            case 4: 5
+            case 3: 0
+            case 2: -2
+            case 1: -3
+            case 0: -5
+            default: -7
+            }
+            newPoints = otherSide.points + additionalPoints
         }
-        let additionalPoints = switch providedStars {
-        case 5: 7
-        case 4: 5
-        case 3: 0
-        case 2: -2
-        case 1: -3
-        case 0: -5
-        default: -7
-        }
-        let newPoints = otherSide.points + additionalPoints
         let newReviewsCount = otherSide.reviewsCount + 1
         let ratingsSum = (otherSide.rating * Double(newReviewsCount) + Double(providedStars))
         let newRating = ratingsSum / Double(newReviewsCount + 1)

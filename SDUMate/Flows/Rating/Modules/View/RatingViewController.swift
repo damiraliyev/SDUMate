@@ -32,15 +32,13 @@ final class RatingViewController: BaseViewController, IRatingView {
     
     private lazy var headerView = RatingHeaderView()
     
-    private lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.backgroundColor = ._110F2F
-        tableView.delegate = self
-        tableView.dataSource = self
-//        tableView.estimatedSectionHeaderHeight = UITableView.automaticDimension
-//        tableView.estimatedSectionHeaderHeight = 100
-        tableView.contentInsetAdjustmentBehavior = .never
-        return tableView
+    private lazy var collectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
+        collectionView.backgroundColor = ._110F2F
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(ContributorCell.self)
+        return collectionView
     }()
     
     override func viewDidLoad() {
@@ -49,19 +47,10 @@ final class RatingViewController: BaseViewController, IRatingView {
         setupConstraints()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        headerView.snp.remakeConstraints { make in
-            make.height.equalTo(headerView.getHeight())
-            make.top.equalTo(topContributorsLabel.snp.bottom).offset(8).priority(.high)
-            make.leading.trailing.equalToSuperview().inset(16)
-        }
-    }
-    
     private func setupViews() {
         view.backgroundColor = ._110F2F
-        view.addSubviews([topContributorsLabel, glassButton, headerView, tableView])
-        tableView.contentInset = UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
+        view.addSubviews([topContributorsLabel, headerView, collectionView])
+        collectionView.contentInset = UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
     }
     
     private func setupConstraints() {
@@ -69,43 +58,56 @@ final class RatingViewController: BaseViewController, IRatingView {
             make.top.equalTo(view.safeArea.top).offset(22)
             make.leading.equalToSuperview().offset(16)
         }
-        glassButton.snp.makeConstraints { make in
-            make.centerY.equalTo(topContributorsLabel)
-            make.trailing.equalToSuperview().offset(-16)
-            make.size.equalTo(19)
-        }
+//        glassButton.snp.makeConstraints { make in
+//            make.centerY.equalTo(topContributorsLabel)
+//            make.trailing.equalToSuperview().offset(-16)
+//            make.size.equalTo(19)
+//        }
         headerView.snp.makeConstraints { make in
             make.top.equalTo(topContributorsLabel.snp.bottom).offset(8)
             make.leading.trailing.equalToSuperview().inset(16)
+            make.height.equalTo(212)
         }
-        tableView.snp.makeConstraints { make in
+        collectionView.snp.makeConstraints { make in
             make.top.equalTo(headerView.snp.bottom).offset(8)
             make.leading.trailing.equalToSuperview().inset(16)
             make.bottom.equalToSuperview()
         }
     }
+    
+    private func createLayout() -> UICollectionViewCompositionalLayout {
+        return UICollectionViewCompositionalLayout { _, _ in
+            let item = NSCollectionLayoutItem(
+                layoutSize: NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1),
+                    heightDimension: .estimated(74)
+                )
+            )
+            let group = NSCollectionLayoutGroup.vertical(
+                layoutSize: NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1),
+                    heightDimension: .estimated(74)),
+                subitems: [item]
+            )
+            let section = NSCollectionLayoutSection(group: group)
+            section.interGroupSpacing = 11
+            return section
+        }
+    }
 }
 
-extension RatingViewController: UITableViewDelegate {
-    
+extension RatingViewController: UICollectionViewDelegate {
+
 }
 
-extension RatingViewController: UITableViewDataSource {
+extension RatingViewController: UICollectionViewDataSource {
     
-//    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
-//        return 220
-//    }
-    
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return 292
-//    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        50
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell: ContributorCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+        return cell
     }
-    
 }

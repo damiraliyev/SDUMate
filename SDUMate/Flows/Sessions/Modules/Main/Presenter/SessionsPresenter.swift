@@ -46,6 +46,7 @@ final class SessionsPresenter: ISessionsPresenter {
             self.view?.reload()
         } .catch { error in
             self.coordinator?.showErrorAlert(error: error.localizedDescription)
+            self.view?.reload()
         }
     }
     

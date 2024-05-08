@@ -96,14 +96,5 @@ final class FeedbackCell: UITableViewCell {
             }
             starsStackView.addArrangedSubview(starImageView)
         }
-        for num in stride(from: starRating + 1, through: 5, by: 1) {
-            let starImageView = UIImageView()
-            starImageView.image = Asset.icStarEmptyGold.image
-            starImageView.contentMode = .scaleAspectFit
-            starImageView.snp.makeConstraints { make in
-                make.height.equalTo(16)
-            }
-            starsStackView.addArrangedSubview(starImageView)
-        }
     }
 }

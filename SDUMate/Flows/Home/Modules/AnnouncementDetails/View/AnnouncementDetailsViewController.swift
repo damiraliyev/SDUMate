@@ -51,6 +51,7 @@ final class AnnouncementDetailsViewController: BaseViewController, IAnnouncement
         label.textColor = .white
         label.font = .bold24
         label.text = "Software engineering"
+        label.numberOfLines = 0
         return label
     }()
     
@@ -142,7 +143,7 @@ final class AnnouncementDetailsViewController: BaseViewController, IAnnouncement
         }
         labelsStackView.snp.makeConstraints { make in
             make.top.equalTo(imageView.snp.bottom).offset(47)
-            make.leading.equalToSuperview().offset(16)
+            make.leading.trailing.equalToSuperview().inset(16)
         }
         descriptionView.snp.makeConstraints { make in
             make.top.equalTo(labelsStackView.snp.bottom).offset(16)

@@ -138,6 +138,7 @@ final class PriceSetupViewController: BaseViewController, IPriceSetupView {
         } else {
             textField.safeShow()
         }
+        hideError()
     }
     
     @objc func continueTapped() {

@@ -34,6 +34,7 @@ final class FeedbacksPresenter: IFeedbacksPresenter {
         UserManager.shared.fetchFeedbacks(userId: userId).done { feedbacks in
             self.feedbacks = feedbacks
             self.view?.reload()
+            self.showEmptyStateIfNeeded()
         }.catch { error in
             self.coordinator?.showErrorAlert(error: error.localizedDescription)
         }

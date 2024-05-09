@@ -20,10 +20,14 @@ final class CategorySelectionPresenter: ICategorySelectionPresenter {
     private weak var coordinator: INewPostCoordinator?
     private var announcement: Announcement
     var categories: [CategoryFilter] = [
-        CategoryFilter(name: "Software Engineering", isChosen: false),
-        CategoryFilter(name: "UI/UX Design", isChosen: false),
-        CategoryFilter(name: "Calculus", isChosen: false),
-        CategoryFilter(name: "Linear Algebra", isChosen: false)
+        CategoryFilter(category: .softwareDevelopment, isChosen: false),
+        CategoryFilter(category: .math, isChosen: false),
+        CategoryFilter(category: .dataAnalysis, isChosen: false),
+        CategoryFilter(category: .languages, isChosen: false),
+        CategoryFilter(category: .literature, isChosen: false),
+        CategoryFilter(category: .biology, isChosen: false),
+        CategoryFilter(category: .chemistry, isChosen: false),
+        CategoryFilter(category: .others, isChosen: false)
     ]
     
     init(announcement: Announcement, view: ICategorySelectionView, coordinator: INewPostCoordinator) {
@@ -41,7 +45,7 @@ final class CategorySelectionPresenter: ICategorySelectionPresenter {
             view?.shakeViews()
             return
         }
-        announcement.category = chosen.name
+        announcement.category = chosen.category.title
         coordinator?.showDescriptionSetupView(announcement: announcement)
     }
     

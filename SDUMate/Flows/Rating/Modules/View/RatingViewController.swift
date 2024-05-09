@@ -141,6 +141,7 @@ final class RatingViewController: BaseViewController, IRatingView {
     }
     
     func hideLoading() {
+        refreshControl.endRefreshing()
         collectionView.stopSkeletonAnimation()
         collectionView.hideSkeleton()
     }

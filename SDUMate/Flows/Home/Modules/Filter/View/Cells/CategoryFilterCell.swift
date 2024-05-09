@@ -56,6 +56,6 @@ final class CategoryFilterCell: UITableViewCell {
     
     func configure(with category: CategoryFilter) {
         category.isChosen ? checkboxButton.setImage(Asset.icCheckedBox.image, for: .normal) : checkboxButton.setImage(Asset.icUncheckedBox.image, for: .normal)
-        titleLabel.text = category.name
+        titleLabel.text = category.category.title
     }
 }

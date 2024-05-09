@@ -9,11 +9,13 @@ import UIKit
 
 final class AnnouncementCell: UICollectionViewCell {
     
-    private let imageView: UIImageView = {
+    private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = Asset.icMath.image
         imageView.backgroundColor = ._323266
         imageView.contentMode = .scaleAspectFit
+        imageView.layer.cornerRadius = 16
+        imageView.clipsToBounds = true
 //        imageView.isSkeletonable = true
         return imageView
     }()
@@ -25,6 +27,7 @@ final class AnnouncementCell: UICollectionViewCell {
         label.text = "Software engineering"
         label.numberOfLines = 2
         label.textAlignment = .center
+        label.adjustsFontSizeToFitWidth = true
 //        label.isSkeletonable = true
 //        label.lastLineFillPercent = 80
         return label
@@ -95,6 +98,7 @@ final class AnnouncementCell: UICollectionViewCell {
     }
     
     override func prepareForReuse() {
+        imageView.image = nil
         categoryLabel.text = nil
         titleLabel.text = nil
         descriptionLabel.text = nil
@@ -164,5 +168,7 @@ final class AnnouncementCell: UICollectionViewCell {
         ratingLabel.text = "\(announcement.announcer?.rating ?? 0)"
         reviewsCountLabel.text = "(\(announcement.announcer?.reviewsCount ?? 0))"
         priceView.setValue(to: announcement.price)
+        let category = AnnouncementCategory(rawValue: announcement.category) ?? .others
+        imageView.image = category.image
     }
 }

@@ -138,7 +138,7 @@ final class SessionCell: UICollectionViewCell {
         titleAndCategoryLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
         recipientLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(12)
-            make.bottom.equalTo(dateLabel.snp.top).offset(-5)
+            make.bottom.equalTo(dateLabel.snp.top).offset(-7)
             make.height.equalTo(15)
         }
         dateLabel.snp.makeConstraints { make in

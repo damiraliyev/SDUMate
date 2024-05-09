@@ -144,6 +144,7 @@
 		685571C52B9ABA7300865191 /* VerificationSentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685571C42B9ABA7300865191 /* VerificationSentViewController.swift */; };
 		6867BFBD2BECFE7E0026B300 /* TopContributorInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6867BFBC2BECFE7E0026B300 /* TopContributorInfoViewController.swift */; };
 		6867BFBF2BECFF660026B300 /* TopContributorInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6867BFBE2BECFF660026B300 /* TopContributorInfoView.swift */; };
+		6867BFC12BED4D5B0026B300 /* AnnouncementCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6867BFC02BED4D5B0026B300 /* AnnouncementCategory.swift */; };
 		687376792BCE1DD400B3F08A /* RatingHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687376782BCE1DD400B3F08A /* RatingHeaderView.swift */; };
 		6873767B2BCE1E9400B3F08A /* TopContributorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6873767A2BCE1E9400B3F08A /* TopContributorView.swift */; };
 		6882A4CB2B786AD400B2AE72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6882A4CA2B786AD400B2AE72 /* AppDelegate.swift */; };
@@ -389,6 +390,7 @@
 		685571C42B9ABA7300865191 /* VerificationSentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationSentViewController.swift; sourceTree = "<group>"; };
 		6867BFBC2BECFE7E0026B300 /* TopContributorInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopContributorInfoViewController.swift; sourceTree = "<group>"; };
 		6867BFBE2BECFF660026B300 /* TopContributorInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopContributorInfoView.swift; sourceTree = "<group>"; };
+		6867BFC02BED4D5B0026B300 /* AnnouncementCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementCategory.swift; sourceTree = "<group>"; };
 		687376782BCE1DD400B3F08A /* RatingHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingHeaderView.swift; sourceTree = "<group>"; };
 		6873767A2BCE1E9400B3F08A /* TopContributorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopContributorView.swift; sourceTree = "<group>"; };
 		6882A4C72B786AD400B2AE72 /* SDUMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDUMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1671,6 +1673,7 @@
 				68929C112BA6F7F3000A38E9 /* Modules */,
 				68929C102BA6F7EF000A38E9 /* Factory */,
 				68929C0F2BA6F7E3000A38E9 /* Coordinator */,
+				6867BFC02BED4D5B0026B300 /* AnnouncementCategory.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -2755,6 +2758,7 @@
 				6867BFBF2BECFF660026B300 /* TopContributorInfoView.swift in Sources */,
 				68CFF5252BABAF72006C9AF8 /* SessionsModuleFactory.swift in Sources */,
 				688442C62B7E03FE00695763 /* AppCoordinatorFactory.swift in Sources */,
+				6867BFC12BED4D5B0026B300 /* AnnouncementCategory.swift in Sources */,
 				681286DF2BB80AC100F69DEE /* EditProfileCoordinator.swift in Sources */,
 				6849882E2BEBE78C00A0F6D1 /* ContributorCell.swift in Sources */,
 				682C4FDB2BB15A3C00C792CB /* HomeManager.swift in Sources */,

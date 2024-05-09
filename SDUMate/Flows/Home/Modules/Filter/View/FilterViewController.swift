@@ -9,7 +9,7 @@ import UIKit
 import PanModal
 
 struct CategoryFilter {
-    let name: String
+    let category: AnnouncementCategory
     var isChosen: Bool
 }
 
@@ -30,10 +30,14 @@ final class FilterViewController: BaseViewController, IFilterView {
     private var selectedType: AnnounceType?
     
     private var categories: [CategoryFilter] = [
-        CategoryFilter(name: "Software Engineering", isChosen: false),
-        CategoryFilter(name: "UI/UX Design", isChosen: false),
-        CategoryFilter(name: "Calculus", isChosen: false),
-        CategoryFilter(name: "Linear Algebra", isChosen: false)
+        CategoryFilter(category: .softwareDevelopment, isChosen: false),
+        CategoryFilter(category: .math, isChosen: false),
+        CategoryFilter(category: .dataAnalysis, isChosen: false),
+        CategoryFilter(category: .languages, isChosen: false),
+        CategoryFilter(category: .literature, isChosen: false),
+        CategoryFilter(category: .biology, isChosen: false),
+        CategoryFilter(category: .chemistry, isChosen: false),
+        CategoryFilter(category: .others, isChosen: false)
     ]
     
     private lazy var closeButton: UIButton = {
@@ -197,7 +201,7 @@ final class FilterViewController: BaseViewController, IFilterView {
         freeOnlyView.isSelected = filter.isFreeOnly
         filter.categories.forEach {
             for i in 0..<categories.count {
-                if categories[i].name == $0 {
+                if categories[i].category.title == $0 {
                     categories[i].isChosen = true
                 }
             }
@@ -243,7 +247,7 @@ final class FilterViewController: BaseViewController, IFilterView {
         let selectedCategories = categories.filter {
             $0.isChosen == true
         }.map { filter in
-            filter.name
+            filter.category.title
         }
         let appliedFilter = AppliedFilter(type: selectedType, isFreeOnly: freeOnlyView.isSelected, categories: selectedCategories)
         delegate?.filtersApplied(filter: appliedFilter)

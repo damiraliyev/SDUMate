@@ -48,7 +48,7 @@ final class ProfileViewController: BaseViewController, IProfileView {
         tableView.tableHeaderView = profileHeaderView
         let footerView = ProfileFooterView(frame: CGRect(x: 0, y: 0, width: UIView.screenWidth - 32, height: 54))
         tableView.tableFooterView = footerView
-        footerView.delegate = presenter as? ProfileFooterDelegate
+        footerView.delegate = self
         tableView.backgroundColor = ._110F2F
         tableView.rowHeight = 50
         tableView.sectionHeaderHeight = 20
@@ -132,5 +132,16 @@ extension ProfileViewController: UITableViewDataSource {
         let type = sections[indexPath.section].items[indexPath.row]
         cell.configure(with: type)
         return cell
+    }
+}
+
+extension ProfileViewController: ProfileFooterDelegate {
+    func logOutTapped() {
+        let actionSheet = UIAlertController(title: "Sign out", message: "Are you sure?", preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        actionSheet.addAction(UIAlertAction(title: "Sign Out", style: .destructive, handler: { [weak self] _ in
+            self?.presenter?.logOutTapped()
+        }))
+        present(actionSheet, animated: true)
     }
 }

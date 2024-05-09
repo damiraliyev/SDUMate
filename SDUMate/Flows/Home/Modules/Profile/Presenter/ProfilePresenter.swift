@@ -13,6 +13,7 @@ protocol IProfilePresenter: AnyObject {
     func backTapped()
     func viewDidLoad()
     func cameraTapped()
+    func logOutTapped()
 }
 
 final class ProfilePresenter: NSObject, IProfilePresenter {
@@ -193,17 +194,15 @@ extension ProfilePresenter: PHPickerViewControllerDelegate {
             }
         }
     }
+    
+    func logOutTapped() {
+        AuthManager.shared.logOut()
+        coordinator?.didTapLogOut()
+    }
 }
 
 extension ProfilePresenter: ProfileHeaderViewDelegate {
     func changeTapped() {
-        coordinator?.showEditProfileView(user: self.user)
-    }
-}
-
-extension ProfilePresenter: ProfileFooterDelegate {
-    func logOutTapped() {
-        AuthManager.shared.logOut()
-        coordinator?.didTapLogOut()
+//        coordinator?.showEditProfileView(user: self.user)
     }
 }

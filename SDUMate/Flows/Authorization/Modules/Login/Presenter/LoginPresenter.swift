@@ -31,6 +31,8 @@ final class LoginPresenter: ILoginPresenter {
     
     func loginTapped() {
         let fullEmail = email + "@stu.sdu.edu.kz"
+        view?.showLoading()
+        view?.disableButtons()
         authManager.login(email: fullEmail, password: password) { [weak self] result in
             guard let self else { return }
             switch result {
@@ -39,6 +41,8 @@ final class LoginPresenter: ILoginPresenter {
             case .failure(let error):
                 handle(error: error)
             }
+            view?.hideLoading()
+            view?.enableButtons()
         }
     }
     

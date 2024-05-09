@@ -6,9 +6,15 @@
 //
 
 import UIKit
+import Lottie
 
 protocol ILoginView: Presentable {
     var presenter: ILoginPresenter? { get set }
+    
+    func showLoading()
+    func hideLoading()
+    func enableButtons()
+    func disableButtons()
 }
 
 final class LoginViewController: BaseViewController, ILoginView {
@@ -91,6 +97,17 @@ final class LoginViewController: BaseViewController, ILoginView {
         return label
     }()
     
+    private lazy var loadingAnimationView: LottieAnimationView = {
+        let animation = LottieAnimation.named("Loading")
+        let animationView = LottieAnimationView(animation: animation)
+        animationView.contentMode = .scaleAspectFill
+        animationView.loopMode = .loop
+        animationView.safeHide()
+        let colorProvider = ColorValueProvider(UIColor.lavender.lottieColorValue)
+        animationView.setValueProvider(colorProvider, keypath: AnimationKeypath(keypath: "**.Color"))
+        return animationView
+    }()
+    
     override func loadView() {
         super.loadView()
         self.view = AuthView()
@@ -110,7 +127,7 @@ final class LoginViewController: BaseViewController, ILoginView {
     
     private func setupViews() {
         view.addSubviews([navigationBar, welcomeLabel, loginToAccountLabel, fieldsStackView, forgotPasswordLabel,
-                          loginButton, signUpLabel])
+                          loginButton, signUpLabel, loadingAnimationView])
         fieldsStackView.addArrangedSubviews([emailFieldView, passwordFieldView])
         setupSignUpAttributedText()
     }
@@ -143,6 +160,10 @@ final class LoginViewController: BaseViewController, ILoginView {
             make.top.equalTo(loginButton.snp.bottom).offset(27)
             make.centerX.equalToSuperview()
         }
+        loadingAnimationView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.size.equalTo(120)
+        }
     }
     
     private func setupFieldsDelegate() {
@@ -165,6 +186,26 @@ final class LoginViewController: BaseViewController, ILoginView {
         let signUpString = NSAttributedString(string: "Sign Up", attributes: signUpAttributes)
         rootString.append(signUpString)
         signUpLabel.attributedText = rootString
+    }
+    
+    func showLoading() {
+        loadingAnimationView.safeShow()
+        loadingAnimationView.play()
+    }
+    
+    func hideLoading() {
+        loadingAnimationView.safeHide()
+        loadingAnimationView.stop()
+    }
+    
+    func enableButtons() {
+        loginButton.isUserInteractionEnabled = false
+        signUpLabel.isUserInteractionEnabled = false
+    }
+    
+    func disableButtons() {
+        loginButton.isUserInteractionEnabled = true
+        signUpLabel.isUserInteractionEnabled = true
     }
     
     @objc func loginTapped() {

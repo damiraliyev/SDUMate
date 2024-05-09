@@ -13,6 +13,7 @@ protocol IProfilePresenter: AnyObject {
     func backTapped()
     func viewDidLoad()
     func cameraTapped()
+    func reviewsTapped()
     func logOutTapped()
 }
 
@@ -61,6 +62,11 @@ final class ProfilePresenter: NSObject, IProfilePresenter {
     func cameraTapped() {
         let options: [AttachmentOption] = [.camera, .photoLibrary]
         coordinator?.showPhotoSelectAlert(with: options, handler: self)
+    }
+    
+    func reviewsTapped() {
+        guard let userId = user?.userId else { return }
+        coordinator?.showFeedbacks(userId: userId)
     }
     
     func saveProfileImage(data: Data) {

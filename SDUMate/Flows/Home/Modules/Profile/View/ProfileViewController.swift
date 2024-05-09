@@ -114,7 +114,14 @@ final class ProfileViewController: BaseViewController, IProfileView {
 }
 
 extension ProfileViewController: UITableViewDelegate {
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case 0:
+            presenter?.reviewsTapped()
+        default:
+            break
+        }
+    }
 }
 
 extension ProfileViewController: UITableViewDataSource {

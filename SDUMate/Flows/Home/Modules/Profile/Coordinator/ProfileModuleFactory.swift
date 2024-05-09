@@ -49,4 +49,11 @@ final class ProfileModuleFactory {
         )
         return coordinator
     }
+    
+    func makeFeedbacksView(userId: String, coordinator: IAnnouncementResponderInfoCoordinator) -> IFeedbacksView {
+        let view: IFeedbacksView = FeedbacksViewController()
+        let presenter: IFeedbacksPresenter = FeedbacksPresenter(view: view, coordinator: coordinator, userId: userId)
+        view.presenter = presenter
+        return view
+    }
 }

@@ -52,6 +52,13 @@ final class FeedbackCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        fullNameLabel.text = nil
+        dateLabel.text = nil
+        feedBackLabel.text = nil
+        starsStackView.removeArrangedSubviewsCompletely()
+    }
+    
     private func setupViews() {
         backgroundColor = ._110F2F
         selectionStyle = .none
@@ -87,6 +94,7 @@ final class FeedbackCell: UITableViewCell {
     }
     
     func configureStars(starRating: CGFloat) {
+        print("STAR RATING", starRating)
         for num in stride(from: 0, to: starRating, by: 1) {
             let starImageView = UIImageView()
             starImageView.image = Asset.icStar.image

@@ -142,6 +142,8 @@
 		68530AB32B9DACAC00E59383 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68530AB22B9DACAC00E59383 /* UserInfo.swift */; };
 		68530AB52B9DD3A400E59383 /* DefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68530AB42B9DD3A400E59383 /* DefaultCell.swift */; };
 		685571C52B9ABA7300865191 /* VerificationSentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685571C42B9ABA7300865191 /* VerificationSentViewController.swift */; };
+		6867BFBD2BECFE7E0026B300 /* TopContributorInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6867BFBC2BECFE7E0026B300 /* TopContributorInfoViewController.swift */; };
+		6867BFBF2BECFF660026B300 /* TopContributorInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6867BFBE2BECFF660026B300 /* TopContributorInfoView.swift */; };
 		687376792BCE1DD400B3F08A /* RatingHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687376782BCE1DD400B3F08A /* RatingHeaderView.swift */; };
 		6873767B2BCE1E9400B3F08A /* TopContributorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6873767A2BCE1E9400B3F08A /* TopContributorView.swift */; };
 		6882A4CB2B786AD400B2AE72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6882A4CA2B786AD400B2AE72 /* AppDelegate.swift */; };
@@ -385,6 +387,8 @@
 		68530AB22B9DACAC00E59383 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		68530AB42B9DD3A400E59383 /* DefaultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCell.swift; sourceTree = "<group>"; };
 		685571C42B9ABA7300865191 /* VerificationSentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationSentViewController.swift; sourceTree = "<group>"; };
+		6867BFBC2BECFE7E0026B300 /* TopContributorInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopContributorInfoViewController.swift; sourceTree = "<group>"; };
+		6867BFBE2BECFF660026B300 /* TopContributorInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopContributorInfoView.swift; sourceTree = "<group>"; };
 		687376782BCE1DD400B3F08A /* RatingHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingHeaderView.swift; sourceTree = "<group>"; };
 		6873767A2BCE1E9400B3F08A /* TopContributorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopContributorView.swift; sourceTree = "<group>"; };
 		6882A4C72B786AD400B2AE72 /* SDUMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDUMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1428,6 +1432,7 @@
 				6873767A2BCE1E9400B3F08A /* TopContributorView.swift */,
 				6831E2382BDE2EC400278233 /* RatingCell.swift */,
 				6849882D2BEBE78C00A0F6D1 /* ContributorCell.swift */,
+				6867BFBE2BECFF660026B300 /* TopContributorInfoView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -2070,6 +2075,7 @@
 			children = (
 				687376772BCE1DBE00B3F08A /* CustomViews */,
 				68CFF52E2BABB178006C9AF8 /* RatingViewController.swift */,
+				6867BFBC2BECFE7E0026B300 /* TopContributorInfoViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2742,9 +2748,11 @@
 				68CFF55C2BAC1154006C9AF8 /* AnnouncementDetailsViewController.swift in Sources */,
 				68170C5E2B9C9A7500289980 /* UserManager.swift in Sources */,
 				68CFF5352BABB259006C9AF8 /* RatingCoordinator.swift in Sources */,
+				6867BFBD2BECFE7E0026B300 /* TopContributorInfoViewController.swift in Sources */,
 				68859EA82BC8B5D0002A8FD9 /* Feedback.swift in Sources */,
 				6820574A2BA7E5E500A0180C /* ForgotPasswordViewController.swift in Sources */,
 				681286E52BB80B9800F69DEE /* EditProfilePresenter.swift in Sources */,
+				6867BFBF2BECFF660026B300 /* TopContributorInfoView.swift in Sources */,
 				68CFF5252BABAF72006C9AF8 /* SessionsModuleFactory.swift in Sources */,
 				688442C62B7E03FE00695763 /* AppCoordinatorFactory.swift in Sources */,
 				681286DF2BB80AC100F69DEE /* EditProfileCoordinator.swift in Sources */,

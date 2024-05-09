@@ -121,9 +121,9 @@ public extension UIColor {
         UIColor(hex: 0xBEBEB6).withAlphaComponent(0.2)
     }
     
-    static var gold: UIColor {
-        UIColor(hex: 0xFFD700)
-    }
+//    static var gold: UIColor {
+//        UIColor(hex: 0xFFD700)
+//    }
     
     static var bpBorderColor: UIColor {
         UIColor(hex: 0xCBD3DA)
@@ -287,6 +287,18 @@ public extension UIColor {
     
     static var _5F5F84: UIColor {
         return UIColor(hex: 0x5F5F84)
+    }
+    
+    static var gold: UIColor {
+        return UIColor(hex: 0xFFFA82)
+    }
+    
+    static var silver: UIColor {
+        return UIColor(hex: 0xF5F8FF)
+    }
+    
+    static var bronze: UIColor {
+        return UIColor(hex: 0xFFB649)
     }
 
     convenience init(hex: UInt) {

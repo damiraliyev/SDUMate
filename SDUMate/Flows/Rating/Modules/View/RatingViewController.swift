@@ -37,6 +37,13 @@ final class RatingViewController: BaseViewController, IRatingView {
     
     private lazy var headerView = RatingHeaderView()
     
+    private lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = .lavender
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        return refreshControl
+    }()
+    
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.backgroundColor = ._110F2F
@@ -44,6 +51,7 @@ final class RatingViewController: BaseViewController, IRatingView {
         collectionView.dataSource = self
         collectionView.register(ContributorCell.self)
         collectionView.isSkeletonable = true
+        collectionView.refreshControl = refreshControl
         return collectionView
     }()
     
@@ -58,6 +66,9 @@ final class RatingViewController: BaseViewController, IRatingView {
         view.backgroundColor = ._110F2F
         view.addSubviews([topContributorsLabel, headerView, collectionView])
         collectionView.contentInset = UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
+        headerView.contributorTapped = { [weak self] type in
+            self?.topContributorTapped(type: type)
+        }
     }
     
     private func setupConstraints() {
@@ -102,6 +113,21 @@ final class RatingViewController: BaseViewController, IRatingView {
         }
     }
     
+    private func topContributorTapped(type: TopContributorType) {
+        let place: Int
+        switch type {
+        case .gold:
+            place = 1
+        case .silver:
+            place = 2
+        case .bronze:
+            place = 3
+        case .normal:
+            place = 0
+        }
+        presenter?.topContributorTapped(type: type, place: place)
+    }
+    
     func configureTops(goldUser: DBUser?, silverUser: DBUser?, bronzeUser: DBUser?) {
         headerView.configure(goldUser: goldUser, silverUser: silverUser, bronzeUser: bronzeUser)
     }
@@ -121,6 +147,10 @@ final class RatingViewController: BaseViewController, IRatingView {
     
     func reload() {
         collectionView.reloadData()
+    }
+    
+    @objc func refreshData() {
+        presenter?.viewDidLoad()
     }
 }
 

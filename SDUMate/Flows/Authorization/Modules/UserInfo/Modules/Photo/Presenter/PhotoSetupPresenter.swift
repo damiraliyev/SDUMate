@@ -48,15 +48,18 @@ final class PhotoSetupPresenter: NSObject, IPhotoSetupPresenter {
     }
     
     private func saveUserInfo() {
+        view?.showLoading()
         guard let userId = authManager.getAuthUser()?.uid else { return }
-        userManager.addAdditionalUserInfo(userId: userId, userInfo: userInfo) { error in
+        userManager.addAdditionalUserInfo(userId: userId, userInfo: userInfo) { [weak self] error in
             guard error == nil else { return }
             print("🎾🎾🎾 User info was saved")
+            self?.view?.hideLoading()
         }
     }
     
     func saveProfileImage(data: Data) {
         guard let userId = authManager.getAuthUser()?.uid else { return }
+        view?.showLoading()
         if let imagePath = userInfo.profileImagePath {
             userInfo.profileImageUrl = nil
             userInfo.profileImagePath = nil
@@ -69,14 +72,15 @@ final class PhotoSetupPresenter: NSObject, IPhotoSetupPresenter {
     }
     
     private func uploadImageToStorage(userId: String, data: Data) {
-        storageManager.saveImage(userId: userId, data: data) { result in
+        storageManager.saveImage(userId: userId, data: data) { [weak self] result in
             switch result {
             case .success(let metaResult):
-                self.userInfo.profileImagePath = metaResult.imagePath
-                self.fetchImageUrl(path: metaResult.imagePath)
+                self?.userInfo.profileImagePath = metaResult.imagePath
+                self?.fetchImageUrl(path: metaResult.imagePath)
             case .failure(let error):
-                self.coordinator?.showErrorAlert(error: error.description)
+                self?.coordinator?.showErrorAlert(error: error.description)
             }
+            self?.view?.hideLoading()
         }
     }
     

@@ -11,6 +11,8 @@ protocol IFeedbacksView: Presentable {
     var presenter: IFeedbacksPresenter? { get set }
     
     func reload()
+    func showEmptyState()
+    func hideEmptyState()
 }
 
 final class FeedbacksViewController: BaseViewController, IFeedbacksView {
@@ -31,6 +33,17 @@ final class FeedbacksViewController: BaseViewController, IFeedbacksView {
         tableView.register(FeedbackCell.self)
         return tableView
     }()
+    
+    private let emptyFeedbacksLabel: UILabel = {
+        let label = UILabel()
+        label.font = .regular20
+        label.textColor = .lavender
+        label.text = "You haven't received feedbacks yet."
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        return label
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +67,14 @@ final class FeedbacksViewController: BaseViewController, IFeedbacksView {
     
     func reload() {
         tableView.reloadData()
+    }
+    
+    func showEmptyState() {
+        tableView.backgroundView = emptyFeedbacksLabel
+    }
+    
+    func hideEmptyState() {
+        tableView.backgroundView = nil
     }
 }
 

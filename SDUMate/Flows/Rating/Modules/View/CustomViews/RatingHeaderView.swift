@@ -9,6 +9,8 @@ import UIKit
 
 final class RatingHeaderView: UIView {
     
+    var contributorTapped: ((_ type: TopContributorType) -> Void)?
+    
     let goldContributor = TopContributorView(type: .gold)
     let silverContributor = TopContributorView(type: .silver)
     let bronzeContributor = TopContributorView(type: .bronze)
@@ -17,6 +19,7 @@ final class RatingHeaderView: UIView {
         super.init(frame: frame)
         setupViews()
         setupConstraints()
+        setupGestureRecognizers()
     }
     
     required init?(coder: NSCoder) {
@@ -53,6 +56,16 @@ final class RatingHeaderView: UIView {
         }
     }
     
+    private func setupGestureRecognizers() {
+        [goldContributor, silverContributor, bronzeContributor].forEach { $0.isUserInteractionEnabled = true }
+        let goldRecognizer = UITapGestureRecognizer(target: self, action: #selector(goldTapped))
+        goldContributor.addGestureRecognizer(goldRecognizer)
+        let silverRecognizer = UITapGestureRecognizer(target: self, action: #selector(silverTapped))
+        silverContributor.addGestureRecognizer(silverRecognizer)
+        let bronzeRecognizer = UITapGestureRecognizer(target: self, action: #selector(bronzeTapped))
+        bronzeContributor.addGestureRecognizer(bronzeRecognizer)
+    }
+    
     func configure(goldUser: DBUser?, silverUser: DBUser?, bronzeUser: DBUser?) {
         configureGold(goldUser: goldUser)
         configureSilver(silverUser: silverUser)
@@ -83,5 +96,17 @@ final class RatingHeaderView: UIView {
         }
         bronzeContributor.configure(user: bronzeUser)
         bronzeContributor.safeShow()
+    }
+    
+    @objc func goldTapped() {
+        contributorTapped?(.gold)
+    }
+    
+    @objc func silverTapped() {
+        contributorTapped?(.silver)
+    }
+    
+    @objc func bronzeTapped() {
+        contributorTapped?(.bronze)
     }
 }

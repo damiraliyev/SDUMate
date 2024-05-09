@@ -50,4 +50,12 @@ final class FeedbacksPresenter: IFeedbacksPresenter {
     func feedback(for indexPath: IndexPath) -> Feedback {
         return feedbacks[indexPath.row]
     }
+    
+    func showEmptyStateIfNeeded() {
+        if feedbacks.isEmpty {
+            view?.showEmptyState()
+        } else {
+            view?.hideEmptyState()
+        }
+    }
 }

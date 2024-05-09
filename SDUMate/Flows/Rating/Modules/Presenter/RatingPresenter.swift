@@ -10,6 +10,7 @@ import Foundation
 protocol IRatingPresenter: AnyObject {
     var usersDataSource: [DBUser] { get }
     func viewDidLoad()
+    func topContributorTapped(type: TopContributorType, place: Int)
 }
 
 final class RatingPresenter: IRatingPresenter {
@@ -29,10 +30,16 @@ final class RatingPresenter: IRatingPresenter {
         fethcUsers()
     }
     
+    func topContributorTapped(type: TopContributorType, place: Int) {
+        guard let user = users[safe: place - 1] else { return }
+        coordinator?.showTopContrubitorInfoView(user: user, type: type, place: place)
+    }
+    
     private func fethcUsers() {
         view?.showLoading()
         RatingManager.shared.fetchAllUsers().done { [weak self] users in
-            self?.users = users.sorted(by: { $0.points > $1.points })
+            self?.users = users.filter({ $0.isFullyAuthorized})
+                .sorted(by: { $0.points > $1.points })
             self?.configureRating()
             self?.view?.hideLoading()
         } .catch { [weak self] error in
@@ -42,12 +49,11 @@ final class RatingPresenter: IRatingPresenter {
     }
     
     private func configureRating() {
-        let tops = users.prefix(3)
+        let tops = Array(users.prefix(upTo: 3))
         view?.configureTops(goldUser: tops[safe: 0], silverUser: tops[safe: 1], bronzeUser: tops[safe: 2])
         if tops.count == 3 {
-            usersDataSource = users
+            usersDataSource = Array(users.suffix(from: 3))
             view?.reload()
         }
-        
     }
 }

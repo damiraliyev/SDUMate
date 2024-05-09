@@ -33,7 +33,7 @@ final class SessionsPresenter: ISessionsPresenter {
         SessionsManager.shared.fetchCompleteSessions().done { sessions in
             guard let id = AuthManager.shared.getAuthUser()?.uid else { return }
             self.sessions = sessions.filter { (session: Session) -> Bool in
-                if session.status == .active {
+                if session.status == .active && (id == session.respondentId || id == session.announcerId) {
                     return true
                 } else if id == session.respondentId && session.status == .announcerFinished {
                     return true
@@ -43,6 +43,7 @@ final class SessionsPresenter: ISessionsPresenter {
                 return false
             }
             self.dataSource = self.sessions
+            self.configureEmptyStateIfNeeded()
             self.view?.reload()
         } .catch { error in
             self.coordinator?.showErrorAlert(error: error.localizedDescription)

@@ -37,6 +37,7 @@ final class StudentSignUpPresenter: IStudentSignUpPresenter {
     
     func verifyTapped() {
         let email = id + "@stu.sdu.edu.kz"
+        view?.showLoading()
         authManager.createUser(email: email, password: password) { [weak self] result in
             guard let self else { return }
             switch result {
@@ -45,6 +46,7 @@ final class StudentSignUpPresenter: IStudentSignUpPresenter {
             case .failure(let error):
                 coordinator?.showErrorAlert(errorMessage: error.localizedDescription)
             }
+            view?.hideLoading()
         }
     }
     

@@ -12,20 +12,32 @@ enum TopContributorType {
     case gold
     case silver
     case bronze
+    case normal
     
-    var borderImage: UIImage {
+    var borderImage: UIImage? {
         switch self {
         case .gold:   return Asset.icGoldBorder.image
         case .silver: return Asset.icSilverBorder.image
         case .bronze: return Asset.icBronzeBorder.image
+        case .normal: return nil
         }
     }
     
-    var trophyImage: UIImage {
+    var trophyImage: UIImage? {
         switch self {
         case .gold:   return Asset.icTrophyGold.image
         case .silver: return Asset.icTrophySilver.image
         case .bronze:  return Asset.icTrophyBronze.image
+        case .normal: return nil
+        }
+    }
+    
+    var numerationColor: UIColor {
+        switch self {
+        case .gold:   return UIColor.gold
+        case .silver: return UIColor.silver
+        case .bronze: return UIColor.bronze
+        case .normal: return .white
         }
     }
 }

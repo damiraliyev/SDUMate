@@ -11,6 +11,7 @@ protocol IRatingCoordinator: IBaseCoordinator {
     var onFlowDidFinish: Completion? { get set }
     
     func onBackTapped(completion: Completion?)
+    func showTopContrubitorInfoView(user: DBUser, type: TopContributorType, place: Int)
 }
 
 final class RatingCoordinator: BaseCoordinator, TababbleCoordinator {
@@ -30,6 +31,11 @@ final class RatingCoordinator: BaseCoordinator, TababbleCoordinator {
     override func start() {
         let ratingView = moduleFactory.makeRatingView(coordinator: self)
         router.setRootModule(ratingView)
+    }
+    
+    func showTopContrubitorInfoView(user: DBUser, type: TopContributorType, place: Int) {
+        let view = TopContributorInfoViewController(user: user, type: type, place: place)
+        router.present(view, animated: true, presentType: .present, modalPresentationStyle: .overFullScreen)
     }
 }
 

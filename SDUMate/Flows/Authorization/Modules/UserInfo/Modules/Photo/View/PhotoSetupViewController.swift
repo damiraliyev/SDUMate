@@ -6,12 +6,15 @@
 //
 
 import UIKit
+import Lottie
 
 protocol IPhotoSetupView: Presentable {
     var presenter: IPhotoSetupPresenter? { get set }
     
     func set(image: UIImage)
     func changeAddPhotoTitle()
+    func showLoading()
+    func hideLoading()
 }
 
 final class PhotoSetupViewController: BaseViewController, IPhotoSetupView {
@@ -71,6 +74,17 @@ final class PhotoSetupViewController: BaseViewController, IPhotoSetupView {
         return button
     }()
     
+    private lazy var loadingAnimationView: LottieAnimationView = {
+        let animation = LottieAnimation.named("Loading")
+        let animationView = LottieAnimationView(animation: animation)
+        animationView.contentMode = .scaleAspectFill
+        animationView.loopMode = .loop
+        animationView.safeHide()
+        let colorProvider = ColorValueProvider(UIColor.lavender.lottieColorValue)
+        animationView.setValueProvider(colorProvider, keypath: AnimationKeypath(keypath: "**.Color"))
+        return animationView
+    }()
+    
     override func loadView() {
         super.loadView()
         self.view = AuthView()
@@ -88,7 +102,7 @@ final class PhotoSetupViewController: BaseViewController, IPhotoSetupView {
     }
     
     private func setupViews() {
-        view.addSubviews([navigationBar, tipLabel, imageView, cameraButton, buttonsStackView])
+        view.addSubviews([navigationBar, tipLabel, imageView, cameraButton, buttonsStackView, loadingAnimationView])
         buttonsStackView.addArrangedSubviews([addPhotoButton, skipButton])
     }
     
@@ -117,6 +131,10 @@ final class PhotoSetupViewController: BaseViewController, IPhotoSetupView {
         skipButton.snp.makeConstraints { make in
             make.height.equalTo(52)
         }
+        loadingAnimationView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.size.equalTo(120)
+        }
     }
     
     func set(image: UIImage) {
@@ -134,5 +152,15 @@ final class PhotoSetupViewController: BaseViewController, IPhotoSetupView {
     
     @objc func skipTapped() {
         presenter?.skipForNowTapped()
+    }
+    
+    func showLoading() {
+        loadingAnimationView.safeShow()
+        loadingAnimationView.play()
+    }
+    
+    func hideLoading() {
+        loadingAnimationView.safeHide()
+        loadingAnimationView.stop()
     }
 }

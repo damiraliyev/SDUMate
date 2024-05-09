@@ -19,6 +19,7 @@ final class ProfileHeaderView: UIView {
         let imageView = UIImageView()
         imageView.image = Asset.icImagePlaceholder.image
         imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     
@@ -72,7 +73,7 @@ final class ProfileHeaderView: UIView {
     }
     
     func configure(with user: DBUser) {
-        profileImageView.kf.setImage(with: URL(string: user.profileImageUrl ?? ""))
+        profileImageView.kf.setImage(with: URL(string: user.profileImageUrl ?? ""), placeholder: Asset.icImagePlaceholder.image)
         userInfoView.configure(with: user)
     }
     

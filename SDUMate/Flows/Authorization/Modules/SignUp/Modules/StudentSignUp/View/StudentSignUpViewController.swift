@@ -6,12 +6,15 @@
 //
 
 import UIKit
+import Lottie
 
 protocol IStudentSignUpView: Presentable {
     var presenter: IStudentSignUpPresenter? { get set }
     
     func enableButton()
     func disableButton()
+    func showLoading()
+    func hideLoading()
 }
 
 enum SMTextFieldTag: Int {
@@ -112,6 +115,17 @@ final class StudentSignUpViewController: BaseViewController {
         return label
     }()
     
+    private lazy var loadingAnimationView: LottieAnimationView = {
+        let animation = LottieAnimation.named("Loading")
+        let animationView = LottieAnimationView(animation: animation)
+        animationView.contentMode = .scaleAspectFill
+        animationView.loopMode = .loop
+        animationView.safeHide()
+        let colorProvider = ColorValueProvider(UIColor.lavender.lottieColorValue)
+        animationView.setValueProvider(colorProvider, keypath: AnimationKeypath(keypath: "**.Color"))
+        return animationView
+    }()
+    
     override func loadView() {
         super.loadView()
         self.view = AuthView()
@@ -124,7 +138,7 @@ final class StudentSignUpViewController: BaseViewController {
     }
     
     private func setupViews() {
-        view.addSubviews([navigationBar, labelsStackView, fieldsStackView, verifyButton, loginLabel])
+        view.addSubviews([navigationBar, labelsStackView, fieldsStackView, verifyButton, loginLabel, loadingAnimationView])
         labelsStackView.addArrangedSubviews([registerLabel, createAccountLabel])
         fieldsStackView.addArrangedSubviews([emailFormFieldView, passwordFormFieldView, confirmPasswordFormFieldView])
         setupLoginAttributedText()
@@ -148,6 +162,10 @@ final class StudentSignUpViewController: BaseViewController {
         loginLabel.snp.makeConstraints { make in
             make.top.equalTo(verifyButton.snp.bottom).offset(21)
             make.centerX.equalToSuperview()
+        }
+        loadingAnimationView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.size.equalTo(120)
         }
     }
     
@@ -186,5 +204,15 @@ extension StudentSignUpViewController: IStudentSignUpView {
     func disableButton() {
         verifyButton.isEnabled = false
         verifyButton.alpha = 0.5
+    }
+    
+    func showLoading() {
+        loadingAnimationView.safeShow()
+        loadingAnimationView.play()
+    }
+    
+    func hideLoading() {
+        loadingAnimationView.safeHide()
+        loadingAnimationView.stop()
     }
 }

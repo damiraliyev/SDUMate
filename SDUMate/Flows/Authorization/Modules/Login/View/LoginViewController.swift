@@ -199,13 +199,13 @@ final class LoginViewController: BaseViewController, ILoginView {
     }
     
     func enableButtons() {
-        loginButton.isUserInteractionEnabled = false
-        signUpLabel.isUserInteractionEnabled = false
+        loginButton.isUserInteractionEnabled = true
+        signUpLabel.isUserInteractionEnabled = true
     }
     
     func disableButtons() {
-        loginButton.isUserInteractionEnabled = true
-        signUpLabel.isUserInteractionEnabled = true
+        loginButton.isUserInteractionEnabled = false
+        signUpLabel.isUserInteractionEnabled = false
     }
     
     @objc func loginTapped() {

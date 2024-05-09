@@ -209,6 +209,6 @@ extension ProfilePresenter: PHPickerViewControllerDelegate {
 
 extension ProfilePresenter: ProfileHeaderViewDelegate {
     func changeTapped() {
-//        coordinator?.showEditProfileView(user: self.user)
+        coordinator?.showEditProfileView(user: self.user)
     }
 }

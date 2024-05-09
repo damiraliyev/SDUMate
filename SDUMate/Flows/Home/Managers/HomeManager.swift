@@ -17,6 +17,7 @@ final class HomeManager {
     
     private let announcementsCollection = Firestore.firestore().collection("announcements")
     private let usersCollection = Firestore.firestore().collection("users")
+    private let invitationsCollection = Firestore.firestore().collection("invitations")
     
     private let encoder: Firestore.Encoder = {
         let encoder = Firestore.Encoder()
@@ -78,6 +79,24 @@ final class HomeManager {
                 seal.reject(error)
             }
         }
-        
+    }
+    
+    func fetchRecievedInvitations(userId: String) -> Promise<[Invitation]>{
+        return Promise { seal in
+            invitationsCollection.whereField("announcer_id", isEqualTo: userId).getDocuments { snapshot, error in
+                guard let documents = snapshot?.documents, error == nil else {
+                    seal.reject(error ?? URLError(.badServerResponse))
+                    return
+                }
+                var invitations: [Invitation] = []
+                for document in documents {
+                    let invitation = Invitation(dict: document.data())
+                    if invitation.status == .pending {
+                        invitations.append(invitation)
+                    }
+                }
+                seal.fulfill(invitations)
+            }
+        }
     }
 }

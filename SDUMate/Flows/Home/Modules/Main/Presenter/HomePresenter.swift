@@ -39,6 +39,7 @@ final class HomePresenter: IHomePresenter {
     func viewDidLoad() {
         fetchAnnouncements()
         fetchUser()
+        fetchReceivedInvitations()
     }
     
     func filterTapped() {
@@ -90,6 +91,18 @@ final class HomePresenter: IHomePresenter {
             let nickname = user.nickname ?? ""
             self?.view?.setupHeader(fullName: fullName, nickname: nickname, avatarUrl: user.profileImageUrl)
         } .catch { [weak self] error in
+            self?.coordinator?.showErrorAlert(error: error.localizedDescription)
+        }
+    }
+    
+    private func fetchReceivedInvitations() {
+        homeManager.fetchRecievedInvitations(userId: id).done { [weak self] invitations in
+            if invitations.count > 0 {
+                self?.view?.showBadge()
+            } else {
+                self?.view?.hideBadge()
+            }
+        }.catch { [weak self] error in
             self?.coordinator?.showErrorAlert(error: error.localizedDescription)
         }
     }

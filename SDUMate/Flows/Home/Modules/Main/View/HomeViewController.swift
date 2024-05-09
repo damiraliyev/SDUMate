@@ -16,6 +16,8 @@ protocol IHomeView: Presentable {
     func reload()
     func showLoading()
     func hideLoading()
+    func showBadge()
+    func hideBadge()
 }
 
 final class HomeViewController: BaseViewController {
@@ -130,6 +132,14 @@ extension HomeViewController: IHomeView {
         collectionView.stopSkeletonAnimation()
         collectionView.hideSkeleton(transition: .crossDissolve(0.25))
         refreshControl.endRefreshing()
+    }
+    
+    func showBadge() {
+        headerView.showBadge()
+    }
+    
+    func hideBadge() {
+        headerView.hideBadge()
     }
 }
 

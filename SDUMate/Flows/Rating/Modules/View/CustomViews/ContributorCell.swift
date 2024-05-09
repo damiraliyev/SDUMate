@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class ContributorCell: UICollectionViewCell {
     
@@ -14,13 +15,17 @@ final class ContributorCell: UICollectionViewCell {
         label.textColor = .white
         label.font = .bold14
         label.text = "04"
+        label.isSkeletonable = true
+        label.skeletonCornerRadius = 4
         return label
     }()
     
     private lazy var profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
+        imageView.image = Asset.icAvatarPlaceholder.image
         imageView.clipsToBounds = true
+        imageView.isSkeletonable = true
         return imageView
     }()
     
@@ -28,6 +33,7 @@ final class ContributorCell: UICollectionViewCell {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.spacing = 3
+        stackView.isSkeletonable = true
         return stackView
     }()
     
@@ -36,6 +42,8 @@ final class ContributorCell: UICollectionViewCell {
         label.textColor = .white
         label.font = .medium16
         label.text = "Gary Sanford"
+        label.isSkeletonable = true
+        label.skeletonCornerRadius = 4
         return label
     }()
     
@@ -45,6 +53,8 @@ final class ContributorCell: UICollectionViewCell {
         label.font = .medium12
         label.numberOfLines = 2
         label.text = "Faculty of engineering and natural sciences"
+        label.isSkeletonable = true
+        label.skeletonCornerRadius = 4
         return label
     }()
     
@@ -53,6 +63,8 @@ final class ContributorCell: UICollectionViewCell {
         label.textColor = .white
         label.font = .bold20
         label.text = "100"
+        label.isSkeletonable = true
+        label.skeletonCornerRadius = 4
         return label
     }()
     
@@ -68,13 +80,17 @@ final class ContributorCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        profileImageView.layer.cornerRadius = profileImageView.frame.height / 2
+        DispatchQueue.main.async {
+            self.profileImageView.layer.cornerRadius = self.profileImageView.frame.height / 2
+        }
     }
     
     private func setupViews() {
         backgroundColor = ._767680.withAlphaComponent(0.2)
         contentView.addSubviews([numberLabel, profileImageView, labelsStackView, pointsLabel])
         layer.cornerRadius = 15
+        isSkeletonable = true
+        contentView.isSkeletonable = true
         contentView.layer.cornerRadius = 15
         labelsStackView.addArrangedSubviews([fullNameLabel, facultyLabel])
     }
@@ -87,7 +103,7 @@ final class ContributorCell: UICollectionViewCell {
         profileImageView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.leading.equalTo(numberLabel.snp.trailing).offset(10.5)
-            make.size.equalTo(63)
+            make.size.equalTo(55)
         }
         labelsStackView.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview().inset(9.5)
@@ -99,5 +115,16 @@ final class ContributorCell: UICollectionViewCell {
             make.trailing.equalToSuperview().offset(-16)
         }
         pointsLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+    }
+    
+    func configure(with user: DBUser, place: Int) {
+        var place = place < 10 ? "0" + place.description : place.description
+        numberLabel.text = place
+        fullNameLabel.text = "\(user.name ?? "") \(user.surname ?? "")"
+        facultyLabel.text = user.faculty?.rawValue ?? ""
+        pointsLabel.text = user.points.description
+        if let url = URL(string: user.profileImageUrl ?? "") {
+            profileImageView.kf.setImage(with: url, placeholder: Asset.icAvatarPlaceholder.image)
+        }
     }
 }

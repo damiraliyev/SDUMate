@@ -28,10 +28,14 @@ final class AnnouncementDetailsPresenter: IAnnouncementDetailsPresenter {
     
     func sendTapped(_ announcement: Announcement) {
         let invitation = Invitation(id: "", createdDate: Date().toUTCString(), announcerId: announcement.announcerId, respondentId: AuthManager.shared.getAuthUser()?.uid ?? "", announcementId: announcement.id, status: .pending)
+        view?.showLoading()
         announcementDetailsManager.sendInvitation(invitation: invitation).done { _ in
-            print("SENT SUCCESFULLY")
+            let alertInput = AlertInput(title: "Success!", message: "Your request was sent successfully", actionTitle: "Ok")
+            self.coordinator?.showAlertWithoutCancel(input: alertInput, style: .default)
+            self.view?.hideLoading()
         }.catch { error in
             self.coordinator?.showErrorAlert(error: error.localizedDescription)
+            self.view?.hideLoading()
         }
     }
 }

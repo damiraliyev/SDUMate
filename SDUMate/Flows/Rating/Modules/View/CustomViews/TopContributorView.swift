@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 enum TopContributorType {
     case gold
@@ -89,10 +90,10 @@ final class TopContributorView: UIView {
         return label
     }()
     
-    private let ratingLabel: UILabel = {
+    private let pointsLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = .bold22
+        label.font = .bold16
         label.text = "5.0"
         return label
     }()
@@ -119,7 +120,7 @@ final class TopContributorView: UIView {
     private func setupViews() {
         backgroundColor = .clear
         addSubviews([crownImageView, pedestalView, profileImageView, borderImageView, trophyImageView, labelsStackView])
-        labelsStackView.addArrangedSubviews([fullNameLabel, ratingLabel])
+        labelsStackView.addArrangedSubviews([fullNameLabel, pointsLabel])
         trophyImageView.image = type.trophyImage
         borderImageView.image = type.borderImage
     }
@@ -157,5 +158,12 @@ final class TopContributorView: UIView {
     
     func hideCrown() {
         crownImageView.safeHide()
+    }
+    
+    func configure(user: DBUser) {
+        guard let url = URL(string: user.profileImageUrl ?? "") else { return }
+        profileImageView.kf.setImage(with: url, placeholder: Asset.icAvatarPlaceholder.image)
+        fullNameLabel.text = "\(user.name ?? "") \(user.surname ?? "")"
+        pointsLabel.text = user.points.description + " pt"
     }
 }

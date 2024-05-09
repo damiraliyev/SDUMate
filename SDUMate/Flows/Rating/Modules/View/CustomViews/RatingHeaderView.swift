@@ -25,7 +25,9 @@ final class RatingHeaderView: UIView {
     
     private func setupViews() {
         backgroundColor = ._110F2F
-        addSubviews([silverContributor, goldContributor, bronzeContributor])
+        let views = [silverContributor, goldContributor, bronzeContributor]
+        addSubviews(views)
+        views.forEach { $0.safeHide() }
         silverContributor.hideCrown()
         bronzeContributor.hideCrown()
     }
@@ -47,8 +49,39 @@ final class RatingHeaderView: UIView {
             make.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
             make.width.equalTo(width)
-            make.height.equalTo(178)
+            make.height.equalTo(182)
         }
     }
-
+    
+    func configure(goldUser: DBUser?, silverUser: DBUser?, bronzeUser: DBUser?) {
+        configureGold(goldUser: goldUser)
+        configureSilver(silverUser: silverUser)
+        configureBronze(bronzeUser: bronzeUser)
+    }
+    
+    private func configureGold(goldUser: DBUser?) {
+        guard let goldUser = goldUser else {
+            goldContributor.safeHide()
+            return
+        }
+        goldContributor.configure(user: goldUser)
+        goldContributor.safeShow()
+    }
+    
+    private func configureSilver(silverUser: DBUser?) {
+        guard let silverUser = silverUser else {
+            silverContributor.safeHide()
+            return
+        }
+        silverContributor.configure(user: silverUser)
+        silverContributor.safeShow()
+    }
+    private func configureBronze(bronzeUser: DBUser?) {
+        guard let bronzeUser = bronzeUser else {
+            bronzeContributor.safeHide()
+            return
+        }
+        bronzeContributor.configure(user: bronzeUser)
+        bronzeContributor.safeShow()
+    }
 }

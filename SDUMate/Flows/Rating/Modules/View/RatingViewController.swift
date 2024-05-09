@@ -6,9 +6,14 @@
 //
 
 import UIKit
+import SkeletonView
 
 protocol IRatingView: Presentable {
     var presenter: IRatingPresenter? { get set }
+    func configureTops(goldUser: DBUser?, silverUser: DBUser?, bronzeUser: DBUser?)
+    func showLoading()
+    func hideLoading()
+    func reload()
 }
 
 final class RatingViewController: BaseViewController, IRatingView {
@@ -38,11 +43,13 @@ final class RatingViewController: BaseViewController, IRatingView {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(ContributorCell.self)
+        collectionView.isSkeletonable = true
         return collectionView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter?.viewDidLoad()
         setupViews()
         setupConstraints()
     }
@@ -94,6 +101,27 @@ final class RatingViewController: BaseViewController, IRatingView {
             return section
         }
     }
+    
+    func configureTops(goldUser: DBUser?, silverUser: DBUser?, bronzeUser: DBUser?) {
+        headerView.configure(goldUser: goldUser, silverUser: silverUser, bronzeUser: bronzeUser)
+    }
+    
+    func showLoading() {
+        let animation = SkeletonAnimationBuilder().makeSlidingAnimation(withDirection: .topLeftBottomRight)
+        DispatchQueue.main.async {
+            self.collectionView.startSkeletonAnimation()
+            self.collectionView.showAnimatedGradientSkeleton(usingGradient: .init(baseColor: ._282645),animation: animation)
+        }
+    }
+    
+    func hideLoading() {
+        collectionView.stopSkeletonAnimation()
+        collectionView.hideSkeleton()
+    }
+    
+    func reload() {
+        collectionView.reloadData()
+    }
 }
 
 extension RatingViewController: UICollectionViewDelegate {
@@ -103,11 +131,23 @@ extension RatingViewController: UICollectionViewDelegate {
 extension RatingViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return presenter?.usersDataSource.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: ContributorCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+        guard let user = presenter?.usersDataSource[safe: indexPath.item] else { return cell }
+        cell.configure(with: user, place: indexPath.item + 3)
         return cell
+    }
+}
+
+extension RatingViewController: SkeletonCollectionViewDataSource {
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> SkeletonView.ReusableCellIdentifier {
+        return ContributorCell.defaultReuseIdentifier
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 5
     }
 }

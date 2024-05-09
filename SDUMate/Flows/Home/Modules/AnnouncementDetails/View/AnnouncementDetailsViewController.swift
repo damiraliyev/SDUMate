@@ -6,9 +6,12 @@
 //
 
 import UIKit
+import Lottie
 
 protocol IAnnouncementDetailsView: Presentable {
     var presenter: IAnnouncementDetailsPresenter? { get set }
+    func showLoading()
+    func hideLoading()
 }
 
 final class AnnouncementDetailsViewController: BaseViewController, IAnnouncementDetailsView {
@@ -89,6 +92,17 @@ final class AnnouncementDetailsViewController: BaseViewController, IAnnouncement
         return label
     }()
     
+    private lazy var loadingAnimationView: LottieAnimationView = {
+        let animation = LottieAnimation.named("Loading")
+        let animationView = LottieAnimationView(animation: animation)
+        animationView.contentMode = .scaleAspectFill
+        animationView.loopMode = .loop
+        animationView.safeHide()
+        let colorProvider = ColorValueProvider(UIColor.lavender.lottieColorValue)
+        animationView.setValueProvider(colorProvider, keypath: AnimationKeypath(keypath: "**.Color"))
+        return animationView
+    }()
+    
     init(announcement: Announcement) {
         self.announcement = announcement
         super.init()
@@ -108,7 +122,7 @@ final class AnnouncementDetailsViewController: BaseViewController, IAnnouncement
         view.backgroundColor = ._110F2F
         view.addSubviews([scrollView, navigationBar])
         scrollView.addSubview(containerView)
-        containerView.addSubviews([imageView, labelsStackView, descriptionView, studyInfoDetailsView, userContactDetailsView, priceLabel, actionButton])
+        containerView.addSubviews([imageView, labelsStackView, descriptionView, studyInfoDetailsView, userContactDetailsView, priceLabel, actionButton, loadingAnimationView])
         labelsStackView.addArrangedSubviews([titleLabel, announcerLabel])
         configure()
     }
@@ -152,6 +166,10 @@ final class AnnouncementDetailsViewController: BaseViewController, IAnnouncement
             make.bottom.equalToSuperview().offset(-16)
             make.height.equalTo(54)
         }
+        loadingAnimationView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.size.equalTo(120)
+        }
     }
     
     private func configure() {
@@ -175,6 +193,16 @@ final class AnnouncementDetailsViewController: BaseViewController, IAnnouncement
         case .collaborate:
             actionButton.setTitle("Send response", for: .normal)
         }
+    }
+    
+    func showLoading() {
+        loadingAnimationView.safeShow()
+        loadingAnimationView.play()
+    }
+    
+    func hideLoading() {
+        loadingAnimationView.safeHide()
+        loadingAnimationView.stop()
     }
     
     @objc func sendTapped() {

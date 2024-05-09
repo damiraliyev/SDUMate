@@ -62,6 +62,14 @@ final class HomeHeaderView: UIView {
         return imageView
     }()
     
+    private lazy var messageIndicatorView: UIView = {
+        let view = UIView()
+        view.safeHide()
+        view.backgroundColor = .accentRed
+        view.layer.cornerRadius = 2.5
+        return view
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -78,7 +86,7 @@ final class HomeHeaderView: UIView {
     }
     
     private func setupViews() {
-        addSubviews([avatarImageView, labelsStackView, bellImageView])
+        addSubviews([avatarImageView, labelsStackView, bellImageView, messageIndicatorView])
         labelsStackView.addArrangedSubviews([fullNameLabel, nicknameLabel])
     }
     
@@ -98,6 +106,11 @@ final class HomeHeaderView: UIView {
             make.width.equalTo(22)
             make.height.equalTo(25)
         }
+        messageIndicatorView.snp.makeConstraints { make in
+            make.top.equalTo(bellImageView)
+            make.leading.equalTo(bellImageView.snp.trailing)
+            make.size.equalTo(5)
+        }
     }
     
     func configure(fullName: String, nickname: String, avatarUrl: String?) {
@@ -106,6 +119,14 @@ final class HomeHeaderView: UIView {
         if let avatarUrl = URL(string: avatarUrl ?? "") {
             avatarImageView.kf.setImage(with: avatarUrl)
         }
+    }
+    
+    func showBadge() {
+        messageIndicatorView.safeShow()
+    }
+    
+    func hideBadge() {
+        messageIndicatorView.safeHide()
     }
     
     @objc func notificationsTapped() {
